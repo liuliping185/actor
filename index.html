@@ -14,14 +14,14 @@
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(./image/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(./image/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(./image/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(./image/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(./image/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(./image/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(./image/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(./image/bottombtn0402.png); }
+        #footer ul li:nth-child(1){ background-image: url(./image/index/index/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/index/bottombtn0402.png); }
         #second{  background-color: #f2f2f2; }
         #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #second ul li.active{ color: #6ab494; }
@@ -31,6 +31,7 @@
         #second ul li:nth-child(4){ background-image: url(./image/index/second.png); }
         #second ul li:nth-child(5){ background-image: url(./image/index/second.png); }
         .flex-con{
+        .flex-con{
           overflow: auto
         }
     </style>
@@ -39,10 +40,10 @@
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
-            <li class="border-b active" >云API</li>
-            <li class="border-b" >端API</li>
-            <li class="border-b" >开发</li>
-            <li class="border-b" >文档</li>
+            <li class="border-b active" >协拍中国</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
         </ul>
     </header>
 
@@ -53,10 +54,10 @@
           <option style="color:#ADADAD;" value="">北京</option>
           <option style=" color:#ADADAD;" value="">上海</option>
           <option style=" color:#ADADAD;" value="">广州</option>
-          <option style=" color:#ADADAD;" value="">广州</option>
         </select>
         <input type="text" placeholder="search" style="width:65%; height:100%;  border-radius:9px;background-color:#ffffff;"/>
         <input type="image" value="Search" src="./image/index/serach.png" style="width:10%; height:100%; vertical-align:middle" />
+
       </div>
     </div>
     <!-- 第一栏区结束  -->
@@ -110,17 +111,6 @@
     </div>
     <!-- 第五栏结束  -->
 
-    <div id="main" class="flex-con">
-
-    </div>
-    <div id="footer" class="border-t">
-        <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >云API</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >端API</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >开发</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >文档</li>
-        </ul>
-    </div>
 </div>
 </body>
 </html>
@@ -153,8 +143,8 @@
             rect: {
                 x: 0,
                 y: $api.dom('header').offsetHeight,
-                w: api.winWidth,
-                h: $api.dom('#main').offsetHeight
+                w: api.winWidth//,
+                // h: $api.dom('#main').offsetHeight
             },
             index: 0,
             frames: frames
