@@ -124,22 +124,8 @@
             style: 'dark',
             color: '#6ab494'
         });
-        api.setRefreshHeaderInfo(function(ret, err){
-            //refresh event callback
-            toDoRequest();
-        });
         // funIniGroup();
         thirdInitialization();
-    }
-
-    function toDoRequest(){
-        // GET、POST、PUT、DELETE、…
-        api.ajax({
-            url:'http://xxx.xxx.xxx'
-        }, function(ret, err){
-            api.refreshHeaderLoadDone(); //复位下拉刷新
-            //do your business
-        });
     }
 
     // 随意切换按钮
