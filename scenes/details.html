@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>找场景-列表页</title>
+    <title>找场景-详情页</title>
     <link rel="stylesheet" type="text/css" href="../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
     <style>
@@ -154,30 +154,6 @@
     // 详情
     function detail(){
       console.log("detail")
-      api.openFrame ({
-          name: 'AllGroup',
-          url: 'details.html',
-          reload:'true',
-          rect:{
-              x:0,
-              y:41,
-              w:'auto',
-              h:'auto'
-          },
-          bounces: false,
-          pageParam: {
-              "id":'1'
-          }
-      });
-
-        // api.openWin({
-        // name: type,
-        // url: 'header/'+type+'.html',
-        // bounces: false,
-        // pageParam: {
-        // "id":id	//id
-        // }
-        // });
     }
 
     // 第三栏区的内容初始化加载
