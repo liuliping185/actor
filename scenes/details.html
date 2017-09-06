@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body style="height: 100%; width: 100%;">
+<body style="height: 100%; width: 100%; overflow-y:auto; overflow-x:auto;">
 <div id="wrap" class="flex-wrap flex-vertical">
     <header style="width: 100%;">
         <ul>
@@ -53,48 +53,71 @@
         </ul>
     </header>
 
-    <!-- 第一栏区开始  -->
-    <div style="width:100%; height:8%; background-color:#ffffff">
-      <div style="width:90%; height:100%; margin: 0 auto; margin-top: 5px; display: block;">
-        <input type="text" placeholder="search" style="width:80%; height:70%; border:1px solid #F0F0F0; border-radius:9px;background-color:#ffffff;"/>
-        <input type="image" value="Search" src="../image/index/serach.png" style="width:10%; height:60%; vertical-align:middle" />
-      </div>
+    <div style="overflow:auto; height:100%;">
+        <!-- 第一栏区开始  -->
+        <div style="width:100%; height:5%; margin: 0 auto; background-color:#ffffff">
+            <span>找场景</span>
+        </div>
+        <!-- 第一栏区结束  -->
+
+        <!-- 第二栏区开始  -->
+        <div id="second" style=" width:100%; height:7%; margin 0 auto; background-color:#F0F0F0;">
+            <span>找场景的介绍，可以关注...</span>
+        </div>
+        <!-- 第二栏区结束  -->
+
+        <!-- 第三栏区开始  thirdArea-->
+        <div style="height:50%; background-color:#ffffff">
+            <div style="height: 10%;">
+                <span>默认图集</spam>
+                <span>相册></span>
+            </div>
+            <div style="height: 90%; background-color:#F0F0F0;"></div>
+        </div>
+        <!-- 第三栏区结束  -->
+
+        <!-- 第四栏开始 -->
+        <div style="height: 10%; background-color:#ffffff;">
+            <h2>场景信息</h2>
+            <span style="margin-left: 1%;">场地大小: 1000平方米</span>
+            <span style="margin-left: 10%;">道具: 随表挑</span>
+            <span style="margin-left: 10%;">你猜: 保密</span>
+        </div>
+        <!-- 第四栏结束 -->
+
+        <!-- 第五栏开始 -->
+        <div style="height: 5%; background-color:#F0F0F0;">
+            <span>场景介绍</span>
+            <span style="margin-left: 70%;">更多></span>
+        </div>
+        <!-- 第五栏结束 -->
+
+        <!-- 第六栏开始 -->
+        <div style="height: 50%;">
+            <h2>场景一</h2>
+            <div>
+                <span>可预约时段
+                </span>
+            </div>
+            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
+
+            <h2>场景二</h2>
+            <div>
+                <span>偶尔有时间
+                </span>
+            </div>
+            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
+            <h3>……</h3>
+        </div>
+        <!-- 第六栏结束 -->
+
+        <!-- 第七栏开始 -->
+        <div style="height: 30%; background-color:#F0F0F0;">
+            <span style="width:47.5%; height:100%;">服务评价</span>
+            <span style="margin-left:13px; width:47.5%; height:100%;">专业评价</span>
+        </div>
+        <!-- 第七栏结束 -->
     </div>
-    <!-- 第一栏区结束  -->
-
-    <!-- 第二栏区开始  -->
-    <div id="second" style=" width:100%; height:7%; margin 0 auto; background-color:#F0F0F0;">
-      <div style="margin-left: 20px; margin-top: 10px; display: block;">
-        <select>
-          <option value="-1">全部类型</option>
-          <option value="">第一种类型</option>
-          <option value="">第二种类型</option>
-        </select>
-
-        <select style="margin-left: 20px;">
-          <option value="-1">智能排序</option>
-          <option value="">升序</option>
-          <option value="">降序</option>
-        </select>
-
-        <select style="margin-left: 20px;">
-          <option value="-1">筛选</option>
-          <option value="">第一种筛选</option>
-          <option value="">第二种筛选</option>
-        </select>
-      </div>
-    </div>
-    <!-- 第二栏区结束  -->
-
-    <!-- 第三栏区开始  thirdArea-->
-    <div id="sample" style="overflow:auto; width:100%; height:70%; background-color:#ffffff">
-
-    </div>
-    <div id="spinner">
-        正在加载...
-    </div>
-    <!-- 第三栏区结束  -->
-
     <!-- 第四栏开始  -->
     <div id="main" class="flex-con">
 
@@ -118,6 +141,8 @@
     $(document).ready(function(){
       $('body').height($('body')[0].clientHeight);
       thirdInitialization();
+      var id = api.pageParam.id;
+      alert(id);
     });
     apiready = function () {
         $api.fixStatusBar( $api.dom('header') );
@@ -128,7 +153,6 @@
         // funIniGroup();
         thirdInitialization();
     }
-
     // 随意切换按钮
     function randomSwitchBtn( tag ) {
         if( tag == $api.dom('#footer li.active') )return;
@@ -150,12 +174,10 @@
             index: index
         });
     }
-
     // 详情
     function detail(){
       console.log("detail")
     }
-
     // 第三栏区的内容初始化加载
     function thirdInitialization(){
       var htmlStr = "";
@@ -186,7 +208,6 @@
         // console.log(scrollHeight);
         return pageHeight - viewportHeight - scrollHeight < 20;
     }
-
     var flag = 0;
     function doSomething(){
         var htmlStr = "";
@@ -200,13 +221,10 @@
         pollScroll();//继续循环
         $('#spinner').hide();
     }
-
     function checkScroll(){
         if(!lowEnough()) return pollScroll();
-
         $('#spinner').show();
         setTimeout(doSomething,900);
-
     }
     function pollScroll(){
         setTimeout(checkScroll,1000);
