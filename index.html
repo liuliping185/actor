@@ -115,8 +115,12 @@
 </body>
 </html>
 <script type="text/javascript" src="script/api.js"></script>
-<script type="text/javascript" src="script/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
+    $(document).ready(function(){
+      $('body').height($('body')[0].clientHeight);
+      thirdInitialization();
+    });
     apiready = function () {
         $api.fixStatusBar( $api.dom('header') );
         api.setStatusBarStyle({
