@@ -286,7 +286,7 @@
     function pollScroll(){
         setTimeout(checkScroll,1000);
     }
-    checkScroll(); 
+    checkScroll();
     /** 无限分页结束 **/
 
     // 上传图片开始
@@ -378,7 +378,7 @@
                     targetHeight: 750
                 }, function(ret, err) {
                     if (ret) {
-                      alert(ret);
+                      alert(JSON.stringify(ret));
                       $('#imgUp').attr('src', ret.base64Data);
                         // var aa=ret.base64Data;
                         // api.ajax({
