@@ -292,7 +292,6 @@
     // 上传图片开始
     // 上传图片
     function showAction(){
-      var UIMediaScanner = api.require('UIMediaScanner');
       UIMediaScanner.open({
       	type: 'picture',
       	column: 4,
@@ -337,7 +336,6 @@
       		alert(JSON.stringify(ret));
       	}
       });
-
         // api.actionSheet({
         //     title: '上传图片',
         //     cancelTitle: '取消',
