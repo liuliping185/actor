@@ -193,8 +193,6 @@
     $(document).ready(function(){
       $('body').height($('body')[0].clientHeight);
       thirdInitialization();
-      var id = api.pageParam.id;
-      alert(id);
     });
     apiready = function () {
         $api.fixStatusBar( $api.dom('header') );
@@ -322,21 +320,24 @@
             });
         }
         else if(sourceType==2){ // 从相机中选择
+            var options = this.options;
+            alert(options.url);
             api.getPicture({
                     sourceType: 'library',
                     encodingType: 'jpg',
                     mediaValue: 'pic',
                     destinationType: 'base64',
-                    quality: 50,
+                    quality: 100,
                     targetWidth: 750,
-                    targetHeight: 750
+                    targetHeight: 750,
+                    allowEdit : true
                 }, function(ret, err) {
                     if (ret) {
                         // $('#imgUp').attr('src', ret.base64Data)
                         var aa=ret.base64Data;
                         api.ajax({
                             type:"post",
-                            url:"http://www.yuechebang.cn/Oauth/Api/index",
+                            url:options.url,
                             data:{base64:aa},
                             dataType:'json',
                             async:true,
