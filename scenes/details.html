@@ -320,34 +320,31 @@
             });
         }
         else if(sourceType==2){ // 从相机中选择
-            var options = this.options;
-            alert(options.url);
             api.getPicture({
                     sourceType: 'library',
                     encodingType: 'jpg',
                     mediaValue: 'pic',
                     destinationType: 'base64',
-                    quality: 100,
+                    quality: 50,
                     targetWidth: 750,
-                    targetHeight: 750,
-                    allowEdit : true
+                    targetHeight: 750
                 }, function(ret, err) {
                     if (ret) {
-                        // $('#imgUp').attr('src', ret.base64Data)
-                        var aa=ret.base64Data;
-                        api.ajax({
-                            type:"post",
-                            url:options.url,
-                            data:{base64:aa},
-                            dataType:'json',
-                            async:true,
-                        },function(ret,err){
-                            if(ret){
-                                $('#imgUp').attr('src',aa)
-                            }else{
-                                api.alert(err);
-                            }
-                        })
+                      $('#imgUp').attr('src', ret.base64Data);
+                        // var aa=ret.base64Data;
+                        // api.ajax({
+                        //     type:"post",
+                        //     url:"",
+                        //     data:{base64:aa},
+                        //     dataType:'json',
+                        //     async:true,
+                        // },function(ret,err){
+                        //     if(ret){
+                        //         $('#imgUp').attr('src',aa)
+                        //     }else{
+                        //         api.alert(err);
+                        //     }
+                        // })
                     } else {
                         alert(JSON.stringify(err));
                     }
