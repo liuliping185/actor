@@ -190,6 +190,7 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
+    var UIMediaScanner = api.require('UIMediaScanner');
     $(document).ready(function(){
       $('body').height($('body')[0].clientHeight);
       thirdInitialization();
@@ -291,6 +292,50 @@
     // 上传图片开始
     // 上传图片
     function showAction(){
+      UIMediaScanner.open({
+      	type: 'picture',
+      	column: 4,
+      	classify: true,
+      	max: 4,
+      	sort: {
+      		key: 'time',
+      		order: 'desc'
+      	},
+      	texts: {
+      		stateText: '已选择*项',
+      		cancelText: '取消',
+      		finishText: '完成'
+      	},
+      	styles: {
+      		bg: '#fff',
+      		mark: {
+      			icon: '',
+      			position: 'bottom_left',
+      			size: 20
+      		},
+      		nav: {
+      			bg: '#eee',
+      			stateColor: '#000',
+      			stateSize: 18,
+      			cancelBg: 'rgba(0,0,0,0)',
+      			cancelColor: '#000',
+      			cancelSize: 18,
+      			finishBg: 'rgba(0,0,0,0)',
+      			finishColor: '#000',
+      			finishSize: 18
+      		}
+      	},
+      	scrollToBottom: {
+      		intervalTime: 3,
+      		anim: true
+      	},
+      	exchange: true,
+      	rotation: true
+      }, function(ret) {
+      	if (ret) {
+      		alert(JSON.stringify(ret));
+      	}
+      });
         api.actionSheet({
             title: '上传图片',
             cancelTitle: '取消',
@@ -301,6 +346,7 @@
             }
         });
     }
+    
     function getPicture(sourceType) {
         if(sourceType==1){ // 拍照
             api.getPicture({
