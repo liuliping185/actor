@@ -334,11 +334,19 @@
       	rotation: true
       }, function(ret) {
       	if (ret) {
+<<<<<<< HEAD
           $('#imgUp').attr('src', ret.list[0].path);
           // for(var i=0; i<ret.list.length; i++){
           //   alert(ret.list[i]);
           // }
       		alert(ret);
+=======
+          // $('#imgUp').attr('src', JSON.stringify(ret).list[0].path);
+          for(var i in ret.list){
+            alert(JSON.stringify(i));
+          }
+      		alert(JSON.stringify(ret));
+>>>>>>> 0880a852c8aeb695d1604a7fd655169d36176e8f
       	}
       });
         // api.actionSheet({
