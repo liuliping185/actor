@@ -190,7 +190,6 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
-    var UIMediaScanner = api.require('UIMediaScanner');
     $(document).ready(function(){
       $('body').height($('body')[0].clientHeight);
       thirdInitialization();
@@ -292,6 +291,7 @@
     // 上传图片开始
     // 上传图片
     function showAction(){
+      var UIMediaScanner = api.require('UIMediaScanner');
       UIMediaScanner.open({
       	type: 'picture',
       	column: 4,
