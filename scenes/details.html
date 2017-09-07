@@ -320,14 +320,17 @@
             });
         }
         else if(sourceType==2){ // 从相机中选择
+            var options = this.options;
+            alert(options.url);
             api.getPicture({
                     sourceType: 'library',
                     encodingType: 'jpg',
                     mediaValue: 'pic',
                     destinationType: 'base64',
-                    quality: 50,
+                    quality: 100,
                     targetWidth: 750,
-                    targetHeight: 750
+                    targetHeight: 750,
+                    allowEdit : true
                 }, function(ret, err) {
                     if (ret) {
                       $('#imgUp').attr('src', ret.base64Data);
