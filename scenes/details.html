@@ -334,7 +334,10 @@
       	rotation: true
       }, function(ret) {
       	if (ret) {
-          $('#imgUp').attr('src', JSON.stringify(ret).list[0].path);
+          // $('#imgUp').attr('src', JSON.stringify(ret).list[0].path);
+          for(var i in ret.list){
+            alert(JSON.stringify(i));
+          }
       		alert(JSON.stringify(ret));
       	}
       });
