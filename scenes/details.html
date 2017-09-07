@@ -336,15 +336,15 @@
       		alert(JSON.stringify(ret));
       	}
       });
-        api.actionSheet({
-            title: '上传图片',
-            cancelTitle: '取消',
-            buttons: ['拍照','从手机相册选择']
-        }, function(ret, err) {
-            if (ret) {
-                getPicture(ret.buttonIndex);
-            }
-        });
+        // api.actionSheet({
+        //     title: '上传图片',
+        //     cancelTitle: '取消',
+        //     buttons: ['拍照','从手机相册选择']
+        // }, function(ret, err) {
+        //     if (ret) {
+        //         getPicture(ret.buttonIndex);
+        //     }
+        // });
     }
 
     function getPicture(sourceType) {
