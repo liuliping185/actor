@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找场景-详情页</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+    header{ background-color: #f2f2f2; }
+    header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+    header ul li.active{ display: block; }
+    #footer{  background-color: #f2f2f2; }
+    #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+    #footer ul li.active{ color: #6ab494; }
+    #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
+    #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
+    #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
+    #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
+    #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
+    #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
+    #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
+    #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
+        .flex-con{
+        .flex-con{
+          overflow: auto
+        }
+        #spinner{
+            position: fixed;
+            top: 20px;
+            left: 40%;
+            display: block;
+            color: red;
+            font-weight: 900;
+            background-color: rgba(80, 80, 90, 0.22);
+            padding-top: 20px;
+            padding-bottom: 20px;
+            padding-left: 100px;
+            padding-right: 100px;
+            border-radius: 15px;
+        }
+
+        html,body{
+            height: 100%;
+        }
+        #wrap{
+            height: 100%;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-flex-flow: column;
+                   flex-flow: column;
+        }
+        #header{
+            text-align: center; background-color: #81a9c3; color: #fff;
+            width: 100%;
+        }
+        #header h1{
+            font-size: 20px; height: 44px; line-height: 44px; margin: 0em; color: #fff;
+        }
+        #main{
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+        #footer{
+            height: 30px; line-height: 30px;
+            background-color: #81a9c3;
+            width: 100%;
+            text-align: center;
+        }
+        #footer h5{
+            color: white;
+        }
+        .con{font-size: 28px; text-align: center;}
+    </style>
+</head>
+<body style="height: 100%; width: 100%; overflow-y:auto; overflow-x:auto;">
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header style="width: 100%;">
+        <ul>
+            <li class="border-b active" >协拍中国</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <div style="overflow:auto; height:100%;">
+        <!-- 第一栏区开始  -->
+        <div style="width:100%; height:5%; margin: 0 auto; background-color:#ffffff">
+            <span>找场景</span>
+        </div>
+        <!-- 第一栏区结束  -->
+
+        <!-- 第二栏区开始  -->
+        <div id="second" style=" width:100%; height:7%; margin 0 auto; background-color:#F0F0F0;">
+            <span>找场景的介绍，可以关注...</span>
+        </div>
+        <!-- 第二栏区结束  -->
+
+        <!-- 第三栏区开始  thirdArea-->
+        <div style="height:50%; background-color:#ffffff">
+            <div style="height: 10%;">
+                <span>默认图集</spam>
+                <span>相册></span>
+            </div>
+            <div style="height: 90%; background-color:#F0F0F0;"></div>
+        </div>
+        <!-- 第三栏区结束  -->
+
+        <!-- 第四栏开始 -->
+        <div style="height: 10%; background-color:#ffffff;">
+            <h2>场景信息</h2>
+            <span style="margin-left: 1%;">场地大小: 1000平方米</span>
+            <span style="margin-left: 10%;">道具: 随表挑</span>
+            <span style="margin-left: 10%;">你猜: 保密</span>
+        </div>
+        <!-- 第四栏结束 -->
+
+        <!-- 第五栏开始 -->
+        <div style="height: 5%; background-color:#F0F0F0;">
+            <span>场景介绍</span>
+            <span style="margin-left: 70%;">更多></span>
+        </div>
+        <!-- 第五栏结束 -->
+
+        <!-- 第六栏开始 -->
+        <div style="height: 50%;">
+            <h2>场景一</h2>
+            <div>
+                <span>可预约时段
+                </span>
+            </div>
+            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
+
+            <h2>场景二</h2>
+            <div>
+                <span>偶尔有时间
+                </span>
+            </div>
+            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
+            <h3>……</h3>
+        </div>
+        <!-- 第六栏结束 -->
+
+        <!-- 第七栏开始 -->
+        <div style="height: 30%; background-color:#F0F0F0;">
+            <span style="width:47.5%; height:100%;">服务评价</span>
+            <span style="margin-left:13px; width:47.5%; height:100%;">专业评价</span>
+        </div>
+        <!-- 第七栏结束 -->
+
+        <!-- 上传图片开始 -->
+        <div id="wrap">
+            <div id="header">
+                <h1>上传图片demo</h1>
+            </div>
+            <div id="main">
+                <button class="uploadBtn" type="text" onclick="showAction();" style="position: relative;left:50%; margin-left:-50px;width:100px;height:50px;background-color: pink;border:none;">点击上传图片</button>
+                <div class="imgBox" style="position:relative;width:200px;height:200px;border:1px solid red;">
+                    <img id="imgUp" style="width:100%;height:100%;" src="../image/index/bottombtn0101.png"/>
+                </div>
+            </div>
+            <div id="footer">
+                <h5>Copyright &copy;<span id="year"></span> </h5>
+            </div>
+        </div>
+        <!-- 上传图片结束 -->
+    </div>
+    <!-- 第四栏开始  -->
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t" style="position: absolute; margin-top: 160%; width: 100%">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+    <!-- 第四栏结束  -->
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    var UIMediaScanner = api.require('UIMediaScanner');
+    $(document).ready(function(){
+      $('body').height($('body')[0].clientHeight);
+      thirdInitialization();
+    });
+    apiready = function () {
+        $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#6ab494'
+        });
+        // funIniGroup();
+        thirdInitialization();
+
+        // 界面文字
+        var header = $api.byId('header');
+        var year = $api.byId('year');
+        year.innerHTML = new Date().getFullYear();
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+    // 详情
+    function detail(){
+
+    }
+    // 第三栏区的内容初始化加载
+    function thirdInitialization(){
+      var htmlStr = "";
+      $("#sample").html("");
+      for(var i=0; i<3; i++){
+        if(i > 0){
+          htmlStr += "<div onclick='detail()' style='width:100%; height:32%; margin-top:2%; background-color:#00ffff; background-image: url(../image/index/timg.jpg); background-size:100%;'></div>";
+        }else{
+          htmlStr += "<div onclick='detail()' style='width:100%; height:32%; margin_top: 0px; background-color:#00ffff; background-image: url(../image/index/timg.jpg); background-size:100%;'></div>";
+        }
+      }
+      $('#sample').append(htmlStr);
+    }
+    /** 无限分页开始 **/
+    function lowEnough(){
+        //真实内容的高度
+        var pageHeight = Math.max(document.body.scrollHeight,document.body.offsetHeight);
+        //视窗的高度
+        var viewportHeight = window.innerHeight ||
+            document.documentElement.clientHeight ||
+            document.body.clientHeight || 0;
+        //隐藏的高度
+        var scrollHeight = window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop || 0;
+        // console.log(pageHeight);
+        // console.log(viewportHeight);
+        // console.log(scrollHeight);
+        return pageHeight - viewportHeight - scrollHeight < 20;
+    }
+    var flag = 0;
+    function doSomething(){
+        var htmlStr = "";
+        if(6 > flag){
+          for(var i=0; i<3; i++){
+              htmlStr += "<div onclick='detail()' style='width:100%; height:32%; margin-top:2%; background-color:#00ffff; background-image: url(../image/index/timg.jpg); background-size:100%;'></div>";
+              flag ++;
+          }
+        }
+        $('#sample').append(htmlStr);
+        pollScroll();//继续循环
+        $('#spinner').hide();
+    }
+    function checkScroll(){
+        if(!lowEnough()) return pollScroll();
+        $('#spinner').show();
+        setTimeout(doSomething,900);
+    }
+    function pollScroll(){
+        setTimeout(checkScroll,1000);
+    }
+    checkScroll();
+    /** 无限分页结束 **/
+
+    // 上传图片开始
+    // 上传图片
+    function showAction(){
+      var UIMediaScanner = api.require('UIMediaScanner');
+      UIMediaScanner.open({
+      	type: 'picture',
+      	column: 4,
+      	classify: true,
+      	max: 4,
+      	sort: {
+      		key: 'time',
+      		order: 'desc'
+      	},
+      	texts: {
+      		stateText: '已选择*项',
+      		cancelText: '取消',
+      		finishText: '完成'
+      	},
+      	styles: {
+      		bg: '#fff',
+      		mark: {
+      			icon: '',
+      			position: 'bottom_left',
+      			size: 20
+      		},
+      		nav: {
+      			bg: '#eee',
+      			stateColor: '#000',
+      			stateSize: 18,
+      			cancelBg: 'rgba(0,0,0,0)',
+      			cancelColor: '#000',
+      			cancelSize: 18,
+      			finishBg: 'rgba(0,0,0,0)',
+      			finishColor: '#000',
+      			finishSize: 18
+      		}
+      	},
+      	scrollToBottom: {
+      		intervalTime: 3,
+      		anim: true
+      	},
+      	exchange: true,
+      	rotation: true
+      }, function(ret) {
+      	if (ret) {
+          // $('#imgUp').attr('src', ret.base64Data);
+      		alert(JSON.stringify(ret));
+      	}
+      });
+        // api.actionSheet({
+        //     title: '上传图片',
+        //     cancelTitle: '取消',
+        //     buttons: ['拍照','从手机相册选择']
+        // }, function(ret, err) {
+        //     if (ret) {
+        //         getPicture(ret.buttonIndex);
+        //     }
+        // });
+    }
+
+    function getPicture(sourceType) {
+        if(sourceType==1){ // 拍照
+            api.getPicture({
+                sourceType: 'camera',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                allowEdit: false,
+                destinationType: 'base64',
+                quality: 90,
+                saveToPhotoAlbum: true
+            }, function(ret, err) {
+                if (ret) {
+                   $('#imgUp').attr('src', ret.base64Data);
+                }else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+        else if(sourceType==2){ // 从相机中选择
+            api.getPicture({
+                    sourceType: 'library',
+                    encodingType: 'jpg',
+                    mediaValue: 'pic',
+                    destinationType: 'base64',
+                    quality: 50,
+                    targetWidth: 750,
+                    targetHeight: 750
+                }, function(ret, err) {
+                    if (ret) {
+                      $('#imgUp').attr('src', ret.base64Data);
+                        // var aa=ret.base64Data;
+                        // api.ajax({
+                        //     type:"post",
+                        //     url:"",
+                        //     data:{base64:aa},
+                        //     dataType:'json',
+                        //     async:true,
+                        // },function(ret,err){
+                        //     if(ret){
+                        //         $('#imgUp').attr('src',aa)
+                        //     }else{
+                        //         api.alert(err);
+                        //     }
+                        // })
+                    } else {
+                        alert(JSON.stringify(err));
+                    }
+            });
+        }
+    }
+    // 上传图片结束
+</script>
