@@ -154,21 +154,22 @@
     // 详情
     function detail(){
       console.log("detail")
-      api.openFrame ({
-          name: 'AllGroup',
-          url: 'details.html',
-          reload:'true',
-          rect:{
-              x:0,
-              y:41,
-              w:'auto',
-              h:'auto'
-          },
-          bounces: false,
-          pageParam: {
-              "id":'1'
-          }
-      });
+      window.location.href = "details.html";
+      // api.openFrame ({
+      //     name: 'AllGroup',
+      //     url: 'details.html',
+      //     reload:'true',
+      //     rect:{
+      //         x:0,
+      //         y:41,
+      //         w:'auto',
+      //         h:'auto'
+      //     },
+      //     bounces: false,
+      //     pageParam: {
+      //         "id":'1'
+      //     }
+      // });
 
         // api.openWin({
         // name: type,
