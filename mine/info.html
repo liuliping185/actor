@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-信息维护</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <style>
+        header{ background-color: #f2f2f2; }
+        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+        header ul li.active{ display: block; }
+        #footer{  background-color: #f2f2f2; }
+        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #6ab494; }
+        #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
+        #second{  background-color: #f2f2f2; }
+        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #second ul li.active{ color: #6ab494; }
+        #second ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
+        #second ul li:nth-child(2){ background-image: url(../image/index/bottombtn0101.png); }
+        #second ul li:nth-child(3){ background-image: url(../image/index/bottombtn0101.png); }
+        .flex-con{
+        .flex-con{
+          overflow: auto
+        }
+        .aui-content-padded {
+            padding: 0.75rem;
+            background-color: #ffffff;
+            margin-top: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >我的</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <!-- 第一栏区开始  -->
+    <div style="width:100p%; height:20%;">
+        <span style="margin-left:3%;">我的</span><a href="../mine/setUp.html" style="float:right; margin-right:3%;">设置</a>
+        <div>
+            <div style="float:left; width: 20%; height: 20vw; margin:5%; background-image: url(../image/mine/mine.png); background-size:100%;">
+                <!-- <img src="../image/index/timg.jpg"/> -->
+            </div>
+            <div style="float:left;width:60%; height:25%; display: block;">
+                <span style="margin-left: 3%; margin-top: 15%;">柳丽苹 <a href="../mine/personalInfo.html">未设置昵称</a></span>
+                <p style="margin-left: 3%; margin-top: 1%;">18535741140</p>
+            </div>
+        </div>
+    </div>
+    <!-- 第一栏区结束  -->
+
+    <!-- 第二栏区开始  -->
+    <div id="second" style="width:100%; height:60%; background-color:#ffffff">
+        <ul class="flex-wrap" style="margin-top:5%;">
+            <li tapmode="hover" onclick="scenes( this );" style="background-color:#ffffff; height:100%" class="flex-con" >首页</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >设置</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >地图</li>
+        </ul>
+        <ul class="flex-wrap" style="margin-top: 5%;">
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >日历</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >日期</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >购物车</li>
+        </ul>
+        <div style="text-align:center; margin-top: 3%;">
+            <span style="width: 95%; height: 13px; background-color:#F0F0F0;"></span>
+        </div>
+        <ul class="flex-wrap" style="margin-top:5%;">
+            <li tapmode="hover" onclick="scenes( this );" style="background-color:#ffffff; height:100%" class="flex-con" >首页</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >设置</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >地图</li>
+        </ul>
+        <ul class="flex-wrap" style="margin-top: 5%;">
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >日历</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >日期</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" style="background-color:#ffffff; height:100%" class="flex-con" >购物车</li>
+        </ul>
+    </div>
+    <!-- 第二栏区结束  -->
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+    <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../script/bizjs/info.js"></script>
