@@ -6,6 +6,7 @@
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>主页</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <style>
         header{ background-color: #f2f2f2; }
@@ -34,6 +35,11 @@
         .flex-con{
           overflow: auto
         }
+        .aui-content-padded {
+            padding: 0.75rem;
+            background-color: #ffffff;
+            margin-top: 0.75rem;
+        }
     </style>
 </head>
 <body>
@@ -48,15 +54,27 @@
     </header>
 
     <!-- 第一栏区开始  -->
-    <div style="width:100p%; height:25%; background-image: url(./image/index/timg.jpg); background-size:100%;">
-        <div style="width:90%; height:20%; margin: 0; margin-top:10px; display: block;">
-            <select style="width:15%; height:100%; color:#ADADAD;">
-                <option style="color:#ADADAD;" value="">北京</option>
-                <option style=" color:#ADADAD;" value="">上海</option>
-                <option style=" color:#ADADAD;" value="">广州</option>
-            </select>
-            <input type="text" placeholder="search" style="-webkit-user-modify: read-write-plaintext-only; width:65%; height:100%; border-radius:9px;background-color:#ffffff;"/>
-            <input type="image" value="Search" src="./image/index/serach.png" style="width:10%; height:100%; vertical-align:middle"/>
+    <div style="width:100p%; height:25%;  background-image: url(./image/index/timg.jpg); background-size:100%;">
+        <div style="margin 0 auto;">
+            <div style="float:left; margin-top: 2%;">
+                <select style=" color:#ADADAD;">
+                    <option style="color:#ADADAD;" value="">北京</option>
+                    <option style=" color:#ADADAD;" value="">上海</option>
+                    <option style=" color:#ADADAD;" value="">广州</option>
+                </select>
+            </div>
+            <div style="float:left;width:85%; margin: 2%; height:25%; display: block;">
+                <div class="aui-searchbar" id="search" style="border-radius:9px;">
+                    <div class="aui-searchbar-input aui-border-radius">
+                        <i class="aui-iconfont aui-icon-search"></i>
+                        <input type="search" placeholder="请输入搜索内容" id="search-input">
+                        <div class="aui-searchbar-clear-btn">
+                            <i class="aui-iconfont aui-icon-close"></i>
+                        </div>
+                    </div>
+                    <div class="aui-searchbar-btn" tapmode>取消</div>
+                </div>
+            </div>
         </div>
     </div>
     <!-- 第一栏区结束  -->
@@ -115,94 +133,4 @@
 </html>
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('body').height($('body')[0].clientHeight);
-    });
-    apiready = function () {
-        $api.fixStatusBar( $api.dom('header') );
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
-        // funIniGroup();
-    }
-
-    function funIniGroup(){
-        var eHeaderLis = $api.domAll('header li'),
-            frames = [];
-        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-                frames.push( {
-                    name: 'frame'+i,
-                    url: './html/frame'+i+'.html',
-                    bgColor : 'rgba(0,0,0,.2)',
-                    bounces:true
-                } )
-        }
-        api.openFrameGroup({
-            name: 'group',
-            scrollEnabled: false,
-            rect: {
-                x: 0,
-                y: $api.dom('header').offsetHeight,
-                w: api.winWidth//,
-                // h: $api.dom('#main').offsetHeight
-            },
-            index: 0,
-            frames: frames
-        }, function (ret, err) {
-
-        });
-    }
-
-    // 随意切换按钮
-    function randomSwitchBtn( tag ) {
-        if( tag == $api.dom('#footer li.active') )return;
-        var eFootLis = $api.domAll('#footer li'),
-            eHeaderLis = $api.domAll('header li'),
-            index = 0;
-        for (var i = 0,len = eFootLis.length; i < len; i++) {
-            if( tag == eFootLis[i] ){
-                index = i;
-            }else{
-                $api.removeCls(eFootLis[i], 'active');
-                $api.removeCls(eHeaderLis[i], 'active');
-            }
-        }
-        $api.addCls( eFootLis[index], 'active');
-        $api.addCls( eHeaderLis[index], 'active');
-        api.setFrameGroupIndex({
-            name: 'group',
-            index: index
-        });
-    }
-
-    // 找场景
-    function scenes(){
-      // api.openWin({
-    	// 	name : "scenes",
-    	// 	url : "./html/scenes.html",
-    	// });
-      // var obj = {
-      //   "list": [
-      //     {
-      //       "path": "1",
-      //       "path1": "2"
-      //     },
-      //     {
-      //       "path": "11",
-      //       "path1": "22"
-      //     }
-      //   ]
-      // }
-      //
-      // console.log(obj.list[0].path);
-      // for(var i in obj.list){
-      //   console.log(i);
-      //   console.log(i.path);
-      // }
-
-      window.location.href = "./scenes/scenes.html";
-    }
-
-</script>
+<script type="text/javascript" src="script/bizjs/index.js"></script>

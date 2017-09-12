@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>用户登录</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css"/>
+    <style>
+        header{ background-color: #f2f2f2; }
+        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+        header ul li.active{ display: block; }
+        #footer{  background-color: #f2f2f2; }
+        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #6ab494; }
+        #footer ul li:nth-child(1){ background-image: url(./image/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/index/bottombtn0402.png); }
+        #second{  background-color: #f2f2f2; }
+        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #second ul li.active{ color: #6ab494; }
+        #second ul li:nth-child(1){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(2){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(3){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(4){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(5){ background-image: url(./image/index/second.png); }
+        .flex-con{
+        .flex-con{
+          overflow: auto
+        }
+    </style>
+</head>
+<body style="background: #fff;">
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >协拍中国</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <!-- 登录开始 -->
+    <div class="page">
+      	<div class="page__bd" style="height: 100%;">
+        		<div class="weui-tab">
+        			  <div class="weui-tab__panel">
+                    <input type="hidden" id="hi_url" value="/nanyutang/member/goMemberIndex.action"/>
+                  	<div style="background: white;" align="center">
+                    		<div id="index">
+                    		</div>
+                    		<div style="margin-top: 30px;">
+                      			<table id="" class="table" cellpadding="0px" cellspacing="0px">
+                        				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
+                                    <td class="txtStyle">
+                                    	<span>账号</span>
+                                    </td>
+                                    <td  class="txtStyle">
+                          						<input type="text" id="username"  class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
+                          					</td>
+                          					<td>
+                          						<img src="/nanyutang/images/member/12.png" style="margin-top: 1px;float: right;" width="20px" />
+                          					</td>
+                        				</tr>
+                      			</table>
+                    		</div>
+                    		<div>
+                    			  <table id="" class="table" cellpadding="0px" cellspacing="0px">
+                        				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
+                                    <td class="txtStyle">
+                                    	  <span>密码</span>
+                                    </td>
+                                    <td  class="txtStyle">
+                          						  <input type="password" id="password" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
+                          					</td>
+                          					<td>
+                          						  <img src="/nanyutang/images/member/13.png" style="margin-top: 1px; float: right;" width="20px" />
+                          					</td>
+                        				</tr>
+                    			  </table>
+                        </div>
+                  		  <div>
+                      			<table id="" class="table" cellpadding="0px" cellspacing="0px">
+                        				<tr style="border-bottom: 3px solid #F5F5F5 ;border-top: 3px solid #F5F5F5;">
+                                    <td align="left">
+                                        <!-- &response_type=code&scope=snsapi_base#wechat_redirect -->
+                                        <a href="./register.html">
+                                            <span style="color: #31B0D5;font-size: 16px;font-weight: bold;line-height: 30px;">
+                                                立即注册
+                                            </span>
+                                        </a>
+                                    </td>
+                                    <td align="right">
+                                        <a href="./toBackPwd.html" ><span style="color: gray;font-weight: bold;float: right;font-size: 16px;">忘记密码？</span></a>
+                                    </td>
+                        				</tr>
+                      			</table>
+                  	  	</div>
+                    		<div id="">
+                            <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
+                                <span id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+                            </div>
+                    			  <!-- <button class="btn" style="width:80%; height:50px; background: limegreen;" onclick="login()"><span id="p">登&nbsp;录</span></button> -->
+                    		</div>
+                  	</div>
+        			  </div>
+          			<div class="weui-tabbar" id="navbar">
+                    <!DOCTYPE html>
+                    <html>
+                    <head>
+                    <meta charset="utf-8" />
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta content="width=device-width, initial-scale=1" name="viewport" />
+                    <style type="text/css">
+                      	.weui-tabbar__item p{
+                      		margin: 0;
+                      	}
+                    </style>
+                    <script type="text/javascript" src="/nanyutang/js/navbar.js"></script>
+                    </head>
+                    <body>
+                        <script type="text/javascript" src="script/bizjs/login.js"></script>
+                    </body>
+                    </html>
+          			</div>
+        		</div>
+      	</div>
+    </div>
+    <!-- 登录结束 -->
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('body').height($('body')[0].clientHeight);
+    });
+    apiready = function () {
+        $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#6ab494'
+        });
+        // funIniGroup();
+    }
+
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+                frames.push( {
+                    name: 'frame'+i,
+                    url: './html/frame'+i+'.html',
+                    bgColor : 'rgba(0,0,0,.2)',
+                    bounces:true
+                } )
+        }
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth//,
+                // h: $api.dom('#main').offsetHeight
+            },
+            index: 0,
+            frames: frames
+        }, function (ret, err) {
+
+        });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+
+    // 找场景
+    function scenes(){
+      // api.openWin({
+    	// 	name : "scenes",
+    	// 	url : "./html/scenes.html",
+    	// });
+      // var obj = {
+      //   "list": [
+      //     {
+      //       "path": "1",
+      //       "path1": "2"
+      //     },
+      //     {
+      //       "path": "11",
+      //       "path1": "22"
+      //     }
+      //   ]
+      // }
+      //
+      // console.log(obj.list[0].path);
+      // for(var i in obj.list){
+      //   console.log(i);
+      //   console.log(i.path);
+      // }
+
+      window.location.href = "./scenes/scenes.html";
+    }
+
+</script>

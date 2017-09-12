@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>注册页面</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" href="./css/checkstyle.css" />
+    <style>
+        header{ background-color: #f2f2f2; }
+        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+        header ul li.active{ display: block; }
+        #footer{  background-color: #f2f2f2; }
+        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #6ab494; }
+        #footer ul li:nth-child(1){ background-image: url(./image/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(./image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(./image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(./image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(./image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(./image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(./image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(./image/index/bottombtn0402.png); }
+        #second{  background-color: #f2f2f2; }
+        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #second ul li.active{ color: #6ab494; }
+        #second ul li:nth-child(1){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(2){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(3){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(4){ background-image: url(./image/index/second.png); }
+        #second ul li:nth-child(5){ background-image: url(./image/index/second.png); }
+        .flex-con{
+        .flex-con{
+          overflow: auto
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >协拍中国</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+    <!-- 注册开始 -->
+    <input type="hidden" id="hi_checkCode" >
+      <div  style="background: white;" align="center" style="padding: 0px 0px 0px;background: #F5F5F5;">
+          <div id="index" style="height: 20px;">
+          <table id="" class="table" >
+            <tr>
+              <td>
+                <button class="btn" style="background: white; outline: none;width: 60px;height: 20px;" onclick="history.go(-1);">
+                    <img src="./image/register/back.png" height="21px" style="float:left;margin-top: 15px;margin-left: 0px;"/>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <div  align="center" style="padding: 20px 20px 10px;margin-top: 20px;">
+        <table rules="none" border="1" bordercolor="grey" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>用&nbsp;&nbsp;户&nbsp;名</span>
+            </td>
+            <td>
+              <input type="hidden" id="hi_openId" value="${openId}"/>
+              <input type="text" class="textStyleR" id="username" placeholder="您的账户和登陆名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='您的账户和登陆名'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+        <table rules="none" border="1" bordercolor="grey" style="margin-top: 10px;" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>设置密码</span>
+            </td>
+            <td>
+              <input type="password" class="textStyleR" id="password" placeholder="建议至少使用两种字符组合" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='建议至少使用两种字符组合'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+        <table rules="none" border="1" bordercolor="grey" style="margin-top: 10px;" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>确认密码</span>
+            </td>
+            <td>
+              <input type="password" class="textStyleR" id="re_password" placeholder="请再次输入密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请再次输入密码'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+        <table rules="none" border="1" bordercolor="grey" style="margin-top: 10px;" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>中国&nbsp;+86</span>
+            </td>
+            <td>
+              <input type="text" class="textStyleR" id="phone" placeholder="建议使用常用手机" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='建议使用常用手机'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+        <table rules="none" border="1" bordercolor="grey" style="margin-top: 10px;" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>验&nbsp;&nbsp;证&nbsp;码</span>
+            </td>
+            <td>
+              <input type="hidden" id="create_checkcode"/>
+              <input type="text" class="textStyleR" id="checkcode" placeholder="请输入验证码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请输入验证码'}"  style="float: left;width: 98px;margin-left: -15px;">
+            </td>
+            <td style="width: 2%">
+              <!-- <img alt="看不清楚，换一张" id="codeimg" style="vertical-align:middle; margin-left: 5px;"
+                      src="${path }/servlet/ImageServlet"
+                        onclick="reloadVerifyCode(this);" style="cursor:pointer;" />
+                    <script type="text/javascript">
+                      //重载验证码
+                      function reloadVerifyCode(obj){
+                      obj.src = "${path }/servlet/ImageServlet?d="+ new Date();
+                      }
+              </script> -->
+
+                <div id="getBtu_1" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;" onclick="getCheckCode()">
+                    <span id="p" style="font-size: 12px;">获取验证码</span>
+                </div>
+                <div id="getBtu_2" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;">
+                    <span id="J_second">60</span>秒后重发
+                </div>
+                <div id="getBtu_3" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;" onclick="getCheckCode()">
+                    <span id="p" style="font-size: 12px;">重新获取验证码</span>
+                </div>
+                <!-- <button class="btn" id="getBtu_1" style="width:100%; height:33px; background: limegreen;" onclick="getCheckCode()"><span id="p" style="font-size: 12px;">获取验证码</span></button>
+
+                <button class="btn" id="getBtu_2" disabled style="width:100%; height:33px; background: limegreen;" ><span id="J_second">60</span>秒后重发</button>
+
+                <button class="btn" id="getBtu_3" style="width:100%; height:33px; background: limegreen;" onclick="getCheckCode()"><span id="p" style="font-size: 12px;">重新获取验证码</span></button> -->
+
+            </td>
+          </tr>
+        </table>
+        <table style="margin-top: 1px;margin-left: 10px;" width="95%" height="50">
+          <tr>
+            <td>
+              <div class="mui-checkbox-con">
+                  <label>
+                      <input class="mui-checkbox" type="checkbox" checked name="agreeMent"></label>
+              </div>
+                    <!-- <input type="checkbox" checked="checked" name="agreeMent"/> -->
+            </td>
+            <td>
+              我已阅读并同意《<span style="color: #458BDA;font-weight: bold;"><a href="${path }/jsp/member/member_agreement.jsp" style="color: #458BDA;font-weight: bold;">南玉堂用户注册协议</a></span>》
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div align="center">
+        <div class="aui-btn aui-btn-success aui-btn-block" style="width:86%;" onclick="regist()">
+            <span id="p">确定</span>
+        </div>
+        <!-- <button class="btn" style="width:86%; height:50px; background: limegreen;" onclick="regist()"><span id="p">确定</span></button> -->
+      </div>
+      </div>
+    <!-- 注册结束 -->
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="script/bizjs/register.js" ></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('body').height($('body')[0].clientHeight);
+    });
+    apiready = function () {
+        $api.fixStatusBar( $api.dom('header') );
+        api.setStatusBarStyle({
+            style: 'dark',
+            color: '#6ab494'
+        });
+        // funIniGroup();
+    }
+
+    function funIniGroup(){
+        var eHeaderLis = $api.domAll('header li'),
+            frames = [];
+        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
+                frames.push( {
+                    name: 'frame'+i,
+                    url: './html/frame'+i+'.html',
+                    bgColor : 'rgba(0,0,0,.2)',
+                    bounces:true
+                } )
+        }
+        api.openFrameGroup({
+            name: 'group',
+            scrollEnabled: false,
+            rect: {
+                x: 0,
+                y: $api.dom('header').offsetHeight,
+                w: api.winWidth//,
+                // h: $api.dom('#main').offsetHeight
+            },
+            index: 0,
+            frames: frames
+        }, function (ret, err) {
+
+        });
+    }
+
+    // 随意切换按钮
+    function randomSwitchBtn( tag ) {
+        if( tag == $api.dom('#footer li.active') )return;
+        var eFootLis = $api.domAll('#footer li'),
+            eHeaderLis = $api.domAll('header li'),
+            index = 0;
+        for (var i = 0,len = eFootLis.length; i < len; i++) {
+            if( tag == eFootLis[i] ){
+                index = i;
+            }else{
+                $api.removeCls(eFootLis[i], 'active');
+                $api.removeCls(eHeaderLis[i], 'active');
+            }
+        }
+        $api.addCls( eFootLis[index], 'active');
+        $api.addCls( eHeaderLis[index], 'active');
+        api.setFrameGroupIndex({
+            name: 'group',
+            index: index
+        });
+    }
+
+</script>
