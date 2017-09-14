@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <script type="text/javascript" src="script/api.js"></script>
+    <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="script/bizjs/backpwd.js" ></script>
     <style>
         header{ background-color: #f2f2f2; }
         header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
@@ -38,6 +42,7 @@
     </style>
 </head>
 <body style="background: #fff;">
+<input id="hi_checkCode" type="hidden">
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
@@ -72,19 +77,19 @@
                       	 					<td width="20%">
                       	 						  <span  style="font-size: 15px;">验证码：</span>
                       	 					</td>
-                      	 					<td width="30%">
-                      	 						  <input type="text" style="border:1px solid #E0E0E0; width: 90px;height: 40px;margin-left: 10px;" id="checkCode">
+                      	 					<td width="37%">
+                      	 						  <input type="text" style="border:1px solid #E0E0E0; width: 79%;height: 40px;margin-left: 10px;" id="checkCode">
                       	 					</td>
                       	 					<td width="50%">
-                        	 						<img alt="看不清楚，换一张" id="codeimg" style="vertical-align:middle; margin-left: 3px;"
-                        										src="" style="cursor:pointer;" />
-                      									<!-- <script type="text/javascript">
-                      										//重载验证码
-                      										function reloadVerifyCode(obj){
-                      										obj.src = "/nanyutang/servlet/ImageServlet?d="+ new Date();
-                      										}
-                      									</script> -->
-                      	 						  <span style="color: #55D5F1;font-weight: bold;font-size: 15px;" onclick="reloadVerifyCode(document.getElementById('codeimg'))">换一换</span>
+                                      <div id="getBtu_1" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" style="width:54%;" onclick="getCheckCode()">
+                                          <span id="p" style="font-size: 12px;">获取验证码</span>
+                                      </div>
+                                      <div id="getBtu_2" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" style="width:54%;">
+                                          <span id="J_second">60</span>秒后重发
+                                      </div>
+                                      <div id="getBtu_3" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" style="width:54%;" onclick="getCheckCode()">
+                                          <span id="p" style="font-size: 12px;">重新获取验证码</span>
+                                      </div>
                       	 					</td>
                     	 				</tr>
                   	 			</table>
@@ -116,69 +121,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="script/api.js"></script>
-<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="script/bizjs/backpwd.js" ></script>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('body').height($('body')[0].clientHeight);
-    });
-    apiready = function () {
-        $api.fixStatusBar( $api.dom('header') );
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
-        // funIniGroup();
-    }
-
-    function funIniGroup(){
-        var eHeaderLis = $api.domAll('header li'),
-            frames = [];
-        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-            frames.push( {
-                name: 'frame'+i,
-                url: './html/frame'+i+'.html',
-                bgColor : 'rgba(0,0,0,.2)',
-                bounces:true
-            } )
-        }
-        api.openFrameGroup({
-            name: 'group',
-            scrollEnabled: false,
-            rect: {
-                x: 0,
-                y: $api.dom('header').offsetHeight,
-                w: api.winWidth//,
-                // h: $api.dom('#main').offsetHeight
-            },
-            index: 0,
-            frames: frames
-        }, function (ret, err) {
-
-        });
-    }
-
-    // 随意切换按钮
-    function randomSwitchBtn( tag ) {
-        if( tag == $api.dom('#footer li.active') )return;
-        var eFootLis = $api.domAll('#footer li'),
-            eHeaderLis = $api.domAll('header li'),
-            index = 0;
-        for (var i = 0,len = eFootLis.length; i < len; i++) {
-            if( tag == eFootLis[i] ){
-                index = i;
-            }else{
-                $api.removeCls(eFootLis[i], 'active');
-                $api.removeCls(eHeaderLis[i], 'active');
-            }
-        }
-        $api.addCls( eFootLis[index], 'active');
-        $api.addCls( eHeaderLis[index], 'active');
-        api.setFrameGroupIndex({
-            name: 'group',
-            index: index
-        });
-    }
-</script>

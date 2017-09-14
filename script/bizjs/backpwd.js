@@ -1,59 +1,83 @@
 $(function(){
 	$("#getBtu_3").hide();
 	$("#getBtu_2").hide();
-
 });
+
+var dialog = new auiDialog();
+
 //验证用户
 function checkMember(){
-	var loginName = $("#loginName").val();
+	var loginname = $("#loginName").val();
 	var checkCode = $("#checkCode").val();
-	if(loginName == ""){
-		swal("请输入用户名！", "", "error");
-		return false;
-	}
-	if(checkCode == ""){
-		swal("请输入验证码！", "", "error");
-		return  false;
+	var hi_checkCode = $("#hi_checkCode").val();
+
+	if(!loginname){
+			dialog.alert({
+					title:"请输入用户名！",
+					msg:'',
+					buttons:['确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 
-	$.post( path+"/member/checkMember.action",{
-			loginName:loginName,
-			checkCode:checkCode
-		}, function(data) {
-			if (data.success) {
-						//自定义alert
-				swal({
- 					 	 title: data.message,
- 						 text: "",
-  						 type: "success",
-  						 showCancelButton: false,
- 						 confirmButtonColor: "limegreen",
-  						 confirmButtonText: "确定",
-                         closeOnConfirm: false
-	                 },
-				function(){
- 						window.location.href=path+"/member/goCheckPhone.action?loginName="+loginName;
-					 });
+	if(!checkCode){
+			dialog.alert({
+					title:"请输入验证码！",
+					msg:'',
+					buttons:['确定']
+			},function(ret){
 
-			}else{
-					swal(data.message, "", "error");
-					reloadVerifyCode(document.getElementById('codeimg'));
-			}
-	});
+			})
+			return  false;
+	}
+
+	if(checkCode != hi_checkCode){
+			dialog.alert({
+					title:"验证码输入有误！",
+					msg:'',
+					buttons:['确定']
+			},function(ret){
+
+			})
+			return false;
+	}
+
+	dialog.alert({
+			title:"验证码验证成功！",
+			msg:'',
+			buttons:['确定']
+	},function(ret){
+			window.location.href = "mine/updatePassword.html?loginname=" + loginname;
+	})
 }
 //获取验证码
 function getCheckCode(){
-	var phone = $("#hi_phone").val();
-	$.post( path+"/member/getCheckCode.action",{
-			phone:phone
+	var loginname = $("#loginName").val();
+	$.post("http://192.168.0.129:8080/ActorInterface/member/findPassWordBack.action",{
+				loginname:loginname
 		}, function(data) {
-			if (data.success) {
-					swal(data.message, "", "success");
-					$("#hi_checkCode").val(data.checkCode);
-					resetCode();
-			}else{
-					swal(data.message, "", "error");
-			}
+				var data = JSON.parse(data);
+				if (data.success) {
+					//自定义alert
+					dialog.alert({
+							title:data.message,
+							msg:'',
+							buttons:['确定']
+					},function(ret){
+							console.log(data.checkCode);
+							$("#hi_checkCode").val(data.checkCode);
+					})
+				}else{
+						dialog.alert({
+								title:data.message,
+								msg:'',
+								buttons:['确定']
+						},function(ret){
+						})
+						reloadVerifyCode(document.getElementById('codeimg'));
+				}
 	});
 }
 
@@ -84,11 +108,11 @@ function goNext(){
 	var inCheckCode = $("#inCheckCode").val();
 	var hi_loginName = $("#hi_loginName").val();
 	if(inCheckCode == ""){
-		swal("请输入验证码！", "", "error");
+		alert("请输入验证码！", "", "error");
 		return false;
 	}
 	if(inCheckCode != chechCode){
-		swal("验证码不正确！", "", "error");
+		alert("验证码不正确！", "", "error");
 		return false;
 	}
 	window.location.href=path+"/member/goSetNewPass.action?loginName="+hi_loginName;
@@ -99,15 +123,15 @@ function changePass(){
 	var rePass = $("#rePass").val();
 	var hi_loginName = $("#hi_loginName").val();
 	if(newPass == ""){
-		swal("请输入新密码！", "", "error");
+		alert("请输入新密码！", "", "error");
 		return false;
 	}
 	if(rePass == ""){
-		swal("请确认密码！", "", "error");
+		alert("请确认密码！", "", "error");
 		return false;
 	}
 	if(newPass != rePass){
-		swal("两次密码输入不一致!", "", "error");
+		alert("两次密码输入不一致!", "", "error");
 		return false;
 	}
 	$.post( path+"/member/findChangePass.action",{
@@ -116,7 +140,7 @@ function changePass(){
 		}, function(data) {
 			if (data.success) {
 							//自定义alert
-//				swal({
+//				alert({
 // 					 	 title: data.message,
 // 						 text: "",
 //  						 type: "success",
@@ -132,7 +156,7 @@ function changePass(){
 //					 });
 
 			}else{
-					swal(data.message, "", "error");
+					alert(data.message, "", "error");
 			}
 	});
 
