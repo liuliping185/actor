@@ -9,7 +9,7 @@ apiready = function () {
         color: '#6ab494'
     });
     api.parseTapmode();
-    // funIniGroup();
+    funIniGroup();
 }
 
 var searchBar = document.querySelector(".aui-searchbar");

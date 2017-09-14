@@ -13,6 +13,8 @@ $(function(){
 
 });
 
+var dialog = new auiDialog();
+
 function createCheckCode(){
 
 	 var codeLength = 4;//验证码的长度
@@ -35,82 +37,140 @@ function regist(){
 	var checkcode = $("#checkcode").val();
 	var hi_openId = $("#hi_openId").val();
 	if(username == ""){
-		swal("请输入用户名", "", "error");
-		return false;
+			dialog.alert({
+					title:"请输入用户名",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 	if(password == ""){
-		swal("请输入密码", "", "error");
-		return  false;
+			dialog.alert({
+					title:"请输入密码",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return  false;
 	}
 	if(re_password == ""){
-		swal("请确认密码", "", "error");
-		return false;
+			dialog.alert({
+					title:"请确认密码",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 	if(re_password != password){
-		swal("两次密码输入不一致！", "", "error");
-		return false;
+			dialog.alert({
+					title:"两次密码输入不一致！",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 	if(phone == ""){
-		swal("请输入联系电话！", "", "error");
-		return  false;
+			dialog.alert({
+					title:"请输入联系电话！",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return  false;
 	}
 	if(phone.length != 11){
-		swal("请输入正确的手机号！", "", "error");
-		return false;
+			dialog.alert({
+					title:"请输入正确的手机号！",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 	var reg = /(1[3-9]\d{9}$)/;
-    if (!reg.test(phone))
-    {
-        swal("请输入正确的手机号！", "", "error");
+    if (!reg.test(phone)){
+				dialog.alert({
+						title:"请输入正确的手机号！",
+						msg:'',
+						buttons:['取消','确定']
+				},function(ret){
+
+				})
         return false;
     }
-
-	if(checkcode == ""){
-		swal("请输入验证码!", "", "error");
-		return false;
-	}
 
 	var hi_checkCode =  $("#hi_checkCode").val();
 
 	if(checkcode == ""){
-		swal("请输入验证码!", "", "error");
-		return false;
+			dialog.alert({
+					title:"请输入验证码!",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
+			return false;
 	}
 
 	if(checkcode != hi_checkCode){
-		swal("验证码错误!", "", "error");
-		return false;
+			dialog.alert({
+					title:"验证码错误!",
+					msg:'',
+					buttons:['取消','确定']
+			},function(ret){
+
+			})
 	}
 
     if(!$("input[name='agreeMent']").is(':checked')){
-    	swal("请接受用户注册协议", "", "error");
-    	return false;
+				dialog.alert({
+						title:"请接受用户注册协议",
+						msg:'',
+						buttons:['取消','确定']
+				},function(ret){
+
+				})
+	    	return false;
     }
 
-	$.post( path+"/member/registMember.action",{
+	$.post("http://192.168.0.129:8080/ActorInterface/member/memberRegist.action",{
 			username:username,
 			password:password,
 			phone:phone,
 			checkcode:checkcode,
 			openId:hi_openId
 		}, function(data) {
+			var data = JSON.parse(data);
 			if (data.success) {
 					//自定义alert
-				swal({
- 					 	 title: data.message,
- 						 text: "",
-  						 type: "success",
-  						 showCancelButton: false,
- 						 confirmButtonColor: "limegreen",
-  						 confirmButtonText: "确定",
-                         closeOnConfirm: false
-	                 },
-				function(){
- 						window.location.href=path+"/member/toLogin.action";
-					 });
+					dialog.alert({
+              title: data.message,
+              msg:'',
+              buttons:['取消','确定']
+          },function(ret){
 
+              if(ret){
+								window.location.href="login.html";
+              }
+          });
 			}else{
-					swal(data.message, "", "error");
+				dialog.alert({
+            title:data.message,
+            msg:'',
+            buttons:['取消','确定']
+        },function(ret){
+            console.log(ret)
+        })
+					// alert(data.message, "", "error");
 					reloadVerifyCode(document.getElementById('codeimg'));
 			}
 	});
@@ -120,15 +180,29 @@ function regist(){
 //获取验证码
 function getCheckCode(){
 	var phone = $("#phone").val();
-	$.post( path+"/member/getCheckCode.action",{
+	$.post("http://192.168.0.129:8080/ActorInterface/member/getCheckCode.action",{
 			phone:phone
 		}, function(data) {
+			var data = JSON.parse(data);
 			if (data.success) {
-					swal(data.message, "", "success");
+					dialog.alert({
+							title:data.message,
+							msg:'',
+							buttons:['取消','确定']
+					},function(ret){
+
+					})
 					$("#hi_checkCode").val(data.checkCode);
+					console.log(data.checkCode);
 					resetCode();
 			}else{
-					swal(data.message, "", "error");
+					dialog.alert({
+							title:data.message,
+							msg:'',
+							buttons:['取消','确定']
+					},function(ret){
+
+					})
 			}
 	});
 }
