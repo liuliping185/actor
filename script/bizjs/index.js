@@ -12,6 +12,7 @@ apiready = function () {
     funIniGroup();
 }
 
+// 搜索框开始
 var searchBar = document.querySelector(".aui-searchbar");
 var searchBarInput = document.querySelector(".aui-searchbar input");
 var searchBarBtn = document.querySelector(".aui-searchbar .aui-searchbar-btn");
@@ -49,6 +50,7 @@ searchBarBtn.onclick = function(){
         searchBarInput.blur();
     }
 }
+// 搜索框结束
 
 function funIniGroup(){
     var eHeaderLis = $api.domAll('header li'),
