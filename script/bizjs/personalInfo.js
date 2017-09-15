@@ -31,7 +31,7 @@ $(function(){
 
 // 上传图片开始
 // 单张图片上传，可拍照
-// function showAction(){
+function showAction(){
 //   var UIMediaScanner = api.require('UIMediaScanner');
 //   UIMediaScanner.open({
 //     type: 'picture',
@@ -86,16 +86,16 @@ $(function(){
 //       alert(JSON.stringify(ret));
 //     }
 //   });
-    // api.actionSheet({
-    //     title: '上传图片',
-    //     cancelTitle: '取消',
-    //     buttons: ['拍照','从手机相册选择']
-    // }, function(ret, err) {
-    //     if (ret) {
-    //         getPicture(ret.buttonIndex);
-    //     }
-    // });
-// }
+    api.actionSheet({
+        title: '上传图片',
+        cancelTitle: '取消',
+        buttons: ['拍照','从手机相册选择']
+    }, function(ret, err) {
+        if (ret) {
+            getPicture(ret.buttonIndex);
+        }
+    });
+}
 
 function getPicture(sourceType) {
     if(sourceType==1){ // 拍照
