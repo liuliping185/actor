@@ -68,7 +68,7 @@
                           						<input type="text" id="username"  class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
                           					</td>
                           					<td>
-                          						<img src="/nanyutang/images/member/12.png" style="margin-top: 1px;float: right;" width="20px" />
+                          						<img src="image/index/second.png" style="margin-top: 1px;float: right;" width="20px" />
                           					</td>
                         				</tr>
                       			</table>
@@ -83,7 +83,7 @@
                           						  <input type="password" id="password" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
                           					</td>
                           					<td>
-                          						  <img src="/nanyutang/images/member/13.png" style="margin-top: 1px; float: right;" width="20px" />
+                          						  <img src="image/index/second.png" style="margin-top: 1px; float: right;" width="20px" />
                           					</td>
                         				</tr>
                     			  </table>
@@ -105,12 +105,14 @@
                         				</tr>
                       			</table>
                   	  	</div>
-                    		<div id="">
-                            <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
+                    		<!-- <div id=""> -->
+                            <!-- <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
                                 <span id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-                            </div>
-                    			  <!-- <button class="btn" style="width:80%; height:50px; background: limegreen;" onclick="login()"><span id="p">登&nbsp;录</span></button> -->
-                    		</div>
+                            <!- </div>  -->
+                    			  <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
+                                <span id="p" style="color: #ffffff;">登&nbsp;录</span>
+                            </button>
+                    		    <!-- </div> -->
                   	</div>
         			  </div>
           			<div class="weui-tabbar" id="navbar">
@@ -125,7 +127,7 @@
                       		margin: 0;
                       	}
                     </style>
-                    <script type="text/javascript" src="/nanyutang/js/navbar.js"></script>
+                    <!-- <script type="text/javascript" src="/nanyutang/js/navbar.js"></script> -->
                     </head>
                     <body>
                         <script type="text/javascript" src="script/bizjs/login.js"></script>
@@ -154,94 +156,4 @@
 </html>
 <script type="text/javascript" src="script/api.js"></script>
 <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('body').height($('body')[0].clientHeight);
-    });
-    apiready = function () {
-        $api.fixStatusBar( $api.dom('header') );
-        api.setStatusBarStyle({
-            style: 'dark',
-            color: '#6ab494'
-        });
-        // funIniGroup();
-    }
-
-    function funIniGroup(){
-        var eHeaderLis = $api.domAll('header li'),
-            frames = [];
-        for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-                frames.push( {
-                    name: 'frame'+i,
-                    url: './html/frame'+i+'.html',
-                    bgColor : 'rgba(0,0,0,.2)',
-                    bounces:true
-                } )
-        }
-        api.openFrameGroup({
-            name: 'group',
-            scrollEnabled: false,
-            rect: {
-                x: 0,
-                y: $api.dom('header').offsetHeight,
-                w: api.winWidth//,
-                // h: $api.dom('#main').offsetHeight
-            },
-            index: 0,
-            frames: frames
-        }, function (ret, err) {
-
-        });
-    }
-
-    // 随意切换按钮
-    function randomSwitchBtn( tag ) {
-        if( tag == $api.dom('#footer li.active') )return;
-        var eFootLis = $api.domAll('#footer li'),
-            eHeaderLis = $api.domAll('header li'),
-            index = 0;
-        for (var i = 0,len = eFootLis.length; i < len; i++) {
-            if( tag == eFootLis[i] ){
-                index = i;
-            }else{
-                $api.removeCls(eFootLis[i], 'active');
-                $api.removeCls(eHeaderLis[i], 'active');
-            }
-        }
-        $api.addCls( eFootLis[index], 'active');
-        $api.addCls( eHeaderLis[index], 'active');
-        api.setFrameGroupIndex({
-            name: 'group',
-            index: index
-        });
-    }
-
-    // 找场景
-    function scenes(){
-      // api.openWin({
-    	// 	name : "scenes",
-    	// 	url : "./html/scenes.html",
-    	// });
-      // var obj = {
-      //   "list": [
-      //     {
-      //       "path": "1",
-      //       "path1": "2"
-      //     },
-      //     {
-      //       "path": "11",
-      //       "path1": "22"
-      //     }
-      //   ]
-      // }
-      //
-      // console.log(obj.list[0].path);
-      // for(var i in obj.list){
-      //   console.log(i);
-      //   console.log(i.path);
-      // }
-
-      window.location.href = "./scenes/scenes.html";
-    }
-
-</script>
+<script type="text/javascript" src="script/bizjs/login.js"></script>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>我的-信息维护</title>
-    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <title>我的-信息维护-申请角色-角色信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
     <style>
         header{ background-color: #f2f2f2; }
         header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
@@ -51,74 +51,27 @@
         </ul>
     </header>
 
-    <!-- 个人信息开始 -->
+    <!-- 角色信息开始 -->
     <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-form-list">
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        用户名
+                        角色信息
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="text" value="liuliping">
+                        <input type="text">
                     </div>
                 </div>
             </li>
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        性别
-                    </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="demo1" checked> 男</label>
-                        <label><input class="aui-radio" type="radio" name="demo1"> 女</label>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        生日
+                        角色种类
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
                           <input type="text">
-                      </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        邮箱
-                    </div>
-                    <div class="aui-list-item-input">
-                      <div class="aui-list-item-input">
-                          <input type="text">
-                      </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        居住地
-                    </div>
-                    <div class="aui-list-item-input">
-                      <div class="aui-list-item-input">
-                          <input type="text">
-                      </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        手机
-                    </div>
-                    <div class="aui-list-item-input">
-                      <div class="aui-list-item-input">
-                          <input type="text" value="18535741140">
                       </div>
                     </div>
                 </div>
@@ -138,7 +91,19 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        头像
+                        申请原因
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <textarea></textarea>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        角色图片
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
@@ -162,13 +127,15 @@
                     </div>
                 </div>
             </li>
-            <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
-                <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
-                <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
-            </div>
+            <li class="aui-list-item">
+               <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+                   <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
+                   <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+               </div>
+           </li>
         </ul>
     </div>
-    <!-- 个人信息结束 -->
+    <!-- 角色信息结束 -->
 
     <div id="main" class="flex-con">
 
@@ -186,6 +153,6 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="../script/api.js"></script>
-<script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../script/bizjs/info.js"></script>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/bizjs/roleInfo.js"></script>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-信息维护-申请角色</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <style>
+        header{ background-color: #f2f2f2; }
+        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+        header ul li.active{ display: block; }
+        #footer{  background-color: #f2f2f2; }
+        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #footer ul li.active{ color: #6ab494; }
+        #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
+        #second{  background-color: #f2f2f2; }
+        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+        #second ul li.active{ color: #6ab494; }
+        #second ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
+        #second ul li:nth-child(2){ background-image: url(../image/index/bottombtn0101.png); }
+        #second ul li:nth-child(3){ background-image: url(../image/index/bottombtn0101.png); }
+        .flex-con{
+        .flex-con{
+          overflow: auto
+        }
+        .aui-content-padded {
+            padding: 0.75rem;
+            background-color: #ffffff;
+            margin-top: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >我的</li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <!-- 第一栏区开始  -->
+    <div style="width:100%; height:20%; text-align: center;">
+        <select id="leftSelect" style="width:30%; height:100%; margin-left: 43%;">
+            <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">-请选择</option>
+            <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">演员</option>
+            <option value="4e1c083f-c988-48b9-9a48-ff7dbe07e51f">场景</option>
+            <option value="0e685a36-ddd1-4288-b741-8624e4384b58">道具</option>
+        </select>
+
+        <span style="width: 80%; text-align: center; margin-top: -8%;">
+            演员，是指专职演出，或在表演艺术中扮演某个角色的人物。经常用在电影、电视、
+            戏剧、杂技、广告中，有时也用在街头艺人的身上。通常演员可借由舞蹈、歌唱，
+            或只是在广播中做声音演出戏剧角色。在创作风格上，一般可分本色演员和性格演员两种。
+            中国女演员曾被称呼为女优、女伶、坤伶等，现代女伶、坤伶、坤角等则多指戏曲女演员，
+            或引申至其他国家传统戏剧的女演员。日本仍然把女演员称为女优。在当今社会，我国的文化体制完善，
+            涌现出一大批优秀的人民艺术家，遍布各个艺术门类，其中不乏一些具有国际影响力的实力派演员。
+        </span>
+
+        <div id="" style="text-align: center; margin 0 auto; margin-top: 8%;">
+            <div class="aui-btn aui-btn-info" onclick="applicationRoles()">
+                <span id="p">确&nbsp;&nbsp;定</span>
+            </div>
+        </div>
+    </div>
+    <!-- 第一栏区结束  -->
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+    <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/bizjs/applicationRoles.js"></script>

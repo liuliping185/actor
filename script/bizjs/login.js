@@ -1,35 +1,36 @@
-$(function(){
-    var url = location.href;
-    $(".weui-tabbar a").each(function () {
-        if((url + '/').indexOf($(this).attr('href'))!=-1){
-          $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on');
-        }else{
-          $(this).removeClass('weui-bar__item_on');
-        }
-    });
-    //$('.weui-tabbar__item').on('click', function () {
-    //	$(this).find(".weui-badge").remove();
-    //});
-});
+// $(function(){
+//     var url = location.href;
+//     $(".weui-tabbar a").each(function () {
+//         if((url + '/').indexOf($(this).attr('href'))!=-1){
+//           $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on');
+//         }else{
+//           $(this).removeClass('weui-bar__item_on');
+//         }
+//     });
+//     //$('.weui-tabbar__item').on('click', function () {
+//     //	$(this).find(".weui-badge").remove();
+//     //});
+// });
+
 //登录方法
 function login(){
 	var username = $("#username").val();
 	var password = $("#password").val();
 	if(username == ""){
-		swal("请输入用户名！", "", "error");
+		alert("请输入用户名！", "", "error");
 		return false;
 	}
 	if(password == ""){
-		swal("请输入密码！", "", "error");
+		alert("请输入密码！", "", "error");
 		return  false;
 	}
-	$.post( path+"/member/memberLogin.action",{
+	$.post( "http://192.168.0.129:8080/ActorInterface/member/memberLogin.action",{
 			username:username,
 			password:password
 		}, function(data) {
 			if (data.success) {
 				//自定义alert
-				swal({
+				alert({
  					 	 title: data.message,
  						 text: "",
   						 type: "success",
@@ -53,7 +54,7 @@ function login(){
 					 });
 
 			}else{
-					swal(data.message, "", "error");
+					alert(data, "", "error");
 			}
 	});
 }
