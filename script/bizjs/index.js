@@ -50,6 +50,7 @@ searchBarBtn.onclick = function(){
         searchBarInput.blur();
     }
 }
+
 // 搜索框结束
 
 function funIniGroup(){
