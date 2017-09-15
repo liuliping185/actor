@@ -40,12 +40,10 @@ searchBarClearBtn.onclick = function(){
 }
 searchBarBtn.onclick = function(){
     var keywords = searchBarInput.value;
-    console.log(keywords)
     if(keywords.length){
         searchBarInput.blur();
         document.getElementById("search-keywords").textContent = keywords;
     }else{
-      console.log(this.offsetWidth);
         this.style.marginRight = "-"+this.offsetWidth+"px";
         searchBarInput.value = '';
         searchBarInput.blur();
