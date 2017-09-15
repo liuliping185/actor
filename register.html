@@ -8,7 +8,11 @@
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
-    <link rel="stylesheet" href="./css/checkstyle.css" />
+    <link rel="stylesheet" href="./css/checkstyle.css"/>
+    <script type="text/javascript" src="script/api.js"></script>
+    <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="script/bizjs/register.js" ></script>
     <style>
         header{ background-color: #f2f2f2; }
         header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
@@ -124,13 +128,13 @@
                       }
               </script> -->
 
-                <div id="getBtu_1" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;" onclick="getCheckCode()">
+                <div id="getBtu_1" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" onclick="getCheckCode()">
                     <span id="p" style="font-size: 12px;">获取验证码</span>
                 </div>
-                <div id="getBtu_2" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;">
+                <div id="getBtu_2" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm">
                     <span id="J_second">60</span>秒后重发
                 </div>
-                <div id="getBtu_3" class="aui-btn aui-btn-success aui-btn-block" style="width:100%;" onclick="getCheckCode()">
+                <div id="getBtu_3" class="aui-btn aui-btn-info aui-btn-block aui-btn-sm" onclick="getCheckCode()">
                     <span id="p" style="font-size: 12px;">重新获取验证码</span>
                 </div>
                 <!-- <button class="btn" id="getBtu_1" style="width:100%; height:33px; background: limegreen;" onclick="getCheckCode()"><span id="p" style="font-size: 12px;">获取验证码</span></button>
@@ -152,7 +156,13 @@
                     <!-- <input type="checkbox" checked="checked" name="agreeMent"/> -->
             </td>
             <td>
-              我已阅读并同意《<span style="color: #458BDA;font-weight: bold;"><a href="${path }/jsp/member/member_agreement.jsp" style="color: #458BDA;font-weight: bold;">南玉堂用户注册协议</a></span>》
+              <font size="2">我已阅读并同意《</font>
+              <span style="color: #458BDA;font-weight: bold;">
+                <a href="${path }/jsp/member/member_agreement.jsp" style="color: #458BDA;font-weight: bold;">
+                  <font size="2">协拍中国用户注册协议</font>
+                </a>
+              </span>
+              <font size="2">》</font>
             </td>
           </tr>
         </table>
@@ -179,7 +189,3 @@
 </div>
 </body>
 </html>
-<script type="text/javascript" src="script/api.js"></script>
-<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="script/aui-dialog.js" ></script>
-<script type="text/javascript" src="script/bizjs/register.js" ></script>

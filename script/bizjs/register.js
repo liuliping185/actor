@@ -36,7 +36,8 @@ function regist(){
 	var phone = $("#phone").val();
 	var checkcode = $("#checkcode").val();
 	var hi_openId = $("#hi_openId").val();
-	if(username == ""){
+	
+	if(!username){
 			dialog.alert({
 					title:"请输入用户名",
 					msg:'',
@@ -46,7 +47,7 @@ function regist(){
 			})
 			return false;
 	}
-	if(password == ""){
+	if(!password){
 			dialog.alert({
 					title:"请输入密码",
 					msg:'',
@@ -56,7 +57,7 @@ function regist(){
 			})
 			return  false;
 	}
-	if(re_password == ""){
+	if(!re_password){
 			dialog.alert({
 					title:"请确认密码",
 					msg:'',
@@ -76,7 +77,7 @@ function regist(){
 			})
 			return false;
 	}
-	if(phone == ""){
+	if(!phone){
 			dialog.alert({
 					title:"请输入联系电话！",
 					msg:'',
@@ -86,7 +87,7 @@ function regist(){
 			})
 			return  false;
 	}
-	if(phone.length != 11){
+	if(11 != phone.length){
 			dialog.alert({
 					title:"请输入正确的手机号！",
 					msg:'',
@@ -110,7 +111,7 @@ function regist(){
 
 	var hi_checkCode =  $("#hi_checkCode").val();
 
-	if(checkcode == ""){
+	if(!checkcode){
 			dialog.alert({
 					title:"请输入验证码!",
 					msg:'',
@@ -143,7 +144,7 @@ function regist(){
     }
 
 	$.post("http://192.168.0.129:8080/ActorInterface/member/memberRegist.action",{
-			username:username,
+			loginname:username,
 			password:password,
 			phone:phone,
 			checkcode:checkcode,
