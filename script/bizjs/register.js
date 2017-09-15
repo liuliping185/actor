@@ -36,12 +36,12 @@ function regist(){
 	var phone = $("#phone").val();
 	var checkcode = $("#checkcode").val();
 	var hi_openId = $("#hi_openId").val();
-	
+
 	if(!username){
 			dialog.alert({
 					title:"请输入用户名",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -51,7 +51,7 @@ function regist(){
 			dialog.alert({
 					title:"请输入密码",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -61,7 +61,7 @@ function regist(){
 			dialog.alert({
 					title:"请确认密码",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -71,7 +71,7 @@ function regist(){
 			dialog.alert({
 					title:"两次密码输入不一致！",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -81,7 +81,7 @@ function regist(){
 			dialog.alert({
 					title:"请输入联系电话！",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -91,7 +91,7 @@ function regist(){
 			dialog.alert({
 					title:"请输入正确的手机号！",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -102,7 +102,7 @@ function regist(){
 				dialog.alert({
 						title:"请输入正确的手机号！",
 						msg:'',
-						buttons:['取消','确定']
+						buttons:['确定']
 				},function(ret){
 
 				})
@@ -115,7 +115,7 @@ function regist(){
 			dialog.alert({
 					title:"请输入验证码!",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -126,7 +126,7 @@ function regist(){
 			dialog.alert({
 					title:"验证码错误!",
 					msg:'',
-					buttons:['取消','确定']
+					buttons:['确定']
 			},function(ret){
 
 			})
@@ -136,7 +136,7 @@ function regist(){
 				dialog.alert({
 						title:"请接受用户注册协议",
 						msg:'',
-						buttons:['取消','确定']
+						buttons:['确定']
 				},function(ret){
 
 				})
@@ -156,7 +156,7 @@ function regist(){
 					dialog.alert({
               title: data.message,
               msg:'',
-              buttons:['取消','确定']
+              buttons:['确定']
           },function(ret){
 
               if(ret){
@@ -167,7 +167,7 @@ function regist(){
 				dialog.alert({
             title:data.message,
             msg:'',
-            buttons:['取消','确定']
+            buttons:['确定']
         },function(ret){
             console.log(ret)
         })
@@ -189,7 +189,7 @@ function getCheckCode(){
 					dialog.alert({
 							title:data.message,
 							msg:'',
-							buttons:['取消','确定']
+							buttons:['确定']
 					},function(ret){
 
 					})
@@ -200,7 +200,7 @@ function getCheckCode(){
 					dialog.alert({
 							title:data.message,
 							msg:'',
-							buttons:['取消','确定']
+							buttons:['确定']
 					},function(ret){
 
 					})

@@ -66,9 +66,10 @@ function getCheckCode(){
 							msg:'',
 							buttons:['确定']
 					},function(ret){
-							console.log(data.checkCode);
-							$("#hi_checkCode").val(data.checkCode);
 					})
+					console.log(data.checkCode);
+					$("#hi_checkCode").val(data.checkCode);
+					resetCode();
 				}else{
 						dialog.alert({
 								title:data.message,
@@ -103,66 +104,76 @@ function resetCode(){
 
 
 //下一步
-function goNext(){
-	var chechCode = $("#hi_checkCode").val();
-	var inCheckCode = $("#inCheckCode").val();
-	var hi_loginName = $("#hi_loginName").val();
-	if(inCheckCode == ""){
-		alert("请输入验证码！", "", "error");
-		return false;
-	}
-	if(inCheckCode != chechCode){
-		alert("验证码不正确！", "", "error");
-		return false;
-	}
-	window.location.href=path+"/member/goSetNewPass.action?loginName="+hi_loginName;
-}
+// function goNext(){
+// 	var chechCode = $("#hi_checkCode").val();
+// 	var inCheckCode = $("#inCheckCode").val();
+// 	var hi_loginName = $("#hi_loginName").val();
+// 	if(inCheckCode == ""){
+// 			dialog.alert({
+// 					title:"请输入验证码！",
+// 					msg:'',
+// 					buttons:['确定']
+// 			},function(ret){
+// 			})
+// 			return false;
+// 	}
+// 	if(inCheckCode != chechCode){
+// 			dialog.alert({
+// 					title:"验证码不正确！",
+// 					msg:'',
+// 					buttons:['确定']
+// 			},function(ret){
+// 			})
+// 		return false;
+// 	}
+// 	window.location.href=path+"/member/goSetNewPass.action?loginName="+hi_loginName;
+// }
 //确认修改密码
-function changePass(){
-	var newPass = $("#newPass").val();
-	var rePass = $("#rePass").val();
-	var hi_loginName = $("#hi_loginName").val();
-	if(newPass == ""){
-		alert("请输入新密码！", "", "error");
-		return false;
-	}
-	if(rePass == ""){
-		alert("请确认密码！", "", "error");
-		return false;
-	}
-	if(newPass != rePass){
-		alert("两次密码输入不一致!", "", "error");
-		return false;
-	}
-	$.post( path+"/member/findChangePass.action",{
-			loginName:hi_loginName,
-			newPass:newPass
-		}, function(data) {
-			if (data.success) {
-							//自定义alert
-//				alert({
-// 					 	 title: data.message,
-// 						 text: "",
-//  						 type: "success",
-//  						 showCancelButton: false,
-// 						 confirmButtonColor: "limegreen",
-//  						 confirmButtonText: "确定",
-//                         closeOnConfirm: false
-//	                 },
-//				function(){
- 						window.location.href=path+"/member/member_return_three.action";
-
-
-//					 });
-
-			}else{
-					alert(data.message, "", "error");
-			}
-	});
-
-}
+// function changePass(){
+// 	var newPass = $("#newPass").val();
+// 	var rePass = $("#rePass").val();
+// 	var hi_loginName = $("#hi_loginName").val();
+// 	if(newPass == ""){
+// 		alert("请输入新密码！", "", "error");
+// 		return false;
+// 	}
+// 	if(rePass == ""){
+// 		alert("请确认密码！", "", "error");
+// 		return false;
+// 	}
+// 	if(newPass != rePass){
+// 		alert("两次密码输入不一致!", "", "error");
+// 		return false;
+// 	}
+// 	$.post( path+"/member/findChangePass.action",{
+// 			loginName:hi_loginName,
+// 			newPass:newPass
+// 		}, function(data) {
+// 			if (data.success) {
+// 							//自定义alert
+// //				alert({
+// // 					 	 title: data.message,
+// // 						 text: "",
+// //  						 type: "success",
+// //  						 showCancelButton: false,
+// // 						 confirmButtonColor: "limegreen",
+// //  						 confirmButtonText: "确定",
+// //                         closeOnConfirm: false
+// //	                 },
+// //				function(){
+//  						window.location.href=path+"/member/member_return_three.action";
+//
+//
+// //					 });
+//
+// 			}else{
+// 					alert(data.message, "", "error");
+// 			}
+// 	});
+//
+// }
 
 //立即登录
 function loginNow(){
-	window.location.href=path+"/member/toLogin.action";
+	window.location.href="../login.html";
 }
