@@ -126,25 +126,14 @@ function getPicture(sourceType) {
                 targetHeight: 750
             }, function(ret, err) {
                 if (ret) {
-                  alert(JSON.stringify(ret));
-                  // $('#imgUp').attr('src', ret.base64Data);
-                    var aa=ret.base64Data;
-                    $.post("http://192.168.0.129:8080/ActorInterface/Upload/singleUpload.action",{
-                    }, function(data, err) {
-                        var data = JSON.parse(data);
-                        alert(data);
-                        if(data.success){
-                            alert("true");
-                            $('#imgUp').attr('src',aa)
-                        }else{
-                            alert("false");
-                            api.alert(err);
-                        }
-                    });
+                  // alert(JSON.stringify(ret));
+                    $("#imgBase64").val(ret.base64Data);
+                    $('#imgUp').attr('src', ret.base64Data);
                 } else {
                     alert(JSON.stringify(err));
                 }
         });
     }
 }
+
 // 上传图片结束
