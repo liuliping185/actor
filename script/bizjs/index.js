@@ -9,7 +9,7 @@ apiready = function () {
         color: '#6ab494'
     });
     api.parseTapmode();
-    funIniGroup();
+    //funIniGroup();
 }
 
 // 搜索框开始
@@ -97,11 +97,16 @@ function randomSwitchBtn( tag ) {
     $api.addCls( eFootLis[index], 'active');
     $api.addCls( eHeaderLis[index], 'active');
 
-    window.location.href = "./mine/info.html";
+    // window.location.href = "./mine/info.html";
 
     api.setFrameGroupIndex({
         name: 'group',
         index: index
+    });
+
+    api.openWin({
+    	name : "myInfo",
+    	url : "./mine/info.html"
     });
 }
 
