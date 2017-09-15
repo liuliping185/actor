@@ -129,19 +129,18 @@ function getPicture(sourceType) {
                   alert(JSON.stringify(ret));
                   // $('#imgUp').attr('src', ret.base64Data);
                     var aa=ret.base64Data;
-                    api.ajax({
-                        type:"post",
-                        url:"http://192.168.0.129:8080/ActorInterface/Upload/singleUpload.action",
-                        data:{base64:aa},
-                        dataType:'json',
-                        async:true,
-                    },function(ret,err){
-                        if(ret){
+                    $.post("http://192.168.0.129:8080/ActorInterface/Upload/singleUpload.action",{
+                    }, function(data, err) {
+                        var data = JSON.parse(data);
+                        alert(data);
+                        if(data.success){
+                            alert("true");
                             $('#imgUp').attr('src',aa)
                         }else{
+                            alert("false");
                             api.alert(err);
                         }
-                    })
+                    });
                 } else {
                     alert(JSON.stringify(err));
                 }
