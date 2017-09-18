@@ -108,8 +108,12 @@ function randomSwitchBtn( tag ) {
     // 	name : "myInfo",
     // 	url : "./mine/info.html"
     // });
+    if("" === localStorage.token){
+        window.location.href = "login.html";
+    }else{
+        window.location.href = "./mine/info.html";
+    }
 
-    window.location.href = "./mine/info.html";
 }
 
 // 找场景
