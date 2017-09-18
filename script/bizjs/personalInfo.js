@@ -1,5 +1,5 @@
 var dialog = new auiDialog();
-alert(localStorage.token);
+
 $(function(){
     // 获取session
     $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
@@ -13,17 +13,17 @@ $(function(){
                 msg:'',
                 buttons:['确定']
             },function(ret){
-
                 if(ret){
                     $("#loginname").val(data.memberinfo.loginname);
                     $("#phone").val(data.memberinfo.phone);
                     $("#address").val(data.memberinfo.address);
                     $("#alipay").val(data.memberinfo.alipay);
+                    $("#wechat").val(data.memberinfo.wechat);
                     $("#banknumber").val(data.memberinfo.banknumber);
                     $("#email").val(data.memberinfo.email);
                     $('#headerimg').attr('src', data.memberinfo.headerimg);
-                    $('#idcard_front').attr('src', data.memberinfo.idcard_front);
-                    $('#idcard_back').attr('src', data.memberinfo.idcard_back);
+                    $('#idcardFront').attr('src', data.memberinfo.idcardFront);
+                    $('#idcardBack').attr('src', data.memberinfo.idcardBack);
                 }
             });
         }else{
@@ -49,8 +49,8 @@ function perfectPersonalInfo(){
     var phone = $("#phone").val(); // 手机号
     var realname = $("#realname").val(); // 真是姓名
     var headerimg = $("#headerimg_").val(); // 头像上传图片的地址（base64）
-    var idcard_front = $("#idcard_front_").val(); // 身份证正面上传图片的地址
-    var idcard_back = $("#idcard_back_").val(); // 身份证反面上传图片的地址
+    var idcardFront = $("#idcardFront_").val(); // 身份证正面上传图片的地址
+    var idcardBack = $("#idcardBack_").val(); // 身份证反面上传图片的地址
     var banknumber = $("#banknumber").val(); // 银行卡号
     var alipay = "支付宝";// 支付宝
     var wechat = "wechat";// 微信
@@ -98,8 +98,8 @@ function perfectPersonalInfo(){
         phone: phone,
         realname: realname,
         headerimg: headerimg,
-        idcard_front: idcard_front,
-        idcard_back: idcard_back,
+        idcardFront: idcardFront,
+        idcardBack: idcardBack,
         banknumber: banknumber,
         alipay: alipay,
         wechat: wechat
@@ -234,11 +234,11 @@ function getPicture(sourceType, num) {
                 if (ret) {
                   // alert(JSON.stringify(ret));
                   if("1" === num){
-                      $("#idcard_front_").val(ret.base64Data);
-                      $('#idcard_front').attr('src', ret.base64Data);
+                      $("#idcardFront_").val(ret.base64Data);
+                      $('#idcardFront').attr('src', ret.base64Data);
                   }else if("2" === num){
-                      $("#idcard_back_").val(ret.base64Data);
-                      $('#idcard_back').attr('src', ret.base64Data);
+                      $("#idcardBack_").val(ret.base64Data);
+                      $('#idcardBack').attr('src', ret.base64Data);
                   }else if("3" === num){
                       $("#headerimg_").val(ret.base64Data);
                       $('#headerimg').attr('src', ret.base64Data);
