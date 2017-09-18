@@ -48,8 +48,8 @@
 </head>
 <body>
 <input id="headerimg_" hidden="true" value=""/>
-<input id="idcard_back_" hidden="true" value=""/>
-<input id="idcard_front_" hidden="true" value=""/>
+<input id="idcardBack_" hidden="true" value=""/>
+<input id="idcardFront_" hidden="true" value=""/>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
@@ -147,6 +147,30 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
+                        支付宝
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="alipay" value="">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        微信
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="wechat" value="">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
                         身份证正面
                     </div>
                     <div class="aui-list-item-input">
@@ -154,7 +178,7 @@
                         <div>
                             <div>
                                 <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
-                                    <img id="idcard_front" src="../image/index/bottombtn0101.png"/>
+                                    <img id="idcardFront" src="../image/index/bottombtn0101.png"/>
                                 </div>
                                 <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%;" onclick="showAction('1')">
                                     <span>身份证正面上传</span>
@@ -179,7 +203,7 @@
                             <div>
                                 <div>
                                     <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
-                                        <img id="idcard_back" src="../image/index/bottombtn0101.png"/>
+                                        <img id="idcardBack" src="../image/index/bottombtn0101.png"/>
                                     </div>
                                     <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%;" onclick="showAction('2')">
                                         <span>身份证反面上传</span>
