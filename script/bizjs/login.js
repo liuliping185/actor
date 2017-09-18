@@ -52,7 +52,7 @@ function login(){
             msg:'',
             buttons:['确定']
         },function(ret){
-          localStorage.token = data.token;
+          // localStorage.token = data.token;
             if(ret){
                 // var hi_url = $("#hi_url").val();
                 // if(hi_url!=""){

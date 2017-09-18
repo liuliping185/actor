@@ -17,6 +17,7 @@ var searchBar = document.querySelector(".aui-searchbar");
 var searchBarInput = document.querySelector(".aui-searchbar input");
 var searchBarBtn = document.querySelector(".aui-searchbar .aui-searchbar-btn");
 var searchBarClearBtn = document.querySelector(".aui-searchbar .aui-searchbar-clear-btn");
+
 if(searchBar){
     searchBarInput.onclick = function(){
         searchBarBtn.style.marginRight = 0;
@@ -108,11 +109,8 @@ function randomSwitchBtn( tag ) {
     // 	name : "myInfo",
     // 	url : "./mine/info.html"
     // });
-    if("" === localStorage.token){
-        window.location.href = "login.html";
-    }else{
-        window.location.href = "./mine/info.html";
-    }
+
+    window.location.href = "./mine/info.html";
 }
 
 // 找场景
