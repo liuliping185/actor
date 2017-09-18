@@ -15,9 +15,15 @@ $(function(){
             },function(ret){
 
                 if(ret){
-                  $("#loginname").val(data.memberinfo.loginname);
-                  $("#phone").val(data.memberinfo.phone);
-
+                    $("#loginname").val(data.memberinfo.loginname);
+                    $("#phone").val(data.memberinfo.phone);
+                    $("#address").val(data.memberinfo.address);
+                    $("#alipay").val(data.memberinfo.alipay);
+                    $("#banknumber").val(data.memberinfo.banknumber);
+                    $("#email").val(data.memberinfo.email);
+                    $('#headerimg').attr('src', data.memberinfo.headerimg);
+                    $('#idcard_front').attr('src', data.memberinfo.idcard_front);
+                    $('#idcard_back').attr('src', data.memberinfo.idcard_back);
                 }
             });
         }else{
@@ -129,7 +135,8 @@ function perfectPersonalInfo(){
 
 // 上传图片开始
 // 单张图片上传，可拍照
-function showAction(){
+function showAction(num){
+  console.log(num)
 //   var UIMediaScanner = api.require('UIMediaScanner');
 //   UIMediaScanner.open({
 //     type: 'picture',
@@ -190,12 +197,12 @@ function showAction(){
         buttons: ['拍照','从手机相册选择']
     }, function(ret, err) {
         if (ret) {
-            getPicture(ret.buttonIndex);
+            getPicture(ret.buttonIndex, num);
         }
     });
 }
 
-function getPicture(sourceType) {
+function getPicture(sourceType, num) {
     if(sourceType==1){ // 拍照
         api.getPicture({
             sourceType: 'camera',
@@ -226,10 +233,16 @@ function getPicture(sourceType) {
             }, function(ret, err) {
                 if (ret) {
                   // alert(JSON.stringify(ret));
-                    $("#headerimg_").val(ret.base64Data);
-                    $("#idcard_front_").val(ret.base64Data);
-                    $("#idcard_back_").val(ret.base64Data);
-                    $('#headerimg').attr('src', ret.base64Data);
+                  if("1" === num){
+                      $("#idcard_front_").val(ret.base64Data);
+                      $('#idcard_front').attr('src', ret.base64Data);
+                  }else if("2" === num){
+                      $("#idcard_back_").val(ret.base64Data);
+                      $('#idcard_back').attr('src', ret.base64Data);
+                  }else if("3" === num){
+                      $("#headerimg_").val(ret.base64Data);
+                      $('#headerimg').attr('src', ret.base64Data);
+                  }
                 } else {
                     alert(JSON.stringify(err));
                 }
