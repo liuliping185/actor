@@ -1,33 +1,131 @@
+var dialog = new auiDialog();
+
 $(function(){
-    var a = $("#nowLogin").val();
-    console.log(nowLogin);
-    // $.post("http://192.168.0.129:8080/ActorInterface/member/finishInfomation.action",{
-    //   }, function(data) {
-    //     var data = JSON.parse(data);
-    //     console.log(data);
-    //     if (data.success) {
-    //         //自定义alert
-    //         dialog.alert({
-    //             title: data.message,
-    //             msg:'',
-    //             buttons:['确定']
-    //         },function(ret){
-    //
-    //             if(ret){
-    //
-    //             }
-    //         });
-    //     }else{
-    //       dialog.alert({
-    //           title:data.message,
-    //           msg:'',
-    //           buttons:['确定']
-    //       },function(ret){
-    //           console.log(ret)
-    //       })
-    //     }
-    // });
+    // 获取session
+    $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        if (data.success) {
+            //自定义alert
+            dialog.alert({
+                title: data.message,
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+
+                if(ret){
+                  $("#loginname").val(data.memberinfo.loginname);
+                  $("#phone").val(data.memberinfo.phone);
+
+                }
+            });
+        }else{
+          dialog.alert({
+              title:data.message,
+              msg:'',
+              buttons:['确定']
+          },function(ret){
+              console.log(ret)
+          })
+        }
+    });
 });
+
+// 完善个人信息开始
+
+function perfectPersonalInfo(){
+    var loginname = $("#loginname").val(); // 用户名
+    var gender = $("input:radio[name='gender']:checked").val(); // 性别
+    var birthday = $("#birthday").val(); // 生日
+    var email = $("#email").val(); // 邮箱
+    var address = $("#address").val(); // 地址
+    var phone = $("#phone").val(); // 手机号
+    var realname = $("#realname").val(); // 真是姓名
+    var headerimg = $("#headerimg_").val(); // 头像上传图片的地址（base64）
+    var idcard_front = $("#idcard_front_").val(); // 身份证正面上传图片的地址
+    var idcard_back = $("#idcard_back_").val(); // 身份证反面上传图片的地址
+    var banknumber = $("#banknumber").val(); // 银行卡号
+    var alipay = "支付宝";// 支付宝
+    var wechat = "wechat";// 微信
+
+    if("" != phone && !/^1[3,5,7,8,9]\d{9}$/.test(phone) ){
+        dialog.alert({
+            title:"手机号格式不正确！",
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+
+        })
+    		return false;
+  	}
+
+  	if("" != email && !/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]{2,3}){1,2})$/.test(email)){
+        dialog.alert({
+            title:"邮箱格式不正确！",
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+
+        })
+    		return  false;
+  	}
+
+    if("" != banknumber && !/^([1-9]{1})(\d{11}|\d{18})$/.test(banknumber)){
+        dialog.alert({
+            title:"银行卡号格式不正确！",
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+
+        })
+    		return  false;
+  	}
+
+    $.post("http://192.168.0.129:8080/ActorInterface/member/finishInfomation.action",{
+        token: localStorage.token,
+        loginname: loginname,
+        gender: gender,
+        birthday: birthday,
+        email: email,
+        address: address,
+        phone: phone,
+        realname: realname,
+        headerimg: headerimg,
+        idcard_front: idcard_front,
+        idcard_back: idcard_back,
+        banknumber: banknumber,
+        alipay: alipay,
+        wechat: wechat
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data);
+        if (data.success) {
+            //自定义alert
+            dialog.alert({
+                title: data.message,
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+
+                if(ret){
+
+
+                }
+            });
+        }else{
+          dialog.alert({
+              title:data.message,
+              msg:'',
+              buttons:['确定']
+          },function(ret){
+              console.log(ret)
+          })
+        }
+    });
+}
+
+// 完善个人信息结束
 
 // 上传图片开始
 // 单张图片上传，可拍照
@@ -74,12 +172,12 @@ function showAction(){
 //     rotation: true
 //   }, function(ret) {
 //     if (ret) {
-//       $("#imgUpload").html("");
+//       $("#headerimgload").html("");
 //       for(var i=0; i<ret.list.length; i++){
 //         alert(ret.list[i].path);
-//         $("#imgUpload").append("<img style='width:100%;height:100%;' src='ret.list[i].path'/>");
+//         $("#headerimgload").append("<img style='width:100%;height:100%;' src='ret.list[i].path'/>");
 //       }
-//       // $('#imgUp').attr('src', ret.list[0].path);
+//       // $('#headerimg').attr('src', ret.list[0].path);
 //       // for(var i=0; i<ret.list.length; i++){
 //       //   alert(ret.list[i]);
 //       // }
@@ -109,7 +207,8 @@ function getPicture(sourceType) {
             saveToPhotoAlbum: true
         }, function(ret, err) {
             if (ret) {
-               $('#imgUp').attr('src', ret.base64Data);
+                $("#imgBase64").val(ret.base64Data);
+                $('#headerimg').attr('src', ret.base64Data);
             }else {
                 alert(JSON.stringify(err));
             }
@@ -127,8 +226,10 @@ function getPicture(sourceType) {
             }, function(ret, err) {
                 if (ret) {
                   // alert(JSON.stringify(ret));
-                    $("#imgBase64").val(ret.base64Data);
-                    $('#imgUp').attr('src', ret.base64Data);
+                    $("#headerimg_").val(ret.base64Data);
+                    $("#idcard_front_").val(ret.base64Data);
+                    $("#idcard_back_").val(ret.base64Data);
+                    $('#headerimg').attr('src', ret.base64Data);
                 } else {
                     alert(JSON.stringify(err));
                 }
