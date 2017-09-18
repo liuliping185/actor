@@ -1,5 +1,5 @@
 var dialog = new auiDialog();
-
+alert(localStorage.token);
 $(function(){
     // 获取session
     $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
