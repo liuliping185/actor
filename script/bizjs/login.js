@@ -1,17 +1,18 @@
 $(function(){
-    var url = location.href;
-    $(".weui-tabbar a").each(function () {
-        if((url + '/').indexOf($(this).attr('href'))!=-1){
-          $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on');
-        }else{
-          $(this).removeClass('weui-bar__item_on');
-        }
-    });
+    // var url = location.href;
+    // $(".weui-tabbar a").each(function () {
+    //     if((url + '/').indexOf($(this).attr('href'))!=-1){
+    //       $(this).addClass('weui-bar__item_on').siblings('.weui-bar__item_on');
+    //     }else{
+    //       $(this).removeClass('weui-bar__item_on');
+    //     }
+    // });
     //$('.weui-tabbar__item').on('click', function () {
     //	$(this).find(".weui-badge").remove();
     //});
 });
 
+var token = "";
 var dialog = new auiDialog();
 
 //登录方法
@@ -43,6 +44,7 @@ function login(){
 			password:password
 		}, function(data) {
       var data = JSON.parse(data);
+
 			if (data.success) {
 				//自定义alert
         dialog.alert({
@@ -50,6 +52,8 @@ function login(){
             msg:'',
             buttons:['确定']
         },function(ret){
+          console.log(localStorage.token);
+          localStorage.token = data.token;
             if(ret){
                 // var hi_url = $("#hi_url").val();
                 // if(hi_url!=""){

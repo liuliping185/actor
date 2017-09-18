@@ -82,32 +82,34 @@ function funIniGroup(){
 
 // 随意切换按钮
 function randomSwitchBtn( tag ) {
-    if( tag == $api.dom('#footer li.active') )return;
-    var eFootLis = $api.domAll('#footer li'),
-        eHeaderLis = $api.domAll('header li'),
-        index = 0;
-    for (var i = 0,len = eFootLis.length; i < len; i++) {
-        if( tag == eFootLis[i] ){
-            index = i;
-        }else{
-            $api.removeCls(eFootLis[i], 'active');
-            $api.removeCls(eHeaderLis[i], 'active');
-        }
-    }
-    $api.addCls( eFootLis[index], 'active');
-    $api.addCls( eHeaderLis[index], 'active');
+    // if( tag == $api.dom('#footer li.active') )return;
+    // var eFootLis = $api.domAll('#footer li'),
+    //     eHeaderLis = $api.domAll('header li'),
+    //     index = 0;
+    // for (var i = 0,len = eFootLis.length; i < len; i++) {
+    //     if( tag == eFootLis[i] ){
+    //         index = i;
+    //     }else{
+    //         $api.removeCls(eFootLis[i], 'active');
+    //         $api.removeCls(eHeaderLis[i], 'active');
+    //     }
+    // }
+    // $api.addCls( eFootLis[index], 'active');
+    // $api.addCls( eHeaderLis[index], 'active');
+    //
+    // // window.location.href = "./mine/info.html";
+    //
+    // api.setFrameGroupIndex({
+    //     name: 'group',
+    //     index: index
+    // });
 
-    // window.location.href = "./mine/info.html";
+    // api.openWin({
+    // 	name : "myInfo",
+    // 	url : "./mine/info.html"
+    // });
 
-    api.setFrameGroupIndex({
-        name: 'group',
-        index: index
-    });
-
-    api.openWin({
-    	name : "myInfo",
-    	url : "./mine/info.html"
-    });
+    window.location.href = "./mine/info.html";
 }
 
 // 找场景

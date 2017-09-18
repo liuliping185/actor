@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../script/aui-dialog.js" ></script>
     <script type="text/javascript" src="../script/ajaxfileupload.js"></script>
+    <script type="text/javascript" src="../script/bizjs/login.js"></script>
     <script type="text/javascript" src="../script/bizjs/personalInfo.js"></script>
     <style>
         header{ background-color: #f2f2f2; }
@@ -46,7 +47,9 @@
     </style>
 </head>
 <body>
-<input id="imgBase64" hidden="true" value=""/>
+<input id="headerimg_" hidden="true" value=""/>
+<input id="idcard_back_" hidden="true" value=""/>
+<input id="idcard_front_" hidden="true" value=""/>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
@@ -66,7 +69,7 @@
                         用户名
                     </div>
                     <div class="aui-list-item-input">
-                        <input type="text" value="liuliping">
+                        <input type="text" id="loginname" value="liuliping">
                     </div>
                 </div>
             </li>
@@ -76,8 +79,8 @@
                         性别
                     </div>
                     <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="demo1" checked> 男</label>
-                        <label><input class="aui-radio" type="radio" name="demo1"> 女</label>
+                        <label><input class="aui-radio" type="radio" name="gender" checked> 男</label>
+                        <label><input class="aui-radio" type="radio" name="gender"> 女</label>
                     </div>
                 </div>
             </li>
@@ -88,7 +91,7 @@
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text">
+                          <input type="text" id="birthday">
                       </div>
                     </div>
                 </div>
@@ -100,7 +103,7 @@
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text">
+                          <input type="text" id="email">
                       </div>
                     </div>
                 </div>
@@ -112,7 +115,7 @@
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text">
+                          <input type="text" id="address">
                       </div>
                     </div>
                 </div>
@@ -124,7 +127,7 @@
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text" value="18535741140">
+                          <input type="text" id="phone" value="18535741140">
                       </div>
                     </div>
                 </div>
@@ -136,8 +139,64 @@
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text" value="">
+                          <input type="text" id="realname" value="">
                       </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        身份证正面
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                        <div>
+                            <div>
+                                <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
+                                    <img id="idcard_front" src="../image/index/bottombtn0101.png"/>
+                                </div>
+                                <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%;" onclick="showAction("1")">
+                                    <span>身份证正面上传</span>
+                                </div>
+                                <!-- <button class="uploadBtn" type="text" onclick="showAction();" style="position: relative;left:50%; margin-left:-50px;width:100px;height:50px;background-color: pink;border:none;">点击上传图片</button> -->
+                            </div>
+                            <!-- <div id="footer">
+                                <h5>Copyright &copy;<span id="year"></span> </h5>
+                            </div> -->
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        身份证反面
+                    </div>
+                    <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <div>
+                                <div>
+                                    <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
+                                        <img id="idcard_back" src="../image/index/bottombtn0101.png"/>
+                                    </div>
+                                    <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%;" onclick="showAction()">
+                                        <span>身份证反面上传</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        银行卡号
+                    </div>
+                    <div class="aui-list-item-input">
+                        <input type="text" id="banknumber" value="">
                     </div>
                 </div>
             </li>
@@ -152,7 +211,7 @@
                         <div id="wrap">
                             <div id="main">
                                 <div id="imgUpload" class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
-                                    <img id="imgUp" src="../image/index/bottombtn0101.png"/>
+                                    <img id="headerimg" src="../image/index/bottombtn0101.png"/>
                                 </div>
                                 <div class="aui-btn aui-btn-info" style="width:30%; margin-left: 10%;margin-top: 10%;" onclick="showAction()">
                                     <span id="p">附件上传</span>
@@ -169,7 +228,7 @@
                 </div>
             </li>
             <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
-                <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
+                <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="perfectPersonalInfo()">提交</div>
                 <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
             </div>
         </ul>

@@ -12,6 +12,7 @@
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
     <script type="text/javascript" src="script/api.js"></script>
+    <script type="text/javascript" src="script/bizjs/common.js"></script>
     <script type="text/javascript" src="script/bizjs/login.js"></script>
     <style>
         header{ background-color: #f2f2f2; }
@@ -62,17 +63,53 @@
                   	<div style="background: white;" align="center">
                     		<div id="index">
                     		</div>
+                        <!-- <div class="aui-content aui-margin-b-15">
+                            <ul class="aui-list aui-form-list">
+                                <li class="aui-list-header">带有图标的表单</li>
+                                <li class="aui-list-item">
+                                    <div class="aui-list-item-inner">
+                                        <div class="aui-list-item-label-icon">
+                                            <i class="aui-iconfont aui-icon-mobile"></i>
+                                        </div>
+                                        <div class="aui-list-item-input">
+                                            <input type="text" placeholder="username">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="aui-list-item">
+                                    <div class="aui-list-item-inner">
+                                        <div class="aui-list-item-label-icon">
+                                            <i class="aui-iconfont aui-icon-lock"></i>
+                                        </div>
+                                        <div class="aui-list-item-input">
+                                            <input type="password" placeholder="password">
+                                        </div>
+                                        <div class="aui-list-item-label-icon">
+                                            <i class="aui-iconfont aui-icon-display"></i>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div> -->
                     		<div style="margin-top: 30px;">
                       			<table id="" class="table" cellpadding="0px" cellspacing="0px">
                         				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
                                     <td class="txtStyle">
                                     	<span>账号</span>
+
                                     </td>
                                     <td  class="txtStyle">
+
+                                      <!-- <div class="aui-list-item-input">
+                                          <input type="text" placeholder="username">
+                                      </div> -->
                           						<input type="text" id="username"  class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
                           					</td>
                           					<td>
-                          						<img src="image/index/second.png" style="margin-top: 1px;float: right;" width="20px" />
+                                      <div class="aui-list-item-label-icon">
+                                          <i class="aui-iconfont aui-icon-mobile"></i>
+                                      </div>
+                          						<!-- <img src="image/index/second.png" style="margin-top: 1px;float: right;" width="20px" /> -->
                           					</td>
                         				</tr>
                       			</table>
@@ -87,7 +124,10 @@
                           						  <input type="password" id="password" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
                           					</td>
                           					<td>
-                          						  <img src="image/index/second.png" style="margin-top: 1px; float: right;" width="20px" />
+                                      <div class="aui-list-item-label-icon">
+                                          <i class="aui-iconfont aui-icon-lock"></i>
+                                      </div>
+                          						  <!-- <img src="image/index/second.png" style="margin-top: 1px; float: right;" width="20px" /> -->
                           					</td>
                         				</tr>
                     			  </table>
