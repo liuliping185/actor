@@ -113,7 +113,6 @@ function randomSwitchBtn( tag ) {
     }else{
         window.location.href = "./mine/info.html";
     }
-
 }
 
 // 找场景
