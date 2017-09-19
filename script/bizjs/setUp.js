@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
     $('body').height($('body')[0].clientHeight);
 });
 
@@ -55,10 +55,4 @@ function randomSwitchBtn( tag ) {
     }
     $api.addCls( eFootLis[index], 'active');
     $api.addCls( eHeaderLis[index], 'active');
-}
-
-
-/** 编辑角色信息 **/
-function editRoleInfo(){
-    window.location.href = "../personalRoleManage/editRoleInfo.html";
 }
