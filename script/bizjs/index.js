@@ -34,21 +34,24 @@ if(searchBar){
         }
     }
 }
-searchBarClearBtn.onclick = function(){
-    this.style.display = 'none';
-    searchBarInput.value = '';
-    searchBarBtn.classList.remove("aui-text-info");
-    searchBarBtn.textContent = "取消";
-}
-searchBarBtn.onclick = function(){
-    var keywords = searchBarInput.value;
-    if(keywords.length){
-        searchBarInput.blur();
-        document.getElementById("search-keywords").textContent = keywords;
-    }else{
-        this.style.marginRight = "-"+this.offsetWidth+"px";
+
+if(searchBarBtn){
+    searchBarClearBtn.onclick = function(){
+        this.style.display = 'none';
         searchBarInput.value = '';
-        searchBarInput.blur();
+        searchBarBtn.classList.remove("aui-text-info");
+        searchBarBtn.textContent = "取消";
+    }
+    searchBarBtn.onclick = function(){
+        var keywords = searchBarInput.value;
+        if(keywords.length){
+            searchBarInput.blur();
+            document.getElementById("search-keywords").textContent = keywords;
+        }else{
+            this.style.marginRight = "-"+this.offsetWidth+"px";
+            searchBarInput.value = '';
+            searchBarInput.blur();
+        }
     }
 }
 
