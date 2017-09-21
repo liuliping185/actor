@@ -52,14 +52,14 @@ $(function(){
           display: 'modal', //显示方式
           mode: 'scroller', //日期选择模式
       lang:'zh',
-          startYear:currYear - 10, //开始年份
+          startYear:currYear - 200, //开始年份
           endYear:currYear + 10 //结束年份
     };
 
-    $("#appDate").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
+    $("#birthday").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
       var optDateTime = $.extend(opt['datetime'], opt['default']);
       var optTime = $.extend(opt['time'], opt['default']);
-      $("#appDateTime").mobiscroll(optDateTime).datetime(optDateTime);
+      $("#birthdayTime").mobiscroll(optDateTime).datetime(optDateTime);
       $("#appTime").mobiscroll(optTime).time(optTime);
 
     //下面注释部分是上面的参数可以替换改变它的样式
@@ -340,7 +340,7 @@ function getPicture(sourceType, num) {
                 targetHeight: 750
             }, function(ret, err) {
                 if (ret) {
-                  // alert(JSON.stringify(ret));
+                  alert(JSON.stringify(ret));
                   if("1" === num){
                       $("#idcardFront_").val(ret.base64Data);
                       $('#idcardFront').attr('src', ret.base64Data);

@@ -8,6 +8,13 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+
+    <link href="../../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- S 可根据自己喜好引入样式风格文件 -->
+    <!-- <script src="../../script/dev/js/mobiscroll.android-ics-2.5.2.js" type="text/javascript"></script> -->
     <style>
         header{ background-color: #f2f2f2; }
         header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
@@ -15,14 +22,14 @@
         #footer{  background-color: #f2f2f2; }
         #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
+        #footer ul li:nth-child(1){ background-image: url(../../image/index/bottombtn0101.png); }
+        #footer ul li:nth-child(2){ background-image: url(../../image/index/bottombtn0201.png); }
+        #footer ul li:nth-child(3){ background-image: url(../../image/index/bottombtn0301.png); }
+        #footer ul li:nth-child(4){ background-image: url(../../image/index/bottombtn0401.png); }
+        #footer ul li:nth-child(1).active{ background-image: url(../../image/index/bottombtn0102.png); }
+        #footer ul li:nth-child(2).active{ background-image: url(../../image/index/bottombtn0202.png); }
+        #footer ul li:nth-child(3).active{ background-image: url(../../image/index/bottombtn0302.png); }
+        #footer ul li:nth-child(4).active{ background-image: url(../../image/index/bottombtn0402.png); }
         #second{  background-color: #f2f2f2; }
         #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
         #second ul li.active{ color: #6ab494; }
@@ -41,6 +48,8 @@
     </style>
 </head>
 <body>
+  <form id="postForm">
+<input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
@@ -57,33 +66,44 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        角色信息
-                    </div>
-                    <div class="aui-list-item-input">
-                        <input type="text">
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        角色种类
-                    </div>
-                    <div class="aui-list-item-input">
-                      <div class="aui-list-item-input">
-                          <input type="text">
-                      </div>
-                    </div>
-                </div>
-            </li>
-            <li class="aui-list-item">
-                <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
                         真实姓名
                     </div>
                     <div class="aui-list-item-input">
+                        <input type="text" id="realname" name="realname">
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        昵称
+                    </div>
+                    <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <input type="text" value="">
+                          <input type="text" id="nickname" name="nickname">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                  <div class="aui-list-item-label">
+                      性别
+                  </div>
+                  <div class="aui-list-item-input">
+                      <label><input class="aui-radio" type="radio" name="sex" checked> 男</label>
+                      <label><input class="aui-radio" type="radio" name="sex"> 女</label>
+                  </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        年龄
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="age" name="age">
                       </div>
                     </div>
                 </div>
@@ -91,11 +111,11 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        申请原因
+                        身高
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                          <textarea></textarea>
+                          <input type="text" id="height" name="height">
                       </div>
                     </div>
                 </div>
@@ -103,38 +123,104 @@
             <li class="aui-list-item">
                 <div class="aui-list-item-inner">
                     <div class="aui-list-item-label">
-                        角色图片
+                        体重
                     </div>
                     <div class="aui-list-item-input">
                       <div class="aui-list-item-input">
-                        <!-- 上传图片开始 -->
-                        <div id="wrap">
-                            <div id="main">
-                                <div id="imgUpload" class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:130px;height:130px;border:1px solid black;">
-                                    <img id="imgUp" style="width:80%;height:80%;" src="../image/index/bottombtn0101.png"/>
-                                </div>
-                                <div class="aui-btn aui-btn-info" style="width:30%; margin-left: 10%;margin-top: 10%;" >
-                                    <span id="p">附件上传</span>
-                                </div>
-                                <!-- <button class="uploadBtn" type="text" onclick="showAction();" style="position: relative;left:50%; margin-left:-50px;width:100px;height:50px;background-color: pink;border:none;">点击上传图片</button> -->
-                            </div>
-                            <!-- <div id="footer">
-                                <h5>Copyright &copy;<span id="year"></span> </h5>
-                            </div> -->
-                        </div>
-                        <!-- 上传图片结束 -->
+                          <input type="text" id="weight" name="weight">
                       </div>
                     </div>
                 </div>
             </li>
             <li class="aui-list-item">
-               <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
-                   <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
-                   <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
-               </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        生日
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="birthday" name="birthday"/>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        所在省
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="provience" name="provience">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        所在市
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <input type="text" id="city" name="city">
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        经验
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <textarea id="experience" name="experience"></textarea>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        自我描述
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <textarea id="infos" name="infos"></textarea>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        图片上传
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+                          <div id="wrap">
+                              <div id="imgUpload" class="imgBox" style="overflow:auto; position:relative;width:100px;height:100px;border:1px solid #DODODO; background-color: #F0F0F0; margin-left: 15%; margin-top: 5%;">
+                              </div>
+                              <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%; margin-left: 30%;" onclick="showAction()">
+                                  <span>上传图片</span>
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+
            </li>
         </ul>
     </div>
+  </form>
+
+  <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn">
+      <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
+      <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+  </div>
     <!-- 角色信息结束 -->
 
     <div id="main" class="flex-con">
@@ -153,6 +239,13 @@
 </div>
 </body>
 </html>
+
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+
+<script src="../../script/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
 <script type="text/javascript" src="../../script/bizjs/roleInfo.js"></script>
