@@ -53,68 +53,26 @@
 
     <!-- 个人角色管理开始  -->
     <section class="aui-content">
-        <div class="aui-card-list">
-            <div class="aui-card-list-header aui-card-list-user aui-border-b">
-                <div class="aui-card-list-user-avatar">
-                    <img src="../../image/test-image/demo4.png" class="aui-img-round" />
-                </div>
-                <div class="aui-card-list-user-name">
-                    <div>AUI</div>
-                    <small>1天前</small>
-                </div>
-                <div class="aui-card-list-user-info">北京朝阳</div>
-            </div>
-            <div class="aui-card-list-content-padded">
-                <img src="../../image/test-image/l2.png" />
-            </div>
-            <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
-                <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="editRoleInfo()">编辑</div>
-                <div class="aui-btn aui-btn-warning aui-margin-r-5" onclick="editRoleInfo()">发布</div>
-                <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
-                <!-- <div><i class="aui-iconfont aui-icon-note"></i> 666</div>
-                <div><i class="aui-iconfont aui-icon-laud"></i> 888</div>
-                <div><i class="aui-iconfont aui-icon-star"></i> 888</div> -->
-            </div>
+        <div class="aui-card-list" id="content">
+          <!-- <div class="aui-card-list-header aui-card-list-user aui-border-b">
+              <div class="aui-card-list-user-avatar">
+                  <img src="../../image/test-image/demo4.png" class="aui-img-round" />
+              </div>
+              <div class="aui-card-list-user-name">
+                  <div id="nickname">AUI</div>
+                  <small id="createtime">1天前</small>
+              </div>
+              <div class="aui-card-list-user-info" id="checkstatus">北京朝阳</div>
+          </div>
+          <div class="aui-card-list-content-padded">
+              <img id="img" src="../../image/test-image/l2.png" />
+          </div>
+          <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
+              <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="editRoleInfo()">编辑</div>
+              <div class="aui-btn aui-btn-warning aui-margin-r-5" onclick="editRoleInfo()">发布</div>
+              <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+          </div> -->
         </div>
-        <!-- <div class="aui-card-list">
-            <div class="aui-card-list-header">
-                <div><i class="aui-iconfont aui-icon-my aui-text-danger"></i><span class="aui-text-danger"> 最近联系人</span></div>
-                <i class="aui-iconfont aui-icon-more"></i>
-            </div>
-            <div class="aui-card-list-content">
-                <ul class="aui-list aui-media-list">
-                    <li class="aui-list-item aui-list-item-middle">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media" style="width: 3rem;">
-                                <img src="../../image/test-image/demo5.png" class="aui-img-round" >
-                            </div>
-                            <div class="aui-list-item-inner aui-list-item-arrow">
-                                <div class="aui-list-item-text">
-                                    <div class="aui-list-item-title aui-font-size-14">AUI</div>
-                                    <div class="aui-list-item-right">08:00</div>
-                                </div>
-                                <div class="aui-list-item-text">
-                                    www.auicss.com
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="aui-list-item aui-list-item-middle">
-                        <div class="aui-media-list-item-inner">
-                            <div class="aui-list-item-media" style="width: 3rem;">
-                                <img src="../../image/test-image/liulangnan.png" class="aui-img-round">
-                            </div>
-                            <div class="aui-list-item-inner aui-list-item-arrow">
-                                流浪男
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="aui-card-list-footer aui-text-center">
-                查看更多
-            </div>
-        </div> -->
     </section>
     <!-- 个人角色管理结束  -->
 
@@ -126,7 +84,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>
     <!-- 第五栏结束  -->
@@ -136,4 +94,6 @@
 </html>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="../../script/bizjs/applicationRoles.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
+<script type="text/javascript" src="../../script/bizjs/editRoleInfo.js"></script>

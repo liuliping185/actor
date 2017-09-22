@@ -11,6 +11,7 @@
     <script type="text/javascript" src="../script/api.js"></script>
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="../script/common/common.js"></script>
     <script type="text/javascript" src="../script/ajaxfileupload.js"></script>
     <script src="../script/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
     <script src="../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
@@ -70,7 +71,7 @@
             <li class="border-b" >我的</li>
         </ul>
     </header>
-
+<form id="postForm">
     <!-- 个人信息开始 -->
     <div class="aui-content aui-margin-b-15">
         <ul class="aui-list aui-form-list">
@@ -262,11 +263,12 @@
                     </div>
                 </div>
             </li>
-            <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
-                <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="perfectPersonalInfo()">提交</div>
-                <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
-            </div>
         </ul>
+    </div>
+</form>
+    <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%; text-align: center;">
+        <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="perfectPersonalInfo()">提交</div>
+        <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
     </div>
     <!-- 个人信息结束 -->
 
@@ -278,7 +280,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>
     <!-- 第五栏结束  -->

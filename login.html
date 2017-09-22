@@ -11,8 +11,8 @@
     <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css"/>
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="script/common/common.js"></script>
     <script type="text/javascript" src="script/api.js"></script>
-    <script type="text/javascript" src="script/bizjs/common.js"></script>
     <script type="text/javascript" src="script/bizjs/login.js"></script>
     <style>
         header{ background-color: #f2f2f2; }
@@ -150,12 +150,12 @@
                       			</table>
                   	  	</div>
                     		<!-- <div id=""> -->
-                            <!-- <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
+                            <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
                                 <span id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-                            <!- </div>  -->
-                    			  <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
+                             </div>
+                    			  <!-- <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
                                 <span id="p" style="color: #ffffff;">登&nbsp;录</span>
-                            </button>
+                            </button> -->
                     		    <!-- </div> -->
                   	</div>
         			  </div>
@@ -172,7 +172,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>
 

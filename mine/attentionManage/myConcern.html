@@ -56,7 +56,7 @@
         <div style="margin 0 auto;">
             <div style="float:left; margin-top: 2%; margin-left: 3%;">
                 <span>我的关注:</span>
-                <span>20人</span>
+                <span id="num">20人</span>
             </div>
             <div style="float:left;width:55%; margin-left: 12%; height:25%; display: block;">
                 <div class="aui-searchbar" id="search" style="border-radius:9px;">
@@ -77,60 +77,77 @@
     <!-- 第二栏区开始  -->
     <div style="width:100p%; height:80%;">
         <div class="aui-content aui-margin-b-15">
-            <ul class="aui-list aui-media-list">
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-row aui-row-padded">
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo1.png"/>
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo2.png" />
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo3.png" />
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="aui-list aui-media-list">
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-row aui-row-padded">
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo1.png"/>
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo2.png" />
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo3.png" />
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <ul class="aui-list aui-media-list">
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-row aui-row-padded">
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo1.png"/>
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo2.png" />
-                            </div>
-                            <div class="aui-col-xs-4">
-                                <img src="../../image/test-image/demo3.png" />
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+           <ul class="aui-list aui-media-list" id="content">
+               <!-- <li class="aui-list-item aui-list-item-arrow">
+                   <div class="aui-media-list-item-inner">
+                       <div class="aui-list-item-media">
+                           <img id="img" src="../../image/test-image/demo1.png">
+                       </div>
+                       <div class="aui-list-item-inner">
+                           <div class="aui-list-item-text">
+                               <div class="aui-list-item-title" id="nickname">张三</div>
+                               <div class="aui-list-item-right" id="birthday">08:00</div>
+                           </div>
+                           <div class="aui-list-item-text" id="infos">
+                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                           </div>
+                           <div class="aui-info aui-margin-t-5" style="padding:0">
+                               <div class="aui-info-item">
+                                   <img id="type" src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
+                                   </div>
+                               <div class="aui-info-item" id="createtime">2015-07-14 10:31</div>
+                           </div>
+                       </div>
+                   </div>
+               </li> -->
+               <!-- <li class="aui-list-item">
+                   <div class="aui-media-list-item-inner">
+                       <div class="aui-list-item-media">
+                           <img src="../../image/test-image/demo1.png">
+                       </div>
+                       <div class="aui-list-item-inner">
+                           <div class="aui-list-item-text">
+                               <div class="aui-list-item-title">李四</div>
+                               <div class="aui-list-item-right">08:00</div>
+                           </div>
+                           <div class="aui-list-item-text">
+                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                           </div>
+                           <div class="aui-info aui-margin-t-5" style="padding:0">
+                               <div class="aui-info-item">
+                                   <img src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
+                                   </div>
+                               <div class="aui-info-item">2015-07-14 10:31</div>
+                           </div>
+                       </div>
+                   </div>
+               </li> -->
+               <!-- <li class="aui-list-item">
+                   <div class="aui-media-list-item-inner">
+                       <div class="aui-list-item-media">
+                           <img src="../../image/test-image/demo1.png">
+                       </div>
+                       <div class="aui-list-item-inner">
+                           <div class="aui-list-item-text">
+                               <div class="aui-list-item-title">王五</div>
+                               <div class="aui-list-item-right">08:00</div>
+                           </div>
+                           <div class="aui-list-item-text">
+                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                           </div>
+                           <div class="aui-info aui-margin-t-5" style="padding:0">
+                               <div class="aui-info-item">
+                                   <img src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
+                                   </div>
+                               <div class="aui-info-item">2015-07-14 10:31</div>
+                           </div>
+                       </div>
+                   </div>
+               </li> -->
+           </ul>
         </div>
     </div>
-    <!-- 第一二栏区结束  -->
+    <!-- 第二栏区结束  -->
 
     <div id="main" class="flex-con">
 
@@ -140,7 +157,7 @@
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>
     <!-- 第五栏结束  -->
@@ -150,4 +167,6 @@
 </html>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/myConcern.js"></script>

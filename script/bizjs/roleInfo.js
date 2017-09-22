@@ -1,47 +1,48 @@
-var dialog = new auiDialog();
-var multipleGraphsList = ["222"];
+
+var multipleGraphsList = [];
 $("#imgUpload").html("");
+var role = GetQueryString("role");
 
 $(function(){
     // console.log(localStorage.token)
     $('body').height($('body')[0].clientHeight);
     // 获取session
-    // $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
-    //     token:localStorage.token,
-    //   }, function(data) {
-    //     var data = JSON.parse(data);
-    //     console.log(data)
-    //     if (data.success) {
-    //         //自定义alert
-    //         dialog.alert({
-    //             title: data.message,
-    //             msg:'',
-    //             buttons:['确定']
-    //         },function(ret){
-    //             if(ret){
-    //                 $("#realname").val(data.memberinfo.realname);
-    //                 // $("#nickname").val(data.memberinfo.nickname);
-    //                 // $(".sex:checked").val(data.memberinfo.sex);
-    //                 // $("#age").val(data.memberinfo.age);
-    //                 // $("#infos").val(data.memberinfo.infos);
-    //                 // $("#height").val(data.memberinfo.height);
-    //                 // $("#weight").val(data.memberinfo.weight);
-    //                 // $("#experience").val(data.memberinfo.experience);
-    //                 $("#birthday").val(data.memberinfo.birthday);
-    //                 // $("#provience").val(data.memberinfo.provience);
-    //                 // $("#city").val(data.memberinfo.city);
-    //             }
-    //         });
-    //     }else{
-    //       dialog.alert({
-    //           title:data.message,
-    //           msg:'',
-    //           buttons:['确定']
-    //       },function(ret){
-    //           console.log(ret)
-    //       })
-    //     }
-    // });
+    $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data)
+        if (data.success) {
+            //自定义alert
+            dialog.alert({
+                title: data.message,
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+                if(ret){
+                    $("#realname").val(data.memberinfo.realname);
+                    // $("#nickname").val(data.memberinfo.nickname);
+                    // $(".sex:checked").val(data.memberinfo.sex);
+                    // $("#age").val(data.memberinfo.age);
+                    // $("#infos").val(data.memberinfo.infos);
+                    // $("#height").val(data.memberinfo.height);
+                    // $("#weight").val(data.memberinfo.weight);
+                    // $("#experience").val(data.memberinfo.experience);
+                    $("#birthday").val(data.memberinfo.birthday);
+                    // $("#provience").val(data.memberinfo.provience);
+                    // $("#city").val(data.memberinfo.city);
+                }
+            });
+        }else{
+          dialog.alert({
+              title:data.message,
+              msg:'',
+              buttons:['确定']
+          },function(ret){
+              console.log(ret)
+          })
+        }
+    });
 
     var currYear = (new Date()).getFullYear();
     var opt={};
@@ -94,65 +95,65 @@ $(function(){
 
 });
 
-apiready = function () {
-    $api.fixStatusBar( $api.dom('header') );
-    api.setStatusBarStyle({
-        style: 'dark',
-        color: '#6ab494'
-    });
-    api.parseTapmode();
-    //funIniGroup();
-}
-
-function funIniGroup(){
-    var eHeaderLis = $api.domAll('header li'),
-        frames = [];
-    for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-            frames.push( {
-                name: 'frame'+i,
-                url: './html/frame'+i+'.html',
-                bgColor : 'rgba(0,0,0,.2)',
-                bounces:true
-            } )
-    }
-    api.openFrameGroup({
-        name: 'group',
-        scrollEnabled: false,
-        rect: {
-            x: 0,
-            y: $api.dom('header').offsetHeight,
-            w: api.winWidth//,
-            // h: $api.dom('#main').offsetHeight
-        },
-        index: 0,
-        frames: frames
-    }, function (ret, err) {
-
-    });
-}
-
-// 随意切换按钮
-function randomSwitchBtn( tag ) {
-    if( tag == $api.dom('#footer li.active') )return;
-    var eFootLis = $api.domAll('#footer li'),
-        eHeaderLis = $api.domAll('header li'),
-        index = 0;
-    for (var i = 0,len = eFootLis.length; i < len; i++) {
-        if( tag == eFootLis[i] ){
-            index = i;
-        }else{
-            $api.removeCls(eFootLis[i], 'active');
-            $api.removeCls(eHeaderLis[i], 'active');
-        }
-    }
-    $api.addCls( eFootLis[index], 'active');
-    $api.addCls( eHeaderLis[index], 'active');
-}
-
-
 /** 编辑角色信息 **/
 function editRoleInfo(){
-var actionURL = "http://192.168.0.129:8080/ActorInterface/actor/actorApply.action?token=" + localStorage.token;
+    var infoid = GetQueryString("infoid");
+    // var provience = $("#provience").val();
+    // var city = $("#city").val();
+    // var area = $("#area").val();
+    //
+    // if("" === provience){
+    //   dialog.alert({
+    //       title:"请选择所在省",
+    //       msg:'',
+    //       buttons:['确定']
+    //   },function(ret){
+    //
+    //   })
+  	// 	return false;
+    // }
+    //
+    // if("" === city){
+    //   dialog.alert({
+    //       title:"请选择所在市",
+    //       msg:'',
+    //       buttons:['确定']
+    //   },function(ret){
+    //
+    //   })
+  	// 	return false;
+    // }
+    //
+    // if("" === provience){
+    //   dialog.alert({
+    //       title:"请选择所在省",
+    //       msg:'',
+    //       buttons:['确定']
+    //   },function(ret){
+    //
+    //   })
+    //   return false;
+    // }
+    //
+    // if("" === area){
+    //   dialog.alert({
+    //       title:"请选择所在市",
+    //       msg:'',
+    //       buttons:['确定']
+    //   },function(ret){
+    //
+    //   })
+    //   return false;
+    // }
+
+    var actionURL = "";
+
+    if(infoid){
+        actionURL = path + "/ActorInterface/actor/actorUpdate.action?token=" + localStorage.token + "&role=" + role;
+    }else{
+        actionURL = path + "/ActorInterface/actor/actorApply.action?token=" + localStorage.token + "&role=" + role;
+    }
+    
     $.ajax({
 				cache : true,
 				type  : "POST",
@@ -160,23 +161,16 @@ var actionURL = "http://192.168.0.129:8080/ActorInterface/actor/actorApply.actio
 				data  :$('#postForm').serialize(),
 				async : true,
 				error : function(request) {
-					alert("error");
+				    alert("error");
 				},
 				success : function(data) {
-					if(data.success){
-
-
-
-
-
-
-					}else{
-
-					}
+  					if(data.success){
+                window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
+  					}else{
+  					}
 				}
-			});
-
-    // window.location.href = "../personalRoleManage/editRoleInfo.html";
+    });
+    //window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
 }
 
 // 多图上传图片开始
@@ -249,11 +243,11 @@ function showAction(){
                         if(ret.list[num].time === i.time){
                             var hi_jsonStr = JSON.stringify(multipleGraphsList);
                             $("#multipleGraphsList").val(hi_jsonStr);
-                            alert($("#multipleGraphsList").val());
+                            // alert($("#multipleGraphsList").val());
+                            window.location.href= "../personalRoleManage/ditRoleInfo.html";
                         }
                      }
                  }
-
                  $("#imgUpload").append(image);
                  $("#imgUpload").append("<div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic(' + imgId + ')>删除</button></div>");
 

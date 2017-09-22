@@ -1,58 +1,52 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
-});
 
-apiready = function () {
-    $api.fixStatusBar( $api.dom('header') );
-    api.setStatusBarStyle({
-        style: 'dark',
-        color: '#6ab494'
-    });
-    api.parseTapmode();
-    //funIniGroup();
-}
+    console.log(localStorage.token);
 
-function funIniGroup(){
-    var eHeaderLis = $api.domAll('header li'),
-        frames = [];
-    for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-            frames.push( {
-                name: 'frame'+i,
-                url: './html/frame'+i+'.html',
-                bgColor : 'rgba(0,0,0,.2)',
-                bounces:true
-            } )
-    }
-    api.openFrameGroup({
-        name: 'group',
-        scrollEnabled: false,
-        rect: {
-            x: 0,
-            y: $api.dom('header').offsetHeight,
-            w: api.winWidth//,
-            // h: $api.dom('#main').offsetHeight
-        },
-        index: 0,
-        frames: frames
-    }, function (ret, err) {
+    // 获取我的关注列表数据
+    $.post(path + "/ActorInterface/attention/myBeAttentionList.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data)
+        if (data.success) {
+            $("#num").html(data.resultList.length + "人");
+            var content = "";
 
-    });
-}
+            data.resultList.forEach(function(i){
+              content += "<li class='aui-list-item aui-list-item-arrow'>";
+              content += "<div class='aui-media-list-item-inner'>";
+              content += "<div class='aui-list-item-media'>";
+              content += "<img src='" + i.img + "'>";
+              content += "</div>";
+              content += "<div class='aui-list-item-inner'>";
+              content += "<div class='aui-list-item-text'>";
+              content += "<div class='aui-list-item-title'>" + i.infos.nickname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.birthday + "</div>";
+              content += "</div>";
+              content += "<div class='aui-list-item-text'>" + i.infos.infos + "</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item'>";
+              if("actor" === i.type){
+                content += "<img src='../../image/mine/actor.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
 
-// 随意切换按钮
-function randomSwitchBtn( tag ) {
-    if( tag == $api.dom('#footer li.active') )return;
-    var eFootLis = $api.domAll('#footer li'),
-        eHeaderLis = $api.domAll('header li'),
-        index = 0;
-    for (var i = 0,len = eFootLis.length; i < len; i++) {
-        if( tag == eFootLis[i] ){
-            index = i;
-        }else{
-            $api.removeCls(eFootLis[i], 'active');
-            $api.removeCls(eHeaderLis[i], 'active');
+              if("scene" === i.type){
+                content += "<img src='../../image/mine/scene.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
+
+              if("subject" === i.type){
+                content += "<img src='../../image/mine/subject.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
+              content += "</div>";
+              content += "<div class='aui-info-item'>" + i.infos.createtime + "</div>";
+              content += "</div>";
+              content += "</div>";
+              content += "</div>";
+              content += "</li>";
+            });
+
+            $("#content").html(content);
         }
-    }
-    $api.addCls( eFootLis[index], 'active');
-    $api.addCls( eHeaderLis[index], 'active');
-}
+    });
+});

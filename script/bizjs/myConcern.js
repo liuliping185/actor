@@ -1,103 +1,51 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
+    console.log(localStorage.token);
+
+    // 获取我的关注列表数据
+    $.post(path + "/ActorInterface/attention/myAttentionList.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data)
+        if (data.success) {
+            $("#num").html(data.resultList.length + "人");
+            var content = "";
+
+            data.resultList.forEach(function(i){
+              content += "<li class='aui-list-item aui-list-item-arrow'>";
+              content += "<div class='aui-media-list-item-inner'>";
+              content += "<div class='aui-list-item-media'>";
+              content += "<img src='" + i.img + "'>";
+              content += "</div>";
+              content += "<div class='aui-list-item-inner'>";
+              content += "<div class='aui-list-item-text'>";
+              content += "<div class='aui-list-item-title'>" + i.infos.nickname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.birthday + "</div>";
+              content += "</div>";
+              content += "<div class='aui-list-item-text'>" + i.infos.infos + "</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item'>";
+              if("actor" === i.type){
+                content += "<img src='../../image/mine/actor.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
+
+              if("scene" === i.type){
+                content += "<img src='../../image/mine/scene.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
+
+              if("subject" === i.type){
+                content += "<img src='../../image/mine/subject.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              }
+              content += "</div>";
+              content += "<div class='aui-info-item'>" + i.infos.createtime + "</div>";
+              content += "</div>";
+              content += "</div>";
+              content += "</div>";
+              content += "</li>";
+            });
+
+            $("#content").html(content);
+        }
+    });
 });
-
-apiready = function () {
-    $api.fixStatusBar( $api.dom('header') );
-    api.setStatusBarStyle({
-        style: 'dark',
-        color: '#6ab494'
-    });
-    api.parseTapmode();
-    //funIniGroup();
-}
-
-function funIniGroup(){
-    var eHeaderLis = $api.domAll('header li'),
-        frames = [];
-    for (var i = 0,len = eHeaderLis.length; i < len; i++) {
-            frames.push( {
-                name: 'frame'+i,
-                url: './html/frame'+i+'.html',
-                bgColor : 'rgba(0,0,0,.2)',
-                bounces:true
-            } )
-    }
-    api.openFrameGroup({
-        name: 'group',
-        scrollEnabled: false,
-        rect: {
-            x: 0,
-            y: $api.dom('header').offsetHeight,
-            w: api.winWidth//,
-            // h: $api.dom('#main').offsetHeight
-        },
-        index: 0,
-        frames: frames
-    }, function (ret, err) {
-
-    });
-}
-
-// 随意切换按钮
-function randomSwitchBtn( tag ) {
-    if( tag == $api.dom('#footer li.active') )return;
-    var eFootLis = $api.domAll('#footer li'),
-        eHeaderLis = $api.domAll('header li'),
-        index = 0;
-    for (var i = 0,len = eFootLis.length; i < len; i++) {
-        if( tag == eFootLis[i] ){
-            index = i;
-        }else{
-            $api.removeCls(eFootLis[i], 'active');
-            $api.removeCls(eHeaderLis[i], 'active');
-        }
-    }
-    $api.addCls( eFootLis[index], 'active');
-    $api.addCls( eHeaderLis[index], 'active');
-}
-
-// 搜索框开始
-var searchBar = document.querySelector(".aui-searchbar");
-var searchBarInput = document.querySelector(".aui-searchbar input");
-var searchBarBtn = document.querySelector(".aui-searchbar .aui-searchbar-btn");
-var searchBarClearBtn = document.querySelector(".aui-searchbar .aui-searchbar-clear-btn");
-
-if(searchBar){
-    searchBarInput.onclick = function(){
-        searchBarBtn.style.marginRight = 0;
-    }
-    searchBarInput.oninput = function(){
-        if(this.value.length){
-            searchBarClearBtn.style.display = 'block';
-            searchBarBtn.classList.add("aui-text-info");
-            searchBarBtn.textContent = "搜索";
-        }else{
-            searchBarClearBtn.style.display = 'none';
-            searchBarBtn.classList.remove("aui-text-info");
-            searchBarBtn.textContent = "取消";
-        }
-    }
-}
-
-if(searchBarBtn){
-    searchBarClearBtn.onclick = function(){
-        this.style.display = 'none';
-        searchBarInput.value = '';
-        searchBarBtn.classList.remove("aui-text-info");
-        searchBarBtn.textContent = "取消";
-    }
-    searchBarBtn.onclick = function(){
-        var keywords = searchBarInput.value;
-        if(keywords.length){
-            searchBarInput.blur();
-            document.getElementById("search-keywords").textContent = keywords;
-        }else{
-            this.style.marginRight = "-"+this.offsetWidth+"px";
-            searchBarInput.value = '';
-            searchBarInput.blur();
-        }
-    }
-}
-
-// 搜索框结束

@@ -1,44 +1,11 @@
-$(document).ready(function(){
+$(function(){
     $('body').height($('body')[0].clientHeight);
     thirdInitialization();
 });
-apiready = function () {
-    $api.fixStatusBar( $api.dom('header') );
-    api.setStatusBarStyle({
-        style: 'dark',
-        color: '#6ab494'
-    });
-    thirdInitialization();
-}
 
 // 详情
 function detail(){
-  console.log("detail")
-  window.location.href = "details.html";
-  // api.openFrame ({
-  //     name: 'AllGroup',
-  //     url: 'details.html',
-  //     reload:'true',
-  //     rect:{
-  //         x:0,
-  //         y:41,
-  //         w:'auto',
-  //         h:'auto'
-  //     },
-  //     bounces: false,
-  //     pageParam: {
-  //         "id":'1'
-  //     }
-  // });
-
-    // api.aui.css({
-    // name: type,
-    // url: 'header/'+type+'.html',
-    // bounces: false,
-    // pageParam: {
-    // "id":id	//id
-    // }
-    // });
+  window.location.href = "actorDetails.html?actId=45";
 }
 
 // 第三栏区的内容初始化加载
