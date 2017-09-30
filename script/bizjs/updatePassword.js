@@ -50,7 +50,7 @@ function updatePassword(){
 			return false;
 	}
 
-  $.post("http://192.168.0.129:8080/ActorInterface/member/updatePassword.action",{
+  $.post(path + "/ActorInterface/member/updatePassword.action",{
       loginname:$("#loginname").val(),
 			password:password
 		}, function(data) {

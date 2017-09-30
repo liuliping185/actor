@@ -8,87 +8,25 @@
     <link rel="stylesheet" type="text/css" href="../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/firstSrc.css"/>
     <script type="text/javascript" src="../script/api.js"></script>
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../script/aui-dialog.js" ></script>
     <script type="text/javascript" src="../script/common/common.js"></script>
     <script type="text/javascript" src="../script/bizjs/scenesDetail.js"></script>
-    <style>
-    header{ background-color: #f2f2f2; }
-    header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
-    header ul li.active{ display: block; }
-    #footer{  background-color: #f2f2f2; }
-    #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-    #footer ul li.active{ color: #6ab494; }
-    #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
-    #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
-    #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
-    #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
-    #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
-    #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
-    #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
-    #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
-        .flex-con{
-        .flex-con{
-          overflow: auto
-        }
-        #spinner{
-            position: fixed;
-            top: 20px;
-            left: 40%;
-            display: block;
-            color: red;
-            font-weight: 900;
-            background-color: rgba(80, 80, 90, 0.22);
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-left: 100px;
-            padding-right: 100px;
-            border-radius: 15px;
-        }
-
-        html,body{
-            height: 100%;
-        }
-        #wrap{
-            height: 100%;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-flex-flow: column;
-                   flex-flow: column;
-        }
-        #header{
-            text-align: center; background-color: #81a9c3; color: #fff;
-            width: 100%;
-        }
-        #header h1{
-            font-size: 20px; height: 44px; line-height: 44px; margin: 0em; color: #fff;
-        }
-        #main{
-            -webkit-box-flex: 1;
-            -webkit-flex: 1;
-            flex: 1;
-        }
-        #footer{
-            height: 30px; line-height: 30px;
-            background-color: #81a9c3;
-            width: 100%;
-            text-align: center;
-        }
-        #footer h5{
-            color: white;
-        }
-        .con{font-size: 28px; text-align: center;}
-    </style>
 </head>
-<body style="height: 100%; width: 100%; overflow-y:auto; overflow-x:auto;">
+<body style="height: 100%; width: 100%; overflow-x:auto;">
 <input id="attentionFlag" hidden="true"/>
+<input id="infoid" hidden="true"/>
+<input id="type" hidden="true"/>
+<input id="ownerid" hidden="true"/>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header style="width: 100%;">
         <ul>
-            <li class="border-b active" >协拍中国</li>
+          <li class="border-b active" >
+            <span id="headerBack" onclick="back()">&lt</span>
+            <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+          </li>
             <li class="border-b" >发现</li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
@@ -98,7 +36,7 @@
     <div style="overflow:auto; height:100%;" id="content">
         <!-- 第一栏区开始  -->
         <div style="width:100%; height:5%; margin: 0 auto; background-color:#ffffff; text-align: center;">
-            <span>找演员</span>
+            <span id="role"></span>
         </div>
         <!-- 第一栏区结束  -->
 
@@ -112,17 +50,17 @@
             </div>
             <div style="text-align:center;">
                 <span id="follow" style="margin-left: 15%; margin-top: 3%; color:#7B7B7B; font-size:14px;" onclick="isfollow('infoid, type')">+关注</span>
-                <div><input id="isfollow" onclick="follow('infoid, type')" style="margin-left: 17%; margin-top:2%;" class="aui-radio" type="radio" checked="true"></div>
+                <div><input id="isfollow" onclick="follow('infoid, type')" style="margin-left: 17%; margin-top:2%;" class="aui-radio" type="radio"></div>
             </div>
         </div>
         <!-- 第二栏区结束  -->
 
         <!-- 第三栏区开始  thirdArea-->
         <div style="height:50%; background-color:#ffffff">
-            <div style="height: 10%;">
-              <h3>默认图集
-                  <span style="color: #D0D0D0; margin-left:65%;">相册></span>
-              </h3>
+            <div style="height:30px;line-height:30px;margin-top:5%;">
+              <h4 style=" margin-left: 5%; color:#7B7B7B;">默认图集
+                  <span style="color: #7B7B7B; margin-left:68%;" onclick="album()">相册></span>
+              </h4>
             </div>
             <div style="height: 90%; background-color:#F0F0F0;">
                 <img style="width:100%; height:100%;" id="imgBig" src=""/>
@@ -131,56 +69,44 @@
         <!-- 第三栏区结束  -->
 
         <!-- 第四栏开始 -->
-        <div style="height: 10%; background-color:#ffffff;">
-            <h3>艺人信息</h3>
-            <div style="margin-top: 2%; margin 0 auto;">
-                <span style="margin-left: 5%;">身高:
-                    <sapn id="height"></span>cm
-                </span>
-                <span style="margin-left: 10%;">体重:
-                    <span id="weight"></span>kg
-                </span>
-                <span style="margin-left: 10%;">鞋码:
-                    <span>保密</span>
-                </span>
-            </div>
+        <div id="infos">
+            <h4 style="margin-top:5%; margin-left: 5%; color:#7B7B7B;">道具信息</h4>
+            <span style="margin-top: 2%; margin 0 auto; margin-left:5%;">
+              sdasdas
+            </span>
         </div>
         <!-- 第四栏结束 -->
 
         <!-- 第五栏开始 -->
-        <div style="height: 5%;">
-            <h3>工作范围
-                <span style="color: #D0D0D0; margin-left:65%;">更多></span>
-            </h3>
+        <div style="height: 5%; margin-left:5%; margin-top:2%;" id="workingRange">
+            <h4 style="color:#7B7B7B;">工作范围
+                <!-- <span style="color: #color:#7B7B7B; margin-left:65%;">更多></span> -->
+            </h4>
 
         </div>
         <!-- 第五栏结束 -->
 
         <!-- 第六栏开始 -->
-        <div style="height: 50%;">
-            <h3>模特</h3>
+        <div id="synopsis">
+            <h4 style="margin-left:5%;">模特</h4>
             <div>
-                <span>可预约时段
-                </span>
+                <h4 style="margin-left:5%; margin-top:2%; color:#7B7B7B;">可预约时段
+                </h4>
             </div>
-            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
-
-            <h3>化妆</h3>
-            <div>
-                <span>偶尔有时间
-                </span>
+            <div style="margin-left:5%; margin-top:2%;">
+                <input onclick="reserve()" style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="预约">
+                <input onclick="booking()" style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="有待预约">
             </div>
-            <input style="width:40px; height:25px; border-radius:9px;background-color:#E0E0E0;" type="button" value="按钮">
 
-            <h3>工作经历</h3>
+            <h4 style="margin-left:5%; margin-top:5%; color:#7B7B7B;">工作经历</h4>
             <div>
-                <span id="experience">
+                <span id="experience" style="margin-left:5%;">sdfsdfdsfsd
                 </span>
             </div>
 
-            <h3>个人简介</h3>
+            <h4 style="margin-left:5%; margin-top:5%; color:#7B7B7B;">个人简介</h4>
             <div>
-                <span id="infos">
+                <span id="infos" style="margin-left:5%;">sgsdgsdgsdg
                 </span>
             </div>
         </div>
@@ -188,8 +114,14 @@
 
         <!-- 第七栏开始 -->
         <div style="height: 30%; background-color:#F0F0F0;">
-            <span style="width:47.5%; height:100%;">服务评价</span>
-            <span style="margin-left:13px; width:47.5%; height:100%;">专业评价</span>
+            <span style="width:37.5%; height:100%; margin-left:60px; margin-top: 20px;">
+                <h3 style="color:#7B7B7B">服务评价</h3>
+                <img id="service" src="" style="margin-top: 15px;"/>
+            </span>
+            <span style="width:37.5%; height:100%; margin-left:25px; margin-top: 20px;">
+                <h3 style="color:#7B7B7B">专业评价</h3>
+                <img id="professional" src="" style="margin-top: 15px;"/>
+            </span>
         </div>
         <!-- 第七栏结束 -->
 
@@ -215,11 +147,11 @@
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t" style="position: absolute; margin-top: 160%; width: 100%">
+    <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" >搜索</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>

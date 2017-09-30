@@ -8,45 +8,22 @@
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
     <link rel="stylesheet" href="./css/checkstyle.css"/>
     <script type="text/javascript" src="script/api.js"></script>
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="script/common/common.js"></script>
     <script type="text/javascript" src="script/bizjs/register.js" ></script>
-    <style>
-        header{ background-color: #f2f2f2; }
-        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
-        header ul li.active{ display: block; }
-        #footer{  background-color: #f2f2f2; }
-        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(./image/index/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(./image/index/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(./image/index/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(./image/index/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(./image/index/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(./image/index/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(./image/index/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(./image/index/bottombtn0402.png); }
-        #second{  background-color: #f2f2f2; }
-        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #second ul li.active{ color: #6ab494; }
-        #second ul li:nth-child(1){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(2){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(3){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(4){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(5){ background-image: url(./image/index/second.png); }
-        .flex-con{
-        .flex-con{
-          overflow: auto
-        }
-    </style>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
-            <li class="border-b active" >协拍中国</li>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt</span>
+              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+            </li>
             <li class="border-b" >发现</li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
@@ -55,18 +32,17 @@
     <!-- 注册开始 -->
     <input type="hidden" id="hi_checkCode" >
       <div  style="background: white;" align="center" style="padding: 0px 0px 0px;background: #F5F5F5;">
-          <div id="index" style="height: 20px;">
+          <!-- <div id="index" style="height: 20px;">
           <table id="" class="table" >
             <tr>
               <td>
                 <div class="btn" style="background: white; height: 5%;" onclick="history.go(-1);">
                     <span style="color: #D0D0D0; margin-top: 15px;">&gt</span>
-                    <!-- <img src="./image/register/back.png" height="21px" style="float:left;margin-top: 15px;margin-left: 0px;"/> -->
                 </div>
               </td>
             </tr>
           </table>
-        </div>
+        </div> -->
       <div  align="center" style="padding: 20px 20px 10px;margin-top: 20px;">
         <table rules="none" border="1" bordercolor="grey" width="95%" height="50">
           <tr>
@@ -159,7 +135,7 @@
             <td>
               <font size="2">我已阅读并同意《</font>
               <span style="color: #458BDA;font-weight: bold;">
-                <a href="${path }/jsp/member/member_agreement.jsp" style="color: #458BDA;font-weight: bold;">
+                <a href="appText.html" style="color: #458BDA;font-weight: bold;">
                   <font size="2">协拍中国用户注册协议</font>
                 </a>
               </span>
@@ -181,10 +157,10 @@
     </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html'  );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html'  );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>
 </div>

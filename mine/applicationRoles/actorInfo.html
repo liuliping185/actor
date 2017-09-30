@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-信息维护-申请角色-演员信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/firstSrc.css"/>
+
+    <link href="../../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<form id="postForm">
+<input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header style="width: 100%;">
+        <ul>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
+            </li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <!-- 角色信息开始 -->
+    <div style="overflow:auto; height:550px;">
+      <div class="aui-content aui-margin-b-15">
+          <ul class="aui-list aui-form-list">
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          真实姓名
+                      </div>
+                      <div class="aui-list-item-input">
+                          <input type="text" id="realname" class="input" name="realname">
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          昵称
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="nickname" name="nickname">
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        性别
+                    </div>
+                    <div class="aui-list-item-input">
+                        <label><input class="aui-radio" type="radio" name="sex" checked> 男</label>
+                        <label><input class="aui-radio" type="radio" name="sex"> 女</label>
+                    </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          年龄
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="age" name="age">
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          身高(cm)
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="height" name="height">
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          体重(kg)
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="weight" name="weight">
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          生日
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="birthday" name="birthday"/>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          所在地区
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div data-toggle="distpicker">
+                              <select data-province="选择省" id="provience" name="provience"></select>
+                              <select data-city="选择市" id="city" name="city"></select>
+                              <select data-district="选择区" id="area" name="area"></select>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          经验
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <textarea id="experience" name="experience"></textarea>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          自我描述
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <textarea id="infos" name="infos"></textarea>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          价格(元)
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <input type="text" id="price" name="price"/>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-label">
+                          图片上传
+                      </div>
+                      <div class="aui-list-item-input">
+                        <div class="aui-list-item-input">
+                            <div id="wrap">
+                                <div id="imgUpload" class="imgBox" style="overflow:auto; position:relative;width:200px;height:200px;border:1px solid #DODODO; background-color: #F0F0F0; margin-left: 15%; margin-top: 5%;">
+                                </div>
+                                <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%; margin-left: 30%;" onclick="showAction()">
+                                    <span>上传图片</span>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+              </li>
+              <li class="aui-list-item">
+                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn" style="text-align: center;">
+                    <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+                </div>
+              </li>
+          </ul>
+      </div>
+  </form>
+
+    </div>
+    <!-- 角色信息结束 -->
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con active" >我的</li>
+        </ul>
+    </div>
+    <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script src="../../script/distpicker.js"></script>
+
+<script src="../../script/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+<script src="../../script/dev/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
+<script type="text/javascript" src="../../script/bizjs/actorInfo.js"></script>

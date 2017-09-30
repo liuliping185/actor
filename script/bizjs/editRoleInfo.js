@@ -21,16 +21,22 @@ $(function(){
             actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
             imgHeading = "../../image/mine/subject.jpg";
         break;
+        default: actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
+        imgHeading = "../../image/mine/subject.jpg";
+        break;
     }
 
     $.post(actionURL,{
     }, function(data) {
         var data = JSON.parse(data);
+        console.log(data);
         if(data.success){
           console.log(data.infoList)
             $("#content").html("");
             var content= "";
+            var flag = 0;
             data.infoList.forEach(function(i){
+              flag ++ ;
               var status = "";
               switch(i.checkstatus){
                   case "Y": status = "审核通过";
@@ -47,7 +53,15 @@ $(function(){
               content += "<img src='" + imgHeading + "' class='aui-img-round'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-user-name'>";
-              content +=  "<div>" + i.nickname + "</div>";
+              switch(role){
+                  case "1": content +=  "<div>" + i.nickname + "</div>";
+                  break;
+                  case "2": content +=  "<div>" + i.scenename + "</div>";
+                  break;
+                  case "3": content +=  "<div>" + i.subjectname + "</div>";
+                  break;
+              }
+
               content +=  "<small>" + i.createtime + "</small>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-user-info'>" + status +  "</div>";
@@ -56,9 +70,15 @@ $(function(){
               content +=  "<img src='" + data.imgList[0] + "'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
-              content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='edit(" + role + "," + i.infoid + ")'>编辑</div>";
-              content +=  "<div class='aui-btn aui-btn-warning aui-margin-r-5' onclick='publish(" + role + "," + i.id + ")'>发布</div>";
-              content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel(" + role + "," + i.id + ")'>取消</div>";
+              content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='edit(" + role + "," + i.id + ")'>编辑</div>";
+
+              if("W" != i.checkstatus ){
+                  if("Y" === i.checkstatus){
+                      content +=  "<div class='aui-btn aui-btn-warning aui-margin-r-5' onclick='publish(" + role + "," + i.id + ")'>发布</div>";
+                  }
+              }
+
+              content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel(" + role + "," + i.id + ")'>删除</div>";
               content +=  "</div>";
             });
               $("#content").html(content);
@@ -69,15 +89,16 @@ $(function(){
 });
 
 // 发布
-function publish(role, id){
+function publish(role, id, flag){
   console.log(id)
+  console.log(flag)
     var actionURL = path + "/ActorInterface/actor/actorPublic.action";
     switch(role){
-        case 1: url = path + "/ActorInterface/actor/actorPublic.action";
+        case 1: actionURL = path + "/ActorInterface/actor/actorPublic.action";
         break;
-        case 2: url = path + "/ActorInterface/scene/scenePublic.action";
+        case 2: actionURL = path + "/ActorInterface/scene/scenePublic.action";
         break;
-        case 3: url = path + "/ActorInterface/scene/subjectPublic.action";
+        case 3: actionURL = path + "/ActorInterface/subject/subjectPublic.action";
         break;
     }
 
@@ -89,7 +110,9 @@ function publish(role, id){
         var data = JSON.parse(data);
         console.log(data);
         if(data.success){
-            alert("发布成功")
+            alert("发布成功");
+            // $("#flag").html("");
+            window.location.reload();
         }
     });
 
@@ -100,11 +123,11 @@ function cancel(role, id){
     console.log(id)
     var actionURL = path + "/ActorInterface/actor/actorDelete.action";
     switch(role){
-        case 1: url = path + "/ActorInterface/actor/actorPublic.action";
+        case 1: actionURL = path + "/ActorInterface/actor/actorDelete.action";
         break;
-        case 2: url = path + "/ActorInterface/scene/scenePublic.action";
+        case 2: actionURL = path + "/ActorInterface/scene/sceneDelete.action";
         break;
-        case 3: url = path + "/ActorInterface/scene/subjectPublic.action";
+        case 3: actionURL = path + "/ActorInterface/subject/subjectDelete.action";
         break;
     }
 
@@ -116,12 +139,22 @@ function cancel(role, id){
         var data = JSON.parse(data);
         console.log(data);
         if(data.success){
-            alert("取消成功")
+            alert("取消成功");
+            window.location.reload();
         }
     });
 }
 
 // 编辑
 function edit(role, infoid){
-    window.location.href = "../applicationRoles/roleInfo.html?infoid=" + infoid;
+    var url ="";
+    switch(role){
+        case 1: url =  "../applicationRoles/actorInfo.html?infoid=" + infoid;
+        break;
+        case 2: url =  "../applicationRoles/sceneInfo.html?infoid=" + infoid;
+        break;
+        case 3: url =  "../applicationRoles/subjectInfo.html?infoid=" + infoid;
+        break;
+    }
+    window.location.href = url;
 }

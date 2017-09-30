@@ -8,46 +8,23 @@
     <link rel="stylesheet" type="text/css" href="./css/api.css"/>
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
     <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css"/>
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
     <script type="text/javascript" src="script/common/common.js"></script>
     <script type="text/javascript" src="script/api.js"></script>
     <script type="text/javascript" src="script/bizjs/login.js"></script>
-    <style>
-        header{ background-color: #f2f2f2; }
-        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
-        header ul li.active{ display: block; }
-        #footer{  background-color: #f2f2f2; }
-        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(./image/index/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(./image/index/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(./image/index/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(./image/index/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(./image/index/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(./image/index/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(./image/index/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(./image/index/bottombtn0402.png); }
-        #second{  background-color: #f2f2f2; }
-        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #second ul li.active{ color: #6ab494; }
-        #second ul li:nth-child(1){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(2){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(3){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(4){ background-image: url(./image/index/second.png); }
-        #second ul li:nth-child(5){ background-image: url(./image/index/second.png); }
-        .flex-con{
-        .flex-con{
-          overflow: auto
-        }
-    </style>
+
 </head>
 <body style="background: #fff;">
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
-            <li class="border-b active" >协拍中国</li>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt</span>
+              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+            </li>
             <li class="border-b" >发现</li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
@@ -94,16 +71,16 @@
                     		<div style="margin-top: 30px;">
                       			<table id="" class="table" cellpadding="0px" cellspacing="0px">
                         				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
-                                    <td class="txtStyle">
+                                    <td class="txtStyle" style="line-height:30px;">
                                     	<span>账号</span>
 
                                     </td>
-                                    <td  class="txtStyle">
+                                    <td  class="txtStyle" style="line-height:30px;">
 
                                       <!-- <div class="aui-list-item-input">
                                           <input type="text" placeholder="username">
                                       </div> -->
-                          						<input type="text" id="username"  class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
+                          						<input type="text" id="username" style="font-size:14px;" class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
                           					</td>
                           					<td>
                                       <div class="aui-list-item-label-icon">
@@ -117,11 +94,11 @@
                     		<div>
                     			  <table id="" class="table" cellpadding="0px" cellspacing="0px">
                         				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
-                                    <td class="txtStyle">
+                                    <td class="txtStyle" style="line-height:30px;">
                                     	  <span>密码</span>
                                     </td>
-                                    <td  class="txtStyle">
-                          						  <input type="password" id="password" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
+                                    <td  class="txtStyle" style="line-height:30px;">
+                          						  <input type="password" id="password" style="font-size:14px;" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
                           					</td>
                           					<td>
                                       <div class="aui-list-item-label-icon">
@@ -150,12 +127,12 @@
                       			</table>
                   	  	</div>
                     		<!-- <div id=""> -->
-                            <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
+                            <!-- <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
                                 <span id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-                             </div>
-                    			  <!-- <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
+                             </div> -->
+                    			  <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
                                 <span id="p" style="color: #ffffff;">登&nbsp;录</span>
-                            </button> -->
+                            </button>
                     		    <!-- </div> -->
                   	</div>
         			  </div>
@@ -169,9 +146,9 @@
     </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html'  );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html'  );" class="flex-con" >搜索</li>
             <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html' );" class="flex-con" >我的</li>
         </ul>
     </div>

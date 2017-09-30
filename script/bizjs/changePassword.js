@@ -38,7 +38,7 @@ function changePassword(){
   			return false;
   	}
 
-    $.post("http://192.168.0.129:8080/ActorInterface/member/changePassword.action",{
+    $.post(path + "/ActorInterface/member/changePassword.action",{
         token:localStorage.token,
   			password:password
   		}, function(data) {

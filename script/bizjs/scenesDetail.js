@@ -1,44 +1,279 @@
+var id = GetQueryString("id");
+var role = GetQueryString("role");
+
 $(function(){
   $('body').height($('body')[0].clientHeight);
-  var actId = GetQueryString("actId");
-  $.post(path + "/ActorInterface/actor/getAcotrById.action",{
-      token:localStorage.token,
-      actId: 45
+  var actionUrl = ""
+  console.log(id + "----" + role );
+  switch(role){
+      case "actor":
+          actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + id;
+      break;
+      case "scene":
+          actionUrl = path + "/ActorInterface/scene/getSceneById.action?sceneId=" + id;
+      break;
+      case "subject":
+          actionUrl = path + "/ActorInterface/subject/getSubjectById.action?subjectId=" + id;
+      break;
+  }
+
+  console.log(actionUrl);
+  $.post(actionUrl,{
+      token:localStorage.token
     }, function(data) {
       var data = JSON.parse(data);
       console.log(data)
       if (data.success) {
-          $("#nickname").html(data.actinfo.nickname);
-          $("#area").html(data.actinfo.provience + data.actinfo.city);
-          $("#height").html(data.actinfo.height);
-          $("#weight").html(data.actinfo.weight/2);
-          $('#img').attr('src', data.imgs[0].imgpath);
-          $('#imgBig').attr('src', data.imgs[0].imgpath);
-          $("#experience").html(data.actinfo.experience);
-          $("#infos").html(data.actinfo.infos);
+          var infos = "";
+          var workingRange = "";
+          var synopsis = "";
+          switch(role){
+              case "actor":
+                  $("#role").html("找演员");
 
-          $("#attentionFlag").val(data.attentionFlag);
+                  infos += "<h4 style='margin-top:5%; margin-left: 5%; color:#7B7B7B;'>艺人信息</h4>";
+                  infos += "<div style='margin-top: 2%; margin 0 auto;'>";
+                  infos += "<span style='margin-left:5%; font-size:14px;'>身高:";
+                  infos += "<sapn style='font-size:14px;'>" + data.actinfo.height + "</span>cm";
+                  infos += "</span>";
+                  infos += "<span style='margin-left:10%; font-size:14px;'>体重:";
+                  infos += "<span style='font-size:14px;'>" + data.actinfo.weight/2 + "</span>kg";
+                  infos += "</span>";
+                  infos += "<span style='margin-left:10%; font-size:14px;'>鞋码:";
+                  infos += "<span style='font-size:14px;'>" + "保密"+ "</span>";
+                  infos += "</span>";
+                  infos += "</div>";
 
-          if("true" === $("#attentionFlag").val()){
-            console.log("aa")
-              $("#follow").html("-取消关注");
-              $("#isfollow").prop("checked", true);
-          }else{
-              $("#follow").html("+关注");
-              $("input[id='isfollow']").removeAttr("checked");
+                  workingRange += "<h4 style='color:#7B7B7B;'>工作范围";
+                  workingRange += "<span style='color: #7B7B7B; margin-left:65%;'>更多></span>";
+                  workingRange += "<h4>";
+
+                  synopsis += "<h4 style='margin-left:5%;'>模特</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>可预约时段";
+                  synopsis += "</h4>";
+                  synopsis += "</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:30px; margin-left:5%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:65px; height:30px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:5%; color:#7B7B7B;'>工作经历</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<span style='margin-left:5%;'>" + data.actinfo.experience + "</span>";
+                  synopsis += "</div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>个人简介</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<span style='margin-left:5%;'>" + data.actinfo.infos + "</span>";
+                  synopsis += "</div>";
+
+                  $("#infoid").val(data.actinfo.id);
+                  $("#type").val("actor");
+                  $("#ownerid").val(data.actinfo.memberid);
+                  $("#nickname").html(data.actinfo.nickname);
+                  if(data.actinfo.provience){
+                      $("#area").html(data.actinfo.provience + data.actinfo.city);
+                  }else{
+                      $("#area").html("&nbsp");
+                  }
+
+                  $('#img').attr('src', data.imgs[0].imgpath);
+                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+
+                  $("#attentionFlag").val(data.attentionFlag);
+
+                  $("#infos").html(infos);
+                  $("#workingRange").html(workingRange);
+                  $("#synopsis").html(synopsis);
+
+                  if("true" === $("#attentionFlag").val()){
+                    console.log("aa")
+                      $("#follow").html("-取消关注");
+                      $("#isfollow").prop("checked", true);
+                  }else{
+                      $("#follow").html("+关注");
+                      $("input[id='isfollow']").removeAttr("checked");
+                  }
+
+                  switch(data.service){
+                      case 1: $('#service').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#service').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#service').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#service').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#service').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+
+                  switch(data.professional){
+                      case 1: $('#professional').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#professional').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#professional').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#professional').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#professional').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+              break;
+              case "scene":
+                  $("#role").html("找场景");
+
+                  infos += "<h4 style='margin-top:5%; margin-left: 5%; color:#7B7B7B;'>场地信息</h4>";
+                  infos += "<span style='margin-top: 2%; margin 0 auto; margin-left:5%;'>";
+                  infos += data.sceneinfo.sceneinfos;
+                  infos += "</span>";
+
+                  workingRange += "<h4 style='color:#7B7B7B;'>工作范围";
+                  workingRange += "<span style='color:#7B7B7B; margin-left:65%;'>更多></span>";
+                  workingRange += "<h4>";
+
+                  synopsis += "<h4 style='margin-left: 5%; color:#7B7B7B;'>" + data.sceneinfo.scenename + "</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>可预约时段";
+                  synopsis += "</h4>";
+                  synopsis += "</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:30px; margin-left:5%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:65px; height:30px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+
+                  $("#infoid").val(data.sceneinfo.id);
+                  $("#type").val("scene");
+                  $("#ownerid").val(data.sceneinfo.memberid);
+
+                  $("#nickname").html(data.sceneinfo.scenename);
+                  var d = new Date(data.sceneinfo.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                  $("#area").html(createtime);
+
+                  $('#img').attr('src', data.imgs[0].imgpath);
+                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+
+                  $("#attentionFlag").val(data.attentionFlag);
+
+                  $("#infos").html(infos);
+                  $("#workingRange").html(workingRange);
+                  $("#synopsis").html(synopsis);
+
+                  console.log($("#attentionFlag").val())
+                  if("true" === $("#attentionFlag").val()){
+                    console.log("aa")
+                      $("#follow").html("-取消关注");
+                      $("#isfollow").prop("checked", true);
+                  }else{
+                      $("#follow").html("+关注");
+                      $("input[id='isfollow']").removeAttr("checked");
+                  }
+
+                  switch(data.service){
+                      case 1: $('#service').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#service').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#service').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#service').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#service').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+
+                  switch(data.professional){
+                      case 1: $('#professional').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#professional').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#professional').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#professional').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#professional').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+              break;
+              case "subject":
+                  $("#role").html("找道具");
+
+                  infos += "<h4 style='margin-top:5%; margin-left: 5%; color:#7B7B7B;'>道具信息</h4>";
+                  infos += "<span style='margin-top: 2%; margin 0 auto; margin-left:5%;'>" + data.subjectinfo.address + "</span>";
+
+                  workingRange += "<h4 style='color:#7B7B7B;'>工作范围";
+                  workingRange += "<span style='color: #color:#7B7B7B; margin-left:65%;'>更多></span>";
+                  workingRange += "<h4>";
+
+                  synopsis += "<h4 style='margin-left:5%;'>" + data.subjectinfo.subjectname + "</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>可预约时段";
+                  synopsis += "</h4>";
+                  synopsis += "</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:30px; margin-left:5%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:65px; height:30px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+
+                  $("#infoid").val(data.subjectinfo.id);
+                  $("#type").val("subject");
+                  $("#ownerid").val(data.subjectinfo.memberid);
+
+                  $("#nickname").html(data.subjectinfo.subjectname);
+                  var d = new Date(data.subjectinfo.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                  $("#area").html(createtime);
+
+                  $('#img').attr('src', data.imgs[0].imgpath);
+                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+
+                  $("#infos").html(infos);
+                  $("#workingRange").html(workingRange);
+                  $("#synopsis").html(synopsis);
+
+                  $("#attentionFlag").val(data.attentionFlag);
+
+                  if("true" === $("#attentionFlag").val()){
+                    console.log("aa")
+                      $("#follow").html("-取消关注");
+                      $("#isfollow").prop("checked", true);
+                  }else{
+                      $("#follow").html("+关注");
+                      $("input[id='isfollow']").removeAttr("checked");
+                  }
+
+                  switch(data.service){
+                      case 1: $('#service').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#service').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#service').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#service').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#service').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+
+                  switch(data.professional){
+                      case 1: $('#professional').attr('src', '../image/roleDetails/1p.png');
+                      break;
+                      case 2: $('#professional').attr('src', '../image/roleDetails/2p.png');
+                      break;
+                      case 3: $('#professional').attr('src', '../image/roleDetails/3p.png');
+                      break;
+                      case 4: $('#professional').attr('src', '../image/roleDetails/4p.png');
+                      break;
+                      case 5: $('#professional').attr('src', '../image/roleDetails/5p.png');
+                      break;
+                  }
+              break;
           }
       }else{
-          // $("#content").html("");
-          // dialog.alert({
-          //       title:"获取演员信息失败！",
-          //       msg:'',
-          //       buttons:['确定']
-          //   },function(ret){
-          //       $("#content").html("");
-          //   })
-          //   return false;
-
-
+          $("#content").html("");
+          dialog.alert({
+                title:"获取信息失败！",
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+                $("#content").html("");
+            })
+            return false;
       }
   });
   thirdInitialization();
@@ -236,8 +471,10 @@ function isfollow(infoid, type){
         return false;
     }
 
-    infoid = 45;
-    type = "actor";
+    infoid = $("#infoid").val();
+    type = $("#type").val();
+
+    console.log(infoid + "-----" + type)
 
     var checkedVal = $("#isfollow").prop("checked");
     console.log(checkedVal);
@@ -274,8 +511,8 @@ function isfollow(infoid, type){
 
 // 关注
 function follow(infoid, type){
-    infoid = 45;
-    type = "actor";
+    infoid = $("#infoid").val();
+    type = $("#type").val();
     console.log($("#attentionFlag").val());
     if("true" === $("#attentionFlag").val()){
         dialog.alert({
@@ -304,4 +541,71 @@ function follow(infoid, type){
         }
     });
 
+}
+
+// 预约
+function reserve(){
+  console.log($("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
+   window.location.href = "reserve.html?preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val();
+}
+
+// 有待预约
+function booking(){
+  console.log($("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
+    // $("#preid").val(18);
+    // $("#pretype").val("actor");
+    // $("#ownerid").val(23);
+    var actionURL = path + "/ActorInterface/preorder/addPreorder.action?token=" + localStorage.token + "&preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val();
+
+    $.ajax({
+    		cache : true,
+    		type  : "POST",
+    		url   : actionURL,
+    		data  :$('#postForm').serialize(),
+    		async : true,
+    		error : function(request) {
+    		    alert("error");
+    		},
+    		success : function(data) {
+            var data = JSON.parse(data);
+    				if(data.success){
+                alert("待预约成功！");
+                //window.location.href = "../mine/personalRoleManage/editRoleInfo.html?role=" + role;
+    				}else{
+    				}
+    		}
+    });
+
+    // $.post(actionURL,{
+    //     token:localStorage.token,
+    //     preid: id,
+    //     pretype: role,
+    //     ownerid: 23,
+    //     prestatus: "W"
+    //   }, function(data) {
+    //     var data = JSON.parse(data);
+    //     console.log(data)
+    //     if (data.success) {
+    //       dialog.alert({
+    //           title:"待预定成功！",
+    //           msg:'',
+    //           buttons:['确定']
+    //       },function(ret){
+    //           console.log(ret)
+    //       })
+    //     }else{
+    //       dialog.alert({
+    //           title:data.message,
+    //           msg:'',
+    //           buttons:['确定']
+    //       },function(ret){
+    //           console.log(ret)
+    //       })
+    //     }
+    // });
+}
+
+// 相册
+function album(){
+    window.location.href="album.html?role=" + role;
 }

@@ -6,8 +6,13 @@ $(function(){
 function applicationRoles(){
     var role = $("#role").val();
     console.log(role)
-    if("0" === role){
-      console.log("dddd")
+    if("1" === role){
+        window.location.href = "actorInfo.html?role=" + role;
+    }else if("2" === role){
+        window.location.href = "sceneInfo.html?role=" + role;
+    }else if("3" === role){
+        window.location.href = "subjectInfo.html?role=" + role;
+    }else{
         dialog.alert({
             title:"请选择角色！",
             msg:'',
@@ -15,7 +20,6 @@ function applicationRoles(){
         },function(ret){
 
         })
-    		return  false;
+        return  false;
     }
-    window.location.href = "roleInfo.html?role=" + role;
 }

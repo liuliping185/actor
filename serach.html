@@ -1,0 +1,92 @@
+<!-- 1302927007 -->
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>搜索</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt</span>
+              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+            </li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+    <div style="margin 0 auto;">
+        <!-- <div style="float:left; margin-top: 2%;">
+            <select style=" color:#ADADAD;">
+                <option style="color:#ADADAD;" value="">北京</option>
+                <option style=" color:#ADADAD;" value="">上海</option>
+                <option style=" color:#ADADAD;" value="">广州</option>
+            </select>
+        </div> -->
+        <div style="float:left;width:97%; margin: 2%; height:25%; display: block;">
+            <div class="aui-searchbar" id="search">
+                <div class="aui-searchbar-input aui-border-radius">
+                    <i class="aui-iconfont aui-icon-search"></i>
+                    <input type="search" placeholder="请输入搜索内容" id="search-input">
+                    <div class="aui-searchbar-clear-btn">
+                        <i class="aui-iconfont aui-icon-close"></i>
+                    </div>
+                </div>
+                <div class="aui-searchbar-btn" tapmode>取消</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:2%; width: 92%;">
+        <h3 style="margin-left:3%; color:#ADADAD;">热搜</h3>
+        <div style="margin-top:2%;" id="hotWords">
+
+        </div>
+    </div>
+
+    <div style="height:5%; width:100%; color:#D0D0D0;">
+      <!-- <span style="width:95%; margin-left:3%;">…………………………………………………………</span> -->
+    </div>
+
+    <div style="text-align: center; width:96%; margin-left:2%; height:7%; background-color:#F0F0F0">
+        <select style="width:30%; height:100%; color:#ADADAD; margin-left: 10%;">
+            <option>类型</option>
+            <option>演员</option>
+            <option>场景</option>
+            <option>道具</option>
+        </select>
+    </div>
+
+    <div class="aui-btn aui-btn-info aui-btn-block aui-btn-outlined aui-btn-sm" style="width:40%; margin-top:30%; margin-left:58%;" onclick="serach()">
+        <span id="p">立即搜索 &nbsp></span>
+     </div>
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con active" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" >我的</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="script/aui-dialog.js" ></script>
+<script type="text/javascript" src="script/common/common.js"></script>
+<script type="text/javascript" src="script/bizjs/serach.js"></script>

@@ -143,7 +143,7 @@ function regist(){
 	    	return false;
     }
 
-	$.post("http://192.168.0.129:8080/ActorInterface/member/memberRegist.action",{
+	$.post(path + "/ActorInterface/member/memberRegist.action",{
 			loginname:username,
 			password:password,
 			phone:phone,
@@ -181,7 +181,7 @@ function regist(){
 //获取验证码
 function getCheckCode(){
 	var phone = $("#phone").val();
-	$.post("http://192.168.0.129:8080/ActorInterface/member/getCheckCode.action",{
+	$.post(path + "/ActorInterface/member/getCheckCode.action",{
 			phone:phone
 		}, function(data) {
 			var data = JSON.parse(data);
@@ -194,6 +194,7 @@ function getCheckCode(){
 
 					})
 					$("#hi_checkCode").val(data.checkCode);
+					alert(data.checkCode);
 					console.log(data.checkCode);
 					resetCode();
 			}else{

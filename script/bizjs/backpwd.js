@@ -55,7 +55,7 @@ function checkMember(){
 //获取验证码
 function getCheckCode(){
 	var loginname = $("#loginName").val();
-	$.post("http://192.168.0.129:8080/ActorInterface/member/findPassWordBack.action",{
+	$.post(path + "/ActorInterface/member/findPassWordBack.action",{
 				loginname:loginname
 		}, function(data) {
 				var data = JSON.parse(data);
@@ -67,6 +67,7 @@ function getCheckCode(){
 							buttons:['确定']
 					},function(ret){
 					})
+					alert(data.checkCode);
 					console.log(data.checkCode);
 					$("#hi_checkCode").val(data.checkCode);
 					resetCode();

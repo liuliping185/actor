@@ -36,11 +36,12 @@ function login(){
 	      })
 	  		return  false;
 		}
-		$.post( "http://192.168.0.129:8080/ActorInterface/member/memberLogin.action",{
+		$.post(path + "/ActorInterface/member/memberLogin.action",{
 				loginname:username,
 				password:password
 			}, function(data) {
 	      var data = JSON.parse(data);
+				console.log(data);
 				if (data.success) {
 					//自定义alert
 	        dialog.alert({

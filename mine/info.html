@@ -8,46 +8,20 @@
     <link rel="stylesheet" type="text/css" href="../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/firstSrc.css"/>
     <script type="text/javascript" src="../script/api.js"></script>
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="../script/common/common.js"></script>
     <script type="text/javascript" src="../script/bizjs/info.js"></script>
-    <style>
-        header{ background-color: #f2f2f2; }
-        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
-        header ul li.active{ display: block; }
-        #footer{  background-color: #f2f2f2; }
-        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(../image/index/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(../image/index/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(../image/index/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(../image/index/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(../image/index/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(../image/index/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(../image/index/bottombtn0402.png); }
-        #second{  background-color: #f2f2f2; }
-        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #second ul li.active{ color: #6ab494; }
-        #second ul li:nth-child(1){ background-image: url(../image/index/bottombtn0101.png); }
-        #second ul li:nth-child(2){ background-image: url(../image/index/bottombtn0101.png); }
-        #second ul li:nth-child(3){ background-image: url(../image/index/bottombtn0101.png); }
-        .flex-con{
-        .flex-con{
-          overflow: auto
-        }
-        .aui-content-padded {
-            padding: 0.75rem;
-            background-color: #ffffff;
-            margin-top: 0.75rem;
-        }
-    </style>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
-            <li class="border-b active" >我的</li>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
+            </li>
             <li class="border-b" >发现</li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
@@ -55,61 +29,57 @@
     </header>
 
     <!-- 第一栏区开始  -->
-    <div style="width:100p%; height:20%;">
-        <span style="margin-left:3%;">我的</span><a href="../mine/setUp.html" style="float:right; margin-right:3%;">设置</a>
-        <div>
-            <div style="float:left; width: 20%; height: 20vw; margin:5%; background-image: url(../image/mine/mine.png); background-size:100%;">
-                <!-- <img src="../image/index/timg.jpg"/> -->
+    <div>
+        <!-- <span style="margin-left:3%;">我的</span> -->
+        <a href="../mine/setUp.html" style="float:right; margin-right:3%;"><font style="font-family: STKaiti" >设置</font></a>
+        <div style="margin-top: 5%; ">
+            <div style="float:left; width: 20%; height: 20%; margin:5%; background-size:100%;">
+                <img src="../image/mine/headingImg.jpg" style="width:100%; height:100%;" id="img"/>
             </div>
-            <div style="float:left;width:60%; height:25%; display: block;">
-                <span style="margin-left: 3%; margin-top: 15%;">柳丽苹 <a href="../mine/personalInfo.html">未设置昵称</a></span>
-                <p style="margin-left: 3%; margin-top: 1%;">18535741140</p>
+            <div style="float:left;width:60%; height:29%; display: block;">
+                <span style="margin-left: 3%; margin-top: 13%;">
+                  <span id="loginname"></span>
+                  <a href="../mine/personalInfo.html"><font style="font-family: STKaiti" color="black">未设置昵称</font></a>
+                </span>
+                <p style="margin-left: 3%; margin-top: 1%;" id="phone"></p>
             </div>
         </div>
     </div>
     <!-- 第一栏区结束  -->
 
     <!-- 第二栏区开始  -->
-    <div id="second" style="width:100%; height:60%; background-color:#ffffff">
-        <ul class="flex-wrap" style="margin-top:5%;">
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/personalRoleManage/personalRoleManage.html">个人角色管理</a>
+    <div id="catalog" style="width:100%; height:45%; background-color:#F0F0F0;">
+        <ul class="flex-wrap" style="margin-top:10%;" id="catalogOne">
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/personalRoleManage/personalRoleManage.html')">
+                <a href="../mine/personalRoleManage/personalRoleManage.html"><font style="font-family: STKaiti" color="black">个人角色管理</font></a>
             </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/applicationRoles/applicationRoles.html">申请角色</a>
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/applicationRoles/applicationRoles.html')">
+                <a href="../mine/applicationRoles/applicationRoles.html"><font style="font-family: STKaiti" color="black">申请角色</font></a>
             </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >角色发布</li>
-        </ul>
-        <ul class="flex-wrap" style="margin-top: 5%;">
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/booking/bookingList.html">待预定清单</a>
-            </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/roleReservation/roleReservation.html">角色预定管理</a>
-            </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="">关注管理</a>
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/booking/bookingList.html')">
+                <a href="../mine/booking/bookingList.html"><font style="font-family: STKaiti" color="black">待预定清单</font></a>
             </li>
         </ul>
-        <div style="text-align:center; margin-top: 3%;">
-            <span style="width: 95%; height: 13px; background-color:#F0F0F0;"></span>
-        </div>
-        <ul class="flex-wrap" style="margin-top:5%;">
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/roleReservation/beBooked.html">被预约</a>
+        <ul class="flex-wrap" style="margin-top:5%;" id="catalogTwo">
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/roleReservation/beBooked.html')">
+                <a href="../mine/roleReservation/beBooked.html"><font style="font-family: STKaiti" color="black">被预约</font></a>
             </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/roleReservation/reservation.html">已预约</a></li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/attentionManage/myConcern.html">我的关注</a>
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/roleReservation/reservation.html')">
+                <a href="../mine/roleReservation/reservation.html"><font style="font-family: STKaiti" color="black">已预约</font></a></li>
+            <li tapmode="hover" class="flex-con" >
+                <a href="../mine/attentionManage/myConcern.html"><font style="font-family: STKaiti" color="black">我的关注</font></a>
             </li>
         </ul>
-        <ul class="flex-wrap" style="margin-top: 5%;">
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >
-                <a href="../mine/attentionManage/audience.html">我被关注</a>
+        <ul class="flex-wrap" style="margin-top: 5%;" id="catalogThree">
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/announcements/announceManage.html')">
+                <a href="../mine/attentionManage/audience.html"><font style="font-family: STKaiti" color="black">我被关注</font></a>
             </li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >日期</li>
-            <li tapmode="hover" style="background-color:#ffffff; height:100%" class="flex-con" >购物车</li>
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/attentionManage/audience.html')">
+                <a href="../mine/announcements/announceManage.html"><font style="font-family: STKaiti" color="black">公告管理</font></a>
+            </li>
+            <li tapmode="hover" class="flex-con" onclick="detail('../mine/setUp.html')">
+                <a href="../mine/setUp.html"><font style="font-family: STKaiti" color="black">其它</font></a>
+            </li>
         </ul>
     </div>
     <!-- 第二栏区结束  -->
@@ -119,10 +89,10 @@
     </div>
     <div id="footer" class="border-t">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'info.html' );" class="flex-con active" >我的</li>
         </ul>
     </div>
     <!-- 第五栏结束  -->

@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-公告管理</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/firstSrc.css"/>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
+            </li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+
+    <!-- 第一栏区开始  -->
+    <div style="width:100p%; height:7%;">
+        <select id="leftSelect" style="margin-left: 5%;">
+            <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">-请选择</option>
+            <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">演员</option>
+            <option value="4e1c083f-c988-48b9-9a48-ff7dbe07e51f">场景</option>
+            <option value="0e685a36-ddd1-4288-b741-8624e4384b58">道具</option>
+        </select>
+    </div>
+    <!-- 第一栏区结束  -->
+
+    <!-- 第二栏区开始  -->
+    <div style="width:100p%; height:5%;">
+        <div class="aui-content aui-margin-b-15">
+           <ul class="aui-list aui-media-list">
+               <li class="aui-list-header">
+                   公告信息列表
+               </li>
+          </ul>
+        </div>
+    </div>
+    <!-- 第二栏区结束  -->
+
+    <!-- 第三栏区开始  -->
+    <div style="width:100%; overflow-y:auto;">
+        <ul class="aui-list aui-media-list" id="preContent">
+        </ul>
+    </div>
+    <!-- 第三栏区结束  -->
+
+    <!-- 预定清单开始 -->
+    <div class="aui-content aui-margin-b-15">
+       <ul class="aui-list aui-media-list" id="content">
+           <!-- <li class="aui-list-item aui-list-item-arrow">
+              <div class="aui-media-list-item-inner">
+                  <div class="aui-info-item" style="width:40%;">
+                      <div class="aui-info-item-text">2015-07-14</div>
+                  </div>
+                  <div class="aui-list-item-inner">
+                      <div class="aui-list-item-text">
+                          这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
+                      </div>
+                  </div>
+               </div>
+           </li> -->
+           <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left: 20%; margin-right: 20%;">
+               <div class="aui-btn aui-btn-info aui-margin-r-5" onclick="editRoleInfo()">提交</div>
+               <div class="aui-btn aui-btn-danger aui-margin-l-5">取消</div>
+           </div>
+       </ul>
+    </div>
+    <!-- 预定清单结束 -->
+
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con active" >我的</li>
+        </ul>
+    </div>
+    <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
+<script type="text/javascript" src="../../script/bizjs/announceManage.js"></script>

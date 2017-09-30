@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>找场景-详情页-预定</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/firstSrc.css"/>
+    <link href="../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="../script/common/common.js"></script>
+    <script src="../script/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
+    <script src="../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
+    <script src="../script/dev/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
+    <script src="../script/dev/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../script/bizjs/reserve.js"></script>
+</head>
+<body style="height: 100%; width: 100%; overflow-y:auto; overflow-x:auto;">
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header style="width: 100%;">
+        <ul>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt</span>
+              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+            </li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+
+    <!-- 第一栏开始 -->
+    <form id="postForm">
+        <input id="pretype" name="pretype" hidden="true"/>
+        <input id="preid" name="preid" hidden="true"/>
+        <input id="ownerid" name="preid" hidden="true"/>
+        <input id="attentionFlag" hidden="true"/>
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span>开始时间</span>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" name="prestart" id="prestart">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span>结束时间</span>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" name="preend" id="preend">
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            预约详情
+                        </div>
+                        <div class="aui-list-item-input">
+                          <div class="aui-list-item-input">
+                              <textarea id="preinfos" name="preinfos"></textarea>
+                          </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            <span>联系电话</span>
+                        </div>
+                        <div class="aui-list-item-input">
+                            <input type="text" id="prephone" name="prephone" placeholder="请输入联系电话">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    <div id="" style="text-align: center; margin 0 auto; margin-top: 5%;">
+        <div class="aui-btn aui-btn-info" onclick="reserve()">
+            <span id="p">确&nbsp;&nbsp;定</span>
+        </div>
+        <!-- <button class="btn" style="width:80%; height:50px; background: limegreen;" onclick="login()"><span id="p">登&nbsp;录</span></button> -->
+    </div>
+    <!-- 第一栏结束  -->
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t" style="position: absolute; margin-top: 160%; width: 100%">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html' );" class="flex-con" >我的</li>
+        </ul>
+    </div>
+    <!-- 第四栏结束  -->
+
+</div>
+</body>
+</html>

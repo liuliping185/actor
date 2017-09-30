@@ -1,0 +1,87 @@
+<!-- 1302927007 -->
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>首页-搜索-搜索信息</title>
+    <link rel="stylesheet" type="text/css" href="./css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header>
+        <ul>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt</span>
+              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+            </li>
+            <li class="border-b" >发现</li>
+            <li class="border-b" >搜索</li>
+            <li class="border-b" >我的</li>
+        </ul>
+    </header>
+    <div style="height:40px; margin 0 auto;">
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active">最新
+                <!-- <select>
+                    <option>演员</option>
+                    <option>场景</option>
+                    <option>道具</option>
+                </select> -->
+            </div>
+            <div class="aui-tab-item">价格
+                <!-- <select>
+                    <option>面积</option>
+                </select> -->
+            </div>
+            <div class="aui-tab-item">关注
+                <!-- <select>
+                    <option>价格</option>
+                </select> -->
+            </div>
+        </div>
+    </div>
+    <div style="overflow:auto; height:75%;">
+        <div style="width:100%; height:40%;background-color:#ffffff" id="imgInfos">
+          <!-- <div style=' width:100%; height:100%;'>
+              <p style="height:15%; line-height:35px; margin-left:5%;">112121</p>
+              <span style="width:100%; height:70%; background-image: url(./image/index/left.jpeg); background-size:100%;"></span>
+              <p style="height:15%; margin-left:5%;">112121</p>
+          </div>
+          <div style='height:3%; background-color:#00ffff'></div>
+          <div style='width:100%; height:100%;'>
+              <p style="height:15%; line-height:35px; margin-left:5%;">112121</p>
+              <span style="width:100%; height:70%; background-image: url(./image/index/left.jpeg); background-size:100%;"></span>
+              <p style="height:15%; margin-left:5%;">112121</p>
+          </div> -->
+        </div>
+    </div>
+
+    <!-- <div style="width:100p%; height:15%; background-color:#000000">
+
+    </div> -->
+    <div id="main" class="flex-con">
+
+    </div>
+    <div id="footer" class="border-t">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html'  );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con active" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" >我的</li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="script/aui-dialog.js" ></script>
+<script type="text/javascript" src="script/common/common.js"></script>
+<script type="text/javascript" src="script/aui-tab.js" ></script>
+<script type="text/javascript" src="script/bizjs/find.js"></script>

@@ -8,48 +8,28 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
-    <style>
-        header{ background-color: #f2f2f2; }
-        header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
-        header ul li.active{ display: block; }
-        #footer{  background-color: #f2f2f2; }
-        #footer ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #footer ul li.active{ color: #6ab494; }
-        #footer ul li:nth-child(1){ background-image: url(../../image/index/bottombtn0101.png); }
-        #footer ul li:nth-child(2){ background-image: url(../../image/index/bottombtn0201.png); }
-        #footer ul li:nth-child(3){ background-image: url(../../image/index/bottombtn0301.png); }
-        #footer ul li:nth-child(4){ background-image: url(../../image/index/bottombtn0401.png); }
-        #footer ul li:nth-child(1).active{ background-image: url(../../image/index/bottombtn0102.png); }
-        #footer ul li:nth-child(2).active{ background-image: url(../../image/index/bottombtn0202.png); }
-        #footer ul li:nth-child(3).active{ background-image: url(../../image/index/bottombtn0302.png); }
-        #footer ul li:nth-child(4).active{ background-image: url(../../image/index/bottombtn0402.png); }
-        #second{  background-color: #f2f2f2; }
-        #second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
-        #second ul li.active{ color: #6ab494; }
-        #second ul li:nth-child(1){ background-image: url(../../image/index/bottombtn0101.png); }
-        #second ul li:nth-child(2){ background-image: url(../../image/index/bottombtn0101.png); }
-        #second ul li:nth-child(3){ background-image: url(../../image/index/bottombtn0101.png); }
-        .flex-con{
-        .flex-con{
-          overflow: auto
-        }
-        .aui-content-padded {
-            padding: 0.75rem;
-            background-color: #ffffff;
-            margin-top: 0.75rem;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../css/firstSrc.css"/>
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
         <ul>
-            <li class="border-b active" >我的</li>
+            <li class="border-b active" >
+              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
+            </li>
             <li class="border-b" >发现</li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
         </ul>
     </header>
+
+    <div style="height:40px;">
+        <div class="aui-tab" id="tab">
+            <div class="aui-tab-item aui-active">待确认</div>
+            <div class="aui-tab-item"><div></div>已同意</div>
+            <div class="aui-tab-item">已拒绝</div>
+        </div>
+    </div>
 
     <!-- 第一栏区开始  -->
     <div style="width:100p%; height:7%;">
@@ -63,7 +43,7 @@
     <!-- 第一栏区结束  -->
 
     <!-- 第二栏区开始  -->
-    <div style="width:100p%; height:80%;">
+    <div style="width:100p%; height:15%;">
         <div class="aui-content aui-margin-b-15">
            <ul class="aui-list aui-media-list">
                <li class="aui-list-header">
@@ -75,91 +55,35 @@
 
                      </div>
                      <div class="aui-list-item-input">
-                         <select>
-                             <option>预约成功</option>
-                             <option>被拒绝</option>
+                         <select id="prestatus">
+                             <option value="P">全部</option>
+                             <option value="D">预约成功</option>
+                             <option value="R">被拒绝</option>
                          </select>
                      </div>
                  </div>
-                   <div class="aui-media-list-item-inner">
-                     <div class="aui-list-item-media">
-                         <img src="../../image/test-image/demo1.png">
-                     </div>
-                       <div class="aui-list-item-inner">
-                           <div class="aui-list-item-text">
-                               <div class="aui-list-item-title">公司一</div>
-                               <div class="aui-list-item-right">08:00</div>
-                           </div>
-                           <div class="aui-list-item-text">
-                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                           </div>
-                           <div class="aui-info aui-margin-t-5" style="padding:0">
-                               <div class="aui-info-item">
-                                   <img src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
-                                   </div>
-                               <div class="aui-info-item">2015-07-14 10:31</div>
-                           </div>
-                       </div>
-                   </div>
                </li>
-               <li class="aui-list-item">
-                   <div class="aui-media-list-item-inner">
-                       <div class="aui-list-item-media">
-                           <img src="../../image/test-image/demo1.png">
-                       </div>
-                       <div class="aui-list-item-inner">
-                           <div class="aui-list-item-text">
-                               <div class="aui-list-item-title">公司二</div>
-                               <div class="aui-list-item-right">08:00</div>
-                           </div>
-                           <div class="aui-list-item-text">
-                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                           </div>
-                           <div class="aui-info aui-margin-t-5" style="padding:0">
-                               <div class="aui-info-item">
-                                   <img src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
-                                   </div>
-                               <div class="aui-info-item">2015-07-14 10:31</div>
-                           </div>
-                       </div>
-                   </div>
-               </li>
-               <li class="aui-list-item">
-                   <div class="aui-media-list-item-inner">
-                       <div class="aui-list-item-media">
-                           <img src="../../image/test-image/demo1.png">
-                       </div>
-                       <div class="aui-list-item-inner">
-                           <div class="aui-list-item-text">
-                               <div class="aui-list-item-title">公司三</div>
-                               <div class="aui-list-item-right">08:00</div>
-                           </div>
-                           <div class="aui-list-item-text">
-                               这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。
-                           </div>
-                           <div class="aui-info aui-margin-t-5" style="padding:0">
-                               <div class="aui-info-item">
-                                   <img src="../../image/test-image/liulangnan.png" style="width:1rem" class="aui-img-round" /><span class="aui-margin-l-5"></span>
-                                   </div>
-                               <div class="aui-info-item">2015-07-14 10:31</div>
-                           </div>
-                       </div>
-                   </div>
-               </li>
-           </ul>
+          </ul>
         </div>
     </div>
-    <!-- 第一二栏区结束  -->
+    <!-- 第二栏区结束  -->
+
+    <!-- 第三栏区开始  -->
+    <div style="width:100%; overflow-y:auto;">
+        <ul class="aui-list aui-media-list" id="preContent">
+        </ul>
+    </div>
+    <!-- 第三栏区结束  -->
 
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t">
+    <div id="footer" class="border-t" style="position: absolute; margin-top: 160%; width: 100%">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >协拍中国</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" >发现</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" >搜索</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con active" >我的</li>
         </ul>
     </div>
     <!-- 第五栏结束  -->
@@ -170,5 +94,6 @@
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
 <script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/reservation.js"></script>

@@ -4,32 +4,23 @@ $(function(){
     $('body').height($('body')[0].clientHeight);
 
     // 获取session
-    $.post("http://192.168.0.129:8080/ActorInterface/member/getSessionMember.action",{
+    $.post(path + "/ActorInterface/member/getSessionMember.action",{
         token:localStorage.token,
       }, function(data) {
         var data = JSON.parse(data);
         if (data.success) {
-            //自定义alert
-            dialog.alert({
-                title: data.message,
-                msg:'',
-                buttons:['确定']
-            },function(ret){
-                if(ret){
-                    $("#loginname").val(data.memberinfo.loginname);
-                    $("#birthday").val(data.memberinfo.birthday);
-                    $("#realname").val(data.memberinfo.realname);
-                    $("#phone").val(data.memberinfo.phone);
-                    $("#address").val(data.memberinfo.address);
-                    $("#alipay").val(data.memberinfo.alipay);
-                    $("#wechat").val(data.memberinfo.wechat);
-                    $("#banknumber").val(data.memberinfo.banknumber);
-                    $("#email").val(data.memberinfo.email);
-                    $('#headerimg').attr('src', data.memberinfo.headerimg);
-                    $('#idcardFront').attr('src', data.memberinfo.idcardFront);
-                    $('#idcardBack').attr('src', data.memberinfo.idcardBack);
-                }
-            });
+            $("#loginname").val(data.memberinfo.loginname);
+            $("#birthday").val(data.memberinfo.birthday);
+            $("#realname").val(data.memberinfo.realname);
+            $("#phone").val(data.memberinfo.phone);
+            $("#address").val(data.memberinfo.address);
+            $("#alipay").val(data.memberinfo.alipay);
+            $("#wechat").val(data.memberinfo.wechat);
+            $("#banknumber").val(data.memberinfo.banknumber);
+            $("#email").val(data.memberinfo.email);
+            $('#headerimg').attr('src', data.memberinfo.headerimg);
+            $('#idcardFront').attr('src', data.memberinfo.idcardFront);
+            $('#idcardBack').attr('src', data.memberinfo.idcardBack);
         }else{
           dialog.alert({
               title:data.message,
@@ -94,19 +85,6 @@ $(function(){
 // 完善个人信息开始
 
 function perfectPersonalInfo(){
-    var loginname = $("#loginname").val(); // 用户名
-    var birthday = $("#birthday").val(); // 生日
-    var email = $("#email").val(); // 邮箱
-    var address = $("#address").val(); // 地址
-    var phone = $("#phone").val(); // 手机号
-    var realname = $("#realname").val(); // 真是姓名
-    var headerimg = $("#headerimg_").val(); // 头像上传图片的地址（base64）
-    var idcardFront = $("#idcardFront_").val(); // 身份证正面上传图片的地址
-    var idcardBack = $("#idcardBack_").val(); // 身份证反面上传图片的地址
-    var banknumber = $("#banknumber").val(); // 银行卡号
-    var alipay = $("#alipay").val(); // 支付宝
-    var wechat = $("#wechat").val(); // 微信
-
     if("" != phone && !/^1[3,5,7,8,9]\d{9}$/.test(phone) ){
         dialog.alert({
             title:"手机号格式不正确！",
@@ -140,45 +118,39 @@ function perfectPersonalInfo(){
     		return  false;
   	}
 
-    $.post("http://192.168.0.129:8080/ActorInterface/member/finishInfomation.action",{
-        token: localStorage.token,
-        loginname: loginname,
-        birthday: birthday,
-        email: email,
-        address: address,
-        phone: phone,
-        realname: realname,
-        headerimg: headerimg,
-        idcardFront: idcardFront,
-        idcardBack: idcardBack,
-        banknumber: banknumber,
-        alipay: alipay,
-        wechat: wechat
-      }, function(data) {
-        var data = JSON.parse(data);
-        console.log(data);
-        if (data.success) {
-            //自定义alert
-            dialog.alert({
-                title: data.message,
-                msg:'',
-                buttons:['确定']
-            },function(ret){
+    var actionURL = path + "/ActorInterface/member/finishInfomation.action?token=" + localStorage.token;
+    $.ajax({
+				cache : true,
+				type  : "POST",
+				url   : actionURL,
+				data  :$('#postForm').serialize(),
+				async : true,
+				error : function(request) {
+				    alert("error");
+				},
+				success : function(data) {
+  					if(data.success){
+                dialog.alert({
+                    title: data.message,
+                    msg:'',
+                    buttons:['确定']
+                },function(ret){
 
-                if(ret){
+                    if(ret){
 
 
-                }
-            });
-        }else{
-          dialog.alert({
-              title:data.message,
-              msg:'',
-              buttons:['确定']
-          },function(ret){
-              console.log(ret)
-          })
-        }
+                    }
+                });
+  					}else{
+                dialog.alert({
+                    title:data.message,
+                    msg:'',
+                    buttons:['确定']
+                },function(ret){
+                    console.log(ret)
+                })
+  					}
+				}
     });
 }
 

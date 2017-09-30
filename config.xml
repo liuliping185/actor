@@ -1,11 +1,11 @@
  <widget id="A6059051634671"  version="0.0.1">
     <name>actor1</name>
-    <description>
+    <!-- <description>
         Example For APICloud.
-    </description>
-    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+    </description> -->
+    <!-- <author email="developer@apicloud.com" href="http://www.apicloud.com">
         Developer
-    </author>
+    </author> -->
     <content src="index.html" />
     <access origin="*" />
     <preference name="pageBounce" value="false"/>
@@ -14,7 +14,7 @@
 	<preference name="frameBackgroundColor" value="rgba(0,0,0,0.0"/>
 	<preference name="hScrollBarEnabled" value="true"/>
 	<preference name="vScrollBarEnabled" value="true"/>
-	<preference name="autoLaunch" value="true"/>
+	<preference name="autoLaunch" value="false"/>
 	<preference name="fullScreen" value="false"/>
 	<preference name="autoUpdate" value="true" />
 	<preference name="smartUpdate" value="false" />
