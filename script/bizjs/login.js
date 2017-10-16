@@ -62,7 +62,7 @@ function login(){
 				console.log(data);
 				if (data.success) {
 
-					localStorage.token = data.token;
+						localStorage.token = data.token;
 
 						//自定义alert
 						dialog.alert({
