@@ -10,10 +10,28 @@ $(function(){
     //$('.weui-tabbar__item').on('click', function () {
     //	$(this).find(".weui-badge").remove();
     //});
+
+});
+
+$("#username").focus();
+$("#username").keydown(function(event) {
+alert(JSON.stringify(event));
+if (event.which == 13) {//keyCode=13是回车键
+	// queryuserinfo($("#username").val());
+	$("#username").val("");
+$("#username").focus();
+return false;
+}else{
+// <%--    	$("#username").val($("#username").val()+event.key);--%>
+}
 });
 
 //登录方法
 function login(){
+
+
+
+
 		var username = $("#username").val();
 		var password = $("#password").val();
 		if(username == ""){
@@ -43,58 +61,41 @@ function login(){
 	      var data = JSON.parse(data);
 				console.log(data);
 				if (data.success) {
-					//自定义alert
-	        dialog.alert({
-	            title: '登录成功！',
-	            msg:'',
-	            buttons:['确定']
-	        },function(ret){
-					  	console.log(localStorage.token);
-	          	localStorage.token = data.token;
-	            if(ret){
-	                // var hi_url = $("#hi_url").val();
-	                // if(hi_url!=""){
-	                //   if(hi_url == "/member/goMemberIndex.action")
-	                //     {
-	                //       hi_url = "/nanyutang/member/goMemberIndex.action";
-	                //     }
-	                //   window.location.href= hi_url;
-	                // }else{
-	                window.location.href= "index.html";
-	                // }
-	            }
-	        });
-					// alert({
-	 			// 		 	 title: data.message,
-	 			// 			 text: "",
-	  			// 			 type: "success",
-	  			// 			 showCancelButton: false,
-	 			// 			 confirmButtonColor: "limegreen",
-	  			// 			 confirmButtonText: "确定",
-	        //                  closeOnConfirm: false
-		      //            },
-					// function(){
-		      //           	var hi_url = $("#hi_url").val();
-		      //           	if(hi_url!=""){
-		      //           		if(hi_url == "/member/goMemberIndex.action")
-		      //           			{
-		      //           				hi_url = "/nanyutang/member/goMemberIndex.action";
-		      //           			}
-		      //           		window.location.href= hi_url;
-		      //           	}else{
-		      //           		window.location.href= path+"/member/goMemberIndex.action";
-		      //           	}
-	        //
-					// 	 });
+
+					localStorage.token = data.token;
+
+						//自定义alert
+						dialog.alert({
+							title: '登录成功！',
+							msg:'',
+							buttons:['确定']
+						},function(ret){
+							console.log(localStorage.token);
+
+
+							if(ret){
+
+								window.location.href= "index.html";
+
+							}else{
+
+
+							}
+						});
+
+						setTimeout(function(){dialog.close();window.location.href= "index.html";}, 3000)
+
+
+
 
 				}else{
-	          dialog.alert({
-	              title:data.message,
-	              msg:'',
-	              buttons:['确定']
-	          },function(ret){
+						  dialog.alert({
+							  title:data.message,
+							  msg:'',
+							  buttons:['确定']
+						  },function(ret){
 
-	          })
+						  });
 				}
 		});
 }

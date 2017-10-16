@@ -12,64 +12,82 @@
 </head>
 <body style="width:100%; margin 0 auto;">
 <input id="flag" hidden="true">
+<input id="rolename" hidden="true"/>
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header>
-        <ul>
-            <li class="border-b active" >
-              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
-            </li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header>
+
+
+    <header id="header"></header>
+
 
     <!-- 个人角色管理开始  -->
-    <div style="height: 40px; width:100%;"  id="role">
+    <div style="height: 40px; width:100%;" >
         <div style="margin-left:7%;">
+		<table>
+			<tr>
+			<td>
             <select style="color:#ADADAD;" id="roleChange">
+				        <option style="color:#ADADAD;" value="0">全部</option>
                 <option style="color:#ADADAD;" value="1">演员</option>
                 <option style="color:#ADADAD;" value="2">场景</option>
                 <option style="color:#ADADAD;" value="3">道具</option>
             </select>
+			</td>
+				<td>
+				&nbsp;
+				</td>
+			<td>
+				<img src="../../image/sj.png" style="width:10px;height:10px;">
+			</td>
+      <td style='margin-left:60%;'>
+        <div class="aui-btn aui-btn-info" style="width:100%; height:25px; line-height:25px;margin-left:220%; " onclick="javascript:window.location.href='../applicationRoles/applicationRoles.html'">
+                     <span style="font-size:14px;" id="p">申请角色</span>
+          </div>
+      </td>
+			</tr>
+		</table>
         </div>
     </div>
-    <div>
-    <section class="aui-content">
-        <div class="aui-card-list" id="content"  style="overflow:auto;height:500px; padding-bottom:50px;">
-            <!-- <div class="aui-card-list-header aui-card-list-user aui-border-b">
-                <div class="aui-card-list-user-avatar">
-                    <img src="../../image/test-image/demo4.png" class="aui-img-round" />
-                </div>
-                <div class="aui-card-list-user-name">
-                    <div id="nickname">AUI</div>
-                    <small id="createtime">1天前</small>
-                </div>
-                <div class="aui-card-list-user-info" id="checkstatus">北京朝阳</div>
-            </div>
-            <div class="aui-card-list-content-padded">
-                <img id="img" src="../../image/test-image/l2.png" />
-            </div>
-            <div class="aui-card-list-footer aui-border-t">
-                <div><i class="aui-iconfont aui-icon-note"></i><span> 666</span></div>
-                <div><i class="aui-iconfont aui-icon-laud"></i><span id="goodSum"> 888</span></div>
-                <div><i class="aui-iconfont aui-icon-star"></i><span id="attentionSum"> 888</span></div>
-            </div> -->
-        </div>
-    </section>
-    </div>
+
+
+
 
     <!-- 个人角色管理结束  -->
 
     <div id="main" class="flex-con">
 
+			<section class="aui-content">
+				<div class="aui-card-list" id="content"  style="overflow:auto;height:100%; padding-bottom:50px;">
+					<!-- <div class="aui-card-list-header aui-card-list-user aui-border-b">
+						<div class="aui-card-list-user-avatar">
+							<img src="../../image/test-image/demo4.png" class="aui-img-round" />
+						</div>
+						<div class="aui-card-list-user-name">
+							<div id="nickname">AUI</div>
+							<small id="createtime">1天前</small>
+						</div>
+						<div class="aui-card-list-user-info" id="checkstatus">北京朝阳</div>
+					</div>
+					<div class="aui-card-list-content-padded">
+						<img id="img" src="../../image/test-image/l2.png" />
+					</div>
+					<div class="aui-card-list-footer aui-border-t">
+						<div><i class="aui-iconfont aui-icon-note"></i><span> 666</span></div>
+						<div><i class="aui-iconfont aui-icon-laud"></i><span id="goodSum"> 888</span></div>
+						<div><i class="aui-iconfont aui-icon-star"></i><span id="attentionSum"> 888</span></div>
+					</div> -->
+				</div> 
+			</section>
+
+
     </div>
-    <div id="footer" class="border-t">
+
+
+     <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con active" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html');" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
         </ul>
     </div>
     <!-- 第五栏结束  -->
@@ -82,3 +100,4 @@
 <script type="text/javascript" src="../../script/aui-dialog.js" ></script>
 <script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/personalRoleManage.js"></script>
+<script type="text/javascript" src="../../script/bizjs/header.js"></script>

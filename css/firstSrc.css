@@ -1,58 +1,66 @@
-header{ background-color: #f2f2f2; }
-header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #323237; position: relative;font-size: 18px;  }
+/*header{ background-color: #1bbc9b; }*/
+header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #ffffff; position: relative;font-size: 18px;  }
 header ul li.active{ display: block; }
+
 .input{
  border:1px solid #D0D0D0;
 }
-#footer{  background-color: #f2f2f2; position: absolute; margin-top: 165%; width: 100%}
-#footer ul li{  padding-top: 22px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 18px; text-align: center; }
+
+#footer ul li{ padding-top: 22px; margin-top: 4px; padding-bottom: 1px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
 #footer ul li.active{ color: #6ab494; }
 #footer ul li:nth-child(1){ background-image: url(../image/footerIcon/home.png); }
-#footer ul li:nth-child(2){ background-image: url(../image/footerIcon/search.png); }
-#footer ul li:nth-child(3){ background-image: url(../image/footerIcon/find.png); }
+#footer ul li:nth-child(2){ background-image: url(../image/footerIcon/find.png); }
+#footer ul li:nth-child(3){ background-image: url(../image/footerIcon/search.png); }
 #footer ul li:nth-child(4){ background-image: url(../image/footerIcon/mine.png); }
 #footer ul li:nth-child(1).active{ background-image: url(../image/footerIcon/home-fill.png); }
-#footer ul li:nth-child(2).active{ background-image: url(../image/footerIcon/search-fill.png); }
-#footer ul li:nth-child(3).active{ background-image: url(../image/footerIcon/find-fill.png); }
+#footer ul li:nth-child(2).active{ background-image: url(../image/footerIcon/find-fill.png); }
+#footer ul li:nth-child(3).active{ background-image: url(../image/footerIcon/search-fill.png); }
 #footer ul li:nth-child(4).active{ background-image: url(../image/footerIcon/mine-fill.png); }
 
 #second{  background-color: #f2f2f2; }
-#second ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
+#second ul li{  padding-top: 36px; padding-bottom: 1px; background: url() no-repeat center 2px; background-size: auto 50px; text-align: center; }
 #second ul li.active{ color: #6ab494; }
-#second ul li:nth-child(1){ background-image: url(../image/index/camera-orange.png); }
-#second ul li:nth-child(2){ background-image: url(../image/index/camera-orange.png); }
-#second ul li:nth-child(3){ background-image: url(../image/index/camera-orange.png); }
-#second ul li:nth-child(4){ background-image: url(../image/index/camera-orange.png); }
-#second ul li:nth-child(5){ background-image: url(../image/index/camera-orange.png); }
+#second ul li:nth-child(1){ background-image: url(../image/index/sceneimg.png); }
+#second ul li:nth-child(2){ background-image: url(../image/index/actorimg.png); }
+#second ul li:nth-child(3){ background-image: url(../image/index/subjectimg.png); }
 
 #catalog{  background-color: #f2f2f2; }
 #catalog ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 30px; text-align: center; }
 #catalog ul li.active{ color: #6ab494; }
-#catalogOne li:nth-child(1){ background-image: url(../image/mine/infoIcon/person-green.png); }
-#catalogOne li:nth-child(2){ background-image: url(../image/mine/infoIcon/file-green.png); }
-#catalogOne li:nth-child(3){ background-image: url(../image/mine/infoIcon/paper-green.png); }
-#catalogTwo li:nth-child(1){ background-image: url(../image/mine/infoIcon/edit-green.png); }
-#catalogTwo li:nth-child(2){ background-image: url(../image/mine/infoIcon/card-green.png); }
-#catalogTwo li:nth-child(3){ background-image: url(../image/mine/infoIcon/heart-green.png); }
-#catalogThree li:nth-child(1){ background-image: url(../image/mine/infoIcon/arrows-green.png); }
+#catalogOne li:nth-child(1){ background-image: url(../image/mine/infoIcon/heart-green.png); }
+#catalogOne li:nth-child(2){ background-image: url(../image/mine/infoIcon/arrows-green.png); }
+#catalogOne li:nth-child(3){ background-image: url(../image/mine/infoIcon/card-green.png); }
+#catalogOne li:nth-child(4){ background-image: url(../image/mine/infoIcon/edit-green.png); }
+/*#catalogTwo li:nth-child(2){ background-image: url(../image/mine/infoIcon/paper-green.png); }
+#catalogTwo li:nth-child(3){ background-image: url(../image/mine/infoIcon/person-green.png); }
+#catalogThree li:nth-child(1){ background-image: url(../image/mine/infoIcon/file-green.png); }
 #catalogThree li:nth-child(2){ background-image: url(../image/mine/infoIcon/home-green.png); }
-#catalogThree li:nth-child(3){ background-image: url(../image/mine/infoIcon/set-green.png); }
+#catalogThree li:nth-child(3){ background-image: url(../image/mine/infoIcon/set-green.png); }*/
 
 #catalogOne li:nth-child(1).active{ background-image: url(../image/mine/infoIcon/person-orange.png); }
 #catalogOne li:nth-child(2).active{ background-image: url(../image/mine/infoIcon/file-orange.png); }
 #catalogOne li:nth-child(3).active{ background-image: url(../image/mine/infoIcon/paper-orange.png); }
-#catalogTwo li:nth-child(1).active{ background-image: url(../image/mine/infoIcon/edit-orange.png); }
-#catalogTwo li:nth-child(2).active{ background-image: url(../image/mine/infoIcon/card-orange.png); }
+#catalogOne li:nth-child(4).active{ background-image: url(../image/mine/infoIcon/edit-orange.png); }
+/*#catalogTwo li:nth-child(2).active{ background-image: url(../image/mine/infoIcon/card-orange.png); }
 #catalogTwo li:nth-child(3).active{ background-image: url(../image/mine/infoIcon/heart-orange.png); }
 #catalogThree li:nth-child(1).active{ background-image: url(../image/mine/infoIcon/arrows-orange.png); }
 #catalogThree li:nth-child(2).active{ background-image: url(../image/mine/infoIcon/home-orange.png); }
-#catalogThree li:nth-child(3).active{ background-image: url(../image/mine/infoIcon/set-orange.png); }
+#catalogThree li:nth-child(3).active{ background-image: url(../image/mine/infoIcon/set-orange.png); }*/
 
 #headerBack {
-  color: #ADADAD;
-  margin-left:-40%;
+  /*color: #ADADAD;*/
+  /*margin-left:-40%;*/
+  /*margin-top: 13px;*/
+  /*background-color: #ADADAD;*/
+  margin: 13px;
+  float:left;
+  width: 20px;
+  height: 20px;
+  /*background-image: url(../image/WechatIMG3.png);*/
+  background-size: 100%;
+  line-height: 20px;
 }
-.flex-con{
+
 .flex-con{
   overflow: auto
 }

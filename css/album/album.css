@@ -1,0 +1,122 @@
+.album-overlayer,.album-photos,.album-photos p,.album-photos img{
+	margin:0;
+	width:920px;
+	height:500px;
+}
+.album-photos{
+	position:relative;
+	z-index:1;
+	margin:10px auto;
+	overflow:hidden;
+}
+.album-photos p{
+	margin:0;
+}
+.album-photos h3{
+	position:absolute;
+	z-index:4;
+	bottom:0;
+	left:0;
+	margin:0;
+	height:40px;
+	line-height:40px;
+	padding:0 10px;
+	text-align:center;
+	width:900px;
+	background-color:#333;
+	overflow:hidden;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	color:#FFF;
+	font-weight:normal;
+	font-size:16px;
+}
+.album-overlayer{
+	position:absolute;
+	z-index:5;
+	left:0;
+	top:0;
+	background-color:#333;
+	opacity:0.7;
+	filter:alpha(opacity=70);
+	line-height:500px;
+	text-align:center;
+	overflow:hidden;
+}
+.album-overlayer img{
+	position:absolute;
+	z-index:6;
+	top:50%;
+	left:50%;
+	width:124px;
+	height:124px;
+	margin:-62px 0 0 -62px;
+}
+
+
+.album-samples{
+	margin:0 auto;
+	height:125px;
+	overflow:hidden;
+}
+.album-button{
+	width:40px;
+	height:170px;
+	background-color:#E2E2E2;
+	text-align:center;
+	line-height:125px;
+	font-size:10px;
+	overflow:hidden;
+	color:#ffffff;
+}
+.album-button:hover{
+	background-color:#E8E8E8;
+	color:#999;
+	text-decoration:none;
+}
+.album-button-prev{
+	float:left;
+}
+.album-button-next{
+	float:right;
+}
+.album-samples-root{
+	position:relative;
+	z-index:1;
+	float:left;
+	margin:0;
+	width:840px;
+	height:125px;
+	overflow:hidden;
+}
+.album-samples-list{
+	position:absolute;
+	z-index:2;
+	top:0;
+	left:0;
+	margin:0;
+	padding:0;
+	width:8400px;
+	height:125px;
+	overflow:hidden;
+}
+.album-samples-list li{
+	float:left;
+	margin:0;
+	list-style-type:none;
+	width:168px;
+	text-align:center;
+	height:125px;
+	cursor:pointer;
+	overflow:hidden;
+}
+.album-samples-list img{
+	width:160px;
+	height:125px;
+	cursor:pointer;
+}
+.album-samples-list li.current img{
+	border:2px solid #1bbc9b;
+	height:121px;
+	width:154px;
+}

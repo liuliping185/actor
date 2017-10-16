@@ -12,17 +12,9 @@
 
 </head>
 <body>
+<input id="role" hidden="true"/>
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header>
-        <ul>
-            <li class="border-b active" >
-              <span id="headerBack" onclick="back()">&lt&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</span>我的
-            </li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header>
+    <header id="header"></header>
 
     <!-- 个人角色管理开始  -->
     <section class="aui-content">
@@ -70,3 +62,4 @@
 <script type="text/javascript" src="../../script/aui-dialog.js" ></script>
 <script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/editRoleInfo.js"></script>
+<script type="text/javascript" src="../../script/bizjs/header.js"></script>

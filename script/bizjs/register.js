@@ -130,6 +130,7 @@ function regist(){
 			},function(ret){
 
 			})
+			return false;
 	}
 
     if(!$("input[name='agreeMent']").is(':checked')){
@@ -172,7 +173,7 @@ function regist(){
             console.log(ret)
         })
 					// alert(data.message, "", "error");
-					reloadVerifyCode(document.getElementById('codeimg'));
+					// reloadVerifyCode(document.getElementById('codeimg'));
 			}
 	});
 }

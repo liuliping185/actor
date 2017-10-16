@@ -9,147 +9,92 @@
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css"/>
+
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
     <script type="text/javascript" src="script/common/common.js"></script>
     <script type="text/javascript" src="script/api.js"></script>
     <script type="text/javascript" src="script/bizjs/login.js"></script>
+    <script type="text/javascript" src="script/bizjs/header.js"></script>
+
 
 </head>
 <body style="background: #fff;">
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header>
-        <ul>
-            <li class="border-b active" >
-              <span id="headerBack" onclick="back()">&lt</span>
-              <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
-            </li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header>
+    <header id="header"></header>
 
-    <!-- 登录开始 -->
-    <div class="page">
-      	<div class="page__bd" style="height: 100%;">
-        		<div class="weui-tab">
-        			  <div class="weui-tab__panel">
-                    <input type="hidden" id="hi_url" value="/nanyutang/member/goMemberIndex.action"/>
-                  	<div style="background: white;" align="center">
-                    		<div id="index">
-                    		</div>
-                        <!-- <div class="aui-content aui-margin-b-15">
-                            <ul class="aui-list aui-form-list">
-                                <li class="aui-list-header">带有图标的表单</li>
-                                <li class="aui-list-item">
-                                    <div class="aui-list-item-inner">
-                                        <div class="aui-list-item-label-icon">
-                                            <i class="aui-iconfont aui-icon-mobile"></i>
-                                        </div>
-                                        <div class="aui-list-item-input">
-                                            <input type="text" placeholder="username">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="aui-list-item">
-                                    <div class="aui-list-item-inner">
-                                        <div class="aui-list-item-label-icon">
-                                            <i class="aui-iconfont aui-icon-lock"></i>
-                                        </div>
-                                        <div class="aui-list-item-input">
-                                            <input type="password" placeholder="password">
-                                        </div>
-                                        <div class="aui-list-item-label-icon">
-                                            <i class="aui-iconfont aui-icon-display"></i>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div> -->
-                    		<div style="margin-top: 30px;">
-                      			<table id="" class="table" cellpadding="0px" cellspacing="0px">
-                        				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
-                                    <td class="txtStyle" style="line-height:30px;">
-                                    	<span>账号</span>
 
-                                    </td>
-                                    <td  class="txtStyle" style="line-height:30px;">
 
-                                      <!-- <div class="aui-list-item-input">
-                                          <input type="text" placeholder="username">
-                                      </div> -->
-                          						<input type="text" id="username" style="font-size:14px;" class="textStyleR" placeholder="用户名" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='用户名'}"  >
-                          					</td>
-                          					<td>
-                                      <div class="aui-list-item-label-icon">
-                                          <i class="aui-iconfont aui-icon-mobile"></i>
-                                      </div>
-                          						<!-- <img src="image/index/second.png" style="margin-top: 1px;float: right;" width="20px" /> -->
-                          					</td>
-                        				</tr>
-                      			</table>
-                    		</div>
-                    		<div>
-                    			  <table id="" class="table" cellpadding="0px" cellspacing="0px">
-                        				<tr style="border-bottom: 2px solid #F5F5F5 ;border-top: 2px solid #F5F5F5;">
-                                    <td class="txtStyle" style="line-height:30px;">
-                                    	  <span>密码</span>
-                                    </td>
-                                    <td  class="txtStyle" style="line-height:30px;">
-                          						  <input type="password" id="password" style="font-size:14px;" class="textStyleR" placeholder="登录密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='登录密码'}">
-                          					</td>
-                          					<td>
-                                      <div class="aui-list-item-label-icon">
-                                          <i class="aui-iconfont aui-icon-lock"></i>
-                                      </div>
-                          						  <!-- <img src="image/index/second.png" style="margin-top: 1px; float: right;" width="20px" /> -->
-                          					</td>
-                        				</tr>
-                    			  </table>
-                        </div>
-                  		  <div>
-                      			<table id="" class="table" cellpadding="0px" cellspacing="0px">
-                        				<tr style="border-bottom: 3px solid #F5F5F5 ;border-top: 3px solid #F5F5F5;">
-                                    <td align="left">
-                                        <!-- &response_type=code&scope=snsapi_base#wechat_redirect -->
-                                        <a href="./register.html">
-                                            <span style="color: #31B0D5;font-size: 16px;font-weight: bold;line-height: 30px;">
-                                                立即注册
-                                            </span>
-                                        </a>
-                                    </td>
-                                    <td align="right">
-                                        <a href="./toBackPwd.html" ><span style="color: gray;font-weight: bold;float: right;font-size: 16px;">忘记密码？</span></a>
-                                    </td>
-                        				</tr>
-                      			</table>
-                  	  	</div>
-                    		<!-- <div id=""> -->
-                            <!-- <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%;" onclick="login()">
-                                <span id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-                             </div> -->
-                    			  <button class="btn" style="width:80%; height:50px; background-color: #009688;" onclick="login()">
-                                <span id="p" style="color: #ffffff;">登&nbsp;录</span>
-                            </button>
-                    		    <!-- </div> -->
-                  	</div>
-        			  </div>
-        		</div>
-      	</div>
-    </div>
+	<img src="image/xplogo.png" style="margin-top:10px; width:150px;height:150px;margin-left:30%" >
+
+	 <div  align="center" style="padding: 20px 20px 10px;margin-top: 0px;">
+        <table rules="none" border="1" bordercolor="grey" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>账&nbsp;&nbsp;号：</span>
+            </td>
+            <td>
+
+              <input type="text" class="textStyleR" id="username" placeholder="请输入您的账号" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请输入您的账号'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+
+		<table rules="none" border="1" bordercolor="grey" style="margin-top: 10px;" width="95%" height="50">
+          <tr>
+            <td style="width: 110px;height: 55px;padding-left: 20px;">
+              <span>密&nbsp;&nbsp;码：</span>
+            </td>
+            <td>
+              <input type="password" class="textStyleR" id="password" placeholder="请输入密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请输入密码'}"  style="float: left;width: 200px;margin-left: -15px;">
+            </td>
+          </tr>
+        </table>
+
+
+
+	</div>
+
+
+    <table width="85%" class="table" cellpadding="0px" cellspacing="0px" style="margin-left:8%">
+                  <tr style="border-bottom: 0px solid #F5F5F5 ;border-top: 0px solid #F5F5F5;">
+                      <td align="left">
+                           <a href="./register.html">
+                              <span style="color: #31B0D5;font-size: 16px;font-weight: bold;line-height: 30px;">
+                                    立即注册
+                              </span>
+                          </a>
+                       </td>
+
+					  <td align="right">
+							 <a href="./toBackPwd.html">
+                              <span style="color: grey;font-size: 16px;font-weight: bold;line-height: 30px;">
+                                    忘记密码？
+                              </span>
+                          </a>
+					  </td>
+                  </tr>
+     </table>
+
+
+
+
+	 <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%; height:50px; line-height:50px;margin-left:10% " onclick="login()">
+                <span style="font-size:20px;" id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+     </div>
+
     <!-- 登录结束 -->
 
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t">
+
+   <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html'  );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html'  );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html' );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html');" class="flex-con active" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html');" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label">我的</div></li>
         </ul>
     </div>
 

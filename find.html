@@ -13,9 +13,12 @@
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
     <header>
-        <ul>
-            <li class="border-b active" >发现</li>
-            <li class="border-b" >发现</li>
+        <span id='headerBack' onclick='back()'>&nbsp</span>
+        <ul style='width:75%; margin-left:10%;'>
+            <li class="border-b" >首页</li>
+            <li class="border-b active" >
+                <span>发现</span>
+            </li>
             <li class="border-b" >搜索</li>
             <li class="border-b" >我的</li>
         </ul>
@@ -42,7 +45,7 @@
         </div>
     </div>
     <div style="overflow:auto; height:73%;">
-        <div style="width:100%; height:40%;background-color:#ffffff" id="imgInfos">
+        <div style="width:100%; height:90%;background-color:#ffffff" id="imgInfos">
           <!-- <div style=' width:100%; height:100%;'>
               <p style="height:15%; line-height:35px; margin-left:5%;">112121</p>
               <span style="width:100%; height:70%; background-image: url(./image/index/left.jpeg); background-size:100%;"></span>
@@ -63,12 +66,14 @@
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer">
+
+
+    <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html'  );" class="flex-con active" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html' );" class="flex-con active" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label">我的</div></li>
         </ul>
     </div>
 

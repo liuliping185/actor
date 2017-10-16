@@ -1,6 +1,7 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
     console.log(localStorage.token);
+    getList('');
 });
 
 //搜索框开始
@@ -53,7 +54,7 @@ function getList(keywords){
         var data = JSON.parse(data);
         console.log(data)
         if (data.success) {
-          $("#num").html(data.resultList.length + "人");
+          $("#num").html("<font style='font-family: STKaiti'><font color='green'>"+data.resultList.length + "</font>人</font>");
           var content = "";
           var status = "";
 
@@ -69,51 +70,72 @@ function getList(keywords){
                 case "P": status = "已发布";
                     break;
             }
-            content += "<li class='aui-list-item aui-list-item-arrow'>";
+            content += "<li class='aui-list-item aui-list-item-arrow' onclick=goDetail('"+i.type+"','"+i.infos.id+"')>";
             content += "<div class='aui-media-list-item-inner'>";
             content += "<div class='aui-list-item-media'>";
-            content += "<img src='" + i.img + "'>";
+            content += "<img src='" + i.infos.firstimg + "'>";
             content += "</div>";
             content += "<div class='aui-list-item-inner'>";
             content += "<div class='aui-list-item-text'>";
+
             if("actor" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.nickname + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.infos + "</div>";
               content += "</div>";
-              content += "<div class='aui-list-item-text'>" + status+ "</div>";
+              content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
               content += "<div class='aui-info-item'>";
-              content += "<img src='../../image/mine/actor.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+			  content += "<font color='green' style='font-family: STKaiti'><img src='../../image/roleDetails/actor.png' style='width:40px;height:20px;'></font>";
+
             }
 
             if("scene" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.scenename + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.sceneinfos + "</div>";
               content += "</div>";
-              content += "<div class='aui-list-item-text'>" + status + "</div>";
+              content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
               content += "<div class='aui-info-item'>";
-              content += "<img src='../../image/mine/scene.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              content += "<font color='blue' style='font-family: STKaiti'><img src='../../image/roleDetails/scene.png' style='width:40px;height:20px;'></font>";
             }
 
             if("subject" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.subjectname + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.bigtypeid  + "</div>";
               content += "</div>";
-              content += "<div class='aui-list-item-text'>" + status+ "</div>";
+              content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
               content += "<div class='aui-info-item'>";
-              content += "<img src='../../image/mine/subject.jpg' style='width:1rem' class='aui-img-round'/><span class='aui-margin-l-5'></span>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/roleDetails/subject.png' style='width:40px;height:20px;'></font>";
             }
+
             content += "</div>";
-            content += "<div class='aui-info-item'>" + i.infos.createtime + "</div>";
+            content += "<div class='aui-info-item'>发布于：" + i.infos.createtime.substring(0,10) + "</div>";
             content += "</div>";
             content += "</div>";
             content += "</div>";
             content += "</li>";
+
+			  content +=  "	<div style='margin-top: 0px;margin-bottom:10px;'>";
+	 		  content +=  "<img src='../../image/fg.jpg' width='100%' height='5px' />";
+			  content +=  "</div>";
+
           });
 
           $("#content").html(content);
         }
     });
+}
+
+function goDetail(type,id){
+
+	var url = "";
+	if(type == "actor"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "scene"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "subject"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}
+	window.location.href=url;
 }

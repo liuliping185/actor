@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+  <title>图片浏览</title>
+  <!-- 在IOS设备上，有时会将数字转为手机号，这里也要禁止下 -->
+  <meta name="format-detection" content="telephone=no"/>
+  <link rel="stylesheet" type="text/css" href="./css/api.css" />
+  <link rel="stylesheet" type="text/css" href="./css/aui.css" />
+
+  </head>
+<body>
+
+
+
+
+</body>
+
+<script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="script/aui-dialog.js" ></script>
+<script type="text/javascript" src="script/common/common.js"></script>
+
+<script type="text/javascript">
+
+//var photoBrowser;
+var imageBrowser;
+
+apiready = function() {
+  var imgArr = api.pageParam.imgArr;
+ // photoBrowser = api.require('photoBrowser');
+  imageBrowser = api.require('imageBrowser');
+  openImg(imgArr);
+};
+
+
+function openImg(imgArr){
+
+	imageBrowser.openImages({
+		imageUrls: imgArr,
+		showList:true,
+		bg:'#000'
+
+	});
+
+}
+
+</script>
+
+</html>

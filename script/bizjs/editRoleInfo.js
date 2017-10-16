@@ -1,28 +1,26 @@
 var dialog = new auiDialog();
+var role = GetQueryString("role");
 
 $(function(){
   console.log(localStorage.token)
     $('body').height($('body')[0].clientHeight);
-    var role = GetQueryString("role");
-    console.log(role)
+
+    // alert(role)
     var actionURL = "";
     var imgHeading = ""
 
     switch(role){
-        case "1":
+        case "actor":
             actionURL = path + "/ActorInterface/actor/myActorList.action?token=" + localStorage.token;
             imgHeading = "../../image/mine/actor.jpg";
         break;
-        case "2":
+        case "scene":
             actionURL = path + "/ActorInterface/scene/mySceneList.action?token=" + localStorage.token;
             imgHeading = "../../image/mine/scene.png";
         break;
-        case "3":
+        case "subject":
             actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
             imgHeading = "../../image/mine/subject.jpg";
-        break;
-        default: actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
-        imgHeading = "../../image/mine/subject.jpg";
         break;
     }
 
@@ -54,11 +52,11 @@ $(function(){
               content +=  "</div>";
               content +=  "<div class='aui-card-list-user-name'>";
               switch(role){
-                  case "1": content +=  "<div>" + i.nickname + "</div>";
+                  case "actor": content +=  "<div>" + i.nickname + "</div>";
                   break;
-                  case "2": content +=  "<div>" + i.scenename + "</div>";
+                  case "scene": content +=  "<div>" + i.scenename + "</div>";
                   break;
-                  case "3": content +=  "<div>" + i.subjectname + "</div>";
+                  case "subject": content +=  "<div>" + i.subjectname + "</div>";
                   break;
               }
 
@@ -70,15 +68,17 @@ $(function(){
               content +=  "<img src='" + data.imgList[0] + "'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
-              content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='edit(" + role + "," + i.id + ")'>编辑</div>";
+              content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='edit(" + i.id + ")'>编辑</div>";
+
+              $("#role").val(role);
 
               if("W" != i.checkstatus ){
                   if("Y" === i.checkstatus){
-                      content +=  "<div class='aui-btn aui-btn-warning aui-margin-r-5' onclick='publish(" + role + "," + i.id + ")'>发布</div>";
+                      content +=  "<div class='aui-btn aui-btn-warning aui-margin-r-5' onclick='publish(" + i.id + ")'>发布</div>";
                   }
               }
 
-              content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel(" + role + "," + i.id + ")'>删除</div>";
+              content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel(" + i.id + ")'>删除</div>";
               content +=  "</div>";
             });
               $("#content").html(content);
@@ -146,14 +146,17 @@ function cancel(role, id){
 }
 
 // 编辑
-function edit(role, infoid){
+function edit(infoid){
+    // alert($("#role").val() + "-------" + infoid);
+    var rolename = $("#role").val();
+
     var url ="";
-    switch(role){
-        case 1: url =  "../applicationRoles/actorInfo.html?infoid=" + infoid;
+    switch(rolename){
+        case "actor": url =  "../applicationRoles/actorInfo.html?id=" + infoid + "&role=" + $("#role").val();
         break;
-        case 2: url =  "../applicationRoles/sceneInfo.html?infoid=" + infoid;
+        case "scene": url =  "../applicationRoles/sceneInfo.html?id=" + infoid + "&role=" + $("#role").val();
         break;
-        case 3: url =  "../applicationRoles/subjectInfo.html?infoid=" + infoid;
+        case "subject": url =  "../applicationRoles/subjectInfo.html?id=" + infoid + "&role=" + $("#role").val();
         break;
     }
     window.location.href = url;

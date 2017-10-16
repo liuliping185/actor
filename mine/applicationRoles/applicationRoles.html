@@ -12,66 +12,89 @@
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header>
-        <ul>
-            <li class="border-b active" >我的</li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header>
+    <header id="header"></header>
+    <div style="background-color:#ffffff;">
+      	<h1 align="center"><font style="font-family: STKaiti">角色信息申请说明：</font></h1>
 
-	<h1 align="center"><font style="font-family: STKaiti">角色信息申请说明：</font></h1>
+      	<br/>
 
-	<br/>
+      	<h3 align="center"><font style="font-family: STKaiti">请根据您的需要申请相应的角色，
+      	</font></h3>
 
-	<h3 align="center"><font style="font-family: STKaiti">请根据您的需要申请相应的角色，
-	</font></h3>
+      	<h3 align="center"><font style="font-family: STKaiti">协拍中国会对您的真实信息进行审核，
+      	</font></h3>
 
-	<h3 align="center"><font style="font-family: STKaiti">协拍中国会对您的真实信息进行审核，
-	</font></h3>
+      	<h3 align="center"><font style="font-family: STKaiti">请如实填写您的相关角色信息。
+      	</font></h3>
 
-	<h3 align="center"><font style="font-family: STKaiti">请如实填写您的相关角色信息。
-	</font></h3>
+      	<h3 align="center"><font style="font-family: STKaiti">审核完成后，您的信息即可发布到协拍中国，
+      	</font></h3>
 
-	<h3 align="center"><font style="font-family: STKaiti">审核完成后，您的信息即可发布到协拍中国，
-	</font></h3>
+      		<h3 align="center"><font style="font-family: STKaiti">让更多的需求方关注到您的信息！
+      	</font></h3>
+    </div>
 
-		<h3 align="center"><font style="font-family: STKaiti">让更多的需求方关注到您的信息！
-	</font></h3>
-
-
-	<br/><br/>
     <!-- 第一栏区开始  -->
-    <div style="width:100%; height:20%; text-align: center;">
+    <div style="width:100%;margin-top:10px;text-align: center;">
 
 
 
 
-		<table align="center">
+		<!-- <table align="center">
 			<tr>
 				<td>
 					<font style="font-family: STKaiti">选择您要创建的角色：</font>
 				</td>
 				<td>
-						<select id="role" style="width:100%; height:100%; margin-left: 43%;">
-							<option value="0">-请选择</option>
-							<option value="1">演员</option>
-							<option value="2">场景</option>
-							<option value="3">道具</option>
+						<table>
+						<tr>
+						<td>
+						<select id="role" style="width:100%; height:100%; margin-left: 1%;">
+							<option value="0">请选择</option>
+							<option value="actor">演员</option>
+							<option value="scene">场景</option>
+							<option value="subject">道具</option>
 						</select>
+						</td>
+						<td>
+							&nbsp;
+						</td>
+						<td>
+							<img src="../../image/sj.png" style="width:10px;height:10px;">
+						</td>
+						</tr>
+						</table>
 				</td>
 			</tr>
-		</table>
+		</table> -->
 
 
 
 
 
-        <div id="" style="text-align: center; margin 0 auto; margin-top: 8%;">
-            <div class="aui-btn aui-btn-info" onclick="applicationRoles()">
+        <!-- <div id="" style="text-align: center; margin 0 auto; margin-top: 8%;">
+            <div class="aui-btn aui-btn-success" onclick="applicationRoles()">
                 <span id="p">确&nbsp;&nbsp;定</span>
             </div>
+        </div> -->
+
+
+        <div id="second" style="width:100%;background-color:#ffffff;margin:0">
+            <ul class="flex-wrap" >
+                <li onclick="applicationRoles('scene')" tapmode="hover" style="margin-top:30px;padding-bottom:30px;" onclick="scenes( this, 'scene' );" class="flex-con" ><font style="font-family: STKaiti">发布场景</font></li>
+                <li onclick="applicationRoles('actor')" tapmode="hover" style="margin-top:30px;" onclick="scenes( this, 'actor' );" class="flex-con" ><font style="font-family: STKaiti">发布演员</font></li>
+                <li onclick="applicationRoles('subject')" tapmode="hover" style="margin-top:30px;" onclick="scenes( this, 'subject' );" class="flex-con" ><font style="font-family: STKaiti">发布道具</font></li>
+                <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找编剧</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找导演</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找制片</li> -->
+            </ul>
+            <!-- <ul class="flex-wrap" style="margin-top:15px;">
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找服装</li>
+
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找设备</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找摄制组</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找投资</li>
+            </ul> -->
         </div>
     </div>
     <!-- 第一栏区结束  -->
@@ -79,14 +102,18 @@
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t">
+
+
+
+	<div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html' );" class="flex-con active" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html');" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
         </ul>
     </div>
+
     <!-- 第五栏结束  -->
 
 </div>
@@ -97,3 +124,4 @@
 <script type="text/javascript" src="../../script/aui-dialog.js" ></script>
 <script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/applicationRoles.js"></script>
+<script type="text/javascript" src="../../script/bizjs/header.js"></script>

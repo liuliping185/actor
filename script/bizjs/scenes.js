@@ -1,9 +1,29 @@
 var role = GetQueryString("role");
 
+
+var flag = 0;
+
 $(function(){
     $('body').height($('body')[0].clientHeight);
-    console.log(localStorage.token);
+
+    // 筛选分类开始
+    $(".flip").mouseover(function() {
+			$(this).next("div").slideDown(500);
+      $("#thirdArea").hide();
+		});
+
+		$(".content").mouseleave(function() {
+			$(this).children("div").slideUp(500);
+      $("#thirdArea").show();
+		});
+    // 筛选分类结束
+
+    // 获取列表信息
     getList('');
+
+    // 获取全部类型
+    getType();
+
 });
 
 // 详情
@@ -30,31 +50,260 @@ function lowEnough(){
     return pageHeight - viewportHeight - scrollHeight < 20;
 }
 
-var flag = 0;
-function doSomething(){
-    var htmlStr = "";
-    if(6 > flag){
-      for(var i=0; i<3; i++){
-          htmlStr += "<div onclick='detail()' style='width:100%; height:32%; margin-top:2%; background-color:#00ffff; background-image: url(../image/index/timg.jpg); background-size:100%;'></div>";
+var imgInfos = "";
+function doSomething(infoList, imgList){
+  console.log(infoList);
+  var flag = 0;
+
+  if(infoList.length == 0){
+
+	   $("#sample").html("<h1 align='center'><font color='green'>暂无相关信息！</h1>");
+
+	   return false;
+  }
+
+  $("#sample").html("");
+
+  if(2 < infoList.length){
+      infoList.forEach(function(i){
           flag ++;
-      }
-    }
-    $('#sample').append(htmlStr);
-    pollScroll();//继续循环
-    $('#spinner').hide();
+
+          if(2 >= flag){
+              switch(i.type){
+                  case "actor":
+                      // imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                      // imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                      // imgInfos +=  "</div>";
+                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.nickname + "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                      imgInfos += "</p>"
+                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                      var d = new Date(i.createtime);
+                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                      imgInfos += "<span style='margin-left: 22%;'>";
+                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "</p>"
+                      imgInfos += "</div>";
+                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                      imgInfos +=  "</div>";
+                      //分割线
+
+                  break;
+                  case "scene":
+                  // if(1 === flag){
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }else{
+                  //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  //     imgInfos +=  "</div>";
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }
+                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                      imgInfos += "</p>"
+                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                      var d = new Date(i.createtime);
+                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                      imgInfos += "<span style='margin-left: 22%;'>";
+                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "</p>"
+                      imgInfos += "</div>";
+                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                      imgInfos +=  "</div>";
+                  break;
+                  case "subject":
+                  // if(1 === flag){
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }else{
+                  //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }
+                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                      imgInfos += "</p>"
+                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                      var d = new Date(i.createtime);
+                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                      imgInfos += "<span style='margin-left: 22%;'>";
+                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "<span style='margin-left: 5%;'>";
+                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                      imgInfos += "</span>"
+                      imgInfos += "</p>"
+                      imgInfos += "</div>";
+                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                      imgInfos +=  "</div>";
+                  break;
+              }
+              if(2 === flag){
+                  $('#sample').html(imgInfos);
+                  infoList.splice(0,2);
+                  imgList.splice(0,2);
+                  checkScroll(infoList, imgList);//继续循环
+              }
+          }
+      })
+  }else{
+      infoList.forEach(function(i){
+          flag ++;
+          switch(i.type){
+              case "actor":
+                  // if(1 === flag){
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }else{
+                  //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  //     imgInfos +=  "</div>";
+                  //     // imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>";
+                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // }
+                  imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.nickname + "<span style='margin-left:60%;'>" + "￥" + i.price + "/" + i.unit +"</span>";
+                  imgInfos += "</p>"
+                  imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                  imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                  imgInfos += "<span style='margin-left: 22%;'>";
+                  imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "</p>"
+                  imgInfos += "</div>";
+                  imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+              break;
+              case "scene":
+              // if(1 === flag){
+              //     imgInfos += "<div style='width:100%; height:100%;'>";
+              // }else{
+                // imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                // imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                // imgInfos +=  "</div>";
+                  // imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>";
+                  imgInfos += "<div style='width:100%; height:100%;'>";
+              // }
+                  imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:60%;'>" + "￥" + i.price + "/" + i.unit + "</span>";
+                  imgInfos += "</p>"
+                  imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                  imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                  imgInfos += "<span style='margin-left: 22%;'>";
+                  imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "</p>"
+                  imgInfos += "</div>";
+                  imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+              break;
+              case "subject":
+              // if(1 === flag){
+              //     imgInfos += "<div style='width:100%; height:100%;'>";
+              // }else{
+              //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
+              //     imgInfos += "<div style='width:100%; height:100%;'>";
+              // }
+                  imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:60%;'>" + "￥" + i.saleprice + "/" + i.saleunit + "</span>";
+                  imgInfos += "</p>"
+                  imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                  imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                  imgInfos += "<span style='margin-left: 22%;'>";
+                  imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 5%;'>";
+                  imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "</p>"
+                  imgInfos += "</div>";
+                  imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+              break;
+          }
+          $('#sample').html(imgInfos);
+      })
+  }
 }
 
-function checkScroll(){
-    if(!lowEnough()) return pollScroll();
+function checkScroll(infoList, imgList){
+    if(!lowEnough()) return pollScroll(infoList, imgList);
 
     $('#spinner').show();
-    setTimeout(doSomething,900);
+    doSomething(infoList, imgList);
 
 }
-function pollScroll(){
-    setTimeout(checkScroll,1000);
+function pollScroll(infoList, imgList){
+    checkScroll(infoList, imgList);
 }
-//checkScroll();
 /** 无限分页结束 **/
 
 // 搜索框开始
@@ -67,17 +316,17 @@ if(searchBar){
     searchBarInput.onclick = function(){
         searchBarBtn.style.marginRight = 0;
     }
-    searchBarInput.oninput = function(){
-        if(this.value.length){
-            searchBarClearBtn.style.display = 'block';
-            searchBarBtn.classList.add("aui-text-info");
-            searchBarBtn.textContent = "搜索";
-        }else{
-            searchBarClearBtn.style.display = 'none';
-            searchBarBtn.classList.remove("aui-text-info");
-            searchBarBtn.textContent = "取消";
-        }
-    }
+    // searchBarInput.oninput = function(){
+    //     if(this.value.length){
+    //         searchBarClearBtn.style.display = 'block';
+    //         searchBarBtn.classList.add("aui-text-info");
+    //         searchBarBtn.textContent = "搜索";
+    //     }else{
+    //         searchBarClearBtn.style.display = 'none';
+    //         searchBarBtn.classList.remove("aui-text-info");
+    //         searchBarBtn.textContent = "取消";
+    //     }
+    // }
 }
 
 if(searchBarBtn){
@@ -93,6 +342,10 @@ if(searchBarBtn){
             searchBarInput.blur();
             document.getElementById("search-input").textContent = keywords;
             console.log(keywords);
+            // $(".content").hide();
+            $(".content").children("div").slideUp(500);
+            $(".sample").show();
+            $("#thirdArea").show();
             getList(keywords);
         }else{
             this.style.marginRight = "-"+this.offsetWidth+"px";
@@ -105,6 +358,8 @@ if(searchBarBtn){
 
 // 获取列表信息
 function getList(keywords){
+    $("#thirdArea").show();
+
     var actionUrl = "";
     switch(role){
         case "actor": actionUrl = path + "/ActorInterface/actor/queryActors.action";
@@ -114,140 +369,35 @@ function getList(keywords){
         case "subject": actionUrl = path + "/ActorInterface/subject/querySubjects.action";
         break;
     }
+	var smallid = "";
+
+	$('input[name="smallCheck"]:checked').each(function(){
+		smallid += $(this).val() + ",";
+	});
+
+	var bigid = "";
+
+	$('input[name="bigCheck"]:checked').each(function(){
+		bigid += $(this).val() + ",";
+	});
+
     $.post(actionUrl,{
         token: localStorage.token,
-        keywords: keywords
+        keywords: $("#search-input").val(),
+        smallid: smallid,
+		bigid:bigid
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
         if (data.success) {
-            var imgInfos = "";
-            $("#sample").html("");
-
-            var flag = -1;
-            data.infoList.forEach(function(i){
-                flag ++;
-
-
-                switch(i.type){
-                    case "actor":
-                    // <div style='float:left; display: block; width:47.5%; height:100%;'>
-                    //   <p style="height:15%; margin-left:5%;">112121</p>
-                    //    <span style="width:100%; height:80%; background-image: url(./image/index/left.jpeg); background-size:100%;"></span>
-                    //        <p style="height:15%; margin-left:5%;">112121</p>
-                    // </div>
-                    // <div style='float:left; display: block; width:47.5%; height:100%;'>
-                    //   <p style="height:15%; margin-left:5%;">112121</p>
-                    //    <span style="width:100%; height:80%; background-image: url(./image/index/right.jpeg); background-size:100%;"></span>
-                    //        <p style="height:15%; margin-left:5%;">112121</p>
-                    // </div>
-
-                    imgInfos += "<p style='height:15%; margin-left:5%;'>" + i.nickname +  "<span style='margin-left:27%;'>" + "演员" + "</span>" + "</p>";
-                    if(0 === flag%2){
-                        imgInfos += "<div style='float:left; display: block; width:48%; height:100%;'>";
-                    }else{
-                        imgInfos += "<div style='margin-left:4%; float:left; display: block; width:47.5%; height:100%;'>";
-                    }
-
-                    imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:75%; background-image: url(" + data.imgList[flag] + "); background-size:100%;'></span>";
-                    imgInfos += "<p style='height:15%; margin-left:5%;'>";
-
-                    imgInfos += "<span class='aui-iconfont aui-icon-note' style='margin-left: 22%;'>";
-                    imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                    imgInfos += "</span>"
-                    imgInfos += "<span class='aui-iconfont aui-icon-laud' style='margin-left: 5%;'>";
-                    imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                    imgInfos += "</span>"
-                    imgInfos += "<span class='aui-iconfont aui-icon-star' style='margin-left: 5%;'>";
-                    imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                    imgInfos += "</span>"
-                    imgInfos += "</p>";
-                    imgInfos += "</div>";
-
-                        // imgInfos += "<p style='height:15%; line-height:35px; margin-left:5%;'>" + i.nickname;
-                        // imgInfos += "</p>"
-                        // imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:70%; background-image: url(" + data.imgList[flag] + "); background-size:100%;'></span>";
-                        //
-                        // var d = new Date(i.createtime);
-                        // var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-                        //
-                        // imgInfos += "<p style='height:15%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                        // imgInfos += "<span class='aui-iconfont aui-icon-note' style='margin-left: 22%;'>";
-                        // imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                        // imgInfos += "</span>"
-                        // imgInfos += "<span class='aui-iconfont aui-icon-laud' style='margin-left: 5%;'>";
-                        // imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                        // imgInfos += "</span>"
-                        // imgInfos += "<span class='aui-iconfont aui-icon-star' style='margin-left: 5%;'>";
-                        // imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                        // imgInfos += "</span>"
-                        // imgInfos += "</p>"
-                        // imgInfos += "</div>";
-                    break;
-                    case "scene":
-                    if(0 === flag){
-                        imgInfos += "<div style='width:100%; height:100%;'>";
-                    }else{
-                        imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>";
-                        imgInfos += "<div style='width:100%; height:100%;'>";
-                    }
-                        imgInfos += "<p style='height:15%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:75%;'>" + "场景" + "</span>";
-                        imgInfos += "</p>"
-                        imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:70%; background-image: url(" + data.imgList[flag] + "); background-size:100%;'></span>";
-
-                        var d = new Date(i.createtime);
-                        var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-
-                        imgInfos += "<p style='height:15%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                        imgInfos += "<span class='aui-iconfont aui-icon-note' style='margin-left: 22%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "<span class='aui-iconfont aui-icon-laud' style='margin-left: 5%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "<span class='aui-iconfont aui-icon-star' style='margin-left: 5%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "</p>"
-                        imgInfos += "</div>";
-                    break;
-                    case "subject":
-                    if(0 === flag){
-                        imgInfos += "<div style='width:100%; height:100%;'>";
-                    }else{
-                        imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
-                        imgInfos += "<div style='width:100%; height:100%;'>";
-                    }
-                        imgInfos += "<p style='height:15%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:75%;'>" + "道具" + "</span>";
-                        imgInfos += "</p>"
-                        imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:70%; background-image: url(" + data.imgList[flag] + "); background-size:100%;'></span>";
-
-                        var d = new Date(i.createtime);
-                        var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-
-                        imgInfos += "<p style='height:15%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                        imgInfos += "<span class='aui-iconfont aui-icon-note' style='margin-left: 22%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "<span class='aui-iconfont aui-icon-laud' style='margin-left: 5%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "<span class='aui-iconfont aui-icon-star' style='margin-left: 5%;'>";
-                        imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                        imgInfos += "</span>"
-                        imgInfos += "</p>"
-                        imgInfos += "</div>";
-                    break;
-                }
-
-
-            })
+            imgInfos = "";
+            $(".content").children("div").slideUp(500);
+            pollScroll(data.infoList, data.imgList);
 
             // $("#imgInfos").html(imgInfos);
             //     htmlStr += "<img onclick=detail('" + role + "','" + data.infoList[flag].id + "') style='width:100%; height:32%; margin-top:2%;' src='" + i + "'/>";
             // })
-            $('#sample').html(imgInfos);
-          //  console.log($('#sample').html(imgInfos))
+            // $('#sample').html(imgInfos);
         }else{
             dialog.alert({
                   title:"获取演员信息失败！",
@@ -259,4 +409,76 @@ function getList(keywords){
               return false;
         }
     });
+}
+
+//下拉列表出现
+function appear(){
+    $(".appear").children().show();
+}
+
+// 获取大类
+function getType(){
+    console.log(role)
+    $.post(path + "/ActorInterface/index/findBigType.action",{
+      typeinfo: role
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data);
+        var screen = "";
+        if (data.success) {
+            screen += "<ul>";
+
+            data.infoList.forEach(function(i){
+                screen += "<li>";
+                screen += "<div><input type='checkbox' class='smallType' name='bigCheck' value='"+i.id+"' onclick='smallType(" + i.id + ")' id='big_"+i.id+"'/>" + i.bigname + "</div>";
+                screen += "</li>";
+
+                $("#bigid").val(i.id);
+            })
+
+            screen += "</ul>";
+
+            $(".screen").html(screen);
+        }
+    });
+}
+
+// 获取小类
+var flag = 0;
+function smallType(id){
+
+  var smallname = "";
+
+  if($("#big_"+id).prop("checked")){
+
+	   $.post(path + "/ActorInterface/index/findSmallType.action",{
+        bigid: id
+        }, function(data) {
+          var data = JSON.parse(data);
+          console.log(data);
+          if (data.success) {
+              var bigid = $("#bigid").val();
+
+              data.infoList.forEach(function(i){
+                  smallname += "<li class='small_"+id+"'>";
+                  smallname += "<div><input type='checkbox' name='smallCheck' value='"+i.id+"' />" + i.smallname + "</div>";
+                  smallname += "</li>";
+
+              });
+
+              $(".smallType").append(smallname);
+          }
+      });
+
+
+  }else {
+
+
+	 $("li.small_"+id).remove();
+
+  }
+
+
+
+  // }
 }

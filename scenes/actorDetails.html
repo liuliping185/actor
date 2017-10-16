@@ -13,64 +13,86 @@
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../script/aui-dialog.js" ></script>
     <script type="text/javascript" src="../script/common/common.js"></script>
+    <script type="text/javascript" src="../script/aui-toast.js" ></script>
     <script type="text/javascript" src="../script/bizjs/scenesDetail.js"></script>
 </head>
 <body style="height: 100%; width: 100%; overflow-x:auto;">
 <input id="attentionFlag" hidden="true"/>
+<input id="goodFlag" hidden="true"/>
 <input id="infoid" hidden="true"/>
 <input id="type" hidden="true"/>
 <input id="ownerid" hidden="true"/>
+<input id="prestatus" name="prestatus" hidden="true"/>
+
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header style="width: 100%;">
-        <ul>
-          <li class="border-b active" >
-            <span id="headerBack" onclick="back()">&lt</span>
-            <span style="margin-left: 18%;">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp协拍中国
+  <header>
+      <span id='headerBack' onclick='back()'>&nbsp</span>
+      <ul style='width:75%; margin-left:10%;'>
+          <li class="border-b active" >首页</li>
+          <li class="border-b" >
+              <span>发现</span>
           </li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header>
+          <li class="border-b" >搜索</li>
+          <li class="border-b" >我的</li>
+      </ul>
+  </header>
 
     <div style="overflow:auto; height:100%;" id="content">
         <!-- 第一栏区开始  -->
-        <div style="width:100%; height:5%; margin: 0 auto; background-color:#ffffff; text-align: center;">
+        <!-- <div style="width:100%; height:5%; margin: 0 auto; background-color:#ffffff; text-align: center;">
             <span id="role"></span>
-        </div>
+        </div> -->
         <!-- 第一栏区结束  -->
 
         <!-- 第二栏区开始  -->
-        <div id="second" style=" width:100%; height:13%; margin 0 auto;">
-            <div style="width: 20%; height: 100%; float: left;">
-                <img id="img" style="height:100%; width:100;"/></div>
-            <div style="display:block; float:left; margin-left:5%; width: 40%;">
-                <span id="nickname">&nbsp&nbsp</span>
-                <div id="area">&nbsp&nbsp</div>
+        <div id="second" style=" width:100%; height:15%; line-height:100%; margin 0 auto; background-color:#ffffff; ">
+            <div style="width: 20%; height:80%; width:20%; float:left; margin-left:4%; margin-top:4%;">
+                <img id="img" style="height:80%; width:80%;  border-radius:50%"/>
             </div>
-            <div style="text-align:center;">
-                <span id="follow" style="margin-left: 15%; margin-top: 3%; color:#7B7B7B; font-size:14px;" onclick="isfollow('infoid, type')">+关注</span>
-                <div><input id="isfollow" onclick="follow('infoid, type')" style="margin-left: 17%; margin-top:2%;" class="aui-radio" type="radio"></div>
+            <div style="display:block; float:left; margin-top:4%; width: 55%;">
+                <span id="nickname" style="font-size:14px; color:#7B7B7B; margin-top:5%;">&nbsp&nbsp</span>
+                <span id="price" style="font-size:14px; color:#9D9D9D; margin-top:5%; margin-left:5%;">￥100</span>
+                <div id="area" style="font-size:14px; color:#9D9D9D; margin-top:3%;">&nbsp&nbsp</div>
+            </div>
+            <div style="text-align:center; float:left; margin-top: 5%; width:20%;">
+                <span id="follow" style="color:#7B7B7B; font-size:14px;" onclick="isfollow('infoid, type')">
+                    <img id="followImg" src="../image/roleDetails/attention.png" width="70%;" height="70%;"/>
+                </span>
+                <div>
+                    <input id="isfollow" name="isfollow" onclick="follow('infoid, type')" style="margin-left: 17%; margin-top:2%;display:none;" class="aui-radio" type="radio">
+                </div>
+
+                <span id="start" style="color:#7B7B7B; font-size:14px; margin-top: 5%;" onclick="isStart('infoid, type')">
+                    <img id="startImg" src="../image/laudT.png" width="60%;" height="60%;"/>
+                </span>
+                <div>
+                    <input id="isStart" name="isStart" onclick="start('infoid, type')" style="margin-left: 17%; margin-top:2%;display:none;" class="aui-radio" type="radio">
+                </div>
             </div>
         </div>
         <!-- 第二栏区结束  -->
 
         <!-- 第三栏区开始  thirdArea-->
         <div style="height:50%; background-color:#ffffff">
-            <div style="height:30px;line-height:30px;margin-top:5%;">
-              <h4 style=" margin-left: 5%; color:#7B7B7B;">默认图集
-                  <span style="color: #7B7B7B; margin-left:68%;" onclick="album()">相册></span>
+            <div style="height:30px;line-height:30px;margin-top:2%;">
+              <h4 style=" margin-left: 5%; color:#7B7B7B;">照片展示
+                  <span style="color: #7B7B7B; margin-left:68%;" onclick="album()">图集></span>
               </h4>
             </div>
             <div style="height: 90%; background-color:#F0F0F0;">
-                <img style="width:100%; height:100%;" id="imgBig" src=""/>
+                <img style="float:left; width:100%; height:100%;" id="imgBig" src="" onclick="album()"/>
+                <!-- <img style="float:left; margin-left:2%; width:30%; height:47.5%;" id="imgBig" src=""/>
+                <img style="float:left; margin-left:2%; width:30%; height:47.5%;" id="imgBig" src=""/>
+                <img style="float:left; margin-top:3%; width:30%; height:47.5%;" id="imgBig" src=""/>
+                <img style="float:left; margin-left:2%; width:30%; height:47.5%;" id="imgBig" src=""/>
+                <img style="float:left; margin-left:2%; width:30%; height:47.5%;" id="imgBig" src=""/> -->
             </div>
         </div>
         <!-- 第三栏区结束  -->
 
         <!-- 第四栏开始 -->
-        <div id="infos">
-            <h4 style="margin-top:5%; margin-left: 5%; color:#7B7B7B;">道具信息</h4>
+        <div id="infos" style="background-color:#ffffff; height:12%; line-height:18px;">
+            <h4 style="margin-top:10%; margin-left: 5%; color:#7B7B7B;">道具信息</h4>
             <span style="margin-top: 2%; margin 0 auto; margin-left:5%;">
               sdasdas
             </span>
@@ -78,17 +100,17 @@
         <!-- 第四栏结束 -->
 
         <!-- 第五栏开始 -->
-        <div style="height: 5%; margin-left:5%; margin-top:2%;" id="workingRange">
-            <h4 style="color:#7B7B7B;">工作范围
-                <!-- <span style="color: #color:#7B7B7B; margin-left:65%;">更多></span> -->
-            </h4>
+        <div style="height: 5%; margin-left:5%; margin-top:2%;" id="workingRange" style="background-color:#ffffff;">
+            <!-- <h4 style="color:#7B7B7B;">工作范围
+                <span style="color: #color:#7B7B7B; margin-left:65%;">更多></span>
+            </h4> -->
 
         </div>
         <!-- 第五栏结束 -->
 
         <!-- 第六栏开始 -->
-        <div id="synopsis">
-            <h4 style="margin-left:5%;">模特</h4>
+        <div id="synopsis" style="background-color:#ffffff; line-height:130%;">
+            <!-- <h4 style="margin-left:5%;">模特</h4>
             <div>
                 <h4 style="margin-left:5%; margin-top:2%; color:#7B7B7B;">可预约时段
                 </h4>
@@ -108,19 +130,20 @@
             <div>
                 <span id="infos" style="margin-left:5%;">sgsdgsdgsdg
                 </span>
-            </div>
+            </div> -->
         </div>
         <!-- 第六栏结束 -->
 
         <!-- 第七栏开始 -->
-        <div style="height: 30%; background-color:#F0F0F0;">
-            <span style="width:37.5%; height:100%; margin-left:60px; margin-top: 20px;">
-                <h3 style="color:#7B7B7B">服务评价</h3>
-                <img id="service" src="" style="margin-top: 15px;"/>
+        <div style="height: 25%; background-color:#ffffff; margin-top:2%;">
+            <h4 style='margin-left:5%; margin-top:3%; color:#7B7B7B;'><span style='margin-top:3%;'>评价</span></h4>
+            <span style="width:37.5%; height:100%;  margin-top: 20px;">
+                <span style="color:#7B7B7B;float:left;width:40%;font-size:12px;margin-top:15%;margin-left:20%;">服务评价</span>
+                <img id="service" src="" style="width:40%; float:left;"/>
             </span>
             <span style="width:37.5%; height:100%; margin-left:25px; margin-top: 20px;">
-                <h3 style="color:#7B7B7B">专业评价</h3>
-                <img id="professional" src="" style="margin-top: 15px;"/>
+                <span style="color:#7B7B7B;float:left;width:40%;font-size:12px;margin-top:15%;margin-left:20%;">专业评价</span>
+                <img id="professional" src="" style="width:40%; float:left;"/>
             </span>
         </div>
         <!-- 第七栏结束 -->
@@ -147,12 +170,12 @@
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t">
+    <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html' );" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label">我的</div></li>
         </ul>
     </div>
     <!-- 第四栏结束  -->

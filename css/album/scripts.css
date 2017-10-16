@@ -1,0 +1,524 @@
+/*
+ YUI 3.5.0pr2 (build 4560)
+ Copyright 2011 Yahoo! Inc. All rights reserved.
+ Licensed under the BSD License.
+ http://yuilibrary.com/license/
+ */
+html {
+    color: #333;
+    background-color: #FFF;
+}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img {
+    border: 0;
+}
+
+address, caption, cite, code, dfn, em, strong, th, var {
+    font-style: normal;
+    font-weight: normal;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+caption, th {
+    text-align: left;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+q:before, q:after {
+    content: '';
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+sup {
+    vertical-align: text-top;
+}
+
+sub {
+    vertical-align: text-bottom;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+input, textarea, select { *font-size:
+    100%;
+}
+
+legend {
+    color: #000;
+}
+
+h1 {
+    font-size: 138.5%;
+}
+
+h2 {
+    font-size: 123.1%;
+}
+
+h3 {
+    font-size: 108%;
+}
+
+h1, h2, h3 {
+    margin: 1em 0;
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+    font-weight: bold;
+}
+
+abbr, acronym {
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+em {
+    font-style: italic;
+}
+
+blockquote, ul, ol, dl {
+    margin: 1em;
+}
+
+ol, ul, dl {
+    margin-left: 2em;
+}
+
+ol {
+    list-style: decimal outside;
+}
+
+ul {
+    list-style: disc outside;
+}
+
+dl dd {
+    margin-left: 1em;
+}
+
+th, td {
+    padding: .5em;
+}
+
+th {
+    font-weight: bold;
+    text-align: center;
+}
+
+caption {
+    margin-bottom: .5em;
+    text-align: center;
+}
+
+p, fieldset, table, pre {
+    margin-bottom: 1em;
+}
+
+input[type = text], input[type = password], textarea {
+    width: 12.25em;
+    *width: 11.9em;
+}
+
+body {
+    font: 12px Georgia, Arial, Helvetica, sans-serif;
+    *font-size:small;
+    * font:x-small;
+}
+
+select, input, button, textarea {
+    font: 99% arial, helvetica, clean, sans-serif;
+}
+
+table {
+    font-size: inherit;
+    font: 100%;
+}
+
+pre, code, kbd, samp, tt {
+    font-family: monospace;
+    *font-size: 108%;
+    line-height:
+    100%;
+}
+
+a, a:link, a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #C80000;
+}
+
+.clear {
+    display: block;
+    overflow: hidden;
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix {
+    display: inline-table;
+}
+
+/* Hides from IE-mac \*/ * html .clearfix {
+    height: 1%;
+}
+
+.clearfix {
+    display: block;
+}
+
+/* End hide from IE-mac */ * + html .clearfix {
+    min-height: 1%;
+}
+
+.wrap {
+    position: relative;
+    z-index: 1;
+    margin: 10px auto;
+    width: 940px;
+    padding: 10px;
+    clear: both;
+    overflow: hidden;
+}
+
+.header {
+    z-index: 5;
+    margin: 0 auto;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #F8F8F8;
+    border-bottom: 1px solid #DDD;
+    font-family: Georgia, Arial, Helvetica, sans-serif;
+}
+
+.header h1 {
+    float: left;
+    margin: 0;
+    width: 400px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    font-size: 30px;
+    overflow: hidden;
+}
+
+.header h1 a:link, .header h1 a:visited, .header h1 a:hover strong {
+    color: #777;
+}
+
+.header h1 a:hover, .header h1 strong {
+    text-decoration: none;
+    color: #C86666;
+}
+
+.searchform {
+    background: none repeat scroll 0 0 #FFF;
+    border: 1px solid #DDD;
+    float: right;
+    height: 24px;
+    padding: 3px 0 3px 3px;
+    width: 318px;
+}
+
+input.keyword {
+    float: left;
+    margin: 0;
+    width: 292px;
+    height: 24px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #696969;
+    border: none;
+}
+
+.searchsubmit {
+    background: transparent url(../img/sprites.png) 6px -165px no-repeat;
+    border: 0 none;
+    cursor: pointer;
+    float: right;
+    margin: 0;
+    height: 24px;
+    width: 26px;
+}
+
+.location-nav {
+    width: 100%;
+    height: 31px;
+    line-height: 31px;
+    margin: 0 auto;
+    border-bottom: 1px solid #DDD;
+    background-color: #F4F5F7;
+    padding: 0;
+}
+
+.location-nav p {
+    margin: 0 auto;
+    width: 920px;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.menu-item {
+    float: left;
+    height: 31px;
+    padding: 0 10px 0 20px;
+    background: transparent url(../img/menu.gif) 0 -31px no-repeat;
+}
+
+.menu-home {
+    background-position: -14px -124px;
+}
+
+.container {
+    margin-top: 0;
+    overflow: visible;
+}
+
+.post-title {
+    margin: 10px auto;
+    line-height: 40px;
+    height: 40px;
+    font-size: 24px;
+    font-family: "微软雅黑", Georgia, Arial, Helvetica, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.post-metadata {
+    height: 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #DDD;
+}
+
+.post-metadata a:link, .post-metadata a:visited, .post-metadata a:hover {
+    color: #C86666;
+}
+
+.post-metadata {
+    padding: 0 10px;
+}
+
+.bypostauthor {
+    font-style: normal;
+}
+
+.post {
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    padding: 9px;
+    font-size: 14px;
+    border: 1px solid #DDD;
+    border-top-width: 3px;
+	background-color:#FFF;
+    border-bottom-width: 3px;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+    overflow: hidden;
+}
+
+.post pre {
+    margin: 0 auto;
+    border: 1px solid #DDD;
+    padding: 10px;
+    background-color: #F7F7F7;
+}
+
+.post p {
+    line-height: 150%;
+	clear:both;
+}
+
+.post-comment {
+    float: right;
+    padding-left: 20px;
+    background: transparent url(../img/sprites.png) 0 5px no-repeat;
+}
+
+.share {
+    position: absolute;
+    z-index: 2;
+    top: 120px;
+    right: -20px;
+    margin: 0;
+    width: 16px;
+    padding: 5px 5px 0;
+    border: 1px solid #DDD;
+    border-left: 4px solid #FFF;
+    overflow: hidden;
+}
+
+.share, .share a {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.share a {
+    background: url(../img/share.png) no-repeat scroll 0 0 transparent;
+    cursor: pointer;
+    display: block;
+    height: 16px;
+    text-indent: -999em;
+    width: 16px;
+    margin-bottom: 5px;
+}
+
+.share a#facebook-share {
+    background-position: 0 0;
+}
+
+.share a#twitter-share {
+    background-position: 0 -16px;
+}
+
+.share a#delicious-share {
+    background-position: 0 -32px;
+}
+
+.share a#kaixin001-share {
+    background-position: 0 -48px;
+}
+
+.share a#renren-share {
+    background-position: 0 -64px;
+}
+
+.share a#douban-share {
+    background-position: 0 -80px;
+}
+
+.share a#sina-share {
+    background-position: 0 -96px;
+}
+
+.share a#netease-share {
+    background-position: 0 -112px;
+}
+
+.share a#tencent-share {
+    background-position: 0 -128px;
+}
+
+.footer {
+    margin: 0 auto;
+    padding-top: 0;
+    text-align: center;
+    line-height: 24px;
+}
+
+.menu-footer {
+    margin: 0 auto;
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.menu-footer li {
+    display: inline;
+    padding: 0 5px;
+}
+
+.post-metadata p, .footer p {
+    margin: 0;
+}
+
+.aligncenter, .align-center, .img, .image {
+    text-align: center;
+}
+
+.related-posts {
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 260px;
+	margin-left: -513px;
+    padding: 5px;
+    width: 200px;
+    font-size: 12px;
+    border: 1px solid #DDD;
+    border-left: 3px solid #DDD;
+    background-color: #FFF;
+    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.2);
+    overflow: visible;
+}
+
+.related-posts h2 {
+	float:left;
+	margin:0;
+	width:20px;
+	padding:25px 5px;
+	height:105px;
+    text-align: center;
+    line-height: 24px;
+    border-right: 1px solid #DDD;
+    background-color: #F6F6F6;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.related-list {
+	float:right;
+    margin: 0;
+	padding-left:5px;
+	width:163px;
+	height:155px;
+	overflow:auto;
+}
+
+.related-list li {
+    list-style-type: none;
+    line-height: 30px;
+    border-bottom: 1px solid #DDD;
+}
+
+.related-list li a:link, .related-list li a:visited, .related-list li a:hover {
+    display: block;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.related-list li a:hover, .related-list li.current {
+    background-color: #F6F6F6;
+}
+
+.hide {
+    display: none;
+}

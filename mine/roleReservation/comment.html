@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-角色预定管理-已预约-评论</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/firstSrc.css"/>
+
+    <link href="../../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body style="overflow:auto;">
+
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header id="header"></header>
+
+
+    <!-- 角色信息开始 -->
+    <div style="height:100%; overflow:auto;">
+<form id="postForm">
+    <input id="evalevel" name="evalevel" type="hidden"/>
+    <input id="infoid" name="infoid" type="hidden"/>
+    <input id="type" name="type" type="hidden"/>
+    <input id="ownerid" name="ownerid" type="hidden"/>
+
+        <div class="aui-content aui-margin-b-15">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            等级:
+                        </div>
+            						<div class="aui-list-item-input">
+              							<div class="aui-list-item-input">
+                               <table id ="czy">
+                                    <tr>
+                                        <td>
+                                            <img src="../../image/startDim.png" width="70%;" height="70%;"/>
+                                        </td>
+                                        <td>
+                                            <img src="../../image/startDim.png" width="70%;" height="70%;"/>
+                                        </td>
+                                        <td>
+                                            <img src="../../image/startDim.png" width="70%;" height="70%;"/>
+                                        </td>
+                                        <td>
+                                            <img src="../../image/startDim.png" width="70%;" height="70%;"/>
+                                        </td>
+                                        <td>
+                                            <img src="../../image/startDim.png" width="70%;" height="70%;"/>
+                                        </td>
+                                    </tr>
+                                </table>
+              								  <!-- <input type="text" id="evalevel" name="evalevel" style="width:100%;border:1px solid green; height:30px;border-radius:4px;"> -->
+              							</div>
+            						</div>
+                    </div>
+                </li>
+				        <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            评论内容:
+                        </div>
+                        <div class="aui-list-item-input">
+                          <div class="aui-list-item-input">
+                              <textarea id="evainfo" name="evainfo" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
+                          </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn" style="text-align: center;">
+          					<div id="tjDiv">
+                        <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="comment()">提交</div>
+          					</div>
+                        <div class="aui-btn aui-btn-danger aui-margin-l-5" onclick="history.go(-1)">取消</div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+    </div>
+    <!-- 角色信息结束 -->
+
+    <div id="main" class="flex-con" style="margin-bottom:25px;">
+
+    </div>
+
+
+	<div id="footer" class="aui-bar aui-bar-tab">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html');" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
+        </ul>
+    </div>
+
+    <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
+<script type="text/javascript" src="../../script/bizjs/comment.js"></script>
+<script type="text/javascript" src="../../script/bizjs/header.js"></script>

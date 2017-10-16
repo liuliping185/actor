@@ -1,12 +1,23 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
-
     // 被预定列表
-    var actionURL = path + "/ActorInterface/preorder/myBePreList.action";
+    getBeBookList('');
+});
+
+
+function getBeBook(type){
+	getBeBookList(type);
+}
+
+
+function getBeBookList(type){
+
+	 var actionURL = path + "/ActorInterface/preorder/myBePreList.action";
 
     $.post(actionURL,{
         token: localStorage.token,
-        prestatus: "P"
+        prestatus: "P",
+		pretype:type
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
@@ -14,32 +25,47 @@ $(function(){
             var content = "";
             var typeImg = "";
             data.myList.forEach(function(i){
-                content += "<li class='aui-list-item'>";
+                content += "<li class='aui-list-item' >";
                 content += "<div class='aui-media-list-item-inner'>";
                 content += "<div class='aui-list-item-label'>";
-                content += "<input type='radio' class='aui-radio' value='" + i.id + "' name='preid'>" + i.id;
+                content += "<input type='radio' class='aui-radio' value='" + i.id + "' name='preid'>" ;
                 content += "</div>";
-                content += "<div class='aui-list-item-media'>";
-                content += "<img src='../../image/test-image/demo1.png'>";
+                content += "<div class='aui-list-item-media' onclick=goDetail('"+i.pretype+"','"+i.preid+"')>";
+                content += "<img src='"+i.infosimg+"'>";
                 content += "</div>";
                 content += "<div class='aui-list-item-inner'>";
                 content += "<div class='aui-list-item-text'>";
-                content += "<div class='aui-list-item-title'>" + i.prenumber + "</div>";
+
+                if(type == 'actor'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}else if(type == 'scene'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}else if(type == 'subject'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}
+
                 content += "</div>";
-                content += "<div class='aui-list-item-text'>";
-                content += "                                                                 ";
-                content += "</div>";
+
+				content += "<div class='aui-list-item-right'>价格：" + i.infosprice + "元/"+i.infosunit+"</div>";
+
+				content += "<br/><div class='aui-list-item-text'>";
+
+                content +=  i.infosdetail.substring(0,10)+"....";
+
+                content += "</div><br/>";
+
+
                 content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
                 content += "<div class='aui-info-item'>";
                 switch(i.pretype){
-                    case "actor": typeImg = "../../image/mine/actor.jpg";
+                    case "actor": typeImg = "../../image/roleDetails/actor.png";
                     break;
-                    case "scene": typeImg = "../../image/mine/scene.jpg";
+                    case "scene": typeImg = "../../image/roleDetails/scene.png";
                     break;
-                    case "subject": typeImg = "../../image/mine/subject.jpg";
+                    case "subject": typeImg = "../../image/roleDetails/subject.png";
                     break;
                 }
-                content += "<img src='" + typeImg + "' style='width:1rem' class='aui-img-round' />";
+                content += "<img src='" + typeImg + "' style='width:40px;height:20px;' />";
                 content += "<span class='aui-margin-l-5'></span>";
                 content += "</div>";
                 content += "<div class='aui-info-item'>" + i.createtime + "</div>";
@@ -68,7 +94,9 @@ $(function(){
           })
         }
     });
-});
+
+}
+
 
 var tab = new auiTab({
     element:document.getElementById("tab"),
@@ -79,12 +107,7 @@ var tab = new auiTab({
     var butContent = "";
     switch(ret.index){
         case 1:
-            prestatus = "P";
-            butContent += "<div class='aui-card-list-footer aui-border-t' style='margin 0 auto; margin-left: 20%; margin-right: 20%;'>";
-            butContent += "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='agree()'>同意</div>"
-            butContent += "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='refuse()'>拒绝</div>";
-            butContent += "</div>";
-
+              prestatus = "P";
         break;
         case 2: prestatus = "D";
         break;
@@ -92,35 +115,60 @@ var tab = new auiTab({
         break;
     }
 
+	var type = $("#selType").val();
+
 
     $.post(actionURL,{
         token: localStorage.token,
-        prestatus: prestatus
+        prestatus: prestatus,
+		pretype:type
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
         if (data.success) {
             var content = "";
+
+			if(data.myList.length>0 && prestatus == "P"){
+
+				butContent += "<div class='aui-card-list-footer aui-border-t' style='margin 0 auto; margin-left: 20%; margin-right: 20%;'>";
+				butContent += "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='agree()'>同意</div>"
+				butContent += "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='refuse()'>拒绝</div>";
+				butContent += "</div>";
+
+			}
+
             data.myList.forEach(function(i){
                 content += "<li class='aui-list-item'>";
                 content += "<div class='aui-media-list-item-inner'>";
                 content += "<div class='aui-list-item-label'>";
-                content += "<input type='radio' class='aui-radio' value='" + i.id + "' name='preid'>" + i.id;
+                content += "<input type='radio' class='aui-radio' value='" + i.id + "' name='preid'>" ;
                 content += "</div>";
-                content += "<div class='aui-list-item-media'>";
-                content += "<img src='../../image/test-image/demo1.png'>";
+                content += "<div class='aui-list-item-media'  onclick=goDetail('"+i.pretype+"','"+i.preid+"')>";
+                content += "<img src='"+i.infosimg+"'>";
                 content += "</div>";
                 content += "<div class='aui-list-item-inner'>";
                 content += "<div class='aui-list-item-text'>";
-                content += "<div class='aui-list-item-title'>" + i.preid + "</div>";
-                content += "<div class='aui-list-item-right'>" + i.createtime + "</div>";
+                content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+                content += "<div class='aui-list-item-right'>价格：" + i.infosprice + "元/"+i.infosunit+"</div>";
                 content += "</div>";
-                content += "<div class='aui-list-item-text'>";
-                content += "这里是内容区域，新版中的列表布局可以很轻松的帮助开发者完成常见列表样式。";
-                content += "</div>";
+                content += "<br/><div class='aui-list-item-text'>";
+
+                content +=  i.infosdetail.substring(0,10)+"....";
+
+                content += "</div><br/>";
                 content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
                 content += "<div class='aui-info-item'>";
-                content += "<img src='../../image/test-image/liulangnan.png' style='width:1rem' class='aui-img-round' />";
+
+				 switch(i.pretype){
+                    case "actor": typeImg = "../../image/roleDetails/actor.png";
+                    break;
+                    case "scene": typeImg = "../../image/roleDetails/scene.png";
+                    break;
+                    case "subject": typeImg = "../../image/roleDetails/subject.png";
+                    break;
+                }
+
+                content += "<img src='" + typeImg + "' style='width:40px;height:20px;' />";
                 content += "<span class='aui-margin-l-5'></span>";
                 content += "</div>";
                 content += "<div class='aui-info-item'>" + i.createtime + "</div>";
@@ -128,6 +176,8 @@ var tab = new auiTab({
                 content += "</div>";
                 content += "</div>";
                 content += "</li>";
+
+
             })
 
             content += butContent;
@@ -210,4 +260,18 @@ function refuse(){
         })
       }
   });
+}
+
+
+function goDetail(type,id){
+
+	var url = "";
+	if(type == "actor"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "scene"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "subject"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}
+	window.location.href=url;
 }

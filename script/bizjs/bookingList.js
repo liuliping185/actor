@@ -2,12 +2,28 @@ $(function(){
     $('body').height($('body')[0].clientHeight);
 
     console.log(localStorage.token);
-    // 待预定列表
+
+	getBeBookList('');
+
+});
+
+
+function getType(type){
+
+	getBeBookList(type);
+
+}
+
+function getBeBookList(type){
+
+
+	   // 待预定列表
     var actionURL = path + "/ActorInterface/preorder/myPreList.action";
 
     $.post(actionURL,{
         token:localStorage.token,
-        prestatus: "W"
+        prestatus: "W",
+		pretype:type
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
@@ -16,35 +32,48 @@ $(function(){
             var flag = 0;
             var typeImg = "";
             data.myList.forEach(function(i){
-                content += "<li class='aui-list-item'>";
+              // onclick=goDetail('"+i.pretype+"','"+i.preid+"')
+                content += "<li class='aui-list-item' >";
                 content += "<div class='aui-media-list-item-inner'>";
                 content += "<div class='aui-list-item-label'>";
-                content += "<input type='checkbox' class='aui-checkbox' value='" + i.prenumber + "' name='preid'>";
+                content += "<input type='checkbox' class='aui-checkbox' value='" + i.id + "' name='preid'>";
                 content += "</div>";
                 content += "<div class='aui-list-item-media'>";
-                content += "<img src='../../image/test-image/demo1.png'>";
+                content += "<img src='"+i.infosimg+"'>";
                 content += "</div>";
                 content += "<div class='aui-list-item-inner'>";
                 content += "<div class='aui-list-item-text'>";
-                content += "<div class='aui-list-item-title'>" + i.id + "</div>";
+
+				if(type == 'actor'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}else if(type == 'scene'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}else if(type == 'subject'){
+					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
+				}
+
+
                 content += "</div>";
                 content += "<div class='aui-list-item-text'>";
                 content += "                                                     ";
                 content += "</div>";
+
+				content += "<br/>"
+
                 content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
                 content += "<div class='aui-info-item'>";
                 switch(i.pretype){
-                    case "actor": typeImg = "../../image/mine/actor.jpg";
+                    case "actor": typeImg = "../../image/roleDetails/actor.png";
                     break;
-                    case "scene": typeImg = "../../image/mine/scene.jpg";
+                    case "scene": typeImg = "../../image/roleDetails/scene.png";
                     break;
-                    case "subject": typeImg = "../../image/mine/subject.jpg";
+                    case "subject": typeImg = "../../image/roleDetails/subject.png";
                     break;
                 }
-                content += "<img src='" + typeImg + "' style='width:1rem' class='aui-img-round' />";
+                content += "<img src='" + typeImg + "' style='width:40px;height:20px;' />";
                 content += "<span class='aui-margin-l-5'></span>";
                 content += "</div>";
-                content += "<div class='aui-info-item'>" + i.createtime + "</div>";
+                content += "<div class='aui-info-item'>价格：" + i.infosprice + "元/"+i.infosunit+"</div>";
                 content += "</div>";
                 content += "</div>";
                 content += "</div>";
@@ -54,9 +83,9 @@ $(function(){
             })
 
             if(0 !== flag){
-                content += "<div class='aui-card-list-footer aui-border-t' style='margin 0 auto; margin-left: 20%; margin-right: 20%;'>";
-                content += "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='confirm()'>提交</div>"
-                content += "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel()'>取消</div>";
+                content += "<div class='aui-card-list-footer aui-border-t' style='margin 0 auto; margin-left: 20%;  margin-right: 20%;'>";
+                content += "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='confirm()'>提交预约</div>"
+                content += "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel()'>删除</div>";
                 content += "</div>";
             }
 
@@ -72,7 +101,10 @@ $(function(){
           })
         }
     });
-});
+
+
+}
+
 
 // 提交
 function confirm(){
@@ -89,8 +121,9 @@ function confirm(){
             msg:'',
             buttons:['确定']
         },function(ret){
-            window.location.reload();
-        })
+
+        });
+		return false;
     }
 
     console.log(ids);
@@ -181,4 +214,17 @@ function cancel(){
           })
         }
     });
+}
+
+function goDetail(type,id){
+
+	var url = "";
+	if(type == "actor"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "scene"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}else if(type == "subject"){
+		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
+	}
+	window.location.href=url;
 }

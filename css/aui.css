@@ -1812,7 +1812,7 @@ input[type="search"]::-webkit-search-cancel-button {
     display: -webkit-box;
     -webkit-box-pack: center;
     -webkit-box-align: center;
-    height: 2.2rem;
+    height: 2.0rem;
     overflow: hidden;
     width: 100%;
     background-color: #ebeced;
@@ -1825,7 +1825,8 @@ input[type="search"]::-webkit-search-cancel-button {
 }
 .aui-searchbar-input {
     margin: 0 0.5rem;
-	background-color: #ffffff;
+		/*background-color: #ffffff;*/
+		color: #ffffff;
     border-radius: 0.25rem;
     height: 1.4rem;
     line-height: 1.4rem;
@@ -1850,7 +1851,7 @@ input[type="search"]::-webkit-search-cancel-button {
     font-size: 0.7rem;
 }
 .aui-searchbar input::-webkit-input-placeholder {
-	color: #ccc;
+	color: #ffffff;
 }
 .aui-searchbar .aui-iconfont {
     line-height: 1.4rem;

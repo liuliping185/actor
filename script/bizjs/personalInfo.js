@@ -8,6 +8,7 @@ $(function(){
         token:localStorage.token,
       }, function(data) {
         var data = JSON.parse(data);
+        console.log(data);
         if (data.success) {
             $("#loginname").val(data.memberinfo.loginname);
             $("#birthday").val(data.memberinfo.birthday);
@@ -82,9 +83,46 @@ $(function(){
       //rows: 3}
 });
 
+apiready = function() {
+api.addEventListener({
+    name:'clip_success'
+}, function(ret, err){
+    if( ret ){
+         var jsonstr= JSON.stringify(ret);
+		//  alert(jsonstr);
+        // var urlObj = ret.value;
+
+					var imgSrc = ret.value.new_img_url;
+          // alert(imgSrc);
+
+                    var img1=new Image();
+                    img1.crossOrigin = '';
+                    img1.src = imgSrc;
+                    img1.style = "width: 100%; height: 100%;";
+
+                    img1.onload = function() {
+                      if(img1.complete){
+                        //  alert(img1.complete);
+                         database = getBase64Image(img1);
+
+                         $("#idcardFront_").val(database);
+                         $('#idcardFront').attr('src', database);
+                      }
+                    };
+    }else{
+         alert( JSON.stringify( err ) );
+    }
+});
+}
+
 // 完善个人信息开始
 
 function perfectPersonalInfo(){
+    var phone = $("#phone").val();
+    var email = $("#email").val();
+    var banknumber = $("#banknumber").val();
+    console.log(phone);
+
     if("" != phone && !/^1[3,5,7,8,9]\d{9}$/.test(phone) ){
         dialog.alert({
             title:"手机号格式不正确！",
@@ -129,6 +167,7 @@ function perfectPersonalInfo(){
 				    alert("error");
 				},
 				success : function(data) {
+          var data = JSON.parse(data);
   					if(data.success){
                 dialog.alert({
                     title: data.message,
@@ -137,8 +176,7 @@ function perfectPersonalInfo(){
                 },function(ret){
 
                     if(ret){
-
-
+                        window.location.href="info.html";
                     }
                 });
   					}else{
@@ -159,61 +197,7 @@ function perfectPersonalInfo(){
 // 上传图片开始
 // 单张图片上传，可拍照
 function showAction(num){
-  console.log(num)
-//   var UIMediaScanner = api.require('UIMediaScanner');
-//   UIMediaScanner.open({
-//     type: 'picture',
-//     column: 4,
-//     classify: true,
-//     max: 4,
-//     sort: {
-//       key: 'time',
-//       order: 'desc'
-//     },
-//     texts: {
-//       stateText: '已选择*项',
-//       cancelText: '取消',
-//       finishText: '完成'
-//     },
-//     styles: {
-//       bg: '#fff',
-//       mark: {
-//         icon: '',
-//         position: 'bottom_left',
-//         size: 20
-//       },
-//       nav: {
-//         bg: '#eee',
-//         stateColor: '#000',
-//         stateSize: 18,
-//         cancelBg: 'rgba(0,0,0,0)',
-//         cancelColor: '#000',
-//         cancelSize: 18,
-//         finishBg: 'rgba(0,0,0,0)',
-//         finishColor: '#000',
-//         finishSize: 18
-//       }
-//     },
-//     scrollToBottom: {
-//       intervalTime: 3,
-//       anim: true
-//     },
-//     exchange: true,
-//     rotation: true
-//   }, function(ret) {
-//     if (ret) {
-//       $("#headerimgload").html("");
-//       for(var i=0; i<ret.list.length; i++){
-//         alert(ret.list[i].path);
-//         $("#headerimgload").append("<img style='width:100%;height:100%;' src='ret.list[i].path'/>");
-//       }
-//       // $('#headerimg').attr('src', ret.list[0].path);
-//       // for(var i=0; i<ret.list.length; i++){
-//       //   alert(ret.list[i]);
-//       // }
-//       alert(JSON.stringify(ret));
-//     }
-//   });
+    console.log(num)
     api.actionSheet({
         title: '上传图片',
         cancelTitle: '取消',
@@ -255,10 +239,13 @@ function getPicture(sourceType, num) {
                 targetHeight: 750
             }, function(ret, err) {
                 if (ret) {
-                  alert(JSON.stringify(ret));
+                  // alert(JSON.stringify(ret));
                   if("1" === num){
-                      $("#idcardFront_").val(ret.base64Data);
-                      $('#idcardFront').attr('src', ret.base64Data);
+                      // $("#idcardFront_").val(ret.base64Data);
+                      // $('#idcardFront').attr('src', ret.base64Data);
+
+                      openImageClipFrame(ret.data);
+
                   }else if("2" === num){
                       $("#idcardBack_").val(ret.base64Data);
                       $('#idcardBack').attr('src', ret.base64Data);
@@ -274,3 +261,30 @@ function getPicture(sourceType, num) {
 }
 
 // 上传图片结束
+
+function openImageClipFrame(img_src){
+  api.openFrame({
+    name : 'main',
+    scrollToTop : true,
+    allowEdit : true,
+    url : '../photoCut.html',
+    rect : {
+      x : 0,
+      y : 0,
+      w : api.winWidth,
+      h : api.winHeight,
+    },
+    animation : {
+      type : "reveal", //动画类型（详见动画类型常量）
+      subType : "from_right", //动画子类型（详见动画子类型常量）
+      duration : 300
+    },
+    pageParam : {
+      img_src : img_src,
+    },
+    vScrollBarEnabled : false,
+    hScrollBarEnabled : false,
+    //页面是否弹动 为了下拉刷新使用
+    bounces : false
+  });
+}

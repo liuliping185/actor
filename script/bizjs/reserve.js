@@ -64,7 +64,32 @@ function reserve(){
     $("#pretype").val(pretype);
     $("#ownerid").val(ownerid);
 
+    var prestart = $("#prestart").val();
+    var preend = $("#preend").val();
     var prephone = $("#prephone").val();
+
+    if(!prestart){
+        dialog.alert({
+            title:"请输入开始时间！",
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+
+        })
+    		return false;
+  	}
+
+    if(!preend){
+        dialog.alert({
+            title:"请输入结束时间！",
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+
+        })
+    		return false;
+  	}
+
     if("" != prephone && !/^1[3,5,7,8,9]\d{9}$/.test(prephone) ){
         dialog.alert({
             title:"手机号格式不正确！",
@@ -89,10 +114,18 @@ function reserve(){
 				},
 				success : function(data) {
             var data = JSON.parse(data);
+            console.log(data);
   					if(data.success){
                 alert("预约成功");
                 window.location.href = "actorDetails.html?role=" + pretype + "&id=" + preid;
   					}else{
+                dialog.alert({
+                    title:data.message,
+                    msg:'',
+                    buttons:['确定']
+                },function(ret){
+
+                })
   					}
 				}
     });

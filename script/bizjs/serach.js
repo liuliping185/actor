@@ -9,14 +9,12 @@ $(document).ready(function(){
         console.log(data)
         if (data.success) {
             var hotWords = "";
-
             data.infoList.forEach(function(i){
                 hotWords += "<div style='float:left; display: block; height:30%; background-color:#F0F0F0; margin-left:13%; margin-top: 1%;'>";
-                hotWords += "<h4 onclick=getkeyWords('" + i.keywords + "')>" + i.keywords + "<h4>";
+        			 	hotWords += "<div class='aui-label aui-label-success'><span  onclick=getkeyWords('" + i.keywords + "')><h4>"+ i.keywords +"</h4></span></div>";
                 hotWords += "</div>";
             })
-
-            $("#hotWords").html(hotWords);
+              $("#hotWords").html(hotWords);
         }else{
           dialog.alert({
               title:data.message,
@@ -37,8 +35,9 @@ function getkeyWords( keywords ){
 
 // 搜索
 function serach(){
+    var role = $("#role").val();
     var keywords = $("#search-input").val();
-    window.location.href = "serachInfo.html?keywords=" + keywords;
+    window.location.href = "serachInfo.html?keywords=" + keywords + "&role=" + role;
 }
 
 // 搜索框开始

@@ -1,4 +1,3 @@
-<!-- 1302927007 -->
 <!doctype html>
 <html>
 <head>
@@ -11,71 +10,92 @@
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
 
-	 <link href="./css/slider.css" rel="stylesheet">
+	<link href="./css/slider.css" rel="stylesheet">
     <script src="http://down.hovertree.com/jquery/jquery-1.12.4.min.js"></script>
     <script src="http://hovertree.com/ziyuan/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-	<style>
-
-
-	</style>
-
-
+    <style>
+      input::-webkit-input-placeholder {
+9         /* placeholder颜色  */
+10         color: #ffffff;
+11         /* placeholder字体大小  */
+/*12         font-size: 12px;*/
+13         /* placeholder位置  */
+/*14         text-align: right;*/
+15     }
+    </style>
 
 </head>
 <body>
-<div id="wrap" class="flex-wrap flex-vertical">
-    <!-- <header>
-        <ul>
-            <li class="border-b active" >协拍中国</li>
-            <li class="border-b" >发现</li>
-            <li class="border-b" >搜索</li>
-            <li class="border-b" >我的</li>
-        </ul>
-    </header> -->
+<input id="annid" hidden="true"/>
+<div id="wrap" class="flex-wrap flex-vertical" >
+    <!-- <div style="overflow:auto;"> -->
     <header style="margin 0 auto;">
-        <div style="float:left; width:10%; margin-top: 2%;">
-            <select style=" color:#ADADAD;">
-                <option style="color:#ADADAD;" value="">北京</option>
-                <option style=" color:#ADADAD;" value="">上海</option>
-                <option style=" color:#ADADAD;" value="">广州</option>
-            </select>
-        </div>
-        <div style="float:left;width:85%; margin: 2%; height:25%; display: block;">
-            <div class="aui-searchbar" id="search">
-                <div class="aui-searchbar-input aui-border-radius">
-                    <i class="aui-iconfont aui-icon-search"></i>
-                    <input type="search" placeholder="请输入搜索内容" id="search-input">
-                    <div class="aui-searchbar-clear-btn">
-                        <i class="aui-iconfont aui-icon-close"></i>
+        <div style=" position:relative; z-index:2;">
+            <div style="float:left; width:13%; margin-top: 2%;margin-left:18px;">
+              <table align="center">
+                <tr>
+                  <td>
+                      <table>
+                      <tr>
+                      <td>
+                          <select style=" color:#ffffff;">
+                              <option style=" color:#ADADAD;" value="">北京</option>
+                              <option style=" color:#ADADAD;" value="">上海</option>
+                              <option style=" color:#ADADAD;" value="">广州</option>
+                          </select>
+                      </td>
+                      <td>
+                        &nbsp;
+                      </td>
+                      <td>
+                        <img src="image/index/sj.png" style="width:10px;height:10px;">
+                      </td>
+                      </tr>
+                      </table>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <div style="float:left;width:75%; margin-left: 3%;margin-top:2.5%; height:25%; display: block;">
+                <div class="aui-searchbar" style="border-radius:40px;margin-top:7px;background-color:rgba(255,255,255,0.3);background-image: url(../image/index/search.png);" id="search">
+                    <div class="aui-searchbar-input aui-border-radius">
+                        <!-- <i class="aui-iconfont aui-icon-search"></i> -->
+                        <input type="search" style="color:#ffffff;" placeholder="请输入搜索内容" id="search-input"; >
+
+
+                        <div class="aui-searchbar-clear-btn" style="width:10%;height:80%;">
+                            <i class="aui-iconfont aui-icon-close"></i>
+                        </div>
                     </div>
+                    <div class="aui-searchbar-btn" tapmode>取消</div>
                 </div>
-                <div class="aui-searchbar-btn" tapmode>取消</div>
+                <!-- <hr style="height:1px;width:95%;border:none;border-top:1px solid #ffffff;opacity:0.5" /> -->
             </div>
         </div>
     </header>
 
-    <div style="overflow:auto; height:100%; padding-bottom:50px;">
+    <div style="position:absolute;z-index:1;overflow:auto; height:100%; padding-bottom:60px; background-color:#f4f4f4;">
         <!-- 第一栏区开始  -->
 
-        <div class="row">
+        <div  style="width:100%;"  >
             <!--轮播图-->
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                    <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
                 </ol>
                 <div class="carousel-inner" role="listbox" >
-                    <div class="item active">
-                        <img src="slider/1.jpg" style="height:150px;" alt="图片不存在">
+                    <div class="item active" >
+                        <img src="slider/WechatIMG17.jpeg" style="height:200px; width:100%;" alt="图片不存在">
                     </div>
                     <div class="item">
-                        <img src="slider/2.jpg" style="height:150px;" alt="图片不存在">
+                        <img src="slider/WechatIMG16.jpeg" style="height:200px; width:100%;" alt="图片不存在">
                     </div>
-                    <div class="item">
-                        <img src="slider/3.jpg" style="height:150px;" alt="图片不存在">
-                    </div>
+                    <!-- <div class="item">
+                        <img src="slider/3.jpg" style="height:200px;" alt="图片不存在">
+                    </div> -->
                 </div>
 
 
@@ -88,15 +108,23 @@
         <!-- 第一栏区结束  -->
 
         <!-- 第二栏区开始  -->
-        <div id="second" style="width:100%;">
-            <ul class="flex-wrap" style="margin-top:15px;">
-                <li tapmode="hover" onclick="scenes( this, 'scene' );" class="flex-con" ><font style="font-family: STKaiti">找场景</font></li>
-                <li tapmode="hover" onclick="scenes( this, 'actor' );" class="flex-con" ><font style="font-family: STKaiti">找演员</font></li>
-                <li tapmode="hover" onclick="scenes( this, 'subject' );" class="flex-con" ><font style="font-family: STKaiti">找道具</font></li>
+        <div id="second" style="width:100%;background-color:#ffffff;margin:0;text-align:center;">
+            <div style="width:88%;">
+            <ul class="flex-wrap" style="margin-left:30px;">
+                <li tapmode="hover" style="margin-top:20px;margin-left:10px;padding-bottom:20px;" onclick="scenes( this, 'scene' );" class="flex-con" >
+                  <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:14px">找场景</font></span>
+                </li>
+                <li tapmode="hover" style="margin-top:20px;" onclick="scenes( this, 'actor' );" class="flex-con" >
+                  <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:14px">找演员</font></span>
+                </li>
+                <li tapmode="hover" style="margin-top:20px;margi-right:20px;" onclick="scenes( this, 'subject' );" class="flex-con" >
+                  <span style="margin-top:18px;"><font style="font-family:苹方;color:#505050;font-size:14px">找道具</font></span>
+                </li>
                 <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找编剧</li>
                 <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找导演</li>
                 <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找制片</li> -->
             </ul>
+          </div>
             <!-- <ul class="flex-wrap" style="margin-top:15px;">
                 <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找服装</li>
 
@@ -108,40 +136,85 @@
         <!-- 第二栏区结束  -->
 
         <!-- 第三栏区开始  -->
-        <div style="margin: 0 auto; padding-top:15px; width:100%; height:7.5%; background-color:#F0F0F0">
-            <div style="float:left; width: 85%; ">
-                <p onclick="announce()" id="theHeadlines"style="margin: 0 auto;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 19em;/">
-					<table >
-						<tr>
-						<td width="50%" style="text-align:right">
-							<font style="font-family: STKaiti">协拍中国</font><font color="red" style="font-family: STKaiti">热点头条：</font>
-						</td>
-						<td width="50%">
-						<font style="font-family: STKaiti"><marquee scrollAmount=2   onmouseover=stop() onmouseout=start() id="ann" align="left" scrolldelay="5" ></marquee></font></td>
-						</tr>
-					</table>
+        <div style="margin: 0 auto; margin-top:10px; width:100%;background-color:#ffffff;">
+            <div style="width: 100%; ">
+                <p onclick="announce()" id="theHeadlines"style="margin: 0 auto;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 25.5em;/">
+					<!-- <table > -->
+						<!-- <tr> -->
+              <!-- <td width="15%;" style="text-align:right">
+                <img src="image/index/xiepai.png"/>
+              </td> -->
+
+              <!-- <td width="5%;" style="text-align:right"> -->
+              <!-- <font style="margin-left:5px;" color="red" size="3px" style="font-family: 苹方;">热点头条：</font> -->
+  						<!-- </td> -->
+  						<!-- <td width="100%"> -->
+                <span style="font-size:16px;width:20%;margin-top:0px;height:30px;line-height:30px; ">
+                  <font color="#505050" style="font-family:苹方;font-size:14px;">协拍头条</font>
+                </span>
+                <span style="position:relative;background:#green;width:75%;height:30px;line-height:27px; vertical-align:middle;">
+                  <marquee scrollAmount=10 onmouseover=stop() onmouseout=start()  algin="center;" scrolldelay="4" >
+                    <font id="ann" color="#9d9d9d" style="font-family: 苹方;font-size:10px;" onclick="annDetail()">
+                    </font>
+                  </marquee>
+                </span>
+                <!-- <span style="font-size:12px;width:60%;margin-top:0px;">
+
+                    <marquee height="28" valign="middle" scrollAmount=10 onmouseover=stop() onmouseout=start()  algin="center;" scrolldelay="10" >
+                      <font id="ann" color="#505050" style="font-family: 苹方;height:28px;" onclick="annDetail()">
+                        </font>
+                    </marquee>
+
+                </span> -->
+  						  <!-- <span style="width:60%;"><font size="3px" style="font-family: 苹方; color:#505050;" onclick="annDetail()"><marquee scrollAmount=2 onmouseover=stop() onmouseout=start() id="ann" align="left" scrolldelay="5" ></marquee></font></span> -->
+              <!-- </td> -->
+						<!-- </tr>
+					</table> -->
                 </p>
             </div>
-            <div style="float:left; display: block; width:10%; margin: 0 auto;">
-                <p onclick="announce()"><font style="font-family: STKaiti">&nbsp;&nbsp;详情</font></p>
-            </div>
+            <!-- <div style="float:left; display: block; width:10%; margin: 0 auto;">
+                <p onclick="announce()"><font size="2px" style="font-family: 苹方">&nbsp;&nbsp;详情</font></p>
+            </div> -->
         </div>
         <!-- 第三栏区结束  -->
 
         <!-- 第四栏开始  -->
-        <div style="width:100%; height:25%; margin-top:10px;">
-          <div style="height:100%;" id="imgInfos"></div>
-          <!-- <div style='float:left; display: block; width:47.5%; height:100%;'>
-             <span style="width:100%; height:80%; background-image: url(./image/index/left.jpeg); background-size:100%;"></span>
-                 <p style="height:15%; margin-left:5%;">112121</p>
+        <div style="width:100%;height:100%;background-color:#ffffff;margin-top:5px;">
+          <div style="margin-left:18px;">
+              <font color="#505050" style="font-family:苹方;font-size:14px;"><span style="margin-top:10px;">热门推荐</span></font>
           </div>
-          <div style='float:left; display: block; width:47.5%; height:100%;'>
+          <div style="width:100%; height:50px;background-size:100%;">
+              <div style="float:left;width:50px; margin-left:18px; margin-top:10px;">
+                  <img src="image/mine/headingImg.jpg" onclick="javascript:window.location.href='../mine/headerImg.html'" style="width:100%; height:100%; border-radius:50%" id="img"/>
+              </div>
+              <div style="float:left;width:60%;margin-left:15px;margin-top:15px;">
+                  <span style="width:50px;height:20px;font-family: 苹方;font-size:15px;color:#505050">周杰伦</span>
+                  <span style="height:20px;font-family: 苹方;font-size:12px;color:#9d9d9d">男</span>
+                  <div style="padding:0;width:100%;font-family: 苹方;font-size:12px;color:#9d9d9d">22岁</div>
+              </div>
+              <div style="float:left;width:50px; margin-left:18px; margin-top:10px;">
+                  <img src="image/mine/headingImg.jpg"/>
+              </div>
+          </div>
+          <div style="height:40%;" id="imgInfos">
+            <div style='float:left; display: block; width:95%; height:100%;'>
+               <div style="float:left;width:100%; height:80%; background-image: url(./image/index/actor.png); background-size:100%;">
+
+               </div>
+               <div style="float:left;margin-top:-80px;width:100%; height:80px;background-color:rgba(0,0,0,0.1);background-size:100%;">
+
+               </div>
+            </div>
+          <!-- </div> -->
+          <!-- <div style='float:left; display: block; width:47.5%; height:100%;'>
              <span style="width:100%; height:80%; background-image: url(./image/index/right.jpeg); background-size:100%;"></span>
                  <p style="height:15%; margin-left:5%;">112121</p>
           </div> -->
         </div>
         <!-- 第四栏结束  -->
     </div>
+
+    <!-- </div> -->
 
     <!-- 第五栏开始  -->
     <!-- <div style="width:100p%; height:15%; background-color:#000000">
@@ -150,14 +223,20 @@
     <div id="main" class="flex-con">
 
     </div>
-    <div id="footer" class="border-t">
+
+
+
+    <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con active" >协拍中国</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html' );" class="flex-con" >发现</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con" >搜索</li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" >我的</li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'index.html' );" class="flex-con active" >  <div class="aui-bar-tab-label">&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'find.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'serach.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, './mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
         </ul>
     </div>
+
+
+
     <!-- 第五栏结束  -->
 
 </div>
@@ -168,9 +247,3 @@
 <script type="text/javascript" src="script/aui-dialog.js" ></script>
 <script type="text/javascript" src="script/common/common.js"></script>
 <script type="text/javascript" src="script/bizjs/index.js"></script>
-
-<script type="text/javascript">
-
-
-
-</script>

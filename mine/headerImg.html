@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-头像上传</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/firstSrc.css"/>
+
+    <script type="text/javascript" src="../script/api.js"></script>
+    <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="../script/common/common.js"></script>
+
+    <script type="text/javascript" src="../script/bizjs/headerImg.js"></script>
+    <script type="text/javascript" src="../script/bizjs/header.js"></script>
+
+
+</head>
+<body>
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header id="header" ></header>
+
+	<form id="postForm">
+    <input id="headerimg_" name="headerimg" hidden="true"/>
+
+	<!-- 个人信息开始 -->
+    <div style="overflow:auto; height:100%; padding-buttom:50px;">
+    <div class="aui-content aui-margin-b-15">
+        <ul class="aui-list aui-form-list">
+
+            <li class="aui-list-item">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-label">
+                        头像
+                    </div>
+                    <div class="aui-list-item-input">
+                      <div class="aui-list-item-input">
+
+                        <div id="wrap">
+                            <div id="imgUpload" class="imgBox" style="overflow:auto; position:relative;border:1px solid #DODODO; display:block;">
+                            </div>
+
+                              <div style="margin-bottom:20px;">
+                                  <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction()">
+                                      <img id="headerImg" src="../image/addPic.png"/>
+                                  </div>
+                              </div>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+            </li>
+            <li class="aui-list-item">
+                <div class="aui-card-list-footer aui-border-t" style="margin 0 auto; margin-left:25%; margin-right: 20%; text-align: center;">
+                    <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="perfectPersonalInfo()">提交</div>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="aui-btn aui-btn-danger aui-margin-l-5" onclick="history.go(-1)">取消</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+  </div>
+</form>
+    <!-- 个人信息结束 -->
+
+    <div id="main" style="margin-bottom:25px;">
+
+    </div>
+
+	<div id="footer" class="aui-bar aui-bar-tab">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, 'info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
+        </ul>
+    </div>
+
+    <!-- 第五栏结束  -->
+
+
+
+
+
+</div>
+</body>
+</html>

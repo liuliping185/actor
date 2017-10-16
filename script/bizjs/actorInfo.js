@@ -2,38 +2,182 @@
 var multipleGraphsList = [];
 $("#imgUpload").html("");
 var role = GetQueryString("role");
+console.log(role)
+var id = GetQueryString("id");
+var infoid = "";
+var smallid = "";
+
+var multipleGraphsList2 = [];
 
 $(function(){
-    // console.log(localStorage.token)
-    $('body').height($('body')[0].clientHeight);
-    // 获取session
-    $.post(path + "/ActorInterface/member/getSessionMember.action",{
-        token:localStorage.token,
+
+
+	 $.post(path + "/ActorInterface/index/findBigType.action",{
+
+        typeinfo: 'actor'
       }, function(data) {
         var data = JSON.parse(data);
-        console.log(data)
+
         if (data.success) {
-            $("#realname").val(data.memberinfo.realname);
-            // $("#nickname").val(data.memberinfo.nickname);
-            // $(".sex:checked").val(data.memberinfo.sex);
-            // $("#age").val(data.memberinfo.age);
-            // $("#infos").val(data.memberinfo.infos);
-            // $("#height").val(data.memberinfo.height);
-            // $("#weight").val(data.memberinfo.weight);
-            // $("#experience").val(data.memberinfo.experience);
-            $("#birthday").val(data.memberinfo.birthday);
-            // $("#provience").val(data.memberinfo.provience);
-            // $("#city").val(data.memberinfo.city);
-        }else{
-          dialog.alert({
-              title:data.message,
-              msg:'',
-              buttons:['确定']
-          },function(ret){
-              console.log(ret)
-          })
-        }
-    });
+
+			 data.infoList.forEach(function(i){
+
+				$("#bigtype").append("<option value="+i.id+">"+i.bigname+"</option>");
+
+			 });
+
+		}
+
+	  });
+
+
+    $('body').height($('body')[0].clientHeight);
+
+	if(id!=null){
+
+			var actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + id;
+
+			console.log(actionUrl);
+			$.post(actionUrl,{
+				token:localStorage.token
+			  }, function(data) {
+				var data = JSON.parse(data);
+				console.log(data)
+				// alert(JSON.stringify(data));
+				if (data.success) {
+
+					switch(role){
+						case "actor":
+							$("#realname").val(data.actinfo.realname);
+							$("#nickname").val(data.actinfo.nickname);
+
+							var sex = data.actinfo.sex;
+							if(sex == '女'){
+								$("#women").prop("checked",true);
+							}else{
+								$("#man").prop("checked",true);
+							}
+
+							var selDiv = "";
+
+							selDiv+="<div  id='distpicker3' >";
+
+							selDiv+="<table>";
+							selDiv+="<tr>";
+							selDiv+="<td>";
+							selDiv+="      <select  id='provience' name='provience'></select>";
+							selDiv+=" </td>";
+							selDiv+="<td>";
+							selDiv+="	&nbsp;";
+							selDiv+="</td>";
+							selDiv+="<td>";
+							selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+							selDiv+="</td>";
+							selDiv+="</tr>";
+							selDiv+="</table>";
+							selDiv+="";
+							selDiv+="<table>";
+							selDiv+="<tr>";
+							selDiv+="<td>";
+							selDiv+="      <select id='city' name='city'></select>";
+							selDiv+=" </td>";
+							selDiv+="<td>";
+							selDiv+="	&nbsp;";
+							selDiv+="</td>";
+							selDiv+="<td>";
+							selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+							selDiv+="</td>";
+							selDiv+="</tr>";
+							selDiv+="</table>";
+							selDiv+="";
+							selDiv+="<table>";
+							selDiv+="<tr>";
+							selDiv+="<td>";
+							selDiv+="      <select  id='district' name='district'></select>";
+							selDiv+=" </td>";
+							selDiv+="<td>";
+							selDiv+="	&nbsp;";
+							selDiv+="</td>";
+							selDiv+="<td>";
+							selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+							selDiv+="</td>";
+							selDiv+="</tr>";
+							selDiv+="</table>";
+							selDiv+=" </div>";
+
+							$("#disDiv").html(selDiv);
+
+
+							var provience = data.actinfo.provience;
+							var city = data.actinfo.city;
+							var district = data.actinfo.district;
+
+							$("#distpicker3").distpicker({
+								  province: provience,
+								  city: city,
+								  district: district
+							});
+
+
+							$("#age").val(data.actinfo.age);
+							$("#height").val(data.actinfo.height);
+							$("#weight").val(data.actinfo.weight);
+							$("#birthday").val(data.actinfo.birthday);
+							$("#experience").val(data.actinfo.experience);
+							$("#infos").val(data.actinfo.infos);
+							$("#price").val(data.actinfo.price);
+							$("#keywords").val(data.actinfo.keywords);
+
+							$("#hi_evaSum").val(data.actinfo.evaSum);
+							$("#hi_goodSum").val(data.actinfo.goodSum);
+							$("#hi_professionalScore").val(data.actinfo.professionalScore);
+							$("#hi_serviceScore").val(data.actinfo.serviceScore);
+							$("#hi_attentionSum").val(data.actinfo.attentionSum);
+							$("#hi_firstimg").val(data.actinfo.firstimg);
+							$("#hi_actorstatus").val(data.actinfo.actorstatus);
+							$("#hi_memberid").val(data.actinfo.memberid);
+							$("#hi_createtime").val(data.actinfo.createtime);
+
+
+							$("#unit").val(data.actinfo.unit);
+
+
+							$("#bigtype").val(data.actinfo.bigid);
+							smallid = data.actinfo.smallid;
+							getSmallType(data.actinfo.bigid);
+
+
+							// $("#isfollow").prop("checked", true);
+
+
+
+							data.imgs.forEach(function(i){
+								var image = new Image();
+								image.crossOrigin = '';
+								image.id = i.id;
+								image.src = i.imgpath;
+								image.style = "width: 100%; height: 100%;";
+
+								$("#imgUpload").append(image);
+								$("#imgUpload").append("<span name=" + i.id +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic_edit('" + i.id + "')>删除</button></div></span>");
+
+
+								var jsonArray = {base64Data:i.imgpath,fileId:i.id};
+								multipleGraphsList2.push(jsonArray);
+
+
+							});
+
+
+
+						break;
+					}
+				}
+			});
+
+
+	}
+
 
     var currYear = (new Date()).getFullYear();
     var opt={};
@@ -56,39 +200,35 @@ $(function(){
       $("#birthdayTime").mobiscroll(optDateTime).datetime(optDateTime);
       $("#appTime").mobiscroll(optTime).time(optTime);
 
-    //下面注释部分是上面的参数可以替换改变它的样式
-    //希望一起研究插件的朋友加我个人QQ也可以，本人也建个群 291464597 欢迎进群交流。哈哈。这个不能算广告。
-    // 直接写参数方法
-    //$("#scroller").mobiscroll(opt).date();
-    // Shorthand for: $("#scroller").mobiscroll({ preset: 'date' });
-    //具体参数定义如下
-      //{
-      //preset: 'date', //日期类型--datatime --time,
-      //theme: 'ios', //皮肤其他参数【android-ics light】【android-ics】【ios】【jqm】【sense-ui】【sense-ui】【sense-ui】
-                  //【wp light】【wp】
-      //mode: "scroller",//操作方式【scroller】【clickpick】【mixed】
-      //display: 'bubble', //显示方【modal】【inline】【bubble】【top】【bottom】
-      //dateFormat: 'yyyy-mm-dd', // 日期格式
-      //setText: '确定', //确认按钮名称
-      //cancelText: '清空',//取消按钮名籍我
-      //dateOrder: 'yymmdd', //面板中日期排列格
-      //dayText: '日',
-      //monthText: '月',
-      //yearText: '年', //面板中年月日文字
-      //startYear: (new Date()).getFullYear(), //开始年份
-      //endYear: (new Date()).getFullYear() + 9, //结束年份
-      //showNow: true,
-      //nowText: "明天",  //
-      //showOnFocus: false,
-      //height: 45,
-      //width: 90,
-      //rows: 3}
-
 });
 
+//删除图片
+function delpic_edit(imgId){
+  $("#" + imgId).remove();
+  $("span[name=" + imgId + "]").html("");
+  deleteData_edit(imgId);
+}
+
+//删除方法
+function deleteData_edit(fileId) {
+		// alert(fileId);
+
+        var files = multipleGraphsList2;
+        for (var i = 0; i < files.length; i++) {
+            var cur_file = files[i];
+            if (cur_file.fileId == fileId) {
+                multipleGraphsList2.splice(i, 1);
+            }
+        }
+
+}
+
+
 /** 编辑角色信息 **/
-function editRoleInfo(){
-    var infoid = GetQueryString("infoid");
+function personalRoleManage(){
+
+
+
     var provience = $("#provience").val();
     var city = $("#city").val();
     var area = $("#area").val();
@@ -184,30 +324,138 @@ function editRoleInfo(){
         return false;
     }
 
+
+	$("#tjBtu").remove();
+	$("#tjDiv").html("<div class='aui-btn  aui-margin-r-5' id='dis_tjBtu'>提交</div>");
+
     var actionURL = "";
 
-    if(infoid){
+    if(id!=null){
         actionURL = path + "/ActorInterface/actor/actorUpdate.action?token=" + localStorage.token + "&role=" + role;
+		$("#hi_id").val(id);
+
+
+		//重新组装方法
+		var newmultipleGraphsList = [];
+		multipleGraphsList2.forEach(function(i){
+
+			var newObj = {base64Data:i.base64Data}
+			newmultipleGraphsList.push(newObj);
+		});
+		if($("#multipleGraphsList").val() != ""){
+			var newList = JSON.parse($("#multipleGraphsList").val());
+
+			newList.forEach(function(j){
+				var newObj2 = {base64Data:j.base64Data}
+				newmultipleGraphsList.push(newObj2);
+			});
+
+		}
+		var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
+        $("#multipleGraphsList").val(hi_jsonStr);
+
+
     }else{
         actionURL = path + "/ActorInterface/actor/actorApply.action?token=" + localStorage.token + "&role=" + role;
     }
 
-    $.ajax({
+
+	var toast = new auiToast();
+	toast.loading({
+    title:"正在提交",
+    duration:2000
+	},function(ret){
+		setTimeout(function(){
+			  $.ajax({
 				cache : true,
 				type  : "POST",
 				url   : actionURL,
 				data  :$('#postForm').serialize(),
 				async : true,
 				error : function(request) {
-				    alert("error");
+							 toast.hide();
+
+							 toast.fail({
+								title:"提交失败",
+								duration:2000
+							 });
+
+							 $("#dis_tjBtu").remove();
+							 $("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
 				},
 				success : function(data) {
-            var data = JSON.parse(data);
-  					if(data.success){
-                window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
-  					}else{
-  					}
+
+						var data = JSON.parse(data);
+						if(data.success){
+
+							 toast.hide();
+
+							 toast.success({
+								title:"提交成功",
+								duration:2000
+							 });
+
+							setTimeout(function(){window.location.href = "../personalRoleManage/personalRoleManage.html";}, 2000);
+
+
+						}else{
+
+							 toast.hide();
+
+							 toast.fail({
+								title:"提交失败",
+								duration:2000
+							 });
+
+							$("#dis_tjBtu").remove();
+							$("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
+
+						}
+
 				}
-    });
-    //window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
+			});
+
+		}, 3000)
+	});
+
+
+
 }
+
+
+function getSmallType(bigid){
+
+	 $.post(path + "/ActorInterface/index/findSmallType.action",{
+         bigid: bigid
+      }, function(data) {
+        var data = JSON.parse(data);
+        if (data.success) {
+			 data.infoList.forEach(function(i){
+
+				$("#smalltype").append("<option value="+i.id+">"+i.smallname+"</option>");
+
+			 });
+
+			  if(smallid!=""){
+				   $("#smalltype").val(smallid);
+			  }
+		  }
+	  });
+}
+
+//$(function(){
+  //var docHeight = $(document).height(); //获取窗口高度
+  // $('body').append('<div id="overlay"></div>');
+  // $('#overlay')
+  //   .height(docHeight)
+  //   .css({
+  //     'opacity': .9, //透明度
+  //     'position': 'absolute',
+  //     'top': 0,
+  //     'left': 0,
+  //     'background-color': 'grey',
+  //     'width': '100%',
+  //      'z-index': 5000 //保证这个悬浮层位于其它内容之上
+  //   });
+  //  setTimeout(function(){$('#overlay').fadeOut('slow')}, 3000); //设置3秒后覆盖层自动淡出
+//});

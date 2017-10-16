@@ -3,14 +3,14 @@ $(function(){
 });
 
 // 申请角色
-function applicationRoles(){
-    var role = $("#role").val();
+function applicationRoles(role){
+    // var role = $("#role").val();
     console.log(role)
-    if("1" === role){
+    if("actor" === role){
         window.location.href = "actorInfo.html?role=" + role;
-    }else if("2" === role){
+    }else if("scene" === role){
         window.location.href = "sceneInfo.html?role=" + role;
-    }else if("3" === role){
+    }else if("subject" === role){
         window.location.href = "subjectInfo.html?role=" + role;
     }else{
         dialog.alert({

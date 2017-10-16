@@ -2,184 +2,309 @@
 var multipleGraphsList = [];
 $("#imgUpload").html("");
 var role = GetQueryString("role");
+var id = GetQueryString("id");
+var infoid = "";
+var smallid = "";
+
+var multipleGraphsList2 = [];
 
 $(function(){
-    // console.log(localStorage.token)
-    $('body').height($('body')[0].clientHeight);
-    // 获取session
-    $.post(path + "/ActorInterface/member/getSessionMember.action",{
-        token:localStorage.token,
+
+
+   $.post(path + "/ActorInterface/index/findBigType.action",{
+        typeinfo: 'scene'
       }, function(data) {
         var data = JSON.parse(data);
-        console.log(data)
         if (data.success) {
-            $("#realname").val(data.memberinfo.realname);
-            // $("#nickname").val(data.memberinfo.nickname);
-            // $(".sex:checked").val(data.memberinfo.sex);
-            // $("#age").val(data.memberinfo.age);
-            // $("#infos").val(data.memberinfo.infos);
-            // $("#height").val(data.memberinfo.height);
-            // $("#weight").val(data.memberinfo.weight);
-            // $("#experience").val(data.memberinfo.experience);
-            $("#birthday").val(data.memberinfo.birthday);
-            // $("#provience").val(data.memberinfo.provience);
-            // $("#city").val(data.memberinfo.city);
-        }else{
-          dialog.alert({
-              title:data.message,
-              msg:'',
-              buttons:['确定']
-          },function(ret){
-              console.log(ret)
-          })
-        }
-    });
+			 data.infoList.forEach(function(i){
 
-    var currYear = (new Date()).getFullYear();
-    var opt={};
-    opt.date = {preset : 'date'};
-    //opt.datetime = { preset : 'datetime', minDate: new Date(2012,3,10,9,22), maxDate: new Date(2014,7,30,15,44), stepMinute: 5  };
-    opt.datetime = {preset : 'datetime'};
-    opt.time = {preset : 'time'};
-    opt.default = {
-      theme: 'android-ics light', //皮肤样式
-          display: 'modal', //显示方式
-          mode: 'scroller', //日期选择模式
-      lang:'zh',
-          startYear:currYear - 200, //开始年份
-          endYear:currYear + 10 //结束年份
-    };
+				$("#bigtype").append("<option value="+i.id+">"+i.bigname+"</option>");
 
-    $("#birthday").val('').scroller('destroy').scroller($.extend(opt['date'], opt['default']));
-      var optDateTime = $.extend(opt['datetime'], opt['default']);
-      var optTime = $.extend(opt['time'], opt['default']);
-      $("#birthdayTime").mobiscroll(optDateTime).datetime(optDateTime);
-      $("#appTime").mobiscroll(optTime).time(optTime);
+			 });
+		}
+	  });
 
-    //下面注释部分是上面的参数可以替换改变它的样式
-    //希望一起研究插件的朋友加我个人QQ也可以，本人也建个群 291464597 欢迎进群交流。哈哈。这个不能算广告。
-    // 直接写参数方法
-    //$("#scroller").mobiscroll(opt).date();
-    // Shorthand for: $("#scroller").mobiscroll({ preset: 'date' });
-    //具体参数定义如下
-      //{
-      //preset: 'date', //日期类型--datatime --time,
-      //theme: 'ios', //皮肤其他参数【android-ics light】【android-ics】【ios】【jqm】【sense-ui】【sense-ui】【sense-ui】
-                  //【wp light】【wp】
-      //mode: "scroller",//操作方式【scroller】【clickpick】【mixed】
-      //display: 'bubble', //显示方【modal】【inline】【bubble】【top】【bottom】
-      //dateFormat: 'yyyy-mm-dd', // 日期格式
-      //setText: '确定', //确认按钮名称
-      //cancelText: '清空',//取消按钮名籍我
-      //dateOrder: 'yymmdd', //面板中日期排列格
-      //dayText: '日',
-      //monthText: '月',
-      //yearText: '年', //面板中年月日文字
-      //startYear: (new Date()).getFullYear(), //开始年份
-      //endYear: (new Date()).getFullYear() + 9, //结束年份
-      //showNow: true,
-      //nowText: "明天",  //
-      //showOnFocus: false,
-      //height: 45,
-      //width: 90,
-      //rows: 3}
+		if(id!=null){
+
+			  var actionUrl = path + "/ActorInterface/scene/getSceneById.action?sceneId=" + id;
+
+
+			  $.post(actionUrl,{
+				  token:localStorage.token
+				}, function(data) {
+				  var data = JSON.parse(data);
+				  console.log(data)
+				  // alert(JSON.stringify(data));
+				  if (data.success) {
+
+
+					  $("#scenename").val(data.sceneinfo.scenename);
+					  $("#sceneinfos").val(data.sceneinfo.sceneinfos);
+					  $("#price").val(data.sceneinfo.price);
+					  $("#keywords").val(data.sceneinfo.keywords);
+					  $("#address").val(data.sceneinfo.address);
+
+					  $("#bigtype").val(data.sceneinfo.bigid);
+					  smallid = data.sceneinfo.smallid;
+					  getSmallType(data.sceneinfo.bigid);
+
+					  //隐藏域字段
+					  $("#hi_evaSum").val(data.sceneinfo.evaSum);
+					  $("#hi_goodSum").val(data.sceneinfo.goodSum);
+					  $("#hi_professionalScore").val(data.sceneinfo.professionalScore);
+					  $("#hi_serviceScore").val(data.sceneinfo.serviceScore);
+					  $("#hi_attentionSum").val(data.sceneinfo.attentionSum);
+					  $("#hi_firstimg").val(data.sceneinfo.firstimg);
+					  $("#hi_scenestatus").val(data.sceneinfo.scenestatus);
+					  $("#hi_memberid").val(data.sceneinfo.memberid);
+					  $("#hi_createtime").val(data.sceneinfo.createtime);
+
+					  $("#unit").val(data.sceneinfo.unit);
+
+					  data.imgs.forEach(function(i){
+						  var image = new Image();
+						  image.crossOrigin = '';
+						  image.id = i.id;
+						  image.src = i.imgpath;
+						  image.style = "width: 100%; height: 100%;";
+						  $("#imgUpload").append(image);
+						  $("#imgUpload").append("<span name=" + i.id +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic_edit('" + i.id + "')>删除</button></div></span>");
+
+						   var jsonArray = {base64Data:i.imgpath,fileId:i.id};
+							multipleGraphsList2.push(jsonArray)
+					 });
+				  }
+			  });
+
+		}
+
+
 
 });
 
+//删除图片
+function delpic_edit(imgId){
+  $("#" + imgId).remove();
+  $("span[name=" + imgId + "]").html("");
+  deleteData_edit(imgId);
+}
+
+//删除方法
+function deleteData_edit(fileId) {
+		alert(fileId);
+
+        var files = multipleGraphsList2;
+        for (var i = 0; i < files.length; i++) {
+            var cur_file = files[i];
+            if (cur_file.fileId == fileId) {
+                multipleGraphsList2.splice(i, 1);
+            }
+        }
+
+}
+
+
 /** 编辑角色信息 **/
-function editRoleInfo(){
-    var infoid = GetQueryString("role");
-    // var provience = $("#provience").val();
-    // var city = $("#city").val();
-    // var area = $("#area").val();
-    //
-    // if("" === provience){
-    //   dialog.alert({
-    //       title:"请选择所在省",
-    //       msg:'',
-    //       buttons:['确定']
-    //   },function(ret){
-    //
-    //   })
-  	// 	return false;
-    // }
-    //
-    // if("" === city){
-    //   dialog.alert({
-    //       title:"请选择所在市",
-    //       msg:'',
-    //       buttons:['确定']
-    //   },function(ret){
-    //
-    //   })
-  	// 	return false;
-    // }
-    //
-    // if("" === provience){
-    //   dialog.alert({
-    //       title:"请选择所在省",
-    //       msg:'',
-    //       buttons:['确定']
-    //   },function(ret){
-    //
-    //   })
-    //   return false;
-    // }
-    //
-    // if("" === area){
-    //   dialog.alert({
-    //       title:"请选择所在市",
-    //       msg:'',
-    //       buttons:['确定']
-    //   },function(ret){
-    //
-    //   })
-    //   return false;
-    // }
+function personalRoleManage(){
+  var keywords = $("#keywords").val();
+  var sceneinfos = $("#sceneinfos").val();
+  var price = $("#price").val();
+  var bigtype = $("#bigtype").val();
+  var smalltype = $("#smalltype").val();
+  var scenename = $("#scenename").val();
+
+  if(!/\d$/.test(price)){
+      dialog.alert({
+          title:"价格必须是数字！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!keywords){
+      dialog.alert({
+          title:"请输入关键字！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+  if(!sceneinfos){
+      dialog.alert({
+          title:"请输入场景信息！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!bigtype){
+      dialog.alert({
+          title:"请输入大类！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!smalltype){
+      dialog.alert({
+          title:"请输入小类！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!scenename){
+      dialog.alert({
+          title:"请输入场景名称！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+   if(!$("#multipleGraphsList").val() && !infoid){
+       dialog.alert({
+           title:"请上传图片",
+           msg:'',
+           buttons:['确定']
+       },function(ret){
+       })
+       return false;
+   }
 
 
-
-    if(!$("#multipleGraphsList").val() && !infoid){
-        dialog.alert({
-            title:"请上传图片",
-            msg:'',
-            buttons:['确定']
-        },function(ret){
-
-        })
-        return false;
-    }
+ 	$("#tjBtu").remove();
+	$("#tjDiv").html("<div class='aui-btn  aui-margin-r-5' id='dis_tjBtu'>提交</div>");
 
     var actionURL = "";
 
-    if(infoid){
-        actionURL = path + "/ActorInterface/scene/sceneApply.action?token=" + localStorage.token + "&role=" + role;
+    if(id!=null){
+		actionURL = path + "/ActorInterface/scene/sceneUpdate.action?token=" + localStorage.token + "&role=" + role;
+		$("#hi_id").val(id);
+
+		//重新组装方法
+		var newmultipleGraphsList = [];
+		multipleGraphsList2.forEach(function(i){
+
+			var newObj = {base64Data:i.base64Data}
+			newmultipleGraphsList.push(newObj);
+		});
+		if($("#multipleGraphsList").val() != ""){
+			var newList = JSON.parse($("#multipleGraphsList").val());
+
+			newList.forEach(function(j){
+				var newObj2 = {base64Data:j.base64Data}
+				newmultipleGraphsList.push(newObj2);
+			});
+
+		}
+		var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
+        $("#multipleGraphsList").val(hi_jsonStr);
+
+
     }else{
-        actionURL = path + "/ActorInterface/scene/sceneUpdate.action?token=" + localStorage.token + "&role=" + role;
+         actionURL = path + "/ActorInterface/scene/sceneApply.action?token=" + localStorage.token + "&role=" + role;
     }
 
-    $.ajax({
+
+
+	var toast = new auiToast();
+	toast.loading({
+    title:"正在提交",
+    duration:2000
+	},function(ret){
+		setTimeout(function(){
+			  $.ajax({
 				cache : true,
 				type  : "POST",
 				url   : actionURL,
 				data  :$('#postForm').serialize(),
 				async : true,
 				error : function(request) {
-				    alert("error");
+							 toast.hide();
+
+							 toast.fail({
+								title:"提交失败",
+								duration:2000
+							 });
+
+							 $("#dis_tjBtu").remove();
+							 $("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
 				},
 				success : function(data) {
-            var data = JSON.parse(data);
-  					if(data.success){
-                window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
-  					}else{
-  					}
+
+						var data = JSON.parse(data);
+						if(data.success){
+
+							 toast.hide();
+
+							 toast.success({
+								title:"提交成功",
+								duration:2000
+							 });
+
+							setTimeout(function(){window.location.href = "../personalRoleManage/personalRoleManage.html";}, 2000);
+
+
+						}else{
+
+							 toast.hide();
+
+							 toast.fail({
+								title:"提交失败",
+								duration:2000
+							 });
+
+							$("#dis_tjBtu").remove();
+							$("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
+
+						}
+
 				}
-    });
-    //window.location.href = "../personalRoleManage/editRoleInfo.html?role=" + role;
+			});
+
+		}, 3000)
+	});
+
+
+
 }
-//
-// var tab = new auiTab({
-//     element:document.getElementById("tab"),
-// },function(ret){
-//
-// });
+
+
+
+function getSmallType(bigid){
+
+	 $.post(path + "/ActorInterface/index/findSmallType.action",{
+
+        bigid: bigid
+      }, function(data) {
+        var data = JSON.parse(data);
+
+        if (data.success) {
+
+			 data.infoList.forEach(function(i){
+
+				$("#smalltype").append("<option value="+i.id+">"+i.smallname+"</option>");
+
+			 });
+
+			 if(smallid!=""){
+				   $("#smalltype").val(smallid);
+			 }
+
+		}
+
+	  });
+
+
+}

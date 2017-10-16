@@ -1,8 +1,17 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
 
+        console.log(localStorage.token);
+
         if(!localStorage.token){
-            window.location.href="../login.html";
+          dialog.alert({
+              title:"请登录!",
+              msg:'',
+              buttons:['确定']
+              },function(ret){
+             window.location.href="../login.html";
+          })
+          return false;
         }
 
         $.post(path + "/ActorInterface/member/getSessionMember.action",{
@@ -22,14 +31,15 @@ $(function(){
                     $('#img').attr('src', data.memberinfo.headerimg);
                 }
                 $("#birthday").val(data.memberinfo.birthday);
-            }else{
+            }else{ 
               dialog.alert({
-                  title:"当前登录人获取失败,请登录",
+                  title:"请登录!",
                   msg:'',
                   buttons:['确定']
                   },function(ret){
-                  window.location.href="../login.html";
+                 window.location.href="../login.html";
               })
+              return false;
             }
         });
 });
