@@ -105,8 +105,26 @@ api.addEventListener({
                         //  alert(img1.complete);
                          database = getBase64Image(img1);
 
-                         $("#idcardFront_").val(database);
-                         $('#idcardFront').attr('src', database);
+                         $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                             imgpath:database
+                           }, function(data) {
+                             var data = JSON.parse(data);
+
+                             if (data.success) {
+                               var idcardFront = $("#idcardFront_").val();
+                               var idcardBack = $("#idcardBack_").val();
+
+                               if(idcardFront){
+                                 $("#idcardFront_").val(data.imgpath);
+                                 $('#idcardFront').attr('src', data.imgpath);
+                               }
+
+                               if(idcardBack){
+                                 $("#idcardBack_").val(data.imgpath);
+                                 $('#idcardBack').attr('src', data.imgpath);
+                               }
+                             }
+                         });
                       }
                     };
     }else{
@@ -221,8 +239,15 @@ function getPicture(sourceType, num) {
             saveToPhotoAlbum: true
         }, function(ret, err) {
             if (ret) {
-                $("#imgBase64").val(ret.base64Data);
-                $('#headerimg').attr('src', ret.base64Data);
+              if("1" === num){
+                  openImageClipFrame(ret.data);
+                  $("#idcardFront_").val(ret.base64Data);
+
+
+              }else if("2" === num){
+                  openImageClipFrame(ret.data);
+                  $("#idcardBack_").val(ret.base64Data);
+              }
             }else {
                 alert(JSON.stringify(err));
             }
@@ -241,17 +266,13 @@ function getPicture(sourceType, num) {
                 if (ret) {
                   // alert(JSON.stringify(ret));
                   if("1" === num){
-                      // $("#idcardFront_").val(ret.base64Data);
-                      // $('#idcardFront').attr('src', ret.base64Data);
-
                       openImageClipFrame(ret.data);
+                      $("#idcardFront_").val(ret.base64Data);
+
 
                   }else if("2" === num){
+                      openImageClipFrame(ret.data);
                       $("#idcardBack_").val(ret.base64Data);
-                      $('#idcardBack').attr('src', ret.base64Data);
-                  }else if("3" === num){
-                      $("#headerimg_").val(ret.base64Data);
-                      $('#headerimg').attr('src', ret.base64Data);
                   }
                 } else {
                     alert(JSON.stringify(err));
@@ -261,30 +282,3 @@ function getPicture(sourceType, num) {
 }
 
 // 上传图片结束
-
-function openImageClipFrame(img_src){
-  api.openFrame({
-    name : 'main',
-    scrollToTop : true,
-    allowEdit : true,
-    url : '../photoCut.html',
-    rect : {
-      x : 0,
-      y : 0,
-      w : api.winWidth,
-      h : api.winHeight,
-    },
-    animation : {
-      type : "reveal", //动画类型（详见动画类型常量）
-      subType : "from_right", //动画子类型（详见动画子类型常量）
-      duration : 300
-    },
-    pageParam : {
-      img_src : img_src,
-    },
-    vScrollBarEnabled : false,
-    hScrollBarEnabled : false,
-    //页面是否弹动 为了下拉刷新使用
-    bounces : false
-  });
-}

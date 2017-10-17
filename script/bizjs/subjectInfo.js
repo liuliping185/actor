@@ -103,6 +103,58 @@ $(function(){
 
 });
 
+apiready = function() {
+api.addEventListener({
+    name:'clip_success'
+}, function(ret, err){
+    if( ret ){
+         var jsonstr= JSON.stringify(ret);
+		//  alert(jsonstr);
+        // var urlObj = ret.value;
+
+					var imgSrc = ret.value.new_img_url;
+          // alert(imgSrc);
+
+                    var img1=new Image();
+                    img1.crossOrigin = '';
+                    img1.src = imgSrc;
+                    img1.style = "width: 100%; height: 100%;";
+
+                    img1.onload = function() {
+                      if(img1.complete){
+                        //  alert(img1.complete);
+                         database = getBase64Image(img1);
+
+                         $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                             imgpath:database
+                           }, function(data) {
+                             var data = JSON.parse(data);
+
+                             if (data.success) {
+																 var lunboimg = $("#lunboimg_").val();
+	                               var firstimg = $("#firstimg_").val();
+
+	                               if(lunboimg){
+	                                 $("#lunboimg_").val(data.imgpath);
+	                                 $('#lunboimg').attr('src', data.imgpath);
+	                               }
+
+	                               if(firstimg){
+	                                 $("#firstimg_").val(data.imgpath);
+	                                 $('#firstimg').attr('src', data.imgpath);
+	                               }
+                             }
+                         });
+
+
+                      }
+                    };
+    }else{
+         alert( JSON.stringify( err ) );
+    }
+});
+}
+
 
 //删除图片
 function delpic_edit(imgId){
@@ -356,3 +408,73 @@ function getSmallType(bigid){
 
 
 }
+
+// 上传图片开始
+// 单张图片上传，可拍照
+function showAction(num){
+    console.log(num)
+    api.actionSheet({
+        title: '上传图片',
+        cancelTitle: '取消',
+        buttons: ['拍照','从手机相册选择']
+    }, function(ret, err) {
+        if (ret) {
+            getPicture(ret.buttonIndex, num);
+        }
+    });
+}
+
+function getPicture(sourceType, num) {
+    if(sourceType==1){ // 拍照
+        api.getPicture({
+            sourceType: 'camera',
+            encodingType: 'jpg',
+            mediaValue: 'pic',
+            allowEdit: false,
+            destinationType: 'base64',
+            quality: 90,
+            saveToPhotoAlbum: true
+        }, function(ret, err) {
+            if (ret) {
+							if("1" === num){
+									openImageClipFrame(ret.data);
+									$("#lunboimg_").val(ret.base64Data);
+
+
+							}else if("2" === num){
+									openImageClipFrame(ret.data);
+									$("#firstimg_").val(ret.base64Data);
+							}
+            }else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    else if(sourceType==2){ // 从相机中选择
+        api.getPicture({
+                sourceType: 'library',
+                encodingType: 'jpg',
+                mediaValue: 'pic',
+                destinationType: 'base64',
+                quality: 50,
+                targetWidth: 750,
+                targetHeight: 750
+            }, function(ret, err) {
+                if (ret) {
+										if("1" === num){
+												openImageClipFrame(ret.data);
+												$("#lunboimg_").val(ret.base64Data);
+
+
+										}else if("2" === num){
+												openImageClipFrame(ret.data);
+												$("#firstimg_").val(ret.base64Data);
+										}
+                } else {
+                    alert(JSON.stringify(err));
+                }
+        });
+    }
+}
+
+// 上传图片结束

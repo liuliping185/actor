@@ -79,6 +79,7 @@ function openImageClip(img_src){
         h: rect_h - 30
     },
     srcPath: img_src,
+    highDefinition: true,
     style: {
       //（可选项）字符串类型；图片裁剪控件遮罩层背景，支持 rgb，rgba，#；默认：#888
       mask: 'rgba(90,90, 54, 0.5)',
@@ -86,7 +87,7 @@ function openImageClip(img_src){
         //（可选项）数字类型；裁剪区域的宽度，当 appearance 为 circular 时，w 为半径；默认：rect.w / 2
         w: clip_w,
         //（可选项）数字类型；裁剪区域的高度，当 appearance 为 circular 时，h 无效；默认：w
-        h: clip_w,
+        h: 210,
         x: 0,
         y: clip_y,
         borderColor: '#0f0',

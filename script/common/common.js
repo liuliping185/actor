@@ -1,6 +1,6 @@
 
-// var path = "http://192.168.0.129:8080";
-var path = "http://47.93.224.28:8089";
+var path = "http://192.168.0.129:8080";
+// var path = "http://47.93.224.28:8089";
 var dialog = new auiDialog();
 
 apiready = function () {
@@ -273,7 +273,7 @@ function getBase64Image(img) {
             canvas.height = img.naturalHeight;
 			var ctx = canvas.getContext("2d").drawImage(img, 0, 0);
 			var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
-			var dataURL = canvas.toDataURL("image/"+ext,quality/100);
+			var dataURL = canvas.toDataURL("image/"+ext,1);
 			return dataURL;
 }
 
@@ -314,4 +314,32 @@ function getBase64Image(img) {
 // 返回上一页
 function back(){
     window.history.go(-1);
+}
+
+// 截图功能
+function openImageClipFrame(img_src){
+  api.openFrame({
+    name : 'main',
+    scrollToTop : true,
+    allowEdit : true,
+    url : '../photoCut.html',
+    rect : {
+      x : 0,
+      y : 0,
+      w : api.winWidth,
+      h : api.winHeight,
+    },
+    animation : {
+      type : "reveal", //动画类型（详见动画类型常量）
+      subType : "from_right", //动画子类型（详见动画子类型常量）
+      duration : 300
+    },
+    pageParam : {
+      img_src : img_src,
+    },
+    vScrollBarEnabled : false,
+    hScrollBarEnabled : false,
+    //页面是否弹动 为了下拉刷新使用
+    bounces : false
+  });
 }

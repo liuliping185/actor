@@ -15,6 +15,8 @@
     <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
 </head>
 <body style="overflow:auto;">
+<input id="lunboimg_" type="hidden"/>
+<input id="firstimg_" type="hidden"/>
 
 <div id="wrap" class="flex-wrap flex-vertical">
     <header id="header"></header>
@@ -106,7 +108,7 @@
 							<td>  <input type="text" id="price" name="price" style="width:90%;border:1px solid green; height:30px;border-radius:4px;"/> </td>
 							<td>
 								  <select name="unit" style="width:50px;" id="unit">
-									  <option vlaue="">请选择</option>
+									  <option vlaue="">单位</option>
 									 <option value="分钟">分钟</option>
 									 <option value="小时">小时</option>
 									 <option value="天">天</option>
@@ -126,11 +128,67 @@
                         </div>
                     </div>
                 </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            所在地区：
+                        </div>
+                        <div class="aui-list-item-input" id="disDiv">
+
+                          <div data-toggle="distpicker" id="distpicker3" >
+
+              <table>
+              <tr>
+              <td>
+                                <select data-province="选择省" id="provience" name="provience"></select>
+               </td>
+              <td>
+                &nbsp;
+              </td>
+              <td>
+                <img src="../../image/sj.png" style="width:10px;height:10px;">
+              </td>
+              </tr>
+              </table>
+
+              <table>
+              <tr>
+              <td>
+                                <select data-city="选择市" id="city" name="city"></select>
+               </td>
+              <td>
+                &nbsp;
+              </td>
+              <td>
+                <img src="../../image/sj.png" style="width:10px;height:10px;">
+              </td>
+              </tr>
+              </table>
+
+              <table>
+              <tr>
+              <td>
+                                <select data-district="选择区" id="district" name="district"></select>
+               </td>
+              <td>
+                &nbsp;
+              </td>
+              <td>
+                <img src="../../image/sj.png" style="width:10px;height:10px;">
+              </td>
+              </tr>
+              </table>
+
+                          </div>
+
+                        </div>
+                    </div>
+                </li>
 
 				<li class="aui-list-item">
                     <div class="aui-list-item-inner">
                         <div class="aui-list-item-label">
-                            场景地址：
+                            详细地址：
                         </div>
                         <div class="aui-list-item-input">
                           <div class="aui-list-item-input">
@@ -167,6 +225,41 @@
                     </div>
                 </li>
 
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            轮播图片：
+                        </div>
+                        <div class="aui-list-item-input">
+                            <div class="aui-list-item-input">
+
+                                    <div style="margin-bottom:20px;">
+                                        <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('1')">
+                                            <img id="lunboimg" src="../image/addPic.png"/>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+                        <div class="aui-list-item-label">
+                            封面图片：
+                        </div>
+                        <div class="aui-list-item-input">
+                            <div class="aui-list-item-input">
+
+                                    <div style="margin-bottom:20px;">
+                                        <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('2')">
+                                            <img id="firstimg" src="../image/addPic.png"/>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
                 <li class="aui-list-item">
                     <div class="aui-list-item-inner">
@@ -222,10 +315,10 @@
 
 	<div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html');" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html');" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label"></div></li>
         </ul>
     </div>
 

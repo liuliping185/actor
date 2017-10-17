@@ -71,104 +71,306 @@ function doSomething(infoList, imgList){
           if(2 >= flag){
               switch(i.type){
                   case "actor":
+
+                  imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
+                  imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
+                  imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+                  imgInfos += "</div>";
+
+                  imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
+                  imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
+                  // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
+                  imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+                  imgInfos += "</div>";
+                  imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                  imgInfos += " <img src='../image/index/actor.png'/>";
+                  imgInfos += "</div>";
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+                  // if(0 != flag%2){
+                  //     imgInfos += "<div style='margin-left:15px;margin-top:5px;float:left; display: block; width:92%; height:100%; border:1px solid #E0E0E0'>";
+                  // }else{
+                  imgInfos += "<div style='width:95%;margin-top:10px;float:left; display: block;padding-bottom:10px;'>";
+                  // }
+                  // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
+                  // imgInfos += "<span style='margin-left:15px;'>";
+                  imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+                  // imgInfos += "</span>";
+                  // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
+                  // imgInfos += "</div>";
+
+                  // imgInfos += "<span style='float:left; z-index:2; left:10px; margin-top:0px'>";
+                  // imgInfos += createtime;
+                  // imgInfos += "</span>";
+                  // imgInfos += "</span>";
+                  imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+                  imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
+
+                  imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
+
+                  imgInfos += "<span style='width:57%;text-align:right;'><span style=''>";
+                  imgInfos += "<img src='image/noteT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='image/laudW.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='image/startT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span></span>"
+
+                  imgInfos += "</div>";
+
+                  imgInfos += "</div>";
+
+
+                  imgInfos +=  "<br/><div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+
+
+
+
+                      // // imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                      // // imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                      // // imgInfos +=  "</div>";
+                      // imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.nickname + "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                      // imgInfos += "</p>"
+                      // imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+                      //
+                      // var d = new Date(i.createtime);
+                      // var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                      //
+                      // imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                      // imgInfos += "<span style='margin-left: 22%;'>";
+                      // imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      // imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                      // imgInfos += "</span>"
+                      // imgInfos += "<span style='margin-left: 5%;'>";
+                      // imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      // imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                      // imgInfos += "</span>"
+                      // imgInfos += "<span style='margin-left: 5%;'>";
+                      // imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                      // imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                      // imgInfos += "</span>"
+                      // imgInfos += "</p>"
+                      // imgInfos += "</div>";
                       // imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
                       // imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
                       // imgInfos +=  "</div>";
-                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.nickname + "<span style='margin-left:75%;'>" + "￥100" + "</span>";
-                      imgInfos += "</p>"
-                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
-
-                      var d = new Date(i.createtime);
-                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-
-                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                      imgInfos += "<span style='margin-left: 22%;'>";
-                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "</p>"
-                      imgInfos += "</div>";
-                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                      imgInfos +=  "</div>";
-                      //分割线
+                      // //分割线
 
                   break;
                   case "scene":
-                  // if(1 === flag){
-                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+
+                  imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
+                  imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
+                  imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+                  imgInfos += "</div>";
+
+
+                      imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
+                      imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
+                      // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
+                      imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+                      imgInfos += "</div>";
+                      imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                      imgInfos += " <img src='../image/index/scene.png'/>";
+                      imgInfos += "</div>";
+
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+
+
+
+
+                  // if(0 != flag%2){
+                  //     imgInfos += "<div style='margin-left:15px;margin-top:5px;float:left; display: block; width:92%; height:100%; border:1px solid #E0E0E0'>";
                   // }else{
+                  imgInfos += "<div style='width:95%;margin-top:10px;float:left; display: block;padding-bottom:10px;'>";
+                  // }
+                  // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
+                  // imgInfos += "<span style='margin-left:15px;'>";
+                  imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+                  // imgInfos += "</span>";
+                  // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
+                  // imgInfos += "</div>";
+
+                  // imgInfos += "<span style='float:left; z-index:2; left:10px; margin-top:0px'>";
+                  // imgInfos += createtime;
+                  // imgInfos += "</span>";
+                  // imgInfos += "</span>";
+                  imgInfos += "<img src='../image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+                  imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
+
+                  imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
+
+                  imgInfos += "<span style='width:57%;text-align:right;'><span style=''>";
+                  imgInfos += "<img src='../image/noteT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='../image/laudW.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='../image/startT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span></span>"
+
+                  imgInfos += "</div>";
+
+                  imgInfos += "</div>";
+
+
+                  imgInfos +=  "<br/><div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+
+
+                  // // if(1 === flag){
+                  // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // // }else{
+                  // //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  // //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  // //     imgInfos +=  "</div>";
+                  // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // // }
+                  //     imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                  //     imgInfos += "</p>"
+                  //     imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+                  //
+                  //     var d = new Date(i.createtime);
+                  //     var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                  //
+                  //     imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                  //     imgInfos += "<span style='margin-left: 22%;'>";
+                  //     imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "<span style='margin-left: 5%;'>";
+                  //     imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "<span style='margin-left: 5%;'>";
+                  //     imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "</p>"
+                  //     imgInfos += "</div>";
                   //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
                   //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
                   //     imgInfos +=  "</div>";
-                  //     imgInfos += "<div style='width:100%; height:100%;'>";
-                  // }
-                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
-                      imgInfos += "</p>"
-                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
-
-                      var d = new Date(i.createtime);
-                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
-
-                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                      imgInfos += "<span style='margin-left: 22%;'>";
-                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "</p>"
-                      imgInfos += "</div>";
-                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                      imgInfos +=  "</div>";
                   break;
                   case "subject":
-                  // if(1 === flag){
-                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+
+                  var price = "";
+
+                  i.saleprice ? price = i.saleprice :
+                      i.rentprice ? price = i.rentprice : price = "";
+                  imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
+                  imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
+                  imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+                  imgInfos += "</div>";
+
+                  imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
+                  imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
+                  // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
+                  imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "</div>";
+                  imgInfos += "</div>";
+                  imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                  imgInfos += " <img src='../image/index/subject.png'/>";
+                  imgInfos += "</div>"
+
+                  var d = new Date(i.createtime);
+                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+
+
+
+
+                  // if(0 != flag%2){
+                  //     imgInfos += "<div style='margin-left:15px;margin-top:5px;float:left; display: block; width:92%; height:100%; border:1px solid #E0E0E0'>";
                   // }else{
-                  //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
-                  //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  imgInfos += "<div style='width:95%;margin-top:10px;float:left; display: block;padding-bottom:10px;'>";
                   // }
-                      imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
-                      imgInfos += "</p>"
-                      imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+                  // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
+                  // imgInfos += "<span style='margin-left:15px;'>";
+                  imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+                  // imgInfos += "</span>";
+                  // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
+                  // imgInfos += "</div>";
 
-                      var d = new Date(i.createtime);
-                      var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                  // imgInfos += "<span style='float:left; z-index:2; left:10px; margin-top:0px'>";
+                  // imgInfos += createtime;
+                  // imgInfos += "</span>";
+                  // imgInfos += "</span>";
+                  imgInfos += "<img src='../image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+                  imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
 
-                      imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                      imgInfos += "<span style='margin-left: 22%;'>";
-                      imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "<span style='margin-left: 5%;'>";
-                      imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                      imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                      imgInfos += "</span>"
-                      imgInfos += "</p>"
-                      imgInfos += "</div>";
-                      imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                      imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                      imgInfos +=  "</div>";
+                  imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
+
+                  imgInfos += "<span style='width:57%;text-align:right;'><span style=''>";
+                  imgInfos += "<img src='../image/noteT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>0</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='../image/laudW.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.goodSum + "</span>";
+                  imgInfos += "</span>"
+                  imgInfos += "<span style='margin-left: 8%;'>";
+                  imgInfos += "<img src='../image/startT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                  imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.attentionSum + "</span>";
+                  imgInfos += "</span></span>"
+
+                  imgInfos += "</div>";
+
+                  imgInfos += "</div>";
+
+
+                  imgInfos +=  "<br/><div style='margin-top: 10px; height:3%;'>";
+                  imgInfos +=  "<img src='image/fg.jpg' width='100%' height='5px' />";
+                  imgInfos +=  "</div>";
+
+
+                  // // if(1 === flag){
+                  // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // // }else{
+                  // //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
+                  // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                  // // }
+                  //     imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                  //     imgInfos += "</p>"
+                  //     imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+                  //
+                  //     var d = new Date(i.createtime);
+                  //     var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                  //
+                  //     imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                  //     imgInfos += "<span style='margin-left: 22%;'>";
+                  //     imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "<span style='margin-left: 5%;'>";
+                  //     imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "<span style='margin-left: 5%;'>";
+                  //     imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                  //     imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                  //     imgInfos += "</span>"
+                  //     imgInfos += "</p>"
+                  //     imgInfos += "</div>";
+                  //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                  //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                  //     imgInfos +=  "</div>";
                   break;
               }
               if(2 === flag){
@@ -220,73 +422,209 @@ function doSomething(infoList, imgList){
                   imgInfos +=  "</div>";
               break;
               case "scene":
-              // if(1 === flag){
-              //     imgInfos += "<div style='width:100%; height:100%;'>";
-              // }else{
-                // imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                // imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                // imgInfos +=  "</div>";
-                  // imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>";
-                  imgInfos += "<div style='width:100%; height:100%;'>";
-              // }
-                  imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:60%;'>" + "￥" + i.price + "/" + i.unit + "</span>";
-                  imgInfos += "</p>"
-                  imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
 
-                  var d = new Date(i.createtime);
-                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                                imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
+                                imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
+                                imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+                                imgInfos += "</div>";
 
-                  imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                  imgInfos += "<span style='margin-left: 22%;'>";
-                  imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "<span style='margin-left: 5%;'>";
-                  imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "<span style='margin-left: 5%;'>";
-                  imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "</p>"
-                  imgInfos += "</div>";
-                  imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                  imgInfos +=  "</div>";
+
+                                    imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
+                                    imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
+                                    // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
+                                    imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+                                    imgInfos += "</div>";
+                                    imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                                    imgInfos += " <img src='../image/index/scene.png'/>";
+                                    imgInfos += "</div>";
+
+
+                                var d = new Date(i.createtime);
+                                var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+
+
+
+
+                                // if(0 != flag%2){
+                                //     imgInfos += "<div style='margin-left:15px;margin-top:5px;float:left; display: block; width:92%; height:100%; border:1px solid #E0E0E0'>";
+                                // }else{
+                                imgInfos += "<div style='width:95%;margin-top:10px;float:left; display: block;padding-bottom:10px;'>";
+                                // }
+                                // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
+                                // imgInfos += "<span style='margin-left:15px;'>";
+                                imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+                                // imgInfos += "</span>";
+                                // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
+                                // imgInfos += "</div>";
+
+                                // imgInfos += "<span style='float:left; z-index:2; left:10px; margin-top:0px'>";
+                                // imgInfos += createtime;
+                                // imgInfos += "</span>";
+                                // imgInfos += "</span>";
+                                imgInfos += "<img src='../image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+                                imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
+
+                                imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
+
+                                imgInfos += "<span style='width:57%;text-align:right;'><span style=''>";
+                                imgInfos += "<img src='../image/noteT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                                imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>0</span>";
+                                imgInfos += "</span>"
+                                imgInfos += "<span style='margin-left: 8%;'>";
+                                imgInfos += "<img src='../image/laudW.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                                imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.goodSum + "</span>";
+                                imgInfos += "</span>"
+                                imgInfos += "<span style='margin-left: 8%;'>";
+                                imgInfos += "<img src='../image/startT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+                                imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.attentionSum + "</span>";
+                                imgInfos += "</span></span>"
+
+                                imgInfos += "</div>";
+
+                                imgInfos += "</div>";
+
+
+                                imgInfos +=  "<br/><div style='margin-top: 10px; height:3%;'>";
+                                imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                                imgInfos +=  "</div>";
+
+
+                                // // if(1 === flag){
+                                // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                                // // }else{
+                                // //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                                // //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                                // //     imgInfos +=  "</div>";
+                                // //     imgInfos += "<div style='width:100%; height:100%;'>";
+                                // // }
+                                //     imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.scenename +  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+                                //     imgInfos += "</p>"
+                                //     imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+                                //
+                                //     var d = new Date(i.createtime);
+                                //     var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+                                //
+                                //     imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+                                //     imgInfos += "<span style='margin-left: 22%;'>";
+                                //     imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                                //     imgInfos += "<span style='margin-left: 5px;'>0</span>";
+                                //     imgInfos += "</span>"
+                                //     imgInfos += "<span style='margin-left: 5%;'>";
+                                //     imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                                //     imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+                                //     imgInfos += "</span>"
+                                //     imgInfos += "<span style='margin-left: 5%;'>";
+                                //     imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+                                //     imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+                                //     imgInfos += "</span>"
+                                //     imgInfos += "</p>"
+                                //     imgInfos += "</div>";
+                                //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+                                //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+                                //     imgInfos +=  "</div>";
               break;
               case "subject":
-              // if(1 === flag){
-              //     imgInfos += "<div style='width:100%; height:100%;'>";
+              var price = "";
+
+              i.saleprice ? price = i.saleprice :
+                  i.rentprice ? price = i.rentprice : price = "";
+              imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
+              imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
+              imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+              imgInfos += "</div>";
+
+              imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
+              imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
+              // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
+              imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "</div>";
+              imgInfos += "</div>";
+              imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+              imgInfos += " <img src='../image/index/subject.png'/>";
+              imgInfos += "</div>"
+
+              var d = new Date(i.createtime);
+              var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
+
+
+
+
+              // if(0 != flag%2){
+              //     imgInfos += "<div style='margin-left:15px;margin-top:5px;float:left; display: block; width:92%; height:100%; border:1px solid #E0E0E0'>";
               // }else{
-              //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
-              //     imgInfos += "<div style='width:100%; height:100%;'>";
+              imgInfos += "<div style='width:95%;margin-top:10px;float:left; display: block;padding-bottom:10px;'>";
               // }
-                  imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:60%;'>" + "￥" + i.saleprice + "/" + i.saleunit + "</span>";
-                  imgInfos += "</p>"
-                  imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+              // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
+              // imgInfos += "<span style='margin-left:15px;'>";
+              imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+              // imgInfos += "</span>";
+              // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
+              // imgInfos += "</div>";
 
-                  var d = new Date(i.createtime);
-                  var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              // imgInfos += "<span style='float:left; z-index:2; left:10px; margin-top:0px'>";
+              // imgInfos += createtime;
+              // imgInfos += "</span>";
+              // imgInfos += "</span>";
+              imgInfos += "<img src='../image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+              imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
 
-                  imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
-                  imgInfos += "<span style='margin-left: 22%;'>";
-                  imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>0</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "<span style='margin-left: 5%;'>";
-                  imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "<span style='margin-left: 5%;'>";
-                  imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
-                  imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
-                  imgInfos += "</span>"
-                  imgInfos += "</p>"
-                  imgInfos += "</div>";
-                  imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
-                  imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
-                  imgInfos +=  "</div>";
+              imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
+
+              imgInfos += "<span style='width:57%;text-align:right;'><span style=''>";
+              imgInfos += "<img src='../image/noteT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+              imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>0</span>";
+              imgInfos += "</span>"
+              imgInfos += "<span style='margin-left: 8%;'>";
+              imgInfos += "<img src='../image/laudW.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+              imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.goodSum + "</span>";
+              imgInfos += "</span>"
+              imgInfos += "<span style='margin-left: 8%;'>";
+              imgInfos += "<img src='../image/startT.png' style='margin-top:5px;float:left;' width='13px' height='13px'/>"
+              imgInfos += "<span style='margin-left: 5px;color:#ffffff;font-size:0.875rem;'>" + i.attentionSum + "</span>";
+              imgInfos += "</span></span>"
+
+              imgInfos += "</div>";
+
+              imgInfos += "</div>";
+
+
+              imgInfos +=  "<br/><div style='margin-top: 10px; height:3%;'>";
+              imgInfos +=  "<img src='image/fg.jpg' width='100%' height='5px' />";
+              imgInfos +=  "</div>";
+
+
+              // // if(1 === flag){
+              // //     imgInfos += "<div style='width:100%; height:100%;'>";
+              // // }else{
+              // //     imgInfos += "<div style='height:3%; background-color:#F0F0F0'></div>"
+              // //     imgInfos += "<div style='width:100%; height:100%;'>";
+              // // }
+              //     imgInfos += "<p style='height:10%; line-height:35px; margin-left:5%;'>" + i.subjectname+  "<span style='margin-left:75%;'>" + "￥100" + "</span>";
+              //     imgInfos += "</p>"
+              //     imgInfos += "<span onclick=detail('" + i.type + "','" + i.id + "') style='width:100%; height:80%; background-image: url(" + imgList[flag-1] + "); background-size:100%;'></span>";
+              //
+              //     var d = new Date(i.createtime);
+              //     var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+              //
+              //     imgInfos += "<p style='height:10%; line-height:25px; margin-left:5%;'>" + "发布时间: " + createtime;
+              //     imgInfos += "<span style='margin-left: 22%;'>";
+              //     imgInfos += "<img src='../image/note.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+              //     imgInfos += "<span style='margin-left: 5px;'>0</span>";
+              //     imgInfos += "</span>"
+              //     imgInfos += "<span style='margin-left: 5%;'>";
+              //     imgInfos += "<img src='../image/laud.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+              //     imgInfos += "<span style='margin-left: 5px;'>" + i.goodSum + "</span>";
+              //     imgInfos += "</span>"
+              //     imgInfos += "<span style='margin-left: 5%;'>";
+              //     imgInfos += "<img src='../image/start.png' style='margin-top:5px;float:left;' width='15px' height='15px'/>"
+              //     imgInfos += "<span style='margin-left: 5px;'>" + i.attentionSum + "</span>";
+              //     imgInfos += "</span>"
+              //     imgInfos += "</p>"
+              //     imgInfos += "</div>";
+              //     imgInfos +=  "<div style='margin-top: 10px; height:3%;'>";
+              //     imgInfos +=  "<img src='../image/fg.jpg' width='100%' height='5px' />";
+              //     imgInfos +=  "</div>";
               break;
           }
           $('#sample').html(imgInfos);
@@ -359,6 +697,11 @@ if(searchBarBtn){
 // 获取列表信息
 function getList(keywords){
     $("#thirdArea").show();
+    var provience = $("#provience").val();
+    var searchInput = $("#search-input").val();
+    if(!searchInput){
+        searchInput = provience;
+    }
 
     var actionUrl = "";
     switch(role){
@@ -383,9 +726,9 @@ function getList(keywords){
 
     $.post(actionUrl,{
         token: localStorage.token,
-        keywords: $("#search-input").val(),
+        keywords: searchInput,
         smallid: smallid,
-		bigid:bigid
+		    bigid:bigid
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
@@ -430,7 +773,8 @@ function getType(){
 
             data.infoList.forEach(function(i){
                 screen += "<li>";
-                screen += "<div><input type='checkbox' class='smallType' name='bigCheck' value='"+i.id+"' onclick='smallType(" + i.id + ")' id='big_"+i.id+"'/>" + i.bigname + "</div>";
+                screen += "<div><input type='checkbox' class='smallType' name='bigCheck' value='"+i.id+"' onclick='smallType(" + i.id + ")' id='big_"+i.id+"'/>"
+                screen += "<label for='big_"+i.id+"'>" + i.bigname + "</label></div>";
                 screen += "</li>";
 
                 $("#bigid").val(i.id);

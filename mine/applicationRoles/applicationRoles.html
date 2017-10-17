@@ -14,23 +14,23 @@
 <div id="wrap" class="flex-wrap flex-vertical">
     <header id="header"></header>
     <div style="background-color:#ffffff;">
-      	<h1 align="center"><font style="font-family: STKaiti">角色信息申请说明：</font></h1>
+      	<h1 align="center"><font style="font-family: 苹方">角色信息申请说明：</font></h1>
 
       	<br/>
 
-      	<h3 align="center"><font style="font-family: STKaiti">请根据您的需要申请相应的角色，
+      	<h3 align="center"><font style="font-family: 苹方">请根据您的需要申请相应的角色，
       	</font></h3>
 
-      	<h3 align="center"><font style="font-family: STKaiti">协拍中国会对您的真实信息进行审核，
+      	<h3 align="center"><font style="font-family: 苹方">协拍中国会对您的真实信息进行审核，
       	</font></h3>
 
-      	<h3 align="center"><font style="font-family: STKaiti">请如实填写您的相关角色信息。
+      	<h3 align="center"><font style="font-family: 苹方">请如实填写您的相关角色信息。
       	</font></h3>
 
-      	<h3 align="center"><font style="font-family: STKaiti">审核完成后，您的信息即可发布到协拍中国，
+      	<h3 align="center"><font style="font-family: 苹方">审核完成后，您的信息即可发布到协拍中国，
       	</font></h3>
 
-      		<h3 align="center"><font style="font-family: STKaiti">让更多的需求方关注到您的信息！
+      		<h3 align="center"><font style="font-family: 苹方">让更多的需求方关注到您的信息！
       	</font></h3>
     </div>
 
@@ -43,7 +43,7 @@
 		<!-- <table align="center">
 			<tr>
 				<td>
-					<font style="font-family: STKaiti">选择您要创建的角色：</font>
+					<font style="font-family: 苹方">选择您要创建的角色：</font>
 				</td>
 				<td>
 						<table>
@@ -80,20 +80,38 @@
 
 
         <div id="second" style="width:100%;background-color:#ffffff;margin:0">
-            <ul class="flex-wrap" >
-                <li onclick="applicationRoles('scene')" tapmode="hover" style="margin-top:30px;padding-bottom:30px;" onclick="scenes( this, 'scene' );" class="flex-con" ><font style="font-family: STKaiti">发布场景</font></li>
-                <li onclick="applicationRoles('actor')" tapmode="hover" style="margin-top:30px;" onclick="scenes( this, 'actor' );" class="flex-con" ><font style="font-family: STKaiti">发布演员</font></li>
-                <li onclick="applicationRoles('subject')" tapmode="hover" style="margin-top:30px;" onclick="scenes( this, 'subject' );" class="flex-con" ><font style="font-family: STKaiti">发布道具</font></li>
-                <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找编剧</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找导演</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找制片</li> -->
+            <div style="width:88%;">
+                <ul class="flex-wrap" style="margin-left:30px;">
+                    <li tapmode="hover" style="margin-top:20px;margin-left:10px;padding-bottom:20px;" onclick="applicationRoles('scene')" class="flex-con" >
+                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:1rem">发布场景</font></span>
+                    </li>
+                    <li tapmode="hover" style="margin-top:20px;" onclick="applicationRoles('actor')" class="flex-con" >
+                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:1rem">发布演员</font></span>
+                    </li>
+                    <li tapmode="hover" style="margin-top:20px;margi-right:20px;" onclick="applicationRoles('subject')" class="flex-con" >
+                      <span style="margin-top:18px;"><font style="font-family:苹方;color:#505050;font-size:1rem">发布道具</font></span>
+                    </li>
+                </ul>
+            </div>
+            <!-- <ul class="flex-wrap" >
+                <div style="width:88%;">
+                <li onclick="applicationRoles('scene')" tapmode="hover" style="margin-top:20px;margin-left:10px;padding-bottom:20px;" onclick="scenes( this, 'scene' );" class="flex-con" >
+                  <font style="font-family: 苹方;color:#505050;font-size:1rem">发布场景</font>
+                </li>
+                <li onclick="applicationRoles('actor')" tapmode="hover" style="margin-top:20px;" onclick="scenes( this, 'actor' );" class="flex-con" >
+                  <font style="font-family: 苹方;color:#505050;font-size:1rem">发布演员</font>
+                </li>
+                <li onclick="applicationRoles('subject')" tapmode="hover" style="margin-top:20px;" onclick="scenes( this, 'subject' );" class="flex-con" >
+                  <font style="font-family: 苹方;color:#505050;font-size:1rem">发布道具</font>
+                </li>
             </ul>
+          </div> -->
             <!-- <ul class="flex-wrap" style="margin-top:15px;">
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找服装</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发布服装</li>
 
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找设备</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找摄制组</li>
-                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找投资</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发布设备</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发布摄制组</li>
+                <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >发布投资</li>
             </ul> -->
         </div>
     </div>
@@ -107,10 +125,10 @@
 
 	<div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">首页</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html');" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label">我的</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html');" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label"></div></li>
         </ul>
     </div>
 

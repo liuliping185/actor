@@ -35,6 +35,8 @@ $(function(){
                       break;
                   case "P": status = "<font color='green'><strong>已发布</strong></font>";
                       break;
+                  case "C": status = "<font color='green'><strong>已下架</strong></font>";
+                      break;
               }
 
 
@@ -83,6 +85,10 @@ $(function(){
                   if("Y" === i.checkstatus){
                       content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
                   }
+              }
+
+              if("P" === i.checkstatus){
+                  content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=down('"+i.type+"','" + i.id + "')>下架</div></span>";
               }
 
               content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
@@ -162,6 +168,8 @@ $("#roleChange").change(function(){
 															  break;
 														  case "P": status = "已发布";
 															  break;
+                              case "C": status = "已下架";
+                                  break;
 													  }
 													  content += "<div class='aui-card-list-header aui-card-list-user aui-border-b'>";
 													  content += "<div class='aui-card-list-user-avatar'>";
@@ -207,6 +215,10 @@ $("#roleChange").change(function(){
 															  content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
 														  }
 													  }
+
+                            if("P" === i.checkstatus){
+                              content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=down('"+i.type+"','" + i.id + "')>下架</div></span>";
+                            }
 
 													  content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
 													  content +=  "</div>";
@@ -255,12 +267,57 @@ function publish( role, id){
 
 }
 
+// 下架
+function down( role, id){
+
+  dialog.alert({
+         title:"删除提示",
+         msg:'确定要删除该条信息？',
+         buttons:['取消','确定']
+    },function(ret){
+           if(ret){
+
+        if(ret.buttonIndex == 1){
+
+        }else{
+             var actionURL = path + "/ActorInterface/actor/actorDelete.action";
+           switch(role){
+             case 'actor': actionURL = path + "/ActorInterface/actor/actorDelete.action";
+             break;
+             case 'scene': actionURL = path + "/ActorInterface/scene/sceneDelete.action";
+             break;
+             case 'subject': actionURL = path + "/ActorInterface/subject/subjectDelete.action";
+             break;
+           }
+
+           $.post(actionURL,{
+             token:localStorage.token,
+             infoid: id
+           }, function(data) {
+             var data = JSON.parse(data);
+             console.log(data);
+             if(data.success){
+
+               window.location.reload();
+
+             }
+           });
+
+        }
+
+         }
+    });
+
+
+}
+
+
 // 删除
 function cancel(role, id){
 
 	 dialog.alert({
-          title:"删除提示",
-          msg:'确定要删除该条信息？',
+          title:"下架提示",
+          msg:'确定要下架该条信息？',
           buttons:['取消','确定']
      },function(ret){
             if(ret){
@@ -268,28 +325,30 @@ function cancel(role, id){
 				 if(ret.buttonIndex == 1){
 
 				 }else{
-					    var actionURL = path + "/ActorInterface/actor/actorDelete.action";
-						switch(role){
-							case 'actor': actionURL = path + "/ActorInterface/actor/actorDelete.action";
-							break;
-							case 'scene': actionURL = path + "/ActorInterface/scene/sceneDelete.action";
-							break;
-							case 'subject': actionURL = path + "/ActorInterface/subject/subjectDelete.action";
-							break;
-						}
+           var actionURL = path + "/ActorInterface/actor/actorCancel.action";
+           switch(role){
+               case 'actor': actionURL = path + "/ActorInterface/actor/actorCancel.action";
+               break;
+               case 'scene': actionURL = path + "/ActorInterface/scene/sceneCancel.action";
+               break;
+               case 'subject': actionURL = path + "/ActorInterface/subject/subjectCancel.action";
+               break;
+           }
 
-						$.post(actionURL,{
-							token:localStorage.token,
-							infoid: id
-						}, function(data) {
-							var data = JSON.parse(data);
-							console.log(data);
-							if(data.success){
+           console.log(actionURL)
+           $.post(actionURL,{
+               token:localStorage.token,
+               infoid: id
+           }, function(data) {
+               var data = JSON.parse(data);
+               console.log(data);
+               if(data.success){
+                   alert("已下架");
+                   window.location.reload();
 
-							  window.location.reload();
+               }
+           });
 
-							}
-						});
 
 				 }
 

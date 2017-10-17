@@ -42,15 +42,24 @@
         <div style="width:100%; margin 0 auto; background-color:#F0F0F0; display:none">
 
             <div style="margin-left: 20px; margin-top: 10px;">
+                <div style="float:left;width:30%;">
+                  <div data-toggle="distpicker"><!-- container -->
+                    <ul>所在地区
+                        <li>
+                          <select data-province="请选择省" id="provience"></select><img src="../image/index/sj.png" style="width:10px;height:10px;">
+                        </li>
+                    </ul>
 
-                <div style="float:left;width:50%;">
+                  </div>
+                </div>
+                <div style="float:left;width:30%;">
                     <ul>所选大类
                         <li class="screen" onclick="appear()">
                         </li>
                     </ul>
                 </div>
 
-                <div style="float:left; display: block; width:50%;">
+                <div style="float:left; display: block; width:30%;">
                     <ul>所选小类
                         <li class="smallType">
 
@@ -94,10 +103,10 @@
 
     <div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >  <div class="aui-bar-tab-label">首页</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" ><div class="aui-bar-tab-label">发现</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label">搜索</div></li>
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label">我的</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con active" >  <div class="aui-bar-tab-label">&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../mine/info.html');" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
         </ul>
     </div>
     <!-- 第四栏结束  -->
@@ -109,5 +118,6 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+<script src="../script/distpicker.js"></script>
 <script type="text/javascript" src="../script/common/common.js"></script>
 <script type="text/javascript" src="../script/bizjs/scenes.js"></script>
