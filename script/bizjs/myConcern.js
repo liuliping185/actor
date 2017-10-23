@@ -101,7 +101,7 @@ function getList(keywords){
 
             if("subject" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.subjectname + "</div>";
-              content += "<div class='aui-list-item-right'>" + i.infos.bigtypeid  + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.subjectinfos  + "</div>";
               content += "</div>";
               content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
@@ -109,8 +109,11 @@ function getList(keywords){
               content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/roleDetails/subject.png' style='width:40px;height:20px;'></font>";
             }
 
+            var d = new Date(i.infos.createtime);
+            var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
+
             content += "</div>";
-            content += "<div class='aui-info-item'>发布于：" + i.infos.createtime.substring(0,10) + "</div>";
+            content += "<div class='aui-info-item'>发布于：" + createtime + "</div>";
             content += "</div>";
             content += "</div>";
             content += "</div>";

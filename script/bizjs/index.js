@@ -7,9 +7,20 @@ var scroll = new auiScroll({
 console.log(ret)
 });
 $(function(){
+  document.onkeydown=keyDownSearch;
 
+  function keyDownSearch(e) {
+      // 兼容FF和IE和Opera
+      var theEvent = e || window.event;
+      var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
+      if (code == 13) {
+          window.location.href = "serachInfo.html?keywords=" + $("#keywords").val();
+          return false;
+      }
+      return true;
+  }
 
-
+    lunbo();
 
     console.log(localStorage.token);
     $('body').height($('body')[0].clientHeight);
@@ -56,38 +67,54 @@ function getInfoList(infoList){
         // var sex = "";
         // var age = "";
         // var roleimg = ""
+        var unit = "";
+        if(i.unit){
+            unit = "/" + i.unit;
+        }
 
         switch(i.type){
             case "actor":
             imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
+            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
             // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+
+
+            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
             imgInfos += "</div>";
-            imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+            imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
             imgInfos += " <img src='image/index/actor.png'/>";
             imgInfos += "</div>";
             break;
             case "scene":
             imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
+            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
             // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
             imgInfos += "</div>";
-            imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+            imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
             imgInfos += " <img src='image/index/scene.png'/>";
             imgInfos += "</div>";
             break;
             case "subject":
                 var price = "";
-                i.saleprice ? price = i.saleprice :
-                    i.rentprice ? price = i.rentprice : "";
+                var unit = "";
+                if(i.saleprice){
+                  price = i.saleprice;
+                  unit =  "/" + i.saleunit
+                }else{
+                  if(i.rentprice){
+                    price =  i.rentprice;
+                    unit =  "/" + i.rentunit
+                  }
+                }
+                // i.saleprice ? price = i.saleprice unit = i.saleunit :
+                //     i.rentprice ? price = i.rentprice, unit = i.rentunit : "";
                 imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-                imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
+                imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
                 // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-                imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "</div>";
+                imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "元" + unit + "</div>";
                 imgInfos += "</div>";
-                imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
                 imgInfos += " <img src='image/index/subject.png'/>";
                 imgInfos += "</div>"
 
@@ -116,7 +143,7 @@ function getInfoList(infoList){
         // }
         // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
         // imgInfos += "<span style='margin-left:15px;'>";
-        imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+        imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0;width:100%;'/>";
         // imgInfos += "</span>";
         // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
         // imgInfos += "</div>";
@@ -125,7 +152,7 @@ function getInfoList(infoList){
         // imgInfos += createtime;
         // imgInfos += "</span>";
         // imgInfos += "</span>";
-        imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+        imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:100%;'>";
         imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
 
         imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
@@ -271,6 +298,8 @@ if(searchBarBtn){
             searchBarInput.blur();
             document.getElementById("search-input").textContent = keywords;
             console.log(keywords);
+            $("#keywords").val(keywords);
+
             window.location.href = "serachInfo.html?keywords=" + keywords;
         }else{
             this.style.marginRight = "-"+this.offsetWidth+"px";
@@ -290,6 +319,54 @@ function getAnn(){
       if (data.success) {
           $("#ann").html(data.infoList[0].anntitle);
           $("#annid").val(data.infoList[0].id);
+      }else{
+        dialog.alert({
+            title:data.message,
+            msg:'',
+            buttons:['确定']
+        },function(ret){
+            console.log(ret)
+        })
+      }
+  });
+}
+
+// 动态获取轮播图
+function lunbo(){
+  $.post(path + "/ActorInterface/index/findLunboList.action",{
+      token:localStorage.token
+    }, function(data) {
+      var data = JSON.parse(data);
+      console.log(data)
+      if (data.success) {
+        if(0 < data.lunboList.length){
+            $("#lunboOl").html();
+            $("#lunboimg").html();
+        }
+        var lunboimg = "";
+        var lunboOl = "";
+        var flag = 0;
+        data.lunboList.forEach(function(i){
+          if(flag === 0){
+            lunboimg += "<div class='item active' >"
+            lunboOl += "<li data-target='#carousel-example-generic' data-slide-to='" + flag + "' class='active'></li>";
+          }else{
+            lunboimg += "<div class='item'>"
+            lunboOl += "<li data-target='#carousel-example-generic' data-slide-to='" + flag + "'></li>";
+          }
+
+          lunboimg += "<img onclick=detail('" + i.type + "','" + i.infoid + "')  src='" + i.imgpath + "' style='height:200px; width:100%;' alt='图片不存在'>";
+          lunboimg += "</div>";
+          flag ++;
+        })
+
+        if(0 < data.lunboList.length){
+            $("#lunboOl").html(lunboOl);
+            $("#lunboimg").html(lunboimg);
+        }
+          //
+          // $("#ann").html(data.infoList[0].anntitle);
+          // $("#annid").val(data.infoList[0].id);
       }else{
         dialog.alert({
             title:data.message,

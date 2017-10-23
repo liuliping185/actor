@@ -79,7 +79,8 @@ $(function(){
               content +=  "</div>";
 
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
-              content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
+              content += "<div style='width:60%;margin-left:42%;' align='right'>"
+              content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
 
               if("W" != i.checkstatus ){
                   if("Y" === i.checkstatus){
@@ -91,7 +92,12 @@ $(function(){
                   content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=down('"+i.type+"','" + i.id + "')>下架</div></span>";
               }
 
-              content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
+              if("C" === i.checkstatus){
+                  content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
+              }
+
+              content +=  "<div class='aui-btn aui-btn-danger aui-margin-r-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
+              content +=  "</div>";
               content +=  "</div>";
 
 			  //分割线
@@ -208,7 +214,8 @@ $("#roleChange").change(function(){
 													  content +=  "</div>";
 
 													  content +=  "<div class='aui-card-list-footer aui-border-t'>";
-													  content +=  "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
+                            content += "<div style='width:60%;margin-left:42%;' align='right'>"
+													  content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
 
 													  if("W" != i.checkstatus ){
 														  if("Y" === i.checkstatus){
@@ -220,8 +227,13 @@ $("#roleChange").change(function(){
                               content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=down('"+i.type+"','" + i.id + "')>下架</div></span>";
                             }
 
-													  content +=  "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
+                            if("C" === i.checkstatus){
+                                content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
+                            }
+
+													  content +=  "<div class='aui-btn aui-btn-danger aui-margin-r-5' onclick=cancel('"+i.type+"','" + i.id + "')>删除</div>";
 													  content +=  "</div>";
+                            content +=  "</div>";
 
 													  //分割线
 													  content +=  "	<div style='margin-top: 10px;'>";
@@ -269,7 +281,53 @@ function publish( role, id){
 
 // 下架
 function down( role, id){
+  dialog.alert({
+         title:"下架提示",
+         msg:'确定要下架该条信息？',
+         buttons:['取消','确定']
+    },function(ret){
+           if(ret){
 
+        if(ret.buttonIndex == 1){
+
+        }else{
+          var actionURL = path + "/ActorInterface/actor/actorCancel.action";
+          switch(role){
+              case 'actor': actionURL = path + "/ActorInterface/actor/actorCancel.action";
+              break;
+              case 'scene': actionURL = path + "/ActorInterface/scene/sceneCancel.action";
+              break;
+              case 'subject': actionURL = path + "/ActorInterface/subject/subjectCancel.action";
+              break;
+          }
+
+          console.log(actionURL)
+          $.post(actionURL,{
+              token:localStorage.token,
+              infoid: id
+          }, function(data) {
+              var data = JSON.parse(data);
+              console.log(data);
+              if(data.success){
+                  alert("已下架");
+                  window.location.reload();
+
+              }
+          });
+
+
+        }
+
+         }
+    });
+
+
+
+}
+
+
+// 删除
+function cancel(role, id){
   dialog.alert({
          title:"删除提示",
          msg:'确定要删除该条信息？',
@@ -309,51 +367,6 @@ function down( role, id){
     });
 
 
-}
-
-
-// 删除
-function cancel(role, id){
-
-	 dialog.alert({
-          title:"下架提示",
-          msg:'确定要下架该条信息？',
-          buttons:['取消','确定']
-     },function(ret){
-            if(ret){
-
-				 if(ret.buttonIndex == 1){
-
-				 }else{
-           var actionURL = path + "/ActorInterface/actor/actorCancel.action";
-           switch(role){
-               case 'actor': actionURL = path + "/ActorInterface/actor/actorCancel.action";
-               break;
-               case 'scene': actionURL = path + "/ActorInterface/scene/sceneCancel.action";
-               break;
-               case 'subject': actionURL = path + "/ActorInterface/subject/subjectCancel.action";
-               break;
-           }
-
-           console.log(actionURL)
-           $.post(actionURL,{
-               token:localStorage.token,
-               infoid: id
-           }, function(data) {
-               var data = JSON.parse(data);
-               console.log(data);
-               if(data.success){
-                   alert("已下架");
-                   window.location.reload();
-
-               }
-           });
-
-
-				 }
-
-          }
-     });
 
 
 }

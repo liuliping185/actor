@@ -25,13 +25,13 @@ $(function(){
                 var mphone =phone.substr(3,4);
                 var lphone = phone.replace(mphone,"****");
                 $("#phone").html(lphone);
-                if(!data.memberinfo.headerimg){
-                    $('#img').attr('src', "../image/mine/headingImg.jpg");
+                if(!data.memberinfo.headerimg && "" === data.memberinfo.headerimg){
+                    $('#img').attr('src', "../image/mine/headingImg.png");
                 }else{
                     $('#img').attr('src', data.memberinfo.headerimg);
                 }
                 $("#birthday").val(data.memberinfo.birthday);
-            }else{ 
+            }else{
               dialog.alert({
                   title:"请登录!",
                   msg:'',

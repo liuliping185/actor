@@ -1,4 +1,26 @@
-header{ background-color: #1bbc9b; }
+input::-webkit-input-placeholder {
+   /* placeholder颜色  */
+   color: #9d9d9d;
+   /* placeholder字体大小  */
+     font-size: 0.75rem;
+   /* placeholder位置  */
+/*         text-align: right;*/
+}
+textarea::-webkit-input-placeholder {
+   /* placeholder颜色  */
+   color: #BEBEBE;
+   /* placeholder字体大小  */
+   font-size: 0.75rem;
+   height: 100px;
+   line-height:100px;
+   /* placeholder位置  */
+         /*text-align: center;*/
+}
+html::-webkit-scrollbar{
+  display:none;
+}
+
+header{ background: url(../image/index/background.png)}
 header ul li { height: 50px; line-height: 50px; text-align: center; display: none; color: #ffffff; position: relative;font-size: 18px;  }
 header ul li.active{ display: block; }
 
@@ -56,7 +78,7 @@ header ul li.active{ display: block; }
   float:left;
   width: 20px;
   height: 20px;
-  background-image: url(../image/WechatIMG3.png);
+  background-image: url(../image/back.png);
   background-size: 100%;
   line-height: 20px;
 }

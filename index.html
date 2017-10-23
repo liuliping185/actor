@@ -31,6 +31,8 @@
 </head>
 <body>
 <input id="annid" hidden="true"/>
+<input id="keywords" hidden="true"/>
+
 <div id="wrap" class="flex-wrap flex-vertical" >
     <!-- <div style="overflow:auto;"> -->
     <header style="margin 0 auto;" id="headerGrand">
@@ -61,7 +63,7 @@
               </table>
             </div>
             <div style="float:left;width:75%; margin-left: 3%;margin-top:1px; height:25%; display: block;">
-                <div class="aui-searchbar" style="border-radius:40px;margin-top:7px;height:9%;background-color:rgba(255,255,255,0.3);background-image: url(../image/index/search.png);" id="search">
+                <div class="aui-searchbar" style="border-radius:40px;margin-top:7px;height:9%;background-color:rgba(255,255,255,0.3);background-image: url(image/index/search.png);" id="search">
                     <div class="aui-searchbar-input aui-border-radius">
                         <!-- <i class="aui-iconfont aui-icon-search"></i> -->
                         <input type="search" style="color:#ffffff;" placeholder="请输入搜索内容" id="search-input"; >
@@ -84,21 +86,17 @@
         <div  style="width:100%;"  >
             <!--轮播图-->
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="3000">
-                <ol class="carousel-indicators">
+                <ol class="carousel-indicators" id="lunboOl">
                     <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
                     <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                    <!-- <li data-target="#carousel-example-generic" data-slide-to="2"></li> -->
                 </ol>
-                <div class="carousel-inner" role="listbox" >
+                <div class="carousel-inner" role="listbox" id="lunboimg">
                     <div class="item active" >
                         <img src="slider/WechatIMG17.jpeg" style="height:200px; width:100%;" alt="图片不存在">
                     </div>
                     <div class="item">
                         <img src="slider/WechatIMG16.jpeg" style="height:200px; width:100%;" alt="图片不存在">
                     </div>
-                    <!-- <div class="item">
-                        <img src="slider/3.jpg" style="height:200px;" alt="图片不存在">
-                    </div> -->
                 </div>
 
 
@@ -115,13 +113,13 @@
             <div style="width:88%;">
                 <ul class="flex-wrap" style="margin-left:30px;">
                     <li tapmode="hover" style="margin-top:20px;margin-left:10px;padding-bottom:20px;" onclick="scenes( this, 'scene' );" class="flex-con" >
-                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:1rem">找场景</font></span>
+                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:0.8rem">找场景</font></span>
                     </li>
                     <li tapmode="hover" style="margin-top:20px;" onclick="scenes( this, 'actor' );" class="flex-con" >
-                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:1rem">找演员</font></span>
+                      <span style="margin-top:18px;"><font style="font-family: '苹方';color:#505050;font-size:0.8rem">找演员</font></span>
                     </li>
                     <li tapmode="hover" style="margin-top:20px;margi-right:20px;" onclick="scenes( this, 'subject' );" class="flex-con" >
-                      <span style="margin-top:18px;"><font style="font-family:苹方;color:#505050;font-size:1rem">找道具</font></span>
+                      <span style="margin-top:18px;"><font style="font-family:苹方;color:#505050;font-size:0.8rem">找道具</font></span>
                     </li>
                     <!-- <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找编剧</li>
                     <li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >找导演</li>
@@ -142,12 +140,12 @@
         <div style="margin: 0 auto; margin-top:10px; width:100%;background-color:#ffffff;">
             <div style="width: 100%; ">
                 <p onclick="announce()" id="theHeadlines"style="margin: 0 auto;  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 25.5em;/">
-                <span style="font-size:1rem;width:20%;margin-top:0px;height:30px;line-height:30px; ">
-                  <font color="#505050" style="font-family:苹方;font-size:1rem;margin-left:10%;">协拍头条</font>
+                <span style="font-size:0.8rem;width:20%;margin-top:0px;height:30px;line-height:30px; ">
+                  <font color="#505050" style="font-family:苹方;font-size:0.8rem;margin-left:10%;">协拍头条</font>
                 </span>
-                <span style="position:relative;background:#green;width:75%;height:30px;line-height:27px; vertical-align:middle;">
+                <span style="position:relative;background:#green;width:75%;height:30px;line-height:30px; vertical-align:middle;">
                   <marquee scrollAmount=2 onmouseover=stop() onmouseout=start()  algin="center;" scrolldelay="4" >
-                    <font id="ann" color="#9d9d9d" style="font-family: 苹方;font-size:0.875rem;" onclick="annDetail()">
+                    <font id="ann" color="#9d9d9d" style="font-family: 苹方;font-size:0.675rem;" onclick="annDetail()">
                     </font>
                   </marquee>
                 </span>
@@ -161,15 +159,15 @@
 
         <!-- 第四栏开始  -->
         <div style="width:100%;height:100%;background-color:#ffffff;margin-top:5px;">
-          <div style="margin-left:3%;">
-              <font color="#505050" style="font-family:苹方;font-size:1rem;"><span style="margin-top:10px;">热门推荐</span></font>
-          </div>
+          <!-- <div style="margin-left:3%;">
+              <font color="#505050" style="font-family:苹方;font-size:0.8rem;"><span style="margin-top:10px;">热门推荐</span></font>
+          </div> -->
           <!-- <div style="width:100%; height:50px;background-size:100%;">
               <div style="float:left;width:50px; margin-left:18px; margin-top:10px;">
                   <img src="image/mine/headingImg.jpg" onclick="javascript:window.location.href='../mine/headerImg.html'" style="width:100%; height:100%; border-radius:50%" id="img"/>
               </div>
               <div style="float:left;width:60%;margin-left:15px;margin-top:15px;">
-                  <span style="width:30%;height:20px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;">周杰伦ssdfsdfsdfsdfsdfsdfs</span>
+                  <span style="width:30%;height:20px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;">周杰伦ssdfsdfsdfsdfsdfsdfs</span>
                   <span style="height:10%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d">男</span>
                   <div style="padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d">22岁</div>
               </div>

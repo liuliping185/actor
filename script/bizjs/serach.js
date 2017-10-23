@@ -10,8 +10,10 @@ $(document).ready(function(){
         if (data.success) {
             var hotWords = "";
             data.infoList.forEach(function(i){
-                hotWords += "<div style='float:left; display: block; height:30%; background-color:#F0F0F0; margin-left:13%; margin-top: 1%;'>";
-        			 	hotWords += "<div class='aui-label aui-label-success'><span  onclick=getkeyWords('" + i.keywords + "')><h4>"+ i.keywords +"</h4></span></div>";
+              // 20e0b9
+                hotWords += "<div style='float:left; display: block; height:30%; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; border-radius:5px; margin-left:13%; margin-top: 3%;'>";
+
+        			 	hotWords += "<div style='padding-left:5px;padding-right:5px'><span  onclick=getkeyWords('" + i.keywords + "')><h4>"+ i.keywords +"</h4></span></div>";
                 hotWords += "</div>";
             })
               $("#hotWords").html(hotWords);

@@ -1,6 +1,8 @@
 var preid = GetQueryString("preid");
 var ownerid = GetQueryString("ownerid");
 var pretype = GetQueryString("pretype");
+var id = GetQueryString("id");
+
 console.log(preid + "------" + ownerid + "------" + pretype);
 
 $(function(){
@@ -101,7 +103,16 @@ function reserve(){
     		return false;
   	}
 
-    var actionURL = path + "/ActorInterface/preorder/addPreorder.action?token=" + localStorage.token;
+    var actionURL = "";
+
+    if(id && ""!= id){
+      actionURL = path + "/ActorInterface/preorder/confirmPreorder.action?token=" + localStorage.token;
+      $("#hi_id").val(id);
+    }else{
+        actionURL = path + "/ActorInterface/preorder/addPreorder.action?token=" + localStorage.token;
+    }
+
+    $("#prestatus").val("P");
 
     $.ajax({
 				cache : true,

@@ -15,8 +15,7 @@
     <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<input id="lunboimg_" type="hidden"/>
-<input id="firstimg_" type="hidden"/>
+
 
 <div id="wrap" class="flex-wrap flex-vertical">
     <header id="header"></header>
@@ -25,6 +24,8 @@
     <div style="overflow:auto; height:99%;">
 
 <form id="postForm">
+  <input id="lunboimg_" name="lunboimg" type="hidden"/>
+  <input id="firstimg_" name="firstimg" type="hidden"/>
 	<input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
 	<input id="hi_id" name="id" type="hidden"/>
 	<input id="hi_evaSum" name="evaSum" type="hidden"/>
@@ -32,365 +33,322 @@
 	<input id="hi_professionalScore" name="professionalScore" type="hidden"/>
 	<input id="hi_serviceScore" name="serviceScore" type="hidden"/>
 	<input id="hi_attentionSum" name="attentionSum" type="hidden"/>
-	<input id="hi_firstimg" name="firstimg" type="hidden"/>
+	<!-- <input id="hi_firstimg" name="firstimg" type="hidden"/> -->
 	<input id="hi_actorstatus" name="actorstatus" type="hidden"/>
 	<input id="hi_memberid" name="memberid" type="hidden"/>
 	<input id="hi_createtime" name="createtime" type="hidden"/>
 
-      <div class="aui-content aui-margin-b-15">
-          <ul class="aui-list aui-form-list">
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          <font color="#333333">真实姓名：</font>
-                      </div>
-					  <div class="aui-list-item-input">
-						<div class="aui-list-item-input">
-                          <input type="text" id="realname" class="input" name="realname" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-						</div>
-					  </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          昵称：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <input type="text" id="nickname" name="nickname" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                    <div class="aui-list-item-label">
-                        性别：
-                    </div>
-                    <div class="aui-list-item-input">
-                        <label><input class="aui-radio" type="radio" name="sex" id="man" checked value="男"> 男</label>
-                        <label><input class="aui-radio" type="radio" name="sex" id="women" value="女"> 女</label>
-                    </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          年龄：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <input type="text" id="age" name="age" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          身高：(cm)
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <input type="text" id="height" name="height" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          体重：(kg)
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <input type="text" id="weight" name="weight" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          生日：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <input type="text" id="birthday" name="birthday" style="width:100%;border:1px solid green; height:30px;border-radius:4px;"/>
-                        </div>
-                      </div>
-                  </div>
-              </li>
+  <div style="background-color:#ffffff;">
+    <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">基本信息</span>
+  </div>
 
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          工作范围：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <textarea id="workarea" name="workarea" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
-省                        </div>
-                      </div>
-                  </div>
-              </li>
+  <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+      <ul>
+          <li>
+              <span style="width:25%;margin-top:5%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">真实姓名&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="realname" placeholder="请输入真实姓名" name="realname" style="font-size:0.75rem;width:100%;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">昵&nbsp&nbsp&nbsp&nbsp称 &nbsp&nbsp&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="nickname" placeholder="请输入昵称" name="nickname" style="font-size:0.75rem;width:100%;height:2.5rem;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+            <span style="width:25%;">
+              <span style="font-size:0.75rem;color:#6c6c6c;">性&nbsp&nbsp&nbsp&nbsp别 &nbsp&nbsp&nbsp&nbsp:</span>
+            </span>
+              <span style="height:1.7rem">
+                  <input class="aui-radio" style="margin-left:0px;vertical-align:middle;width:0.8rem;height:0.8rem;" type="radio" name="sex" id="man" value="男" checked>
+                  <span style="font-size:0.7rem;color:#ADADAD;">男</span>
+                  <input class="aui-radio" style="margin-left:30px;vertical-align:middle;width:0.8rem;height:0.8rem;" type="radio" name="sex" value="女" id="women">
+                  <span style="font-size:0.7rem;color:#ADADAD;">女</span>
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">年&nbsp&nbsp&nbsp&nbsp龄 &nbsp&nbsp&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="age" placeholder="请输选择生日" name="age" readonly="readonly" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">参演费用&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <span style="width:60%;">
+      					      <input type="text" id="price" placeholder="请输入参演费用" name="price" style="font-size:0.75rem;width:90%;height:2.2rem;color:#ADADAD;"/>
+                  </span>
+                  <span style="width:15%;">
+                      <select style="font-size:0.7rem;color:#ADADAD;" name="unit" style="width:20%;" id="unit" onclick="javascript:$('#unitsImg').hide()">
+                          <option value="0"></option>
+                          <option value="分钟">分钟</option>
+        								  <option value="小时">小时</option>
+        								  <option value="天">天</option>
+        								  <option value="月">月</option>
+        								  <option value="年">年</option>
+        						  </select>
+                  </span>
+                  <span style="width:15%;" id="unitsImg">
+                      <img src="../../image/sj.png" style="width:10px;height:10px;">
+                  </span>
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">身高(cm)&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="height" placeholder="请输入身高" name="height" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">体重(kg)&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="weight" placeholder="请输入体重" name="weight" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">生&nbsp&nbsp&nbsp&nbsp日 &nbsp&nbsp&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <input type="text" id="birthday" placeholder="请输入生日" name="birthday" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;"/>
+              </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">工作范围&nbsp&nbsp:</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD; border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="workarea" name="workarea" placeholder="  请输入工作范围"></textarea>
+              </span>
+          </li>
+          <li>
+            <div style="float:left;width:25%;">
+                <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">演艺经验&nbsp&nbsp:</span>
+            </div>
+            <span style="width:70%;">
+                <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="experience" name="experience" placeholder="  请输入演艺经验"></textarea>
+            </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">自我介绍&nbsp&nbsp:</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="infos" name="infos" placeholder="  请输入自我介绍"></textarea>
+              </span>
+          </li>
+	        <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">关键字&nbsp&nbsp&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="keywords" name="keywords" placeholder="  请输入关键字"></textarea>
+              </span>
+          </li>
 
-			  <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          参演费用：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-
-						<table>
-							<tr>
-							<td>  <input type="text" id="price" name="price" style="width:90%;border:1px solid green; height:30px;border-radius:4px;"/> </td>
-							<td>
-								  <select name="unit" style="width:50px;" id="unit">
-									 <option vlaue="">请选择</option>
-									 <option value="分钟">分钟</option>
-									 <option value="小时">小时</option>
-									 <option value="天">天</option>
-									 <option value="月">月</option>
-									 <option value="年">年</option>
-								  </select>
-							 </td>
-							<td>
-								&nbsp;&nbsp;
-							</td>
-							<td>
-								<img src="../../image/sj.png" style="width:10px;height:10px;">
-							</td>
-							</tr>
-							</table>
-                        </div>
-                      </div>
-                  </div>
-              </li>
-
-
-			   <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          所属类别：
-                      </div>
-                      <div class="aui-list-item-input">
-
-					    <table>
-						<tr>
-						<td>
-                              <select  id="bigtype" onchange='getSmallType(this.value)' name="bigid">
-								<option vlaue=''>选择大类</option>
-							  </select>
-						</td>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<img src="../../image/sj.png" style="width:10px;height:10px;">
-						</td>
-						</tr>
-						</table>
-
-						<table>
-						<tr>
-						<td>
-                              <select  id="smalltype" name="smallid">
-								<option vlaue=''>选择小类</option>
-							  </select>
-                        </td>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<img src="../../image/sj.png" style="width:10px;height:10px;">
-						</td>
-						</tr>
-						</table>
-
-                      </div>
-                  </div>
-              </li>
+          <!-- <li>
+              轮播图片：
+              <div style="margin-bottom:20px;">
+                  <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('1')">
+                  <img id="lunboimg" src="../image/addPic.png"/>
+              </div>
+          </li>
+          <li>
+              封面图片：
+              <div style="margin-bottom:20px;">
+                  <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('2')">
+                  <img id="firstimg" src="../image/addPic.png"/>
+              </div>
+          </li> -->
+      </ul>
+  </div>
 
 
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          所在地区：
+  <div style="margin-top:3%;background-color:#ffffff;">
+    <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">其他信息</span>
+  </div>
+  <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+      <ul>
+        <li>
+            <span style="width:25%;">
+                <span style="font-size:0.75rem;color:#6c6c6c;margin-top:5%;">所属类别&nbsp&nbsp:</span>
+            </span>
+            <span style="width:70%;">
+                <span style="width:40%;">
+                    <span style="width:70%;">
+                        <select style="font-size:0.7rem;color:#ADADAD;" id="bigtype" onchange='getSmallType(this.value)' name="bigid">
+                             <option vlaue=''>选择大类</option>
+                        </select>
+                    </span>
+                    <span style="width:20%;">
+                        <img src="../../image/sj.png" style="width:10px;height:10px;">
+                    </span>
+                </span>
+                <span style="width:40%;">
+                    <span style="width:70%;">
+                        <select style="font-size:0.7rem;color:#ADADAD;" id="smalltype" name="smallid">
+                            <option vlaue=''>选择小类</option>
+                        </select>
+                    </span>
+                    <span style="width:20%;">
+                        <img src="../../image/sj.png" style="width:10px;height:10px;">
+                    </span>
+                 </span>
+             </span>
+        </li>
+          <li>
+              <div style="float:left;width:25%;margin-top:10px;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">所在地区&nbsp&nbsp:</span>
+              </div>
+              <div style="float:left;width:70%;">
+                  <div class="aui-list-item-input" id="disDiv" style="width:100%;">
+                  <div data-toggle="distpicker" id="distpicker3" style="width:100%;">
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-province="选择省" id="provience" name="provience">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
                       </div>
-                      <div class="aui-list-item-input" id="disDiv">
-
-                        <div data-toggle="distpicker" id="distpicker3" >
-
-						<table>
-						<tr>
-						<td>
-                              <select data-province="选择省" id="provience" name="provience"></select>
-						 </td>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<img src="../../image/sj.png" style="width:10px;height:10px;">
-						</td>
-						</tr>
-						</table>
-
-						<table>
-						<tr>
-						<td>
-                              <select data-city="选择市" id="city" name="city"></select>
-						 </td>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<img src="../../image/sj.png" style="width:10px;height:10px;">
-						</td>
-						</tr>
-						</table>
-
-						<table>
-						<tr>
-						<td>
-                              <select data-district="选择区" id="district" name="district"></select>
-						 </td>
-						<td>
-							&nbsp;
-						</td>
-						<td>
-							<img src="../../image/sj.png" style="width:10px;height:10px;">
-						</td>
-						</tr>
-						</table>
-
-                        </div>
-
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-city="选择市" id="city" name="city">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
                       </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          演艺经验：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <textarea id="experience" name="experience" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          自我介绍：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <textarea id="infos" name="infos" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
-                        </div>
-                      </div>
-                  </div>
-              </li>
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-district="选择区" id="district" name="district">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
+                      </span>
+                   </div>
+                   </div>
+                   </div>
+               </div>
+          </li>
+          <li>
+            <span style="width:25%;margin-top:5%;">
+                <span style="font-size:0.75rem;color:#6c6c6c;">详细地址&nbsp&nbsp:</span>
+            </span>
+            <span style="width:70%;">
+                <input id="address" name="address" placeholder="请输入详细地址" name="scenename" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+            </span>
+          </li>
+      </ul>
+  </div>
 
-			<li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          关键字：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <textarea id="keywords" name="keywords" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
-                        </div>
-                      </div>
-                  </div>
-              </li>
+  <div style="margin-top:3%;background-color:#ffffff;">
+    <span style="width:70%;">
+        <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">个人图集</span>
+    </span>
+    <span style="width:25%;">
+      <span style="margin-top:40%;">
+        <div style="background-color:#20e0b9" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="showActionMore()">
+          <span style="font-size:0.8rem;" id="p">上传图集</span>
+        </div>
+        <!-- <img onclick="showActionMore()" style="width:70%;" src="../../image/addPicZ.png"/> -->
+      </span>
+    </span>
+    <div>&nbsp<div>
 
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          轮播图片：
-                      </div>
-                      <div class="aui-list-item-input">
-                          <div class="aui-list-item-input">
+  </div>
 
-                                  <div style="margin-bottom:20px;">
-                                      <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('1')">
-                                          <img id="lunboimg" src="../image/addPic.png"/>
-                                  </div>
+        <div id="imgUpload" style="padding-left:20px;padding-right:20px;background-color:#ffffff;">
+            <!-- <div align="center" id="addPic">
+              <span style="width:30%;" onclick="showActionMore()">
+                <img style="width:100%;height:100%;" src="../../image/addPicZ.png"/>
+              </span>
+            </div> -->
 
-                          </div>
-                      </div>
-                  </div>
-              </li>
-
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          封面图片：
-                      </div>
-                      <div class="aui-list-item-input">
-                          <div class="aui-list-item-input">
-
-                                  <div style="margin-bottom:20px;">
-                                      <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction('2')">
-                                          <img id="firstimg" src="../image/addPic.png"/>
-                                  </div>
-
-                          </div>
-                      </div>
-                  </div>
-              </li>
-
-              <li class="aui-list-item">
-                  <div class="aui-list-item-inner">
-                      <div class="aui-list-item-label">
-                          个人相册：
-                      </div>
-                      <div class="aui-list-item-input">
-                        <div class="aui-list-item-input">
-                            <div id="wrap">
-                                <div id="imgUpload" class="imgBox" style="overflow:auto; position:relative;border:1px solid #DODODO; display:block;">
-                                </div>
-
-								<!--
-                                <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%; margin-left: 30%;" onclick="showAction()">
-                                    <span>上传图片</span>
-                                </div>
-								-->
-
-
-								<div style="margin-bottom:20px;">
-                                    <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;border:1px solid green;" onclick="showAction()">
-                                        <img id="idcardBack" src="../../image/addPic.png"/>
-                                    </div>
-									<!--
-                                    <div class="aui-btn aui-btn-info" style="width:55%; margin-top: 10%;" onclick="showAction('2')">
-                                        <span>身份证反面上传</span>
-                                    </div>
-									-->
-                                </div>
-
-
-                            </div>
-                        </div>
-                      </div>
-                  </div>
-              </li>
-              <li class="aui-list-item">
-                <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn" style="text-align: center;">
-					<div id="tjDiv">
-						<div class="aui-btn aui-btn-success aui-margin-r-5" onclick="personalRoleManage()" id='tjBtu'>提交</div>
-					</div>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <div class="aui-btn aui-btn-danger aui-margin-l-5" onclick="history.go(-1)">取消</div>
+            <!-- <div id="wrap">
+                <div id="imgUpload" class="imgBox" style="overflow:auto; position:relative;border:1px solid #DODODO; display:block;">
                 </div>
-              </li>
-          </ul>
+
+                <div style="margin-bottom:20px;">
+                    <div class="imgBox" style="margin-top: 10%; overflow:auto; position:relative;width:100px;height:100px;" onclick="showAction()">
+                        <img id="idcardBack" src="../../image/addPic.png"/>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+        <div style="margin-top:3%;background-color:#ffffff;">
+          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">封面照片</span>
+        </div>
+
+        <div style="padding-left:20px;padding-right:20px;background-color:#ffffff;padding-bottom:30px">
+            <div style="margin-top:0px;" align="center">
+                <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('2')">
+                    <span style="margin-top:10%;">
+                      <img class="addPicFirstimg" style="width:60%;" src="../../image/addPic.png"/>
+                      <img id="firstimg" style="width:100%;" src=""/>
+                      <p style="margin-top:15%;color:#20e0b9">点击上图可添加封面图片</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="margin-top:3%;background-color:#ffffff;">
+          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">轮播图片</span>
+        </div>
+
+        <div style="padding-left:20px;padding-right:20px;background-color:#ffffff;padding-bottom:30px">
+            <div style="margin-top:0px;" align="center">
+                <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('1')">
+                    <span style="margin-top:10%;">
+                      <img class="addPicLunboimg" style="width:60%;" src="../../image/addPic.png"/>
+                      <img id="lunboimg" style="width:100%;" src=""/>
+                      <p style="margin-top:15%;color:#20e0b9">点击上图可添加首页轮播图片</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
+          <br>
+          <p style="" id='tjBtu'>
+            <div style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
+              <span onclick="personalRoleManage()"  style="font-size:0.8rem;">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</span>
+            </div>
+          </p>
+       </div> -->
+        <!-- <div style="text-align: center;">
+            <div id="tjDiv" style="width:60%;float:left;padding-bottom:50px">
+                <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="personalRoleManage()" id='tjBtu'>提交</div>
+            </div>
+            <div style="width:15%;float:left;" class="aui-btn aui-btn-danger aui-margin-l-5" onclick="history.go(-1)">取消</div>
+        </div> -->
+
+      <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
+          <div id="tjBtu" style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
+              <div onclick="personalRoleManage()" id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+          </div>
       </div>
+
+
   </form>
 
     </div>
@@ -416,6 +374,7 @@
     </div>
 
     <!-- 第五栏结束  -->
+
 
 </div>
 </body>

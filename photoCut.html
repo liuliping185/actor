@@ -56,14 +56,17 @@
 
 
 var FNImageClip;
+var type = "";
 apiready = function() {
   var img_src = api.pageParam.img_src;
+  type = api.pageParam.type;
+
   FNImageClip = api.require('FNImageClip');
-  openImageClip(img_src);
+  openImageClip(img_src,type);
 };
 
 // 对头像进行裁剪
-function openImageClip(img_src){
+function openImageClip(img_src,type){
 
   FNImageClip = api.require('FNImageClip');
 
@@ -132,7 +135,8 @@ FNImageClip.save({
         name:'clip_success',
         extra:{
           // element_id:element_id,
-          new_img_url:ret.destPath
+          new_img_url:ret.destPath,
+          type:type
         }
 		});
       // FNImageClip.close();

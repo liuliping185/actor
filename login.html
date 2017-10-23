@@ -12,23 +12,53 @@
 
     <script type="text/javascript" src="script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="script/aui-toast.js" ></script>
     <script type="text/javascript" src="script/common/common.js"></script>
     <script type="text/javascript" src="script/api.js"></script>
     <script type="text/javascript" src="script/bizjs/login.js"></script>
     <script type="text/javascript" src="script/bizjs/header.js"></script>
 
 
+
 </head>
 <body style="background: #fff;">
 <div id="wrap" class="flex-wrap flex-vertical">
-    <header id="header"></header>
+    <!-- <header id="header"></header> -->
 
 
+  <div style="width:100%;margin-top:23%;" align="center">
+	<img src="image/xplogo.png" style="width:22%;height:22%;" >
+  </div>
 
-	<img src="image/xplogo.png" style="margin-top:10px; width:150px;height:150px;margin-left:30%" >
-
-	 <div  align="center" style="padding: 20px 20px 10px;margin-top: 0px;">
-        <table rules="none" border="1" bordercolor="grey" width="95%" height="50">
+	 <div  align="center" style="padding: 10px 20px 1px;margin-top:15%;">
+       <div class="aui-content aui-margin-b-15">
+           <ul class="aui-list aui-form-list">
+               <li class="aui-list-item">
+                   <div class="aui-list-item-inner">
+                       <div class="aui-list-item-label-icon">
+                           <i class="aui-iconfont aui-icon-mobile"></i>
+                       </div>
+                       <div class="aui-list-item-input">
+                           <input type="text" style="font-family:苹方;font-size:0.7rem;" id="username" placeholder="请输入您的账号" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请输入您的账号'}">
+                       </div>
+                   </div>
+               </li>
+               <li class="aui-list-item">
+                   <div class="aui-list-item-inner">
+                       <div class="aui-list-item-label-icon">
+                           <i class="aui-iconfont aui-icon-lock"></i>
+                       </div>
+                       <div class="aui-list-item-input" id="passwordText">
+                           <input type="password" style="font-family:苹方;font-size:0.7rem;" id="password" placeholder="请输入密码" onfocus="this.placeholder=''" onblur="if(this.placeholder==''){this.placeholder='请输入密码'}">
+                       </div>
+                       <div class="aui-list-item-label-icon">
+                           <i class="aui-iconfont aui-icon-display" onclick="display()"></i>
+                       </div>
+                   </div>
+               </li>
+           </ul>
+       </div>
+        <!-- <table rules="none" border="1" bordercolor="grey" width="95%" height="50">
           <tr>
             <td style="width: 110px;height: 55px;padding-left: 20px;">
               <span>账&nbsp;&nbsp;号：</span>
@@ -50,13 +80,20 @@
             </td>
           </tr>
         </table>
-
+ -->
 
 
 	</div>
+  <div align="right" style="margin-top:0%;">
+      <a href="./toBackPwd.html">
+        <span style="color:#9d9d9d;font-family:苹方;font-size: 0.8rem;line-height: 30px;">
+             忘记密码？&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        </span>
+      </a>
+  </div>
 
 
-    <table width="85%" class="table" cellpadding="0px" cellspacing="0px" style="margin-left:8%">
+    <!-- <table width="85%" class="table" cellpadding="0px" cellspacing="0px" style="margin-left:8%">
                   <tr style="border-bottom: 0px solid #F5F5F5 ;border-top: 0px solid #F5F5F5;">
                       <td align="left">
                            <a href="./register.html">
@@ -74,14 +111,25 @@
                           </a>
 					  </td>
                   </tr>
-     </table>
+     </table> -->
 
 
 
-
-	 <div class="aui-btn aui-btn-success aui-btn-block" style="width:80%; height:50px; line-height:50px;margin-left:10% " onclick="login()">
+   <div style="padding: 3px 20px 1px;">
+     <p style="margin-top:8%;">
+       <div style="background-color:#20e0b9" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="login()">
+         <span style="font-size:0.8rem;" id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+       </div>
+     </p>
+     <p style="margin-top:3%;">
+       <div class="aui-btn aui-btn-default aui-btn-outlined aui-btn-block aui-btn-sm" onclick="javascript:window.location.href='./register.html'">
+           <span style="font-size:0.8rem;"  id="p">立即注册</span>
+       </div>
+     </p>
+  </div>
+	 <!-- <div class="aui-btn-sm aui-btn-success aui-btn-block" onclick="login()">
                 <span style="font-size:20px;" id="p">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</span>
-     </div>
+     </div> -->
 
     <!-- 登录结束 -->
 

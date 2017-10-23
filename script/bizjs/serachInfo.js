@@ -108,40 +108,54 @@ function doSomething(infoList){
 
           imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
           imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
-          imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+          imgInfos += "<img src='" + i.firstimg + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
           imgInfos += "</div>";
+          var unit = "";
+          if(i.unit){
+              unit = "/" + i.unit;
+          }
 
           switch(i.type){
               case "actor":
               imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-              imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
+              imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
               // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-              imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+              imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
               imgInfos += "</div>";
-              imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+              imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
               imgInfos += " <img src='image/index/actor.png'/>";
               imgInfos += "</div>";
               break;
               case "scene":
               imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-              imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
+              imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
               // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-              imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+              imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
               imgInfos += "</div>";
-              imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+              imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
               imgInfos += " <img src='image/index/scene.png'/>";
               imgInfos += "</div>";
               break;
               case "subject":
-                  var price = "";
-                  i.saleprice ? price = i.saleprice :
-                      i.rentprice ? price = i.rentprice : "";
+              var price = "";
+              var unit = "";
+              if(i.saleprice){
+                price = i.saleprice;
+                unit = "/" + i.saleunit
+              }else{
+                if(i.rentprice){
+                  price = i.rentprice;
+                  unit = "/" + i.rentunit
+                }
+              }
+                  // i.saleprice ? price = i.saleprice :
+                  //     i.rentprice ? price = i.rentprice : "";
                   imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-                  imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
+                  imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
                   // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-                  imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "</div>";
+                  imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + price + "元" + unit + "</div>";
                   imgInfos += "</div>";
-                  imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                  imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
                   imgInfos += " <img src='image/index/subject.png'/>";
                   imgInfos += "</div>"
 
@@ -170,7 +184,7 @@ function doSomething(infoList){
           // }
           // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
           // imgInfos += "<span style='margin-left:15px;'>";
-          imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+          imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0;width:100%;'/>";
           // imgInfos += "</span>";
           // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
           // imgInfos += "</div>";
@@ -179,7 +193,7 @@ function doSomething(infoList){
           // imgInfos += createtime;
           // imgInfos += "</span>";
           // imgInfos += "</span>";
-          imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+          imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:100%;'>";
           imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
 
           imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";
@@ -267,40 +281,55 @@ function doSomething(infoList){
 
         imgInfos += "<div style='width:100%; height:60px;background-size:100%;''>";
         imgInfos += "<div style='float:left;width:60px;height:60px; margin-left:18px; margin-top:10px;'>";
-        imgInfos += "<img src='" + i.imgpath + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
+        imgInfos += "<img src='" + i.firstimg + "' style='width:100%; height:100%; border-radius:50%' id='img'/>";
         imgInfos += "</div>";
+
+        var unit = "";
+        if(i.unit){
+            unit = "/" + i.unit;
+        }
 
         switch(i.type){
             case "actor":
             imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
+            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.nickname + "</span>";
             // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
             imgInfos += "</div>";
-            imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+            imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
             imgInfos += " <img src='image/index/actor.png'/>";
             imgInfos += "</div>";
             break;
             case "scene":
             imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
+            imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.scenename + "</span>";
             // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "</div>";
+            imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>￥" + i.price + "元" + unit + "</div>";
             imgInfos += "</div>";
-            imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+            imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
             imgInfos += " <img src='image/index/scene.png'/>";
             imgInfos += "</div>";
             break;
             case "subject":
-                var price = "";
-                i.saleprice ? price = i.saleprice :
-                    i.rentprice ? price = i.rentprice : "";
+            var price = "";
+            var unit = "";
+            if(i.saleprice){
+              price = i.saleprice;
+              unit = "/" + i.saleunit
+            }else{
+              if(i.rentprice){
+                price = i.rentprice;
+                unit = "/" + i.rentunit
+              }
+            }
+                // i.saleprice ? price = i.saleprice :
+                //     i.rentprice ? price = i.rentprice : "";
                 imgInfos += "<div style='float:left;width:60%;margin-left:15px;margin-top:15px;'>";
-                imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:1rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
+                imgInfos += "<span style='width:60%;height:23px;font-family: 苹方;font-size:0.8rem;color:#505050;overflow: hidden; text-overflow:ellipsis; white-space: nowrap;'>" + i.subjectname + "</span>";
                 // imgInfos += "<span style='height:10%;font-family: 苹方;font-size:12px;color:#9d9d9d'>" + i.sex + "</span>";
-                imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>" + price + "</div>";
+                imgInfos += "<div style='padding:0;width:100%;font-family: 苹方;font-size:0.875rem;color:#9d9d9d'>" + price + "元" + unit + "</div>";
                 imgInfos += "</div>";
-                imgInfos += "<div style='float:left;width:50px;  margin-top:8%;'>";
+                imgInfos += "<div style='float:left;width:40px;  margin-top:8%;'>";
                 imgInfos += " <img src='image/index/subject.png'/>";
                 imgInfos += "</div>"
 
@@ -329,7 +358,7 @@ function doSomething(infoList){
         // }
         // imgInfos += "<span  style='width:100%; height:100%;background-img:url('" + i.firstimg + "');background-size:100%;'>";
         // imgInfos += "<span style='margin-left:15px;'>";
-        imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0''/>";
+        imgInfos += "<img onclick=detail('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='margin-left:10px;float:left;border:1px solid #E0E0E0;width:100%;'/>";
         // imgInfos += "</span>";
         // imgInfos += "<div style='margin-top:-0px;width:100%; height:80px;background-color:rgba(0,0,0,0.2);background-size:100%;'>";
         // imgInfos += "</div>";
@@ -338,7 +367,7 @@ function doSomething(infoList){
         // imgInfos += createtime;
         // imgInfos += "</span>";
         // imgInfos += "</span>";
-        imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:99%;'>";
+        imgInfos += "<img src='./image/index/transparent.png' style='float:left;margin-left:10px;margin-top:-25%;width:100%;'>";
         imgInfos += "<div style='width:100%;margin-top:-27px;float:left;text-align:center;'>"
 
         imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.875rem;'> " + createtime + "</span>";

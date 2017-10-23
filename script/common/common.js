@@ -1,7 +1,7 @@
-
-var path = "http://192.168.0.129:8080";
-// var path = "http://47.93.224.28:8089";
+// var path = "http://192.168.0.129:8080";
+var path = "http://47.93.224.28:8089";
 var dialog = new auiDialog();
+
 
 apiready = function () {
     $api.fixStatusBar( $api.dom('header') );
@@ -17,6 +17,65 @@ apiready = function () {
         color: '#6ab494'
     });
     api.parseTapmode();
+
+    api.addEventListener({
+        name:'clip_success'
+    }, function(ret, err){
+        if( ret ){
+             var jsonstr= JSON.stringify(ret);
+    		//  alert(jsonstr);
+            // var urlObj = ret.value;
+
+    					var imgSrc = ret.value.new_img_url;
+              var type = ret.value.type;
+              // alert(type);
+              // alert(imgSrc);
+
+                        var img1=new Image();
+                        img1.crossOrigin = '';
+                        img1.src = imgSrc;
+                        img1.style = "width: 100%; height: 100%;";
+
+                        img1.onload = function() {
+                          if(img1.complete){
+                             database = getBase64Image(img1);
+
+                             $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                                 imgpath:database
+                               }, function(data) {
+                                 var data = JSON.parse(data);
+
+                                 if (data.success) {
+                                   alert(type);
+                                   alert(JSON.stringify(data));
+                                     if("lunboimg" === type){
+
+                                       $("#lunboimg_").val(data.imgpath);
+                                       $('#lunboimg').attr('src', data.imgpath);
+                                     }else if("firstimg" === type){
+                                       $("#firstimg_").val(data.imgpath);
+                                       $('#firstimg').attr('src', data.imgpath);
+                                     }else{
+                                       $("#headerImg_").val(data.imgpath);
+                                       $('#headerImg').attr('src', data.imgpath);
+                                     }
+                                 }else{
+                                     if("lunboimg" === type){
+                                       $(".addPicLunboimg").show();
+                                     }else if("firstimg" === type){
+                                       $(".addPicFirstimg").show();
+                                     }else{
+                                       $(".addPic").show();
+                                     }
+                                 }
+                             });
+                          }
+                        };
+        }else{
+             alert( JSON.stringify( err ) );
+        }
+    });
+
     //funIniGroup();
 }
 
@@ -142,7 +201,7 @@ var imgId = 0;
 var sizeinfos = 0;
 
 // 多图上传图片开始
-function showAction(){
+function showActionMore(){
     var UIMediaScanner = api.require('UIMediaScanner');
     UIMediaScanner.open({
       type: 'picture',
@@ -187,7 +246,9 @@ function showAction(){
 
     function(ret) {
         if (ret) {
+            $("#addPic").hide();
             var multipleGraphsList = [];
+
             ret.list.forEach(function(i){
 
                 imgId++ ;
@@ -201,7 +262,6 @@ function showAction(){
                 image.onload = function(){
 
                   sizeinfos ++;
-
 
                     if(image.complete){
                         var base64 = getBase64Image(image);
@@ -218,12 +278,27 @@ function showAction(){
 
                                   if (data.success) {
 
+
+
                                       jsonArray = {
                                        base64Data: data.imgpath
                                       }
 
                                       multipleGraphsList.push(jsonArray);
 
+                                      var imagesId = generateMixed(8);
+
+                                      var imgs = "";
+                                      imgs += "<span style='width30%;margin-left:3%;'>";
+                                      // imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
+
+                                      imgs += "<div name=" + imagesId +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic('" + imagesId + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
+                                      imgs += "<img id='" + imagesId + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.path + "'/>";
+                                      imgs += "</span>";
+
+
+
+                                      $("#imgUpload").append(imgs);
                                       if(ret.list.length === sizeinfos){
 
                                           var hi_jsonStr = JSON.stringify(multipleGraphsList);
@@ -232,6 +307,22 @@ function showAction(){
                                               var newArr = JSON.parse($("#multipleGraphsList").val());
                                               newArr.push(jsonArray);
                                               $("#multipleGraphsList").val(JSON.stringify(newArr));
+
+                                              var newArr = JSON.parse($("#multipleGraphsList").val());
+
+                                              // var butImg = "";
+                                              // alert(newArr.length + "---" + imgsize);
+                                              // if(newArr.length === imgsize){
+                                              //     butImg += "<span onclick='showActionMore()' id='addPicId' style='width:30%;margin-left:3%;'>";
+                                              //     butImg += "<img style='width:93px;height:93px' src='../../image/addPicZ.png'/>";
+                                              //     butImg += "</span>";
+                                              // }
+                                              //
+                                              //
+                                              //  $("#imgUpload").append(butImg);
+                                              //  $("#imgsize").val(imgsize);
+
+
                                           }else{
                                               $("#multipleGraphsList").val(hi_jsonStr);
                                           }
@@ -247,8 +338,9 @@ function showAction(){
                      }
                  }
 
-                 $("#imgUpload").append(image);
-                 $("#imgUpload").append("<span name=" + imgId +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic('" + imgId + "')>删除</button></div></span>");
+
+
+                //  $("#imgUpload").append("<span name=" + imgId +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic('" + imgId + "')>删除</button></div></span>");
 
             });
 
@@ -260,7 +352,7 @@ function showAction(){
 //删除图片
 function delpic(imgId){
   $("#" + imgId).remove();
-  $("span[name=" + imgId + "]").html("");
+  $("div[name=" + imgId + "]").html("");
 	deleteData(imgId);
 }
 
@@ -317,12 +409,12 @@ function back(){
 }
 
 // 截图功能
-function openImageClipFrame(img_src){
+function openImageClipFrame(img_src,type){
   api.openFrame({
     name : 'main',
     scrollToTop : true,
     allowEdit : true,
-    url : '../photoCut.html',
+    url : '../../photoCut.html',
     rect : {
       x : 0,
       y : 0,
@@ -336,10 +428,23 @@ function openImageClipFrame(img_src){
     },
     pageParam : {
       img_src : img_src,
+      type:type
     },
     vScrollBarEnabled : false,
     hScrollBarEnabled : false,
     //页面是否弹动 为了下拉刷新使用
     bounces : false
   });
+}
+
+//生成随机数的方法
+var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+function generateMixed(n) {
+     var res = "";
+     for(var i = 0; i < n ; i ++) {
+         var id = Math.ceil(Math.random()*35);
+         res += chars[id];
+     }
+     return res;
 }

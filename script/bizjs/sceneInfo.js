@@ -1,6 +1,5 @@
 
 var multipleGraphsList = [];
-$("#imgUpload").html("");
 var role = GetQueryString("role");
 var id = GetQueryString("id");
 var infoid = "";
@@ -36,13 +35,110 @@ $(function(){
 				  console.log(data)
 				  // alert(JSON.stringify(data));
 				  if (data.success) {
+            $(".addPicFirstimg").hide();
+  					$(".addPicLunboimg").hide();
+            var imgs = "";
+            var flag = 0;
+            $("#imgUpload").html("");
+            data.imgs.forEach(function(i){
+
+                flag ++;
+
+                imgs += "<span style='width30%;margin-left:3%;'>";
+                // imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
+
+                imgs += "<div name=" + i.id +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic_edit('" + i.id + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
+                imgs += "<img id='" + i.id + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.imgpath + "'/>";
+                imgs += "</span>";
+
+
+
+                // if(data.imgs.length === flag){
+                //     imgs += "<span style='width:30%;margin-left:3%;'>";
+                //     imgs += "<img style='width:93px;height:93px' src='../../image/addPicZ.png'/>";
+                //     imgs += "</span>";
+                // }
+
+
+               //  $("#imgUpload").append(imgs);
+               //  $("#imgUpload").append("<span name=" + i.id +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic_edit('" + i.id + "')>删除</button></div></span>");
+
+                var jsonArray = {base64Data:i.imgpath,fileId:i.id};
+                multipleGraphsList2.push(jsonArray);
+            })
+
+            var selDiv = "";
+
+            selDiv+="<div  id='distpicker3' >";
+
+            selDiv+="<table>";
+            selDiv+="<tr>";
+            selDiv+="<td>";
+            selDiv+="      <select  id='provience' name='provience'></select>";
+            selDiv+=" </td>";
+            selDiv+="<td>";
+            selDiv+="	&nbsp;";
+            selDiv+="</td>";
+            selDiv+="<td>";
+            selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+            selDiv+="</td>";
+            selDiv+="</tr>";
+            selDiv+="</table>";
+            selDiv+="";
+            selDiv+="<table>";
+            selDiv+="<tr>";
+            selDiv+="<td>";
+            selDiv+="      <select id='city' name='city'></select>";
+            selDiv+=" </td>";
+            selDiv+="<td>";
+            selDiv+="	&nbsp;";
+            selDiv+="</td>";
+            selDiv+="<td>";
+            selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+            selDiv+="</td>";
+            selDiv+="</tr>";
+            selDiv+="</table>";
+            selDiv+="";
+            selDiv+="<table>";
+            selDiv+="<tr>";
+            selDiv+="<td>";
+            selDiv+="      <select  id='district' name='district'></select>";
+            selDiv+=" </td>";
+            selDiv+="<td>";
+            selDiv+="	&nbsp;";
+            selDiv+="</td>";
+            selDiv+="<td>";
+            selDiv+="	<img src='../../image/sj.png' style='width:10px;height:10px;'>";
+            selDiv+="</td>";
+            selDiv+="</tr>";
+            selDiv+="</table>";
+            selDiv+=" </div>";
+
+            $("#disDiv").html(selDiv);
+
+            var provience = data.sceneinfo.provience;
+            var city = data.sceneinfo.city;
+            var district = data.sceneinfo.district;
+
+            $("#distpicker3").distpicker({
+                province: provience,
+                city: city,
+                district: district
+            });
+
+            $("#imgUpload").html(imgs);
 
 
 					  $("#scenename").val(data.sceneinfo.scenename);
-					  $("#sceneinfos").val(data.sceneinfo.sceneinfos);
+					  $("#sceneinfos").val("    " + data.sceneinfo.sceneinfos);
 					  $("#price").val(data.sceneinfo.price);
-					  $("#keywords").val(data.sceneinfo.keywords);
+					  $("#keywords").val("    " + data.sceneinfo.keywords);
 					  $("#address").val(data.sceneinfo.address);
+
+            $("#firstimg").attr("src",data.sceneinfo.firstimg);
+            $("#lunboimg").attr("src",data.sceneinfo.lunboimg);
+            $("#firstimg_").val(data.sceneinfo.firstimg);
+            $("#lunboimg_").val(data.sceneinfo.lunboimg);
 
 					  $("#bigtype").val(data.sceneinfo.bigid);
 					  smallid = data.sceneinfo.smallid;
@@ -54,25 +150,32 @@ $(function(){
 					  $("#hi_professionalScore").val(data.sceneinfo.professionalScore);
 					  $("#hi_serviceScore").val(data.sceneinfo.serviceScore);
 					  $("#hi_attentionSum").val(data.sceneinfo.attentionSum);
-					  $("#hi_firstimg").val(data.sceneinfo.firstimg);
+					  $("#firstimg_").val(data.sceneinfo.firstimg);
+            $("#lunboimg_").val(data.sceneinfo.lunboimg);
 					  $("#hi_scenestatus").val(data.sceneinfo.scenestatus);
 					  $("#hi_memberid").val(data.sceneinfo.memberid);
 					  $("#hi_createtime").val(data.sceneinfo.createtime);
 
-					  $("#unit").val(data.sceneinfo.unit);
+            if(data.actinfo.unit){
+                $("#unitsImg").hide();
+                $("#unit").val(data.sceneinfo.unit);
+            }
 
-					  data.imgs.forEach(function(i){
-						  var image = new Image();
-						  image.crossOrigin = '';
-						  image.id = i.id;
-						  image.src = i.imgpath;
-						  image.style = "width: 100%; height: 100%;";
-						  $("#imgUpload").append(image);
-						  $("#imgUpload").append("<span name=" + i.id +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic_edit('" + i.id + "')>删除</button></div></span>");
 
-						   var jsonArray = {base64Data:i.imgpath,fileId:i.id};
-							multipleGraphsList2.push(jsonArray)
-					 });
+					//   data.imgs.forEach(function(i){
+					// 	  var image = new Image();
+					// 	  image.crossOrigin = '';
+					// 	  image.id = i.id;
+					// 	  image.src = i.imgpath;
+					// 	  image.style = "width: 100%; height: 100%;";
+					// 	  $("#imgUpload").append(image);
+					// 	  $("#imgUpload").append("<span name=" + i.id +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic_edit('" + i.id + "')>删除</button></div></span>");
+           //
+					// 	   var jsonArray = {base64Data:i.imgpath,fileId:i.id};
+					// 		multipleGraphsList2.push(jsonArray)
+					//  });
+
+
 				  }
 			  });
 
@@ -82,68 +185,15 @@ $(function(){
 
 });
 
-apiready = function() {
-api.addEventListener({
-    name:'clip_success'
-}, function(ret, err){
-    if( ret ){
-         var jsonstr= JSON.stringify(ret);
-		//  alert(jsonstr);
-        // var urlObj = ret.value;
-
-					var imgSrc = ret.value.new_img_url;
-          // alert(imgSrc);
-
-                    var img1=new Image();
-                    img1.crossOrigin = '';
-                    img1.src = imgSrc;
-                    img1.style = "width: 100%; height: 100%;";
-
-                    img1.onload = function() {
-                      if(img1.complete){
-                        //  alert(img1.complete);
-                         database = getBase64Image(img1);
-
-                         $.post(path + "/ActorInterface/index/uploadImgs.action",{
-                             imgpath:database
-                           }, function(data) {
-                             var data = JSON.parse(data);
-
-                             if (data.success) {
-																 var lunboimg = $("#lunboimg_").val();
-	                               var firstimg = $("#firstimg_").val();
-
-	                               if(lunboimg){
-	                                 $("#lunboimg_").val(data.imgpath);
-	                                 $('#lunboimg').attr('src', data.imgpath);
-	                               }
-
-	                               if(firstimg){
-	                                 $("#firstimg_").val(data.imgpath);
-	                                 $('#firstimg').attr('src', data.imgpath);
-	                               }
-                             }
-                         });
-
-
-                      }
-                    };
-    }else{
-         alert( JSON.stringify( err ) );
-    }
-});
-}
-
 //删除图片
 function delpic_edit(imgId){
   $("#" + imgId).remove();
-  $("span[name=" + imgId + "]").html("");
+  $("div[name=" + imgId + "]").html("");
   deleteData_edit(imgId);
 }
 
 //删除方法
 function deleteData_edit(fileId) {
-		alert(fileId);
 
         var files = multipleGraphsList2;
         for (var i = 0; i < files.length; i++) {
@@ -164,6 +214,11 @@ function personalRoleManage(){
   var bigtype = $("#bigtype").val();
   var smalltype = $("#smalltype").val();
   var scenename = $("#scenename").val();
+  var unit = $("#unit").val();
+  var firstimg = $("#firstimg_").val();
+  var lunboimg = $("#lunboimg_").val();
+  var unit = $("#unit").val();
+  console.log(unit);
 
   if(!/\d$/.test(price)){
       dialog.alert({
@@ -224,9 +279,30 @@ function personalRoleManage(){
       return false;
   }
 
-   if(!$("#multipleGraphsList").val() && !infoid){
+  console.log(unit)
+  if("" === unit){
+      dialog.alert({
+          title:"请选择计费单位！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  //  if(!lunboimg){
+  //      dialog.alert({
+  //          title:"请选择轮播图",
+  //          msg:'',
+  //          buttons:['确定']
+  //      },function(ret){
+  //      })
+  //      return false;
+  //  }
+
+   if(!firstimg){
        dialog.alert({
-           title:"请上传图片",
+           title:"请选择封面图",
            msg:'',
            buttons:['确定']
        },function(ret){
@@ -236,7 +312,7 @@ function personalRoleManage(){
 
 
  	$("#tjBtu").remove();
-	$("#tjDiv").html("<div class='aui-btn  aui-margin-r-5' id='dis_tjBtu'>提交</div>");
+	$("#tjDiv").html("<div id='dis_tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
 
     var actionURL = "";
 
@@ -286,12 +362,12 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.fail({
-								title:"提交失败",
+								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交失败",
 								duration:2000
 							 });
 
 							 $("#dis_tjBtu").remove();
-							 $("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
+							 $("#tjDiv").html("<div onclick='personalRoleManage()' id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
 				},
 				success : function(data) {
 
@@ -301,7 +377,7 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.success({
-								title:"提交成功",
+								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交成功",
 								duration:2000
 							 });
 
@@ -313,12 +389,12 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.fail({
-								title:"提交失败",
+								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交失败",
 								duration:2000
 							 });
 
 							$("#dis_tjBtu").remove();
-							$("#tjDiv").html("<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='personalRoleManage()' id='tjBtu'>提交</div>");
+							$("#tjDiv").html("<div onclick='personalRoleManage()' id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
 
 						}
 
@@ -382,21 +458,25 @@ function getPicture(sourceType, num) {
             sourceType: 'camera',
             encodingType: 'jpg',
             mediaValue: 'pic',
-            allowEdit: false,
+            allowEdit: true,
             destinationType: 'base64',
             quality: 90,
             saveToPhotoAlbum: true
         }, function(ret, err) {
-            if (ret) {
-							if("1" === num){
-									openImageClipFrame(ret.data);
-									$("#lunboimg_").val(ret.base64Data);
+          alert(JSON.stringify(ret));
+            if (ret) { 
+              if("1" === num){
+                $(".addPicLunboimg").hide();
+                  openImageClipFrame(ret.data,'lunboimg');
+                  $("#lunboimg_").val(ret.base64Data);
+                  $("#lunboimg").attr('src',ret.base64Data);
 
-
-							}else if("2" === num){
-									openImageClipFrame(ret.data);
-									$("#firstimg_").val(ret.base64Data);
-							}
+              }else if("2" === num){
+                $(".addPicFirstimg").hide();
+                  openImageClipFrame(ret.data,'firstimg');
+                  $("#firstimg_").val(ret.base64Data);
+                  $("#firstimg").attr('src',ret.base64Data);
+              // }
             }else {
                 alert(JSON.stringify(err));
             }
@@ -413,15 +493,16 @@ function getPicture(sourceType, num) {
                 targetHeight: 750
             }, function(ret, err) {
                 if (ret) {
-										if("1" === num){
-												openImageClipFrame(ret.data);
-												$("#lunboimg_").val(ret.base64Data);
+                  if("1" === num){
+										$(".addPicLunboimg").hide();
+											openImageClipFrame(ret.data,'lunboimg');
+											// $("#lunboimg_").val(ret.base64Data);
 
-
-										}else if("2" === num){
-												openImageClipFrame(ret.data);
-												$("#firstimg_").val(ret.base64Data);
-										}
+									}else if("2" === num){
+										$(".addPicFirstimg").hide();
+											openImageClipFrame(ret.data,'firstimg');
+											// $("#firstimg_").val(ret.base64Data);
+									}
                 } else {
                     alert(JSON.stringify(err));
                 }
@@ -429,4 +510,4 @@ function getPicture(sourceType, num) {
     }
 }
 
-// 上传图片结束
+// 上传图片结束0

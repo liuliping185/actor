@@ -26,7 +26,7 @@ $(function(){
       if (data.success) {
           var infos = "";
           var workingRange = "";
-          var synopsis = "";
+          var synopsis = ""; 
           switch(role){
               case "actor":
                   $("#price").html("￥" +  data.actinfo.price + "/" + data.actinfo.unit);
@@ -34,45 +34,57 @@ $(function(){
 
                   infos += "<h4 style='margin-top:3%; margin-left: 5%; color:#7B7B7B;'><span style='margin-top:3%;'>艺人资料</span></h4>";
                   infos += "<div style='margin-top: 2%; margin 0 auto;'>";
-                  infos += "<span style='margin-left:5%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db; margin-left:5%; border-radius:5px;'>身高:";
-                  infos += "<sapn style='font-size:12px;color:#3598db'>" + data.actinfo.height + "cm</span>";
+                  infos += "<span style='padding-left:5px;margin-left:5%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:5%; border-radius:5px;'>身高:";
+                  infos += "<sapn style='font-size:12px;color:#20e0b9;padding-right:5px;'>" + data.actinfo.height + "cm</span>";
                   infos += "</span>";
-                  // infos += "<span style='display:inline-block;border:1px solid #3598db; width:30%; margin-left:5%; border-radius:5px;'>";
-                  infos += "<span style='margin-left:10%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db;  margin-left:7%; border-radius:5px;'>体重:";
-                  infos += "<span style='font-size:12px;'>" + data.actinfo.weight/2 + "kg</span>";
+                  // infos += "<span style='display:inline-block;border:1px solid #20e0b9; width:30%; margin-left:5%; border-radius:5px;'>";
+                  infos += "<span style='padding-left:5px;margin-left:10%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9;  margin-left:7%; border-radius:5px;'>体重:";
+                  infos += "<span style='font-size:12px;padding-right:5px;'>" + data.actinfo.weight/2 + "kg</span>";
                   infos += "</span>";
                   // infos += "</span>";
-                  // infos += "<span style='display:inline-block;border:1px solid #3598db; width:25%; margin-left:5%; border-radius:5px;'>";
-                  infos += "<span style='margin-left:10%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db; margin-left:7%; border-radius:5px;'>性别:";
-                  infos += "<span style='font-size:12px;'>" + data.actinfo.sex + "</span>";
+                  // infos += "<span style='display:inline-block;border:1px solid #20e0b9; width:25%; margin-left:5%; border-radius:5px;'>";
+                  infos += "<span style='padding-left:5px;margin-left:10%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:7%; border-radius:5px;'>性别:";
+                  infos += "<span style='font-size:12px;padding-right:5px;'>" + data.actinfo.sex + "</span>";
                   infos += "</span>";
 
-                  infos += "<span style='margin-left:10%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db; margin-left:7%; border-radius:5px;'>地区:";
-                  infos += "<span style='font-size:12px;'>" + data.actinfo.provience + "</span>";
-                  infos += "</span>";
+                  // infos += "<span style='padding-left:5px;margin-left:10%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:7%; border-radius:5px;'>地区:";
+                  // infos += "<span style='font-size:12px;padding-right:5px;'>" + data.actinfo.provience + "</span>";
                   // infos += "</span>";
+                  // infos += "</span>";
+                  infos += "<div style='background-color:#ffffff;padding-bottom:5px;'>";
+                  // infos += "<h4 style='margin-left: 5%; color:#7B7B7B;'><span style='margin-top:3%;'>关键字</span></h4>";
+                  infos += "<span style='margin-top: 2%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:5%; border-radius:5px;'>";
+                  infos += "<span style='font-size:12px;padding-left:5px;padding-right:5px;'>" + data.actinfo.keywords + "</span>";
+                  infos += "</span>";
+                  infos += "<div>";
+
                   infos += "</div>";
 
-                  // workingRange += "<h4 style='color:#7B7B7B;'>工作范围";
+
+
                   // workingRange += "<span style='color: #7B7B7B; margin-left:65%;'>更多></span>";
-                  // workingRange += "<h4>";
 
                   // synopsis += "<h4 style='margin-left:5%;'>模特</h4>";
-                  synopsis += "<div style='margin-top:-8%;'>";
-                  synopsis += "<h4 style='margin-left:5%;  color:#7B7B7B;'><span style='margin-top:3%;'>可预约时段</span>";
-                  synopsis += "</h4>";
-                  synopsis += "</div>";
-                  synopsis += "<div style='padding-bottom:10px;'>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
-                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>工作经历</h4>";
+                  synopsis += "<div style='margin-top:8%;'>";
+
+                  synopsis += "<h4 style='margin-left:5%; margin-top:0%; color:#7B7B7B;'><span style='margin-top:3%;'>工作范围</span><h4>";
                   synopsis += "<div>";
-                  synopsis += "<span style='margin-left:10%;font-size:14px;color:#9D9D9D'>" + data.actinfo.experience + "</span>";
+                  synopsis += "<span style='margin-left:10%;font-size:14px;color:#9D9D9D'>" + data.actinfo.workarea + "</span>";
                   synopsis += "</div>";
                   synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>个人简介</h4>";
                   synopsis += "<div>";
                   synopsis += "<span style='margin-left:10%;font-size:14px;color:#9D9D9D'>" + data.actinfo.infos + "</span>";
                   synopsis += "</div>";
+                  synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>工作经历</h4>";
+                  synopsis += "<div>";
+                  synopsis += "<span style='margin-left:10%;font-size:14px;color:#9D9D9D'>" + data.actinfo.experience + "</span>";
+                  synopsis += "</div>";
+                  synopsis += "<h4 style='margin-left:5%;  color:#7B7B7B;'><span style='margin-top:3%;'>可预约时段</span>";
+                  synopsis += "</h4>";
+                  synopsis += "</div>";
+                  synopsis += "<div style='padding-bottom:10px;'>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=reserve('" + data.preFlag + "') style='background-color:#20e0b9;width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=booking('" + data.preFlag + "') style='background-color:#20e0b9;width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
                   synopsis += "</div>";
 
                   $("#infoid").val(data.actinfo.id);
@@ -86,12 +98,54 @@ $(function(){
                   }
 
                   imgArr = [];
+                  var imgflag = 0;
+                  var imgone = "";
+                  var imgfour = "";
+                  var imgsix = "";
+                  var imgssecond = "";
+                  console.log(data.imgs.length)
+                  if(1 ===  data.imgs.length){
+                    imgone += "<img style='float:left; width:100%; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/>";
+                    $("#imgBig").html(imgone);
+                  }
+
                   data.imgs.forEach(function(i){
                       imgArr.push(i.imgpath);
+
+                      imgflag ++;
+
+                      imgsix += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:45%;' src='" + i.imgpath + "' onclick='album()'/>";
+                      imgfour += "<img style='float:left; width:45%; height:45%; margin-top:3%; margin-left:3%;'  src='" + i.imgpath + "' onclick='album()'/>";
+
+
+                      imgssecond += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:80%;' src='" + i.imgpath + "' onclick='album()'/>";
+
+                      if(imgflag >= 5){
+                          $("#photoDiv").height("50%");
+                          if(imgflag === 6 || imgflag === 5){
+                            $("#imgBig").html(imgsix);
+                          }
+                      }else{
+                          if(imgflag >= 4){
+                            if(4 === imgflag){
+                              $("#photoDiv").height("50%");
+                              $("#imgBig").html(imgfour);
+                            }
+                          }else if(imgflag === 2){
+                              $("#photoDiv").height("25%");
+
+                              $("#imgBig").html(imgssecond);
+                          }else if(imgflag === 3){
+                              $("#photoDiv").height("25%");
+
+                              $("#imgBig").html(imgssecond);
+
+                          }
+                      }
                   });
 
-                  $('#img').attr('src', data.imgs[0].imgpath);
-                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+                  $('#img').attr('src', data.actinfo.firstimg);
+                  $('#imgBig').attr('src', data.actinfo.firstimg);
 
                   $("#attentionFlag").val(data.attentionFlag);
                   $("#goodFlag").val(data.goodFlag);
@@ -157,22 +211,22 @@ $(function(){
 
                   infos += "<div style='background-color:#ffffff;padding-bottom:5px;'>";
                   infos += "<h4 style='margin-left: 5%; color:#7B7B7B;'><span style='margin-top:3%;'>关键字</span></h4>";
-                  infos += "<span style='margin-top: 2%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db; margin-left:5%; border-radius:5px;'>";
-                  infos += "<span style='font-size:12px;'>" + data.sceneinfo.keywords + "</span>";
+                  infos += "<span style='margin-top: 2%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:5%; border-radius:5px;'>";
+                  infos += "<span style='font-size:12px;padding-left:5px;padding-right:5px;'>" + data.sceneinfo.keywords + "</span>";
                   infos += "</span>";
                   infos += "<div>";
                   // workingRange += "<h4 style='color:#7B7B7B;'>工作范围";
                   // workingRange += "<span style='color:#7B7B7B; margin-left:65%;'>更多></span>";
                   // workingRange += "<h4>";
 
-                  synopsis += "<div style='margin-top:4%;'>";
+                  synopsis += "<div style='margin-top:10%;'>";
                   // synopsis += "<h4 style='margin-left: 5%; color:#7B7B7B;'>" + data.sceneinfo.scenename + "</h4>";
                   synopsis += "<h4 style='margin-left:5%;  color:#7B7B7B;'><span style='margin-top:3%;'>可预约时段</span>";
                   synopsis += "</h4>";
                   synopsis += "</div>";
                   synopsis += "<div style='padding-bottom:10px;'>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=reserve('" + data.preFlag + "') style='background-color:#20e0b9;width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=booking('" + data.preFlag + "') style='background-color:#20e0b9;width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
                   synopsis += "</div>";
                   synopsis += "</div>";
 
@@ -186,12 +240,53 @@ $(function(){
                   $("#area").html(createtime);
 
                   imgArr = [];
+                  var imgflag = 0;
+                  var imgone = "";
+                  var imgfour = "";
+                  var imgsix = "";
+                  var imgssecond ="";
+
+                  if(1 ===  data.imgs.length){
+                    imgone += "<img style='float:left; width:100%; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/>";
+                    $("#imgBig").html(imgone);
+                  }
+
                   data.imgs.forEach(function(i){
                       imgArr.push(i.imgpath);
+
+                      imgflag ++;
+
+                      imgsix += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:45%;' src='" + i.imgpath + "' onclick='album()'/>";
+                      imgfour += "<img style='float:left; width:45%; height:45%; margin-top:3%; margin-left:3%;'  src='" + i.imgpath + "' onclick='album()'/>";
+
+                      imgssecond += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:80%;' src='" + i.imgpath + "' onclick='album()'/>";
+
+                      if(imgflag >= 5){
+                          $("#photoDiv").height("50%");
+                          if(imgflag === 6 || imgflag === 5){
+                            $("#imgBig").html(imgsix);
+                          }
+                      }else{
+                          if(imgflag >= 4){
+                            if(4 === imgflag){
+                              $("#photoDiv").height("50%");
+                              $("#imgBig").html(imgfour);
+                            }
+                          }else if(imgflag === 2){
+                              $("#photoDiv").height("25%");
+
+                              $("#imgBig").html(imgssecond);
+                          }else if(imgflag === 3){
+                              $("#photoDiv").height("25%");
+
+                              $("#imgBig").html(imgssecond);
+
+                          }
+                      }
                   });
 
-                  $('#img').attr('src', data.imgs[0].imgpath);
-                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+                  $('#img').attr('src', data.sceneinfo.firstimg);
+
 
                   $("#attentionFlag").val(data.attentionFlag);
                   $("#goodFlag").val(data.goodFlag);
@@ -269,11 +364,11 @@ $(function(){
 
                   infos += "<div style='background-color:#ffffff;padding-bottom:5px;'>";
                   infos += "<h4 style='margin-left: 5%; color:#7B7B7B;'><span style='margin-top:3%;'>关键字</span></h4>";
-                  infos += "<span style='margin-top: 2%; font-size:12px; color:#3598db; display:inline-block;border:1px solid #3598db; margin-left:5%; border-radius:5px;'>";
+                  infos += "<span style='margin-top: 2%; font-size:12px; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; margin-left:5%; border-radius:5px;'>";
                   if(!data.subjectinfo.keywords){
                       infos += "<span style='font-size:12px;'>" + "暂无" + "</span>";
                   }else{
-                      infos += "<span style='font-size:12px;'>" + data.subjectinfo.keywords + "</span>";
+                      infos += "<span style='font-size:12px;padding-left:5px;padding-right:5px;'>" + data.subjectinfo.keywords + "</span>";
                   }
 
                   infos += "</span>";
@@ -282,14 +377,14 @@ $(function(){
                   // workingRange += "<span style='color:#7B7B7B; margin-left:65%;'>更多></span>";
                   // workingRange += "<h4>";
 
-                  synopsis += "<div style='margin-top:4%;'>";
+                  synopsis += "<div style='margin-top:10%;'>";
                   // synopsis += "<h4 style='margin-left: 5%; color:#7B7B7B;'>" + data.sceneinfo.scenename + "</h4>";
                   synopsis += "<h4 style='margin-left:5%;  color:#7B7B7B;'><span style='margin-top:3%;'>可预约时段</span>";
                   synopsis += "</h4>";
                   synopsis += "</div>";
                   synopsis += "<div style='padding-bottom:10px;'>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
-                  synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=reserve('" + data.preFlag + "') style='background-color:#20e0b9;width:50px; height:20px; font-size:14px; line-height:20px; margin-left:10%; margin-top:2%;'>预约</div>";
+                  synopsis += "<div class='aui-btn aui-btn-success' onclick=booking('" + data.preFlag + "') style='background-color:#20e0b9;width:60x; height:20px; font-size:14px; line-height:20px; margin-left: 20px; margin-top:2%;'>待预约</div>";
                   synopsis += "</div>";
                   synopsis += "</div>";
 
@@ -305,8 +400,8 @@ $(function(){
                   // synopsis += "<h4 style='margin-left:5%; margin-top:2%; color:#7B7B7B;'>可预约时段";
                   // synopsis += "</h4>";
                   // synopsis += "</div>";
-                  // synopsis += "<div class='aui-btn aui-btn-info' onclick='reserve()' style='width:50px; height:30px; margin-left:5%; margin-top:2%;'>预约</div>";
-                  // synopsis += "<div class='aui-btn aui-btn-info' onclick='booking()' style='width:65px; height:30px; margin-left: 20px; margin-top:2%;'>待预约</div>";
+                  // synopsis += "<div class='aui-btn aui-btn-info' onclick=reserve('" + data.preFlag + "') style='width:50px; height:30px; margin-left:5%; margin-top:2%;'>预约</div>";
+                  // synopsis += "<div class='aui-btn aui-btn-info' onclick=booking('" + data.preFlag + "') style='width:65px; height:30px; margin-left: 20px; margin-top:2%;'>待预约</div>";
 
                   $("#infoid").val(data.subjectinfo.id);
                   $("#type").val("subject");
@@ -318,12 +413,54 @@ $(function(){
                   $("#area").html(createtime);
 
                   imgArr = [];
+                  var imgflag = 0;
+                  var imgone = "";
+                  var imgfour = "";
+                  var imgsix = "";
+                  var imgssecond ="";
+
+                  if(1 === data.imgs.length){
+                    imgone += "<img style='float:left; width:100%; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/>";
+                    $("#imgBig").html(imgone);
+                  }
+
                   data.imgs.forEach(function(i){
                       imgArr.push(i.imgpath);
+
+                      imgflag ++;
+
+                      imgsix += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:45%;' src='" + i.imgpath + "' onclick='album()'/>";
+                      imgfour += "<img style='float:left; width:45%; height:45%; margin-top:3%; margin-left:3%;'  src='" + i.imgpath + "' onclick='album()'/>";
+
+
+                      imgssecond += "<img style='float:left; width:30%; margin-left:3%; margin-top:3%; height:80%;' src='" + i.imgpath + "' onclick='album()'/>";
+
+                      if(imgflag >= 5){
+                          $("#photoDiv").height("50%");
+                          if(imgflag === 6 || imgflag === 5){
+                            $("#imgBig").html(imgsix);
+                          }
+                      }else{
+                          if(imgflag >= 4){
+                            if(4 === imgflag){
+                              $("#photoDiv").height("50%");
+                              $("#imgBig").html(imgfour);
+                            }
+                          }else if(imgflag === 2){
+                              $("#photoDiv").height("25%");
+
+                              $("#imgBig").html(imgssecond);
+                          }else if(imgflag === 3){
+                              $("#photoDiv").height("25%");
+                              $("#imgBig").html("");
+                              $("#imgBig").html(imgssecond);
+
+                          }
+                      }
                   });
-                  
-                  $('#img').attr('src', data.imgs[0].imgpath);
-                  $('#imgBig').attr('src', data.imgs[0].imgpath);
+
+                  $('#img').attr('src', data.subjectinfo.firstimg);
+                  $('#imgBig').attr('src', data.subjectinfo.firstimg);
 
                   $("#infos").html(infos);
                   $("#workingRange").html(workingRange);
@@ -587,65 +724,84 @@ function isfollow(infoid, type){
         return false;
     }
 
-    infoid = $("#infoid").val();
-    type = $("#type").val();
+    $.post(path + "/ActorInterface/member/getSessionMember.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data)
+        if (data.success) {
+          infoid = $("#infoid").val();
+          type = $("#type").val();
 
-    console.log(infoid + "-----" + type)
+          console.log(infoid + "-----" + type)
 
-    var checkedVal = $("#isfollow").prop("checked");
-    console.log(checkedVal);
-    var actionUrl = "";
-    if(true === checkedVal){
-        actionUrl = path + "/ActorInterface/attention/removeAttention.action";
-    }else{
-        actionUrl = path + "/ActorInterface/attention/addAttention.action";
-    }
+          var checkedVal = $("#isfollow").prop("checked");
+          console.log(checkedVal);
+          var actionUrl = "";
+          if(true === checkedVal){
+              actionUrl = path + "/ActorInterface/attention/removeAttention.action";
+          }else{
+              actionUrl = path + "/ActorInterface/attention/addAttention.action";
+          }
 
-    var toast = new auiToast();
-    toast.loading({
-      title:"正在提交",
-      duration:2000
-    },function(ret){
-      setTimeout(function(){
-        $.post(actionUrl,{
-            token:localStorage.token,
-            infoid: infoid,
-            type: type
-          }, function(data) {
-            var data = JSON.parse(data);
-            console.log(data)
-            if (data.success) {
-                if("关注成功！" === data.message){
-                    $("#followImg").attr("src", "../image/roleDetails/takeOff.png");
-                    // $("#follow").html("-取消关注");
-                    $("#isfollow").prop("checked", true);
-                    $("#attentionFlag").val("true");
-                }
+          var toast = new auiToast();
+          toast.loading({
+            title:"正在提交",
+            duration:2000
+          },function(ret){
+            setTimeout(function(){
+              $.post(actionUrl,{
+                  token:localStorage.token,
+                  infoid: infoid,
+                  type: type
+                }, function(data) {
+                  var data = JSON.parse(data);
+                  console.log(data)
+                  if (data.success) {
+                      if("关注成功！" === data.message){
+                          $("#followImg").attr("src", "../image/roleDetails/takeOff.png");
+                          // $("#follow").html("-取消关注");
+                          $("#isfollow").prop("checked", true);
+                          $("#attentionFlag").val("true");
+                      }
 
-                if("关注已取消！" === data.message){
-                    $("#followImg").attr("src", "../image/roleDetails/attention.png");
-                    // $("#follow").html("+关注");
-                    $("input[id='isfollow']").removeAttr("checked");
-                    $("#attentionFlag").val("false");
-                }
+                      if("关注已取消！" === data.message){
+                          $("#followImg").attr("src", "../image/roleDetails/attention.png");
+                          // $("#follow").html("+关注");
+                          $("input[id='isfollow']").removeAttr("checked");
+                          $("#attentionFlag").val("false");
+                      }
 
-                toast.hide();
+                      toast.hide();
 
-                toast.success({
-                 title:"提交成功",
-                 duration:2000
-                });
-            }else{
-                toast.hide();
+                      toast.success({
+                       title:"提交成功",
+                       duration:2000
+                      });
+                  }else{
+                      toast.hide();
 
-                toast.fail({
-                  title:"提交失败",
-                  duration:2000
-                });
-            }
-        });
-      }, 3000)
+                      toast.fail({
+                        title:"提交失败",
+                        duration:2000
+                      });
+                  }
+              });
+            }, 3000)
+          });
+        }else{
+          dialog.alert({
+              title:"请登录!",
+              msg:'',
+              buttons:['确定']
+              },function(ret){
+             window.location.href="../login.html";
+          })
+          return false;
+        }
     });
+
+
 }
 
 // 点赞
@@ -713,12 +869,147 @@ function isStart(infoid, type){
 
 // 关注
 function follow(infoid, type){
-    infoid = $("#infoid").val();
-    type = $("#type").val();
-    console.log($("#attentionFlag").val());
-    if("true" === $("#attentionFlag").val()){
+  if(!localStorage.token){
+      dialog.alert({
+          title:"请重新登录！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+
+      })
+      return false;
+  }
+
+  $.post(path + "/ActorInterface/member/getSessionMember.action",{
+      token:localStorage.token,
+    }, function(data) {
+      var data = JSON.parse(data);
+      console.log(data)
+      if (data.success) {
+        infoid = $("#infoid").val();
+        type = $("#type").val();
+        console.log($("#attentionFlag").val());
+        if("true" === $("#attentionFlag").val()){
+            dialog.alert({
+                title:"该信息已关注！",
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+
+            })
+            return false;
+        }
+
+        var toast = new auiToast();
+        toast.loading({
+          title:"正在提交",
+          duration:2000
+        },function(ret){
+          setTimeout(function(){
+            $.post( path + "/ActorInterface/attention/addAttention.action" ,{
+                token:localStorage.token,
+                infoid: infoid,
+                type: type
+              }, function(data) {
+                var data = JSON.parse(data);
+                console.log(data)
+                if (data.success) {
+
+                  if("关注成功！" === data.message){
+                    // $("#follow").html("-取消关注");
+                    $("#followImg").attr("src", "../image/roleDetails/takeOff.png");
+                    $("#isfollow").prop("checked", true);
+                    $("#attentionFlag").val("true");
+                  }
+
+                  toast.hide();
+
+                  toast.success({
+                   title:"提交成功",
+                   duration:2000
+                  });
+                }else{
+                    toast.hide();
+
+                    toast.fail({
+                      title:"提交失败",
+                      duration:2000
+                    });
+                }
+            });
+          }, 3000)
+        });
+      }else{
         dialog.alert({
-            title:"该信息已关注！",
+            title:"请登录!",
+            msg:'',
+            buttons:['确定']
+            },function(ret){
+           window.location.href="../login.html";
+        })
+        return false;
+      }
+  });
+
+
+}
+
+// 预约
+function reserve(preFlag){
+  console.log(preFlag + "-----" + $("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
+
+  if(!localStorage.token){
+      dialog.alert({
+          title:"请重新登录！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+
+      })
+      return false;
+  }
+
+  $.post(path + "/ActorInterface/member/getSessionMember.action",{
+      token:localStorage.token,
+    }, function(data) {
+      var data = JSON.parse(data);
+      console.log(data)
+      if (data.success) {
+        if("false" === preFlag){
+            dialog.alert({
+                title:"该信息已在预约状态！",
+                msg:'',
+                buttons:['确定']
+            },function(ret){
+
+            });
+        return false;
+        }
+         window.location.href = "reserve.html?preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val();
+      }else{
+        dialog.alert({
+            title:"请登录!",
+            msg:'',
+            buttons:['确定']
+            },function(ret){
+           window.location.href="../login.html";
+        })
+        return false;
+      }
+  });
+
+
+}
+
+// 有待预约
+function booking(preFlag){
+  console.log($("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
+    // $("#preid").val(18);
+    // $("#pretype").val("actor");
+    // $("#ownerid").val(23);
+    if(!localStorage.token){
+        dialog.alert({
+            title:"请重新登录！",
             msg:'',
             buttons:['确定']
         },function(ret){
@@ -727,98 +1018,75 @@ function follow(infoid, type){
         return false;
     }
 
-    var toast = new auiToast();
-    toast.loading({
-      title:"正在提交",
-      duration:2000
-    },function(ret){
-      setTimeout(function(){
-        $.post( path + "/ActorInterface/attention/addAttention.action" ,{
-            token:localStorage.token,
-            infoid: infoid,
-            type: type
-          }, function(data) {
-            var data = JSON.parse(data);
-            console.log(data)
-            if (data.success) {
+    $.post(path + "/ActorInterface/member/getSessionMember.action",{
+        token:localStorage.token,
+      }, function(data) {
+        var data = JSON.parse(data);
+        console.log(data)
+        if (data.success) {
+          if("false" === preFlag){
+              dialog.alert({
+                  title:"该信息已在预约状态！",
+                  msg:'',
+                  buttons:['确定']
+              },function(ret){
 
-              if("关注成功！" === data.message){
-                // $("#follow").html("-取消关注");
-                $("#followImg").attr("src", "../image/roleDetails/takeOff.png");
-                $("#isfollow").prop("checked", true);
-                $("#attentionFlag").val("true");
-              }
-
-              toast.hide();
-
-              toast.success({
-               title:"提交成功",
-               duration:2000
               });
-            }else{
-                toast.hide();
+          return false;
+          }
 
-                toast.fail({
-                  title:"提交失败",
-                  duration:2000
-                });
-            }
-        });
-      }, 3000)
+          $("#prestatus").val("W");
+          var actionURL = path + "/ActorInterface/preorder/addPreorder.action?token=" + localStorage.token + "&preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val() + "&prestatus=W" ;
+
+          var toast = new auiToast();
+          toast.loading({
+            title:"正在提交",
+            duration:2000
+          },function(ret){
+            setTimeout(function(){
+              $.ajax({
+                  cache : true,
+                  type  : "POST",
+                  url   : actionURL,
+                  data  :$('#postForm').serialize(),
+                  async : true,
+                  error : function(request) {
+                      alert("error");
+                  },
+                  success : function(data) {
+                      var data = JSON.parse(data);
+                      if(data.success){
+                          toast.hide();
+
+                          toast.success({
+                           title:"提交成功",
+                           duration:2000
+                          });
+                      }else{
+                          toast.hide();
+
+                          toast.fail({
+                            title:"提交失败",
+                            duration:2000
+                          });
+                      }
+                  }
+              });
+            }, 3000)
+          });
+
+        }else{
+          dialog.alert({
+              title:"请登录!",
+              msg:'',
+              buttons:['确定']
+              },function(ret){
+             window.location.href="../login.html";
+          })
+          return false;
+        }
     });
-}
 
-// 预约
-function reserve(){
-  console.log($("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
-   window.location.href = "reserve.html?preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val();
-}
-
-// 有待预约
-function booking(){
-  console.log($("#infoid").val() + "------" + $("#type").val() + "------" + $("#ownerid").val());
-    // $("#preid").val(18);
-    // $("#pretype").val("actor");
-    // $("#ownerid").val(23);
-    $("#prestatus").val("W");
-    var actionURL = path + "/ActorInterface/preorder/addPreorder.action?token=" + localStorage.token + "&preid=" + $("#infoid").val() + "&ownerid=" + $("#ownerid").val() + "&pretype=" + $("#type").val() + "&prestatus=W" ;
-
-    var toast = new auiToast();
-    toast.loading({
-      title:"正在提交",
-      duration:2000
-    },function(ret){
-      setTimeout(function(){
-        $.ajax({
-        		cache : true,
-        		type  : "POST",
-        		url   : actionURL,
-        		data  :$('#postForm').serialize(),
-        		async : true,
-        		error : function(request) {
-        		    alert("error");
-        		},
-        		success : function(data) {
-                var data = JSON.parse(data);
-        				if(data.success){
-                    toast.hide();
-
-                    toast.success({
-                     title:"提交成功",
-                     duration:2000
-                    });
-        				}else{
-                    toast.hide();
-
-                    toast.fail({
-                      title:"提交失败",
-                      duration:2000
-                    });
-        				}
-        		}
-        });
-      }, 3000)
-    });
 
 
 }
@@ -826,31 +1094,40 @@ function booking(){
 // 相册
 // function album(){
 function album(){
-  alert(JSON.stringify(imgArr));
-  api.openFrame({
-    name : 'main',
-    scrollToTop : true,
-    allowEdit : true,
-    url : '../photoWatch.html',
-    rect : {
-      x : 0,
-      y : 0,
-      w : api.winWidth,
-      h : api.winHeight,
-    },
-    animation : {
-      type : "reveal", //动画类型（详见动画类型常量）
-      subType : "from_right", //动画子类型（详见动画子类型常量）
-      duration : 300
-    },
-    pageParam : {
-      imgArr : imgArr,
-    },
-    vScrollBarEnabled : false,
-    hScrollBarEnabled : false,
-    //页面是否弹动 为了下拉刷新使用
-    bounces : false
-  });
+    var imageBrowser = api.require('imageBrowser');
+  	imageBrowser.openImages({
+  		imageUrls: imgArr,
+  		showList:true,
+  		bg:'#000'
+
+  	});
+
+
+  // alert(JSON.stringify(imgArr));
+  // api.openFrame({
+  //   name : 'main',
+  //   scrollToTop : true,
+  //   allowEdit : true,
+  //   url : '../photoWatch.html',
+  //   rect : {
+  //     x : 0,
+  //     y : 0,
+  //     w : api.winWidth,
+  //     h : api.winHeight,
+  //   },
+  //   animation : {
+  //     type : "reveal", //动画类型（详见动画类型常量）
+  //     subType : "from_right", //动画子类型（详见动画子类型常量）
+  //     duration : 300
+  //   },
+  //   pageParam : {
+  //     imgArr : imgArr,
+  //   },
+  //   vScrollBarEnabled : false,
+  //   hScrollBarEnabled : false,
+  //   //页面是否弹动 为了下拉刷新使用
+  //   bounces : false
+  // });
 }
     // window.location.href="album.html?role=" + role + "&id=" + id;
 // }

@@ -43,65 +43,58 @@
         <input id="preid" name="preid" hidden="true"/>
         <input id="ownerid" name="preid" hidden="true"/>
         <input id="attentionFlag" hidden="true"/>
-        <div class="aui-content aui-margin-b-15">
-            <ul class="aui-list aui-form-list">
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-label">
-                            <span>开始时间</span>
-                        </div>
-                        <div class="aui-list-item-input">
-						<div class="aui-list-item-input">
-                            <input type="text" name="prestart" id="prestart" placeholder="请输入开始时间" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-						 </div>
-                    </div>
-                </li>
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-label">
-                            <span>结束时间</span>
-                        </div>
-                        <div class="aui-list-item-input">
-						<div class="aui-list-item-input">
-                            <input type="text" name="preend" id="preend" placeholder="请输入结束时间" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-                    </div>
-                </li>
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-label">
-                            预约详情
-                        </div>
-                        <div class="aui-list-item-input">
-                          <div class="aui-list-item-input">
-                              <textarea id="preinfos" name="preinfos" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
-                          </div>
+        <input id="prestatus" name="prestatus" hidden="true"/>
+        <input id="hi_id" name="id" hidden="true"/>
 
-                        </div>
-                    </div>
+        <div style="background-color:#ffffff;">
+          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">预约详情</span>
+        </div>
+
+        <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+            <ul>
+                <li>
+                    <span style="width:25%;margin-top:5%;">
+                        <span style="font-size:0.75rem;color:#6c6c6c;">开始时间</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="prestart" id="prestart" placeholder="请输入开始时间" style="width:100%; height:30px;">
+                    </span>
                 </li>
-                <li class="aui-list-item">
-                    <div class="aui-list-item-inner">
-                        <div class="aui-list-item-label">
-                            <span>联系电话</span>
-                        </div>
-                        <div class="aui-list-item-input">
-							<div class="aui-list-item-input">
-                            <input type="text" id="prephone" name="prephone" placeholder="请输入联系电话" style="width:100%;border:1px solid green; height:30px;border-radius:4px;">
-                        </div>
-							</div>
+                <li>
+                    <span style="width:25%;">
+                        <span style="font-size:0.75rem;color:#6c6c6c;">结束时间</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="preend" id="preend" placeholder="请输入结束时间" style="width:100%; height:30px;">
+                    </span>
+                </li>
+                <li>
+                    <div style="float:left;width:25%;">
+                        <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">预约详情</span>
                     </div>
+                    <span style="width:70%;margin-top:3%;">
+                        <textarea id="preinfos" name="preinfos" style="overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#9d9d9d; border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" placeholder="  请输入预约详情"></textarea>
+                    </span>
+                </li>
+                <li>
+                  <span style="width:25%;">
+                      <span style="font-size:0.75rem;color:#6c6c6c;">联系电话</span>
+                  </span>
+                  <span style="width:70%;">
+                      <input type="text" id="prephone" name="prephone" placeholder="请输入联系电话" style="width:100%; height:30px;">
+                  </span>
                 </li>
             </ul>
+        <div style="padding: 3px 20px 1px;padding-bottom:200px;">
+            <div style="background-color:#20e0b9;margin-top: 50px;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="reserve()">
+                <span id="p">确&nbsp;&nbsp;定</span>
+            </div>
+        </div>
         </div>
     </form>
-    <div id="" style="text-align: center; margin 0 auto; margin-top: 5%;">
-        <div class="aui-btn aui-btn-success" onclick="reserve()">
-            <span id="p">确&nbsp;&nbsp;定</span>
-        </div>
-        <!-- <button class="btn" style="width:80%; height:50px; background: limegreen;" onclick="login()"><span id="p">登&nbsp;录</span></button> -->
-    </div>
+
+
+
     <!-- 第一栏结束  -->
     <div id="main" class="flex-con">
 

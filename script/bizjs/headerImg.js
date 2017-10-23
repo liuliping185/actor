@@ -10,6 +10,7 @@ $(function(){
         var data = JSON.parse(data);
         console.log(data);
         if (data.success) {
+          $(".addPic").hide();
             // $("#loginname").val(data.memberinfo.loginname);
             // $("#birthday").val(data.memberinfo.birthday);
             // $("#realname").val(data.memberinfo.realname);
@@ -20,7 +21,7 @@ $(function(){
             // $("#banknumber").val(data.memberinfo.banknumber);
             // $("#email").val(data.memberinfo.email);
             $('#headerImg').attr('src', data.memberinfo.headerimg);
-            $("#headerimg_").val(data.memberinfo.headerimg);
+            $("#headerImg_").val(data.memberinfo.headerimg);
             // $('#idcardFront').attr('src', data.memberinfo.idcardFront);
             // $('#idcardBack').attr('src', data.memberinfo.idcardBack);
         }else{
@@ -38,7 +39,7 @@ $(function(){
 // 完善个人信息开始
 
 function perfectPersonalInfo(){
-    if(!$("#headerimg_").val()){
+    if(!$("#headerImg_").val()){
         dialog.alert({
             title:"请上传图片",
             msg:'',
@@ -48,7 +49,7 @@ function perfectPersonalInfo(){
         })
         return false;
     }
-    // console.log($("#headerimg_").val());
+
     var actionURL = path + "/ActorInterface/member/uploadHeadImg.action?token=" + localStorage.token;
     $.ajax({
 				cache : true,
@@ -69,7 +70,7 @@ function perfectPersonalInfo(){
                 },function(ret){
 
                     if(ret){
-
+                      // $("#headerimg").attr("")
 
                     }
                 });
@@ -114,8 +115,19 @@ function getPicture(sourceType) {
             saveToPhotoAlbum: true
         }, function(ret, err) {
           if (ret) {
-              $("#headerimg_").val(ret.base64Data);
-              $('#headerimg').attr('src', ret.base64Data);
+
+            $(".addPic").hide();
+            $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                imgpath:ret.base64Data
+              }, function(data) {
+                var data = JSON.parse(data);
+
+                if (data.success) {
+
+                    $("#headerImg_").val(data.imgpath);
+                    $("#headerImg").attr("src",data.imgpath);
+                }
+            });
           } else {
               alert(JSON.stringify(err));
           }
@@ -133,9 +145,22 @@ function getPicture(sourceType) {
 
             }, function(ret, err) {
                 if (ret) {
-                  // alert(JSON.stringify(ret));
-                      $("#headerimg_").val(ret.base64Data);
-                      $('#headerImg').attr('src', ret.base64Data);
+
+
+                  $(".addPic").hide();
+                  $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                      imgpath:ret.base64Data
+                    }, function(data) {
+                      var data = JSON.parse(data);
+                      console.log(data);
+
+                      if (data.success) {
+                          $(".addPic").hide();
+                          openImageClipFrameHeaderImg(ret.data,'headerimg');
+                          // $("#headerImg_").val(data.imgpath);
+                          // $("#headerImg").attr("src",data.imgpath)
+                      }
+                  });
                 } else {
                     alert(JSON.stringify(err));
                 }
@@ -144,3 +169,32 @@ function getPicture(sourceType) {
 }
 
 // 上传图片结束
+
+// 截图功能
+function openImageClipFrameHeaderImg(img_src,type){
+  api.openFrame({
+    name : 'main',
+    scrollToTop : true,
+    allowEdit : true,
+    url : '../photoCut.html',
+    rect : {
+      x : 0,
+      y : 0,
+      w : api.winWidth,
+      h : api.winHeight,
+    },
+    animation : {
+      type : "reveal", //动画类型（详见动画类型常量）
+      subType : "from_right", //动画子类型（详见动画子类型常量）
+      duration : 300
+    },
+    pageParam : {
+      img_src : img_src,
+      type:type
+    },
+    vScrollBarEnabled : false,
+    hScrollBarEnabled : false,
+    //页面是否弹动 为了下拉刷新使用
+    bounces : false
+  });
+}
