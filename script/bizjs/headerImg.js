@@ -3,6 +3,18 @@ var dialog = new auiDialog();
 $(function(){
     $('body').height($('body')[0].clientHeight);
 
+    if(!localStorage.token){
+      dialog.alert({
+          title:"请登录!",
+          msg:'',
+          buttons:['确定']
+          },function(ret){
+         window.location.href="../login.html";
+      })
+      return false;
+    }
+
+
     // 获取session
     $.post(path + "/ActorInterface/member/getSessionMember.action",{
         token:localStorage.token,
@@ -20,18 +32,22 @@ $(function(){
             // $("#wechat").val(data.memberinfo.wechat);
             // $("#banknumber").val(data.memberinfo.banknumber);
             // $("#email").val(data.memberinfo.email);
-            $('#headerImg').attr('src', data.memberinfo.headerimg);
-            $("#headerImg_").val(data.memberinfo.headerimg);
+            if(data.memberinfo.headerimg){
+              $('#headerImg').attr('src', data.memberinfo.headerimg);
+              $("#headerImg_").val(data.memberinfo.headerimg);
+            }
+
             // $('#idcardFront').attr('src', data.memberinfo.idcardFront);
             // $('#idcardBack').attr('src', data.memberinfo.idcardBack);
         }else{
           dialog.alert({
-              title:data.message,
+              title:"请登录!",
               msg:'',
               buttons:['确定']
-          },function(ret){
-              console.log(ret)
+              },function(ret){
+             window.location.href="../login.html";
           })
+          return false;
         }
     });
 });

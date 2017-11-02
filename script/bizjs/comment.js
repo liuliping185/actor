@@ -16,15 +16,13 @@ $(function(){
     // 点亮星星
     function  test(){
         var index = 0;
-        console.log(index + "----index" + "-----tds.length------" + tds.length);
         for(var i=0;i<tds.length;i++){
             if(tds[i]===this)
             {
-                console.log(i + "----i");
                 index=i;
             }
         }
-        //选中的设置成红色 没选中的设置成黑色
+        //选中的设置成黄色 没选中的设置成灰色
         var flag = 0;
         for(var i=0;i<=index;i++) {
             flag ++;
@@ -60,8 +58,8 @@ function comment(){
     $("#ownerid").val(ownerid);
     $("#type").val(type);
 
-    console.log($("#evalevel").val() + "---" + $("#infoid").val() + "----" + $("#ownerid").val() + "-----" + $("#type").val())
-
+    console.log($("#evalevel").val() + "，infoid---" + $("#infoid").val() + "ownerid----" + $("#ownerid").val() + "ownerid-----" + $("#type").val())
+    var commentflag = "评论";
     $.ajax({
         cache : true,
         type  : "POST",
@@ -74,6 +72,15 @@ function comment(){
         success : function(data) {
           var data = JSON.parse(data);
             if(data.success){
+                dialog.alert({
+                    title:data.message,
+                    msg:'',
+                    buttons:['确定']
+                },function(ret){
+                  commentflag = "已评论";
+                  window.location.href="reservation.html?commentflag=" + commentflag;
+                    // console.log(ret)
+                })
             }else{
                 dialog.alert({
                     title:data.message,

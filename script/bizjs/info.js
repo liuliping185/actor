@@ -14,24 +14,42 @@ $(function(){
           return false;
         }
 
+        // var toast = new auiToast();
+        // toast.loading({
+        //   title:"正在加载",
+        //   duration:2000
+        // },function(ret){
+        //   setTimeout(function(){
+
         $.post(path + "/ActorInterface/member/getSessionMember.action",{
             token:localStorage.token,
           }, function(data) {
             var data = JSON.parse(data);
             console.log(data)
             if (data.success) {
+              // toast.hide();
+                if(!data.memberinfo.headerimg && "" === data.memberinfo.headerimg){
+
+                    $('#headerimg').attr('src', data.memberinfo.headerimg);
+                }else{
+
+                    // $("#headerbg").attr('src', data.memberinfo.headerimg);
+                    $('#headerimg').attr('src', data.memberinfo.headerimg);
+                }
+
                 $("#loginname").html(data.memberinfo.loginname);
                 var phone = data.memberinfo.phone;
                 var mphone =phone.substr(3,4);
                 var lphone = phone.replace(mphone,"****");
                 $("#phone").html(lphone);
-                if(!data.memberinfo.headerimg && "" === data.memberinfo.headerimg){
-                    $('#img').attr('src', "../image/mine/headingImg.png");
-                }else{
-                    $('#img').attr('src', data.memberinfo.headerimg);
-                }
-                $("#birthday").val(data.memberinfo.birthday);
+
             }else{
+              // toast.hide();
+              //
+              // toast.fail({
+              //  title:"加载失败",
+              //  duration:2000
+              // });
               dialog.alert({
                   title:"请登录!",
                   msg:'',
@@ -42,6 +60,9 @@ $(function(){
               return false;
             }
         });
+    //
+    //   }, 3000)
+    // });
 });
 
 // 详情

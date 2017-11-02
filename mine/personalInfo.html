@@ -45,22 +45,30 @@
 
 
     <div style="background-color:#ffffff;">
-      <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#7b7b7b;font-size:0.8rem">基本信息</span>
+      <span style="margin-top:3%;margin-left:4%;padding-bottom:5px;color:#7b7b7b;font-size:0.8rem">基本信息</span>
     </div>
 
-    <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+    <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;padding-bottom:10px;">
         <ul>
             <li>
                 <span style="width:25%;margin-top:5%;">
-                  <span style="font-size:0.75rem;color:#9d9d9d;">用户名&nbsp&nbsp&nbsp&nbsp :</span>
+                  <span style="font-size:0.75rem;color:#6c6c6c;">用户名&nbsp&nbsp&nbsp&nbsp :</span>
                 </span>
                 <span style="width:70%;">
-                  <input type="text" id="loginname" placeholder="请输入用户名" name="loginname" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
+                  <input type="text" id="loginname" readonly="true" placeholder="请输入用户名" name="loginname" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
                 </span>
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">生&nbsp&nbsp&nbsp&nbsp日 &nbsp&nbsp&nbsp&nbsp:</span>
+                  <span style="font-size:0.75rem;color:#6c6c6c;">昵称&nbsp&nbsp&nbsp&nbsp :</span>
+                </span>
+                <span style="width:70%;">
+                  <input type="text" id="nickname" name="nickname" placeholder="请输入昵称"  value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
+                </span>
+            </li>
+            <li>
+                <span style="width:25%;">
+                    <span style="font-size:0.75rem;color:#6c6c6c;">生&nbsp&nbsp&nbsp&nbsp日 &nbsp&nbsp&nbsp&nbsp:</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="birthday" placeholder="请输入生日" name="birthday" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
@@ -68,7 +76,7 @@
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">邮&nbsp&nbsp&nbsp&nbsp箱 &nbsp&nbsp&nbsp&nbsp:</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">邮&nbsp&nbsp&nbsp&nbsp箱 &nbsp&nbsp&nbsp&nbsp:</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="email" placeholder="请输入邮箱" name="email" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
@@ -76,15 +84,15 @@
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">手&nbsp&nbsp&nbsp&nbsp机 &nbsp&nbsp&nbsp&nbsp:</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">手&nbsp&nbsp&nbsp&nbsp机 &nbsp&nbsp&nbsp&nbsp:</span>
                 </span>
                 <span style="width:70%;">
-                    <input type="text" id="phone" placeholder="请输入手机号" name="phone" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
+                    <input type="text" id="phone" readonly="true" placeholder="请输入手机号" name="phone" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d"/>
                 </span>
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">真实姓名&nbsp&nbsp:</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">真实姓名&nbsp&nbsp:</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="realname" name="realname" placeholder="真实姓名" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d">
@@ -92,7 +100,7 @@
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">支付宝&nbsp&nbsp&nbsp&nbsp :</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">支付宝&nbsp&nbsp&nbsp&nbsp :</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="alipay" name="alipay" placeholder="请输入支付宝" value="" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d">
@@ -100,7 +108,7 @@
             </li>
             <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">微信号&nbsp&nbsp&nbsp&nbsp :</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">微信号&nbsp&nbsp&nbsp&nbsp :</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="wechat" name="wechat" value="" placeholder="请输入微信号" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d">
@@ -108,7 +116,7 @@
             </li>
 			      <li>
                 <span style="width:25%;">
-                    <span style="font-size:0.75rem;color:#9d9d9d;">银行卡号&nbsp&nbsp:</span>
+                    <span style="font-size:0.75rem;color:#6c6c6c;">银行卡号&nbsp&nbsp:</span>
                 </span>
                 <span style="width:70%;">
                     <input type="text" id="banknumber" name="banknumber" value="" placeholder="请输入银行卡号" style="width:100%; height:30px; font-size:0.75rem; color:#9d9d9d">
@@ -134,7 +142,7 @@
     </div>
 
 
-    <div style="margin-top:3%;background-color:#ffffff;">
+    <!-- <div style="margin-top:3%;background-color:#ffffff;">
       <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">其他信息</span>
     </div>
     <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
@@ -152,7 +160,7 @@
                                 </select>
                             </span>
                             <span style="20%;">
-                                <img src="../../image/sj.png" style="width:10px;height:10px;">
+                                <img src="../image/sj.png" style="width:10px;height:10px;">
                             </span>
                         </div>
                         <div>
@@ -161,7 +169,7 @@
                                 </select>
                             </span>
                             <span style="20%;">
-                                <img src="../../image/sj.png" style="width:10px;height:10px;">
+                                <img src="../image/sj.png" style="width:10px;height:10px;">
                             </span>
                         </div>
                         <div>
@@ -170,7 +178,7 @@
                                 </select>
                             </span>
                             <span style="20%;">
-                                <img src="../../image/sj.png" style="width:10px;height:10px;">
+                                <img src="../image/sj.png" style="width:10px;height:10px;">
                             </span>
                         </span>
                      </div>
@@ -179,17 +187,17 @@
                  </div>
             </li>
         </ul>
-    </div>
+    </div> -->
       <div style="margin-top:3%;background-color:#ffffff;">
-        <span style="background-color:#ffffff;margin-top:5%;margin-left:4%;padding-bottom:5px;color:#7b7b7b;font-size:0.8rem">实名验证</span>
+        <span style="background-color:#ffffff;margin-top:3%;margin-left:4%;padding-bottom:5px;color:#7b7b7b;font-size:0.8rem">实名验证</span>
       </div>
 
       <div style="padding-left:20px;padding-right:20px;background-color:#ffffff;padding-bottom:30px">
           <div style="margin-top:0px;" align="center">
-              <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('2')">
+              <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('1')">
                   <span style="margin-top:10%;">
-                    <img id="idcardFront" style="width:60%;" src="../image/addPic.png"/>
-                    <p style="margin-top:15%;color:#9d9d9d">身份证正面</p>
+                    <img id="idcardFront" src="../image/addPic.png"/>
+                    <p style="margin-top:15%;color:#20e0b9">点击图片可上传身份证正面图片</p>
                   </span>
               </div>
           </div>
@@ -199,8 +207,8 @@
           <div style="margin-top:3px;" align="center">
               <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('2')">
                   <span style="margin-top:10%;">
-                    <img id="idcardBack" style="width:60%;" src="../image/addPic.png"/>
-                    <p style="margin-top:15%;color:#9d9d9d">身份证反面</p>
+                    <img id="idcardBack" src="../image/addPic.png"/>
+                    <p style="margin-top:15%;color:#20e0b9">点击图片可上传身份证反面图片</p>
                   </span>
               </div>
           </div>
@@ -209,8 +217,8 @@
       <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
         <br>
         <p style="">
-          <div style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
-            <span onclick="perfectPersonalInfo()" id='tjBtu' style="font-size:0.8rem;">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</span>
+          <div onclick="perfectPersonalInfo()" style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
+            <span id='tjBtu' style="font-size:0.8rem;">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</span>
           </div>
         </p>
      </div>
@@ -234,7 +242,7 @@
 
 	<div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
-            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">>&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../index.html' );" class="flex-con" >  <div class="aui-bar-tab-label">&nbsp</div></li>
             <li tapmode="hover" onclick="randomSwitchBtn( this, '../find.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
             <li tapmode="hover" onclick="randomSwitchBtn( this, '../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
             <li tapmode="hover" onclick="randomSwitchBtn( this, 'info.html');" class="flex-con active" ><div class="aui-bar-tab-label"></div></li>

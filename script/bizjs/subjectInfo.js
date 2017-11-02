@@ -20,7 +20,7 @@ $(function(){
 			 data.infoList.forEach(function(i){
 
 
-				$("#bigtype").append("<option value="+i.id+">"+i.bigname+"</option>");
+				$("#bigtype").append("<option value="+i.id+">"+i.typename+"</option>");
 
 			 });
 
@@ -41,10 +41,7 @@ $(function(){
 				  }, function(data) {
 					var data = JSON.parse(data);
 					console.log(data)
-					// alert(JSON.stringify(data));
 					if (data.success) {
-						$(".addPicFirstimg").hide();
-						$(".addPicLunboimg").hide();
 
 						var imgs = "";
 						var flag = 0;
@@ -54,7 +51,6 @@ $(function(){
 							flag ++;
 
 							imgs += "<span style='width30%;margin-left:3%;'>";
-							// imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
 
 							imgs += "<div name=" + i.id +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic_edit('" + i.id + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
 							imgs += "<img id='" + i.id + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.imgpath + "'/>";
@@ -215,8 +211,9 @@ function personalRoleManage(){
 	var saleprice = $("#saleprice").val();
 	var bigtype = $("#bigtype").val();
 	var smalltype = $("#smalltype").val();
-	var firstimg = $("#firstimg_").val();
-  var lunboimg = $("#lunboimg_").val();
+	var provience = $("#provience").val();
+	var city = $("#city").val();
+	var area = $("#area").val();
 
 	if(!subjectname){
 			dialog.alert({
@@ -250,16 +247,15 @@ function personalRoleManage(){
 					return false;
 			}
 
-			// console.log($('#saleunit').val())
-			if('' === $('#saleunit').val()){
-					dialog.alert({
-							title:"请选择出售单位！",
-							msg:'',
-							buttons:['确定']
-					},function(ret){
-					})
-					return false;
-			}
+			// if('单位' === $('#saleunit').val()){
+			// 		dialog.alert({
+			// 				title:"请选择出售单位！",
+			// 				msg:'',
+			// 				buttons:['确定']
+			// 		},function(ret){
+			// 		})
+			// 		return false;
+			// }
 	}
 
 	if ($('#isrent').prop('checked')) {
@@ -272,7 +268,7 @@ function personalRoleManage(){
 					})
 					return false;
 			}
-			if('' === $('#rentunit').val()){
+			if('单位' === $('#rentunit').val()){
 					dialog.alert({
 							title:"请选择出租单位！",
 							msg:'',
@@ -304,28 +300,86 @@ function personalRoleManage(){
 				return false;
 		}
 
-		// if(!lunboimg){
-    //     dialog.alert({
-    //         title:"请选择轮播图",
-    //         msg:'',
-    //         buttons:['确定']
-    //     },function(ret){
-    //     })
-    //     return false;
-    // }
+		if("" === provience){
+	    dialog.alert({
+	        title:"请选择所在省",
+	        msg:'',
+	        buttons:['确定']
+	    },function(ret){
 
-    if(!firstimg){
-        dialog.alert({
-            title:"请选择封面图",
-            msg:'',
-            buttons:['确定']
-        },function(ret){
-        })
-        return false;
-    }
+	    })
+	    return false;
+	  }
 
-	$("#tjBtu").remove();
-	$("#tjDiv").html("<div id='dis_tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
+	  if("" === city){
+	    dialog.alert({
+	        title:"请选择所在市",
+	        msg:'',
+	        buttons:['确定']
+	    },function(ret){
+
+	    })
+	    return false;
+	  }
+
+	  if("" === area){
+	    dialog.alert({
+	        title:"请选择所在区",
+	        msg:'',
+	        buttons:['确定']
+	    },function(ret){
+
+	    })
+	    return false;
+	  }
+
+		if(!$("#imgUpload").html()){
+				dialog.alert({
+						title:"请上传图集",
+						msg:'',
+						buttons:['确定']
+				},function(ret){
+				})
+				return false;
+		}
+
+
+
+		var img1=new Image();
+	  img1.crossOrigin = '';
+	  img1.src = $("#fmimg").val();
+	  img1.style = "width: 100%; height: 100%;";
+
+	  img1.onload = function() {
+	    if(img1.complete){
+	        var toast = new auiToast();
+	        toast.loading({
+	           title:"正在提交",
+	           duration:2000
+	        },function(ret){
+	          setTimeout(function(){
+
+	          getBase64ImageOnce(img1,function(dataURL){
+
+	            $.post(path + "/ActorInterface/index/uploadImgs.action",{
+	              imgpath:dataURL
+	            }, function(data) {
+	              var data = JSON.parse(data);
+
+	              if (data.success) {
+	                  $("#firstimg_").val(data.imgpath);
+	                  var firstimg = $("#firstimg_").val();
+	                  if(!firstimg){
+	                      dialog.alert({
+	                          title:"请选择封面图",
+	                          msg:'',
+	                          buttons:['确定']
+	                      },function(ret){
+	                      })
+	                      return false;
+	                  }
+
+		$("#tjBtu").html("");
 
     var actionURL = "";
 
@@ -349,6 +403,10 @@ function personalRoleManage(){
 			});
 
 		}
+
+
+
+
 		var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
         $("#multipleGraphsList").val(hi_jsonStr);
 
@@ -357,12 +415,6 @@ function personalRoleManage(){
          actionURL = path + "/ActorInterface/subject/subjectApply.action?token=" + localStorage.token + "&role=" + role;
     }
 
-   	var toast = new auiToast();
-	toast.loading({
-    title:"正在提交",
-    duration:2000
-	},function(ret){
-		setTimeout(function(){
 			  $.ajax({
 				cache : true,
 				type  : "POST",
@@ -373,12 +425,15 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.fail({
-								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交失败",
+								title:"提交失败",
 								duration:2000
 							 });
 
-							 $("#dis_tjBtu").remove();
-							 $("#tjDiv").html("<div onclick='personalRoleManage()' id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
+							 var tjBtu = "";
+               tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+               tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+               tjBtu += "</div>";
+               $("#tjBtu").html(tjBtu);
 				},
 				success : function(data) {
 
@@ -388,7 +443,7 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.success({
-								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交成功",
+								title:"提交成功",
 								duration:2000
 							 });
 
@@ -400,25 +455,37 @@ function personalRoleManage(){
 							 toast.hide();
 
 							 toast.fail({
-								title:"提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交失败",
+								title:"提交失败",
 								duration:2000
 							 });
 
-							$("#dis_tjBtu").remove();
-							$("#tjDiv").html("<div onclick='personalRoleManage()' id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>");
-
-						}
-
-				}
-			});
-
-		}, 3000)
-	});
+							 var tjBtu = "";
+               tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+               tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+               tjBtu += "</div>";
+               $("#tjBtu").html(tjBtu);
+						 }
+ 				}
+ 			});
 
 
 
+ }else{
+ 		alert("error")
+ }
+ });
 
-}
+ }, 3000)
+ });
+
+ });
+
+
+ }
+ };
+ }
+
+
 
 function getSmallType(bigid){
 
@@ -433,7 +500,7 @@ function getSmallType(bigid){
 			 data.infoList.forEach(function(i){
 
 
-				$("#smalltype").append("<option value="+i.id+">"+i.smallname+"</option>");
+				$("#smalltype").append("<option value="+i.id+">"+i.typename+"</option>");
 
 			 });
 
@@ -477,13 +544,13 @@ function getPicture(sourceType, num) {
 					if (ret) {
 						if("1" === num){
 							$(".addPicLunboimg").hide();
-								openImageClipFrame(ret.data,'lunboimg');
-								$("#lunboimg_").val(ret.base64Data);
+								openImageClipFrame(ret.data,'lunboimg', '../../photoCut.html');
+								// $("#lunboimg_").val(ret.base64Data);
 
 						}else if("2" === num){
 							$(".addPicFirstimg").hide();
-								openImageClipFrame(ret.data,'firstimg');
-								$("#firstimg_").val(ret.base64Data);
+								openImageClipFrame(ret.data,'firstimg', '../../photoCut.html');
+								// $("#firstimg_").val(ret.base64Data);
 						}
 					} else {
 							alert(JSON.stringify(err));
@@ -503,13 +570,13 @@ function getPicture(sourceType, num) {
 							if (ret) {
 								if("1" === num){
 									$(".addPicLunboimg").hide();
-										openImageClipFrame(ret.data,'lunboimg');
-										$("#lunboimg_").val(ret.base64Data);
+										openImageClipFrame(ret.data,'lunboimg', '../../photoCut.html');
+										// $("#lunboimg_").val(ret.base64Data);
 
 								}else if("2" === num){
 									$(".addPicFirstimg").hide();
-										openImageClipFrame(ret.data,'firstimg');
-										$("#firstimg_").val(ret.base64Data);
+										openImageClipFrame(ret.data,'firstimg', '../../photoCut.html');
+										// $("#firstimg_").val(ret.base64Data);
 								}
 							} else {
 									alert(JSON.stringify(err));

@@ -13,6 +13,19 @@
     <link href="../../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
     <link href="../../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
     <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+
+    <style>
+    textarea::-webkit-input-placeholder {
+       /* placeholder颜色  */
+       color: #BEBEBE;
+       /* placeholder字体大小  */
+       font-size: 0.75rem;
+       height: 100px;
+       line-height:100px;
+       /* placeholder位置  */
+             text-align: center;
+    }
+    </style>
 </head>
 <body>
 
@@ -21,6 +34,7 @@
 
 
 <div style="height:100%; overflow:auto;">
+<input id="fmimg" type="hidden"/>
 <form id="postForm">
 <input id="lunboimg_" name="lunboimg" type="hidden"/>
 <input id="firstimg_" name="firstimg" type="hidden"/>
@@ -31,7 +45,6 @@
 	<input id="hi_professionalScore" name="professionalScore" type="hidden"/>
 	<input id="hi_serviceScore" name="serviceScore" type="hidden"/>
 	<input id="hi_attentionSum" name="attentionSum" type="hidden"/>
-	<!-- <input id="hi_firstimg" name="firstimg" type="hidden"/> -->
 	<input id="hi_scenestatus" name="scenestatus" type="hidden"/>
 	<input id="hi_memberid" name="memberid" type="hidden"/>
 	<input id="hi_createtime" name="createtime" type="hidden"/>
@@ -54,12 +67,12 @@
                   <span style="font-size:0.75rem;color:#6c6c6c;">使用价格&nbsp&nbsp:</span>
               </span>
               <span style="width:70%;">
-                  <span style="width:60%;">
-                      <input type="text" id="price" placeholder="请输入使用价格" name="price" style="font-size:0.75rem;width:90%;height:2.2rem;color:#ADADAD;"/>
+                  <span style="width:55%;">
+                      <input type="text" id="price" placeholder="请输入使用价格" name="price" style="font-size:0.75rem;height:2.2rem;color:#ADADAD;"/>
                   </span>
                   <span style="width:15%;">
                       <select style="font-size:0.7rem;color:#ADADAD;" name="unit" style="width:20%;" id="unit" onclick="javascript:$('#unitsImg').hide()">
-                          <option vlaue="0"></option>
+                          <option vlaue="0">单位</option>
                           <option value="分钟">分钟</option>
                           <option value="小时">小时</option>
                           <option value="天">天</option>
@@ -77,7 +90,7 @@
                 <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">场景简介&nbsp&nbsp:</span>
             </div>
             <span style="width:70%;">
-                <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="sceneinfos" name="sceneinfos" placeholder="  请输入场景简介"></textarea>
+                <textarea style="vertical-align:middle;padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="sceneinfos" name="sceneinfos" placeholder="  请输入场景简介"></textarea>
             </span>
           </li>
 	        <li>
@@ -185,18 +198,11 @@
         <!-- <img onclick="showActionMore()" style="width:70%;" src="../../image/addPicZ.png"/> -->
       </span>
     </span>
-    <div>&nbsp<div>
+    <div><div>
 
   </div>
 
-  <div id="imgUpload" style="padding-left:20px;padding-right:20px;background-color:#ffffff;">
-    &nbsp
-      <!-- <div align="center" id="addPic">
-          <span style="width:30%;" onclick="showActionMore()">
-            <img style="width:100%;height:100%;" src="../../image/addPicZ.png"/>
-          </span>
-      </div> -->
-  </div>
+  <div id="imgUpload" align="center" style="padding-left:3%;padding-right:3%;background-color:#ffffff;"></div>
 
     <div style="margin-top:3%;background-color:#ffffff;">
       <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">封面照片</span>
@@ -206,16 +212,15 @@
         <div style="margin-top:0px;" align="center">
             <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('2')">
                 <span style="margin-top:10%;">
-                  <img class="addPicFirstimg" style="width:60%;" src="../../image/addPic.png"/>
-                  <img id="firstimg" style="width:100%;" src=""/>
+                  <img id="firstimg" src="../../image/addPic.png"/>
+                  <!-- <img  style="width:100%;" src=""/> -->
                   <p style="margin-top:15%;color:#20e0b9">点击上图可添加封面图片</p>
                 </span>
             </div>
         </div>
     </div>
 
-
-    <div style="margin-top:3%;background-color:#ffffff;">
+    <!-- <div style="margin-top:3%;background-color:#ffffff;">
       <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">轮播图片</span>
     </div>
 
@@ -223,35 +228,28 @@
         <div style="margin-top:0px;" align="center">
             <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('1')">
                 <span style="margin-top:10%;">
-                  <img class="addPicLunboimg" style="width:60%;" src="../../image/addPic.png"/>
-                  <img id="lunboimg" style="width:100%;" src=""/>
+                  <img id="lunboimg" src="../../image/addPic.png"/>
                   <p style="margin-top:15%;color:#20e0b9">点击上图可添加首页轮播图片</p>
                 </span>
             </div>
         </div>
-    </div>
+    </div> -->
 
-  <!-- <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
-    <br>
-    <p style="">
+  <div id="tjBtu" style="background-color:#ffffff;padding-bottom:10px;padding-left:20px;padding-right:20px;">
       <div style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
-        <span onclick="personalRoleManage()" id='tjBtu' style="font-size:0.8rem;">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</span>
+          <div onclick="personalRoleManage()">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
       </div>
-    </p>
-  </div> -->
+  </div>
 
   <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
-      <div id="tjBtu" style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
-          <div onclick="personalRoleManage()" id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+      <div style="background-color:#ff0000;" class="aui-btn aui-btn-danger aui-btn-block aui-btn-sm">
+          <div onclick="javascript:window.location.href='applicationRoles.html'">放&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;弃</div>
       </div>
   </div>
 </div>
 </form>
-    <div id="main" class="flex-con" style="margin-bottom:25px;">
 
-    </div>
-
-
+  <div style="padding-top:50px;"></div>
 	<div id="footer" class="aui-bar aui-bar-tab">
         <ul class="flex-wrap" >
             <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">&nbsp</div></li>
@@ -279,6 +277,7 @@
 <script src="../../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
 <script src="../../script/dev/js/mobiscroll.datetime-2.5.1.js" type="text/javascript"></script>
 <script src="../../script/dev/js/mobiscroll.datetime-2.5.1-zh.js" type="text/javascript"></script>
+<script type="text/javascript" src="../../script/bizjs/apiready.js"></script>
 <script type="text/javascript" src="../../script/common/common.js"></script>
 <script type="text/javascript" src="../../script/bizjs/sceneInfo.js"></script>
 <script type="text/javascript" src="../../script/bizjs/header.js"></script>

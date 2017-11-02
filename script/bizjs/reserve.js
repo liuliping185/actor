@@ -3,10 +3,113 @@ var ownerid = GetQueryString("ownerid");
 var pretype = GetQueryString("pretype");
 var id = GetQueryString("id");
 
-console.log(preid + "------" + ownerid + "------" + pretype);
-
 $(function(){
+    $("#reserveTime").hide();
     $('body').height($('body')[0].clientHeight);
+
+    $(".flip").mouseover(function() {
+      // $("#sjimg").style.transform = "rotate(180deg))";
+      $("#reserveTime").show();
+    });
+
+    $(".content").mouseleave(function() {
+      // $("#sjimg").style.transform = "rotate(180deg))";
+      $("#reserveTime").hide();
+    });
+
+    var actionUrl = ""
+    var nickname = "";
+    var rolename = "";
+    var price = "";
+    var infos = "";
+
+    switch(pretype){
+        case "actor":
+            actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + preid;
+        break;
+        case "scene":
+            actionUrl = path + "/ActorInterface/scene/getSceneById.action?sceneId=" + preid;
+        break;
+        case "subject":
+            actionUrl = path + "/ActorInterface/subject/getSubjectById.action?subjectId=" + preid;
+        break;
+    }
+
+    // console.log(actionUrl);
+    // var toast = new auiToast();
+  	// toast.loading({
+    //   title:"正在加载",
+    //   duration:2000
+  	// },function(ret){
+  	// 	setTimeout(function(){
+    $.post(actionUrl,{
+        token:localStorage.token
+      }, function(data) {
+        var data = JSON.parse(data);
+
+        if (data.success) {
+          // toast.hide();
+
+          var loginname = "";
+          var reserveTime = "";
+          data.fiveOrder.forEach(function(i){
+                reserveTime += "<div style='margin-top:10px;'>";
+                loginname = i.loginname.substring(0,2) + "*";
+                reserveTime += "<span style='color:#9D9D9D;font-size:12px;'>";
+                reserveTime += i.prestart + " - " + i.preend;
+                reserveTime += "</span>";
+                reserveTime += "<span style='color:#9D9D9D;font-size:12px;margin-left:10%;'>" + loginname+ "</span>"
+
+                reserveTime += "</div>";
+          });
+
+          if("" != reserveTime){
+                $("#reserveTime").html(reserveTime);
+          }
+
+          switch(pretype){
+              case "actor":
+                  nickname = data.actinfo.nickname;
+                  rolename = "演员";
+                  price = data.actinfo.price + "/" + data.actinfo.unit;
+                  infos = data.actinfo.infos;
+                  $("#imgpath").attr("src", data.actinfo.firstimg);
+
+              break;
+              case "scene":
+                  nickname = data.sceneinfo.scenename;
+                  rolename = "场景";
+                  price = data.sceneinfo.price + "/" + data.sceneinfo.unit;
+                  infos = data.sceneinfo.sceneinfos;
+                  console.log(data);
+                  $("#imgpath").attr("src", data.sceneinfo.firstimg);
+              break;
+              case "subject":
+                  nickname = data.subjectinfo.subjectname;
+                  rolename = "道具";
+                  if(data.subjectinfo.saleprice){
+                      price = data.subjectinfo.saleprice + "/" + data.subjectinfo.saleunit;
+                  }else{
+                      price = data.subjectinfo.rentprice + "/" + data.subjectinfo.rentunit;
+                  }
+
+                  infos = data.subjectinfo.subjectinfos;
+                  $("#imgpath").attr("src", data.subjectinfo.firstimg);
+              break;
+          }
+
+
+          $("#nickname").val(nickname);
+          $("#rolename").val(rolename);
+          $("#price").val(price);
+          $("#infos").val(infos);
+          $("#area").val("天津市南开区");
+        }
+      });
+
+    // }, 3000)
+    // });
+
     var currYear = (new Date()).getFullYear();
     var opt={};
     opt.beginDate = {preset : 'datetime' , minDate: new Date()};
@@ -61,7 +164,6 @@ $(function(){
 
 // 提交预约信息
 function reserve(){
-    //console.log(preid+ "------" + pretype + "------" + ownerid);
     $("#preid").val(preid);
     $("#pretype").val(pretype);
     $("#ownerid").val(ownerid);
@@ -125,10 +227,9 @@ function reserve(){
 				},
 				success : function(data) {
             var data = JSON.parse(data);
-            console.log(data);
   					if(data.success){
-                alert("预约成功");
-                window.location.href = "actorDetails.html?role=" + pretype + "&id=" + preid;
+                alert("预约成功!");
+                window.location.href = "roleDetails.html?role=" + pretype + "&id=" + preid;
   					}else{
                 dialog.alert({
                     title:data.message,
@@ -140,4 +241,13 @@ function reserve(){
   					}
 				}
     });
+}
+
+function reserveTime (){
+    var display =$('#reserveTime').css('display');
+    if(display == 'none'){
+      $('#reserveTime').show();
+    }else{
+      $('#reserveTime').hide();
+    }
 }

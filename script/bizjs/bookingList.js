@@ -1,12 +1,37 @@
+var UIListView = "";
 $(function(){
     $('body').height($('body')[0].clientHeight);
 
     console.log(localStorage.token);
 
-	getBeBookList('');
+	  getBeBookList('');
 
 });
 
+// apiready = function () {
+//
+//   getBeBookList('');
+// }
+
+// 随意切换按钮
+function randomSwitchBt( tag, mineUrl ) {
+    UIListView.close();
+    if(mineUrl){
+        window.location.href = mineUrl;
+    }
+}
+
+//生成随机数的方法
+var chars = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
+
+function generateMixed(n) {
+     var res = "";
+     for(var i = 0; i < n ; i ++) {
+         var id = Math.ceil(Math.random()*35);
+         res += chars[id];
+     }
+     return res;
+}
 
 function getType(type){
 
@@ -15,15 +40,13 @@ function getType(type){
 }
 
 function getBeBookList(type){
-
-
 	   // 待预定列表
     var actionURL = path + "/ActorInterface/preorder/myPreList.action";
 
     $.post(actionURL,{
         token:localStorage.token,
         prestatus: "W",
-		pretype:type
+		    pretype:type
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
@@ -32,78 +55,47 @@ function getBeBookList(type){
 
             var flag = 0;
             var typeImg = "";
+            var arr = [];
+
             data.myList.forEach(function(i){
-              // onclick=goDetail('"+i.pretype+"','"+i.preid+"')
-                content += "<li class='aui-list-item' >";
-                content += "<div class='aui-media-list-item-inner'>";
-                content += "<div class='aui-list-item-label' onclick=submitReserve('"+i.pretype+"','" + i.preid + "','" + i.ownerid + "','" + i.prestatus + "','" + i.id + "')>";
-                // content += "<input type='radio' class='aui-radio' value='" + i.id + "' name='preid'>";
-                content += "<div align='center' style='background-color:#20e0b9;width:90%;height:25px;line-height:25px;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm' onclick=submitReserve('"+i.pretype+"','" + i.preid + "','" + i.ownerid + "','" + i.prestatus + "','" + i.id + "')>";
-                content += "<span>提&nbsp;&nbsp;交</span>";
-                content += "</div>";
-                // content += "提交";
-                content += "</div>";
-                content += "<div class='aui-list-item-media'>";
-                content += "<img src='"+i.infosimg+"'>";
-                content += "</div>";
-                content += "<div class='aui-list-item-inner'>";
-                content += "<div class='aui-list-item-text'>";
+                flag ++;
+                var obj = {};
+                var rolename = ""
 
-				if(type == 'actor'){
-					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
-				}else if(type == 'scene'){
-					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
-				}else if(type == 'subject'){
-					content += "<div class='aui-list-item-title'>" + i.infosname + "</div>";
-				}
-
-
-                content += "</div>";
-                content += "<div class='aui-list-item-text'>";
-                content += "                                                     ";
-                content += "</div>";
-
-				content += "<br/>"
-
-                content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
-                content += "<div class='aui-info-item'>";
                 switch(i.pretype){
                     case "actor": typeImg = "../../image/roleDetails/actor.png";
+                    rolename = "演员";
                     break;
                     case "scene": typeImg = "../../image/roleDetails/scene.png";
+                    rolename = "场景";
                     break;
                     case "subject": typeImg = "../../image/roleDetails/subject.png";
+                    rolename = "道具";
                     break;
                 }
-                content += "<img src='" + typeImg + "' style='width:40px;height:20px;' />";
-                content += "<span class='aui-margin-l-5'></span>";
-                content += "</div>";
-                content += "<div class='aui-info-item'>价格：" + i.infosprice + "元/"+i.infosunit+"</div>";
-                content += "</div>";
-                content += "</div>";
-                content += "</div>";
-                content += "</li>";
 
-                flag ++;
-
-                if(flag === data.myList.length){
-                  // content += "<div style='padding: 3px 20px 1px;padding-bottom:200px;'>";
-                  // content += "<div style='background-color:#20e0b9;margin-top: 50px;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm' onclick=submitReserve('"+i.pretype+"','" + i.preid + "','" + i.ownerid + "','" + i.prestatus + "','" + i.id + "')>";
-                  // content += "<span>提&nbsp;&nbsp;交</span>";
-                  // content += "</div>";
-                  // content += "</div>";
-
-                    // content += "<div class='aui-card-list-footer aui-border-t' style='margin 0 auto; margin-left: 20%;  margin-right: 20%;'>";
-                    // content += "<div class='aui-btn aui-btn-success aui-margin-r-5' onclick='confirm()'>提交预约</div>"
-                    // content += "<div class='aui-btn aui-btn-danger aui-margin-l-5' onclick='cancel()'>删除</div>";
-                    // content += "</div>";
+                var uid = generateMixed(6);
+                obj = {
+                  uid: uid,
+                  imgPath: i.infosimg,
+                  title: i.infosname + "         " + i.infosprice + "元/"+i.infosunit,
+                  subTitle: i.infosdetail,
+                  remark: {
+                    rolename: rolename,
+                    preid: i.infoid,
+                    id: i.id,
+                    pretype: i.pretype,
+                    prestatus: i.prestatus,
+                    ownerid: i.ownerid
+                  },
+                  icon: ""
                 }
-            })
 
+                arr.push(obj);
 
+            });
 
-            $("#preContent").html(content);
-
+                uiListView(arr);
         }else{
           dialog.alert({
               title:data.message,
@@ -120,20 +112,22 @@ function getBeBookList(type){
 
 
 // 提交
-function submitReserve(pretype, preid, ownerid, prestatus, id){
-    if("W" != prestatus){
-        dialog.alert({
-            title:"该信息已在预约状态！",
-            msg:'',
-            buttons:['确定']
-        },function(ret){
+function submitReserve(pretype, preid, prestatus, ownerid){
+        // alert(pretype + "-----" +  preid + "------" + prestatus + "------" + ownerid);
+        UIListView.close();
 
-        });
-		return false;
-    }
+        if("W" != prestatus){
+            dialog.alert({
+                title:"预约提示",
+                msg:'该信息已在预约状态！',
+                buttons:['确定']
+            },function(ret){
 
-    window.location.href="../../scenes/reserve.html?pretype=" + pretype + "&preid=" + preid + "&ownerid=" + ownerid + "&id=" +id;
+            });
+    		return false;
+        }
 
+        window.location.href="../../scenes/reserve.html?pretype=" + pretype + "&preid=" + preid + "&ownerid=" + ownerid;
 }
 
 function confirm(id){
@@ -309,4 +303,116 @@ function reserve(){
   					}
 				}
     });
+}
+
+function uiListView(arr){
+    // alert(JSON.stringify(arr));
+
+     UIListView.open({
+       rect: {
+           x: 0,
+           y: 70,
+           w: api.winWidth,
+           h: api.frameHeight - 130
+       },
+       data: arr,
+       rightBtns: [{
+           bgColor: '#f47920',
+           activeBgColor: '#faa755',
+           width: 70,
+           title: '预约',
+           titleSize: 14,
+           titleColor: '#fff',
+           icon: '',
+           iconWidth: 20
+       },
+       {
+           bgColor: '#ef4136',
+           activeBgColor: '#f15b6c',
+           width: 70,
+           title: '删除',
+           titleSize: 14,
+           titleColor: '#fff',
+           icon: '',
+           iconWidth: 20
+       }
+     ],
+       styles: {
+           borderColor: '#F0F0F0',
+           item: {
+               bgColor: '#fff',
+               activeBgColor: '#F5F5F5',
+               height: 70.0,
+               imgWidth: 50,
+               imgHeight: 50,
+               imgCorner: 50,
+               placeholderImg: '',
+               titleSize: 14.0,
+               titleColor: '#ff3333',
+               subTitleSize: 13.0,
+               subTitleColor: '#9d9d9d',
+               remarkColor: '#000',
+               remarkSize: 0,
+               remarkIconWidth: 30
+           }
+       }
+     }, function(ret, err) {
+       if (ret) {
+         if(0 === ret.btnIndex){
+           UIListView.getDataByIndex({
+              index: ret.index
+           }, function(ret, err) {
+              if (ret) {
+                  var preid = ret.data.remark.preid;
+                  var pretype = ret.data.remark.pretype;
+                  var prestatus = ret.data.remark.prestatus;
+                  var ownerid = ret.data.remark.ownerid;
+                  // alert(preid + "-----" + pretype + "----" + prestatus)
+                  submitReserve(pretype, preid, prestatus, ownerid);
+              } else {
+                  alert(JSON.stringify(err));
+              }
+           });
+
+         }
+         if(1 === ret.btnIndex){
+             UIListView.getDataByIndex({
+                index: ret.index
+             }, function(ret, err) {
+                if (ret) {
+                  deleteOrder(ret.data.remark.id, function(_flag){
+                    if(true === _flag){
+                        UIListView.deleteItem({
+                           index: ret.index
+                        }, function(ret, err) {
+                        });
+                    }
+                  });
+                } else {
+                    alert(JSON.stringify(err));
+                }
+             });
+         }
+       }else {
+       }
+     });
+}
+
+// 根据id删除数据
+function deleteOrder(orderid, callback){
+   var orderid = orderid;
+   var flag = true;
+   $.post(path + "/ActorInterface/preorder/delPreOrder.action",{
+       orderid: orderid
+     }, function(data) {
+       var data = JSON.parse(data);
+       if (data.success) {
+           alert("删除成功")
+       }else{
+           flag = false;
+           alert("删除失败")
+       }
+   });
+
+   callback(flag);
 }

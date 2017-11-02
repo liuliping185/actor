@@ -2,11 +2,20 @@ var flag = 0;
 $(function(){
     $('body').height($('body')[0].clientHeight);
     var actionURL = path + "/ActorInterface/actor/queryAllMyInfos.action?token=" + localStorage.token;
+
+    // var toast = new auiToast();
+  	// toast.loading({
+    //   title:"正在加载",
+    //   duration:2000
+  	// },function(ret){
+  	// 	setTimeout(function(){
     $.post(actionURL,{
     }, function(data) {
         var data = JSON.parse(data);
         console.log(data);
         if(data.success){
+          // toast.hide();
+
             $("#content").html("");
             var content= "";
             if(0 === data.infoList.length){
@@ -69,8 +78,8 @@ $(function(){
 
 
 
-              content +=  "<div class='aui-card-list-content-padded'>";
-              content +=  "<img onclick=goDetail('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
+              content +=  "<div style='width:100%;margin 0 auto'>";
+              content +=  "<img style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;' onclick=roleDetails('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
               content +=  "<div><i class='aui-iconfont aui-icon-note'></i><span>" +  i.evaSum + "</span></div>";
@@ -108,8 +117,17 @@ $(function(){
               $("#flag").val(flag);
             });
               $("#content").html(content);
+        }else{
+          // toast.hide();
+          //
+          // toast.fail({
+          //  title:"加载失败",
+          //  duration:2000
+          // });
         }
     });
+//   }, 3000)
+// });
 });
 
 // 根据角色获取信息列表
@@ -204,9 +222,9 @@ $("#roleChange").change(function(){
 													  content +=  "</div>";
 													  content +=  "<div class='aui-card-list-user-info'>" + status +  "</div>";
 													  content +=  "</div>";
-													  content +=  "<div class='aui-card-list-content-padded'>";
-													  content +=  "<img src='" + i.firstimg + "'/>";
-													  content +=  "</div>";
+													  // content +=  "<div class='aui-card-list-content-padded'>";
+													  // content +=  "<img src='" + i.firstimg + "'/>";
+													  // content +=  "</div>";
 													  content +=  "<div class='aui-card-list-footer aui-border-t'>";
 													  content +=  "<div><i class='aui-iconfont aui-icon-note'></i><span>" +  i.evaSum + "</span></div>";
 													  content +=  "<div><i class='aui-iconfont aui-icon-laud'></i><span>" +  i.goodSum + "</span></div>";
@@ -365,10 +383,6 @@ function cancel(role, id){
 
          }
     });
-
-
-
-
 }
 
 // 编辑
@@ -389,21 +403,11 @@ function edit(role,infoid){
 
 
 function goAdd(){
-
 	window.location.href='../applicationRoles/applicationRoles.html';
 
 }
 
 
-function goDetail(type,id){
-
-	var url = "";
-	if(type == "actor"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}else if(type == "scene"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}else if(type == "subject"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}
-	window.location.href=url;
+function roleDetails(role,id){
+    window.location.href = "../../scenes/roleDetails.html?id=" + id + "&role=" + role;
 }

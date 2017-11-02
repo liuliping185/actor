@@ -17,7 +17,7 @@
 
 <body style="overflow:auto;">
 
-<div id="wrap" class="flex-wrap flex-vertical">
+<div id="wrap" class="flex-wrap flex-vertical" style="background-color:#ffffff">
     <header id="header"></header>
 
 
@@ -34,7 +34,9 @@
                 <li class="aui-list-item">
                     <div class="aui-list-item-inner">
                         <div class="aui-list-item-label">
-                            等级:
+                            <span style="font-size:0.75rem;color:#6c6c6c;">
+                              等级:
+                            </span>
                         </div>
             						<div class="aui-list-item-input">
               							<div class="aui-list-item-input">
@@ -65,24 +67,38 @@
 				        <li class="aui-list-item">
                     <div class="aui-list-item-inner">
                         <div class="aui-list-item-label">
-                            评论内容:
+                            <span style="font-size:0.75rem;color:#6c6c6c;">
+                              评论内容:
+                            </span>
                         </div>
                         <div class="aui-list-item-input">
                           <div class="aui-list-item-input">
-                              <textarea id="evainfo" name="evainfo" style="width:100%;border:1px solid green; height:100px;border-radius:4px;"></textarea>
+                              <textarea id="evainfo" name="evainfo" style="padding-left:2px;padding-right:2px;padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD; border:#E0E0E0 1px solid;border-radius:10px"></textarea>
                           </div>
                         </div>
                     </div>
                 </li>
-                <li class="aui-list-item">
+                <!-- <li class="aui-list-item">
                     <div class="aui-list-item-inner aui-list-item-center aui-list-item-btn" style="text-align: center;">
           					<div id="tjDiv">
                         <div class="aui-btn aui-btn-success aui-margin-r-5" onclick="comment()">提交</div>
           					</div>
                         <div class="aui-btn aui-btn-danger aui-margin-l-5" onclick="history.go(-1)">取消</div>
                     </div>
-                </li>
+                </li> -->
             </ul>
+        </div>
+
+        <div style="background-color:#ffffff;margin-top:15%;padding-bottom:10px;padding-left:20px;padding-right:20px;">
+            <div id="tjBtu" style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
+                <div onclick="comment()" id='tjBtu'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+            </div>
+        </div>
+
+        <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
+            <div id="tjBtu" style="background-color:#ff0000;" class="aui-btn aui-btn-danger aui-btn-block aui-btn-sm">
+                <div onclick="history.go(-1)" id='tjBtu'>取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+            </div>
         </div>
     </form>
     </div>

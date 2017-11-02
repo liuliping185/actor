@@ -72,8 +72,16 @@ function openImageClip(img_src,type){
 
   var rect_w = api.winWidth;
   var rect_h = api.winHeight;
-  var clip_w = parseInt(rect_w - 2);
-  var clip_y = parseInt((rect_h - clip_w - 30) / 2);
+  var clip_w = "";
+  var clip_y = parseInt((rect_h - parseInt(rect_w - 2) - 30) / 2);
+  var myx = 0;
+  if("headerimg" === type){
+    clip_w = 210;
+    myx = 75;
+  }else{
+    clip_w = parseInt(rect_w - 2);
+  }
+
   FNImageClip.open({
     rect: {
         x: 0,
@@ -91,7 +99,7 @@ function openImageClip(img_src,type){
         w: clip_w,
         //（可选项）数字类型；裁剪区域的高度，当 appearance 为 circular 时，h 无效；默认：w
         h: 210,
-        x: 0,
+        x: myx,
         y: clip_y,
         borderColor: '#0f0',
         borderWidth: 0,

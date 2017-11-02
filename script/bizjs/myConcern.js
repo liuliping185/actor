@@ -70,10 +70,10 @@ function getList(keywords){
                 case "P": status = "已发布";
                     break;
             }
-            content += "<li class='aui-list-item aui-list-item-arrow' onclick=goDetail('"+i.type+"','"+i.infos.id+"')>";
+            content += "<li class='aui-list-item aui-list-item-arrow' >";
             content += "<div class='aui-media-list-item-inner'>";
             content += "<div class='aui-list-item-media'>";
-            content += "<img src='" + i.infos.firstimg + "'>";
+            content += "<img onclick=roleDetails('"+i.type+"','"+i.infos.id+"') style='width:100px;height:50px' src='" + i.infos.firstimg + "'>";
             content += "</div>";
             content += "<div class='aui-list-item-inner'>";
             content += "<div class='aui-list-item-text'>";
@@ -130,15 +130,7 @@ function getList(keywords){
     });
 }
 
-function goDetail(type,id){
-
-	var url = "";
-	if(type == "actor"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}else if(type == "scene"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}else if(type == "subject"){
-		url  = "../../scenes/actorDetails.html?id="+id+"&role="+type;
-	}
-	window.location.href=url;
+// 角色详情
+function roleDetails(role,id){
+    window.location.href = "../../scenes/roleDetails.html?id=" + id + "&role=" + role;
 }

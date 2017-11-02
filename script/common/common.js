@@ -1,9 +1,12 @@
 // var path = "http://192.168.0.129:8080";
 var path = "http://47.93.224.28:8089";
 var dialog = new auiDialog();
-
+var UIListView = "";
+var UIMediaScanner = "";
 
 apiready = function () {
+    UIMediaScanner = api.require('UIMediaScanner');
+    UIListView = api.require('UIListView');
     $api.fixStatusBar( $api.dom('header') );
     api.removeLaunchView({
         animation: {
@@ -21,63 +24,34 @@ apiready = function () {
     api.addEventListener({
         name:'clip_success'
     }, function(ret, err){
+      var imgSrc = ret.value.new_img_url;
+      var type = ret.value.type;
+
         if( ret ){
              var jsonstr= JSON.stringify(ret);
-    		//  alert(jsonstr);
-            // var urlObj = ret.value;
 
-    					var imgSrc = ret.value.new_img_url;
-              var type = ret.value.type;
-              // alert(type);
-              // alert(imgSrc);
+              if(!imgSrc || !type){
+                return false;
+              }
 
-                        var img1=new Image();
-                        img1.crossOrigin = '';
-                        img1.src = imgSrc;
-                        img1.style = "width: 100%; height: 100%;";
+              if("firstimg" === type){
+                $('#firstimg').attr('src', imgSrc);
+                $("#fmimg").val(imgSrc);
+              }else if("idcardFront" === type){
+                $('#idcardFront').attr('src', imgSrc);
+              }else if("idcardBack" === type){
+                $('#idcardBack').attr('src', imgSrc);
+              }else{
+                $('#headerImg').attr('src', imgSrc);
+              }
 
-                        img1.onload = function() {
-                          if(img1.complete){
-                             database = getBase64Image(img1);
-
-                             $.post(path + "/ActorInterface/index/uploadImgs.action",{
-                                 imgpath:database
-                               }, function(data) {
-                                 var data = JSON.parse(data);
-
-                                 if (data.success) {
-                                   alert(type);
-                                   alert(JSON.stringify(data));
-                                     if("lunboimg" === type){
-
-                                       $("#lunboimg_").val(data.imgpath);
-                                       $('#lunboimg').attr('src', data.imgpath);
-                                     }else if("firstimg" === type){
-                                       $("#firstimg_").val(data.imgpath);
-                                       $('#firstimg').attr('src', data.imgpath);
-                                     }else{
-                                       $("#headerImg_").val(data.imgpath);
-                                       $('#headerImg').attr('src', data.imgpath);
-                                     }
-                                 }else{
-                                     if("lunboimg" === type){
-                                       $(".addPicLunboimg").show();
-                                     }else if("firstimg" === type){
-                                       $(".addPicFirstimg").show();
-                                     }else{
-                                       $(".addPic").show();
-                                     }
-                                 }
-                             });
-                          }
-                        };
         }else{
-             alert( JSON.stringify( err ) );
+            alert( JSON.stringify( err ) );
         }
     });
-
-    //funIniGroup();
 }
+
+
 
 // 获取地址栏参数
 function GetQueryString(name){
@@ -202,7 +176,6 @@ var sizeinfos = 0;
 
 // 多图上传图片开始
 function showActionMore(){
-    var UIMediaScanner = api.require('UIMediaScanner');
     UIMediaScanner.open({
       type: 'picture',
       column: 4,
@@ -237,8 +210,8 @@ function showActionMore(){
         }
       },
       scrollToBottom: {
-        intervalTime: 3,
-        anim: true
+        intervalTime: -1,
+        anim: false
       },
       exchange: true,
       rotation: true
@@ -289,11 +262,14 @@ function showActionMore(){
                                       var imagesId = generateMixed(8);
 
                                       var imgs = "";
-                                      imgs += "<span style='width30%;margin-left:3%;'>";
+
+                                      imgs += "<span name=" + imagesId +">";
+                                      imgs += "<span style='width30%;padding-left:5px;padding-right:10px;'>";
                                       // imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
 
                                       imgs += "<div name=" + imagesId +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic('" + imagesId + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
                                       imgs += "<img id='" + imagesId + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.path + "'/>";
+                                      imgs += "</span>";
                                       imgs += "</span>";
 
 
@@ -351,13 +327,15 @@ function showActionMore(){
 
 //删除图片
 function delpic(imgId){
-  $("#" + imgId).remove();
-  $("div[name=" + imgId + "]").html("");
-	deleteData(imgId);
+  if(confirm("是否确认删除?")){
+      $("#" + imgId).remove();
+      $("span[name=" + imgId + "]").html("");
+      // deleteData(imgId);
+  }
 }
 
 // 将图片转换为base64编码
-function getBase64Image(img) {
+function getBase64Image(img, callback) {
 			var quality =  50;
 			var canvas = document.createElement("canvas");
 			//naturalWidth真实图片的宽度
@@ -366,8 +344,24 @@ function getBase64Image(img) {
 			var ctx = canvas.getContext("2d").drawImage(img, 0, 0);
 			var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
 			var dataURL = canvas.toDataURL("image/"+ext,1);
+
 			return dataURL;
 }
+
+// 将图片转换为base64编码
+function getBase64ImageOnce(img, callback) {
+			var quality =  50;
+			var canvas = document.createElement("canvas");
+			//naturalWidth真实图片的宽度
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+			var ctx = canvas.getContext("2d").drawImage(img, 0, 0);
+			var ext = img.src.substring(img.src.lastIndexOf(".")+1).toLowerCase();
+			var dataURL = canvas.toDataURL("image/"+ext,1);
+
+      callback(dataURL);
+}
+
 
 
 // function getBase64Image(img) {
@@ -405,16 +399,17 @@ function getBase64Image(img) {
 
 // 返回上一页
 function back(){
+    UIListView.close();
     window.history.go(-1);
 }
 
 // 截图功能
-function openImageClipFrame(img_src,type){
+function openImageClipFrame(img_src,type,url){
   api.openFrame({
     name : 'main',
     scrollToTop : true,
     allowEdit : true,
-    url : '../../photoCut.html',
+    url : url,
     rect : {
       x : 0,
       y : 0,

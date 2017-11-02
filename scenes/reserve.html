@@ -16,6 +16,7 @@
     <script type="text/javascript" src="../script/api.js"></script>
     <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="../script/aui-dialog.js" ></script>
+    <script type="text/javascript" src="../script/aui-toast.js" ></script>
     <script type="text/javascript" src="../script/common/common.js"></script>
     <script src="../script/dev/js/mobiscroll.core-2.5.2.js" type="text/javascript"></script>
     <script src="../script/dev/js/mobiscroll.core-2.5.2-zh.js" type="text/javascript"></script>
@@ -38,23 +39,88 @@
     </header>
 
     <!-- 第一栏开始 -->
+    <div style="overflow:auto;">
     <form id="postForm">
         <input id="pretype" name="pretype" hidden="true"/>
-        <input id="preid" name="preid" hidden="true"/>
-        <input id="ownerid" name="preid" hidden="true"/>
+        <input id="preid" name="infoid" hidden="true"/>
+        <input id="ownerid" name="ownerid" hidden="true"/>
         <input id="attentionFlag" hidden="true"/>
         <input id="prestatus" name="prestatus" hidden="true"/>
         <input id="hi_id" name="id" hidden="true"/>
 
         <div style="background-color:#ffffff;">
-          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">预约详情</span>
+          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#7B7B7B;font-size:0.8rem">预约信息</span>
+        </div>
+
+        <div style="padding-bottom:10px;padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+            <ul>
+                <li>
+                    <span>
+                        <img id="imgpath" src="" style="margin-top:5%;border-radius:5px;"/>
+                    </span>
+                </li>
+                <li>
+                    <span style="width:25%;margin-top:5%;">
+                        <span style="font-size:0.75rem;color:#7B7B7B;">角&nbsp&nbsp色&nbsp&nbsp:</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="rolename" id="rolename" readonly="true" style="font-size:0.75rem;width:100%;height:2.2rem;color:#7B7B7B;">
+                    </span>
+                </li>
+                <li>
+                    <span style="width:25%;">
+                        <span style="font-size:0.75rem;color:#7B7B7B;">名&nbsp&nbsp称&nbsp&nbsp:</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="nickname" id="nickname" readonly="true" style="font-size:0.75rem;width:100%;height:2.2rem;color:#7B7B7B;">
+                    </span>
+                </li>
+                <li>
+                    <span style="width:25%;">
+                        <span style="font-size:0.75rem;color:#7B7B7B;">价&nbsp&nbsp格&nbsp&nbsp:</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="price" id="price" readonly="true" style="font-size:0.75rem;width:100%;height:2.2rem;color:#7B7B7B;">
+                    </span>
+                </li>
+                <li>
+                    <span style="width:25%;">
+                        <span style="font-size:0.75rem;color:#7B7B7B;">地区&nbsp&nbsp:</span>
+                    </span>
+                    <span style="width:70%;">
+                        <input type="text" name="area" id="area" readonly="true" style="font-size:0.75rem;width:100%;height:2.2rem;color:#7B7B7B;">
+                    </span>
+                </li>
+                <li>
+                    <div style="float:left;width:25%;margin-top:15px;">
+                        <span style="margin-top:-5%;font-size:0.75rem;color:#7B7B7B;">简&nbsp&nbsp介&nbsp&nbsp:</span>
+                    </div>
+                    <span style="width:70%;margin-top:15px;">
+                        <textarea readonly="true" style="padding-right:2px;overflow:auto;height:50px;width:100%;font-size:0.75rem;color:#7B7B7B;" rows="10" cols="20" id="infos" name="infos" ></textarea>
+                    </span>
+                </li>
+            </ul>
+        </div>
+
+        <div style="background-color:#ffffff; margin-top:2%;">
+            <h4 class="flip" style="background-color:#ffffff; margin: 0px;height: 30px;
+             margin-left:3%;color:#7B7B7B" onclick="reserveTime();">预约情况
+                <img src="../image/sj.png" style="margin-top: 5px; padding-left: 5px;height: 8px;float: right;padding-right:10px;">
+            </h4>
+            <div class="content" id="reserveTime" style="text-align:center;padding-bottom:10px;display:none;">
+                <span style="">暂无预约</span>
+            </div>
+        </div>
+
+        <div style="background-color:#ffffff;margin-top:3%;">
+          <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#7B7B7B;font-size:0.7rem">预约详情</span>
         </div>
 
         <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
             <ul>
                 <li>
                     <span style="width:25%;margin-top:5%;">
-                        <span style="font-size:0.75rem;color:#6c6c6c;">开始时间</span>
+                        <span style="font-size:0.75rem;color:#7B7B7B;">开始时间</span>
                     </span>
                     <span style="width:70%;">
                         <input type="text" name="prestart" id="prestart" placeholder="请输入开始时间" style="width:100%; height:30px;">
@@ -62,7 +128,7 @@
                 </li>
                 <li>
                     <span style="width:25%;">
-                        <span style="font-size:0.75rem;color:#6c6c6c;">结束时间</span>
+                        <span style="font-size:0.75rem;color:#7B7B7B;">结束时间</span>
                     </span>
                     <span style="width:70%;">
                         <input type="text" name="preend" id="preend" placeholder="请输入结束时间" style="width:100%; height:30px;">
@@ -70,7 +136,7 @@
                 </li>
                 <li>
                     <div style="float:left;width:25%;">
-                        <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">预约详情</span>
+                        <span style="font-size:0.75rem;color:#7B7B7B;line-height:100px">预约详情</span>
                     </div>
                     <span style="width:70%;margin-top:3%;">
                         <textarea id="preinfos" name="preinfos" style="overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#9d9d9d; border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" placeholder="  请输入预约详情"></textarea>
@@ -78,20 +144,29 @@
                 </li>
                 <li>
                   <span style="width:25%;">
-                      <span style="font-size:0.75rem;color:#6c6c6c;">联系电话</span>
+                      <span style="font-size:0.75rem;color:#7B7B7B;">联系电话</span>
                   </span>
                   <span style="width:70%;">
                       <input type="text" id="prephone" name="prephone" placeholder="请输入联系电话" style="width:100%; height:30px;">
                   </span>
                 </li>
             </ul>
-        <div style="padding: 3px 20px 1px;padding-bottom:200px;">
-            <div style="background-color:#20e0b9;margin-top: 50px;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="reserve()">
-                <span id="p">确&nbsp;&nbsp;定</span>
+
+            <div style="padding: 3px 20px 1px;padding-bottom:10px;">
+                <div style="background-color:#20e0b9;margin-top: 50px;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="reserve()">
+                    <span id="p">确&nbsp;&nbsp;定</span>
+                </div>
             </div>
-        </div>
+
+            <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
+                <div id="tjBtu" style="background-color:#ff0000;" class="aui-btn aui-btn-danger aui-btn-block aui-btn-sm">
+                    <div onclick="history.go(-1)" id='tjBtu'>取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+                </div>
+            </div>
+
         </div>
     </form>
+    </div>
 
 
 

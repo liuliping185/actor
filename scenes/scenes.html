@@ -28,7 +28,7 @@
 <body style="height: 100%; width: 100%;">
 <input id="bigid" hidden="true"/>
 
-<div id="wrap" class="flex-wrap flex-vertical">
+<div id="wrap" class="flex-wrap flex-vertical" style="background-color:#ffffff">
     <header style="margin 0 auto;" id="headerGrand">
         <!-- <span id='headerBack' onclick='back()'>&nbsp</span>
         <ul style='width:75%; margin-left:10%;'>
@@ -40,15 +40,26 @@
             <li class="border-b" >我的</li>
         </ul> -->
             <div style=" position:relative; z-index:2;">
-              <div data-toggle="distpicker" style="float:left; width:13%; margin-top: 0px;margin-left:18px;">
+              <!-- <div data-toggle="distpicker" id="distpicker3" style="width:100%;">
+                  <div style="float:left;width:15%;margin-left:4%;">
+                      <span style="width:50%;">
+                          <select style="font-size:0.7rem;color:#ffffff;" data-province="全部" id="provience" name="provience">
+                          </select>
+                      </span>
+                      <span style="width:20%;">
+                          <img src="../image/sj.png" style="width:10px;height:10px;">
+                      </span>
+                  </div>
+               </div> -->
+              <!-- <div data-toggle="distpicker" style="float:left; width:10%; margin-top: 0px;margin-left:18px;">
                 <ul>
                     <li>
-                      <div style="float:left;width:10%;">
+                      <div style="width:10%;">
                         <select data-province="全部" id="provience"></select><img src="../image/index/sj.png" style="width:10px;height:10px;">
                       </div>
                     </li>
                 </ul>
-              </div>
+              </div> -->
                 <!-- <div style="float:left; width:13%; margin-top: 0px;margin-left:18px;">
                   <table align="center">
                     <tr>
@@ -74,10 +85,9 @@
                     </tr>
                   </table>
                 </div> -->
-                <div style="float:left;width:75%; margin-left: 3%;margin-top:1px; height:25%; display: block;">
-                    <div class="aui-searchbar" style="border-radius:40px;margin-top:7px;height:9%;background-color:rgba(255,255,255,0.3);background-image: url(image/index/search.png);" id="search">
+                <div style="float:left;width:95%; margin-left: 2.5%;height:25%; display: block;">
+                    <div class="aui-searchbar" style="border-radius:40px;margin-top:3px;margin-bottom:3px;background-color:rgba(255,255,255,0.3);background-image: url(image/index/search.png);" id="search">
                         <div class="aui-searchbar-input aui-border-radius">
-                            <!-- <i class="aui-iconfont aui-icon-search"></i> -->
                             <input type="search" style="color:#ffffff;" placeholder="请输入搜索内容" id="search-input"; >
 
 
@@ -87,7 +97,6 @@
                         </div>
                         <div class="aui-searchbar-btn" tapmode>取消</div>
                     </div>
-                    <!-- <hr style="height:1px;width:95%;border:none;border-top:1px solid #ffffff;opacity:0.5" /> -->
                 </div>
             </div>
     </header>
@@ -102,45 +111,55 @@
         <p id="testBox" class="flip" style="background-color:#ffffff; margin: 0px;padding: 5px;height: 30px;
          width: 98%;margin-left:1%; text-align: center;border: solid 1px #c3c3c3;border-radius:30px;">
             筛选分类
-            <img src="../image/sj.png"
-										style="margin-top: 5px; padding-left: 5px;height: 8px;float: right;">
+            <img src="../image/sj.png" style="margin-top: 5px; padding-left: 5px;height: 8px;float: right;">
         </p>
 
 
         <!-- 第二栏区开始  -->
-        <div style="width:100%; margin 0 auto; background-color:#F0F0F0;">
-          <!-- <div style="margin-left: 20px;width:100%;">
-            <div data-toggle="distpicker">
+        <div style="width:100%; margin 0 auto; margin-top:10px;">
+          <!-- <div style="margin-left: 20px;width:100%;padding-left:2%;"> -->
+            <div data-toggle="distpicker" style="margin-left: 1%;width:100%;padding-left:2%;">
               <ul>
-                  <li>
-                    <div style="float:left;width:40%;">所在地区</div>
-                    <div style="float:left;width:50%;">
-                      <select data-province="全部" id="provience"></select><img src="../image/index/sj.png" style="width:10px;height:10px;">
-                    </div>
-                  </li>
+                  <div style="float:left;width:33%;font-size:0.7rem;font-family:苹方;color:#20e0b9;">所在地区</div>
+                  <div style="float:left;width:33%;">
+                    <select style="margin-top:-11%;font-size:0.7rem;font-family:苹方;color:#9d9d9d;" data-province="全部省" id="provience"></select><img src="../image/index/sj.png" style="width:10px;height:10px;">
+                  </div>
+                  <div style="float:left;width:33%;">
+                    <select style="margin-top:-11%;font-size:0.7rem;font-family:苹方;color:#9d9d9d;" data-city="全部市" id="city"></select><img src="../image/index/sj.png" style="width:10px;height:10px;">
+                  </div>
               </ul>
-
             </div>
-          </div> -->
+          <!-- </div> -->
 
-            <div style="margin-left: 20px; margin-top: 10px;">
-                <div style="float:left;width:40%;padding-left:2%;padding-right:2%;">
-                    <ul>所选大类
-                        <li class="screen" onclick="appear()">
+            <!-- <div style="margin-left: 20px; margin-top: 20px;"> -->
+                <div style="margin-top: -10px;margin-left: 1%;float:left;width:32%;padding-left:2%;padding-right:2%;">
+                    <ul>
+                      <span style="font-size:0.7rem;font-family:苹方;color:#20e0b9;">所选大类</span>
+                        <li class="screen" style="margin-top:5%;" onclick="appear()">
                         </li>
                     </ul>
                 </div>
 
-                <div style="float:left; display: block; width:40%;margin-left:5%;padding-left:2%;padding-right:2%;">
-                    <ul>所选小类
-                        <li class="smallType">
+                <div style="margin-top: -10px;float:left; display: block; width:33%;padding-left:2%;padding-right:2%;">
+                    <ul>
+                      <span style="font-size:0.7rem;font-family:苹方;color:#20e0b9;">所选小类</span>
+                        <li class="smallType" style="margin-top:5%;">
 
                         </li>
                     </ul>
                 </div>
-            </div>
+                <!-- <div style="margin-top: -10px;float:left; display: block; width:33%;padding-left:2%;padding-right:2%;">
+                    <ul>
+                      <span style="font-size:0.7rem;font-family:苹方;color:#20e0b9;">所选小小类</span>
+                        <li class="smallType" style="margin-top:5%;">
 
-            <div id="search" class="aui-searchbar" style="border-radius:9px;">
+                        </li>
+                    </ul>
+                </div> -->
+            <!-- </div> -->
+
+             <!-- class="aui-searchbar"  style="border-radius:9px;"-->
+            <div id="search" class="aui-searchbar"  style="border-radius:9px;background-color:#ffffff">
                 <!-- <div class="aui-searchbar-input aui-border-radius">
                     <i class="aui-iconfont aui-icon-search"></i>
                     <input type="search" placeholder="请输入搜索内容" id="search-input">
@@ -150,21 +169,29 @@
                 </div>
                 <div class="aui-searchbar-btn" tapmode>取消</div> -->
             </div>
-        <div class="aui-btn aui-btn-info aui-btn-block aui-btn-outlined aui-btn-sm" style="width:40%; margin-top:5%; margin-left:58%;" onclick="getList('')">
-            <span id="p">立即搜索 &nbsp></span>
-        </div>
+
+            <div style="width:100%; margin 0 auto;padding-bottom:50px;">
+                <div class="aui-btn aui-btn-info aui-btn-block aui-btn-outlined aui-btn-sm" style="width:40%; margin-top:5%; margin-left:58%;" onclick="getList('')">
+                    <span id="p">立即搜索 &nbsp></span>
+                </div>
+            </div>
+
         </div>
 
         <!-- 第二栏区结束  -->
+
+
 
     </div>
     <!-- 第一栏区结束  -->
 
 
 
+
+
     <!-- 第三栏区开始  thirdArea-->
     <div class="sample" id="thirdArea" style="overflow:auto; width:100%; height:80%; background-color:#ffffff;">
-        <div style="width:100%; height:75%;background-color:#ffffff" id="sample">
+        <div style="width:100%; height:75%;background-color:#ffffff" id="imgInfos">
         </div>
     </div>
     <!-- 第三栏区结束  -->
@@ -191,6 +218,7 @@
 <script type="text/javascript" src="../script/api.js"></script>
 <script type="text/javascript" src="../script/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="../script/aui-dialog.js" ></script>
-<script src="../script/distpicker.js"></script>
+<script type="text/javascript" src="../script/aui-toast.js" ></script>
+<script type="text/javascript" src="../script/distpicker.js"></script>
 <script type="text/javascript" src="../script/common/common.js"></script>
 <script type="text/javascript" src="../script/bizjs/scenes.js"></script>

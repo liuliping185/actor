@@ -9,12 +9,56 @@ $(document).ready(function(){
         console.log(data)
         if (data.success) {
             var hotWords = "";
+            var flag = 0;
             data.infoList.forEach(function(i){
-              // 20e0b9
-                hotWords += "<div style='float:left; display: block; height:30%; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; border-radius:5px; margin-left:13%; margin-top: 3%;'>";
+              flag ++;
 
-        			 	hotWords += "<div style='padding-left:5px;padding-right:5px'><span  onclick=getkeyWords('" + i.keywords + "')><h4>"+ i.keywords +"</h4></span></div>";
-                hotWords += "</div>";
+              // 20e0b9
+              if(0 === flag%3){
+                  // hotWords += "<div style='margin-bottom:14px;width:100%;'>";
+                  // hotWords += "<span style='width:30%;color:#27ddb8;font-size:12px;'>" + i.keywords + "</span>";
+              // }else{
+                  hotWords += "<span style='width:30%;color:#27ddb8;font-size:14px;padding-bottom:14px;' onclick=getkeyworks('" + i.keywords + "')>" + i.keywords + "</span>";
+              }else{
+                  hotWords += "<span style='width:30%;color:#27ddb8;font-size:14px;' onclick=getkeyworks('" + i.keywords + "')>" + i.keywords + "</span>";
+              }
+
+              if(0 != flag%3){
+                  hotWords += "<span style='color:#ddd;'>|</span>";
+              }
+
+              var num = flag%3;
+              var number = 3-num;
+
+              if(0 != num){
+
+                  if(flag === data.infoList.length){
+                    for(var i=0; i<number; i++){
+                        hotWords += "<span style='width:30%;color:#27ddb8;font-size:12px;'></span>";
+                    }
+                  }
+              }
+
+
+
+
+              // if(0 === flag%3 && flag != 0){
+              //     hotWords += "</div>";
+              // }
+
+
+
+
+
+
+              //     <span style="width:30%;color:#27ddb8;font-size:12px;">文字一</span>
+              //     <span style="color:#ddd;">|</span>
+              //     <span style="width:30%;color:#27ddb8;font-size:12px;">文字一</span>
+              // </div>
+              //   hotWords += "<div style='float:left; display: block; height:30%; color:#20e0b9; display:inline-block;border:1px solid #20e0b9; border-radius:5px; margin-left:13%; margin-top: 3%;'>";
+              //
+        			//  	hotWords += "<div style='padding-left:5px;padding-right:5px'><span  onclick=getkeyWords('" + i.keywords + "')><h4>"+ i.keywords +"</h4></span></div>";
+              //   hotWords += "</div>";
             })
               $("#hotWords").html(hotWords);
         }else{
@@ -87,3 +131,9 @@ if(searchBarBtn){
     }
 }
 // 搜索框结束
+
+function getkeyworks(keywords){
+  console.log(keywords);
+  document.getElementById('search-input').value = keywords;
+    // $("search-input").val(keywords);
+}
