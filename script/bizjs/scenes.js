@@ -1,11 +1,8 @@
 var role = GetQueryString("role");
-
-
 var flag = 0;
 
 $(function(){
     $('body').height($('body')[0].clientHeight);
-
     // 筛选分类开始
     $(".flip").mouseover(function() {
 			$(this).next("div").slideDown(500);
@@ -77,20 +74,31 @@ if(searchBarBtn){
 
 // 获取列表信息
 function getList(keywords){
-    $("#thirdArea").show();
+    // $("#thirdArea").show();
     var provience = $("#provience").val();
     var searchInput = $("#search-input").val();
-    if(!searchInput){
-        searchInput = provience;
-    }
 
     var actionUrl = "";
     switch(role){
-        case "actor": actionUrl = path + "/ActorInterface/actor/queryActors.action";
+        case "actor": actionUrl = path + "/ActorInterface/actor/queryActors.action";  // 演员
         break;
-        case "scene": actionUrl = path + "/ActorInterface/scene/queryScenes.action";
+        case "scene": actionUrl = path + "/ActorInterface/scene/queryScenes.action";  // 场景
         break;
-        case "subject": actionUrl = path + "/ActorInterface/subject/querySubjects.action";
+        case "subject": actionUrl = path + "/ActorInterface/subject/querySubjects.action";  // 道具
+        break;
+        case "screenwriter": actionUrl = path + "/ActorInterface/screenwriter/queryScreenwriters.action";  // 编剧
+        break;
+        case "director": actionUrl = path + "/ActorInterface/director/queryDirectors.action";  // 导演
+        break;
+        case "producer": actionUrl = path + "/ActorInterface/producer/queryProducers.action";  // 制片
+        break;
+        case "clothing": actionUrl = path + "/ActorInterface/clothing/queryClothings.action";  // 服装
+        break;
+        case "equipment": actionUrl = path + "/ActorInterface/equipment/queryEquipments.action";  // 设备
+        break;
+        case "camerateam": actionUrl = path + "/ActorInterface/camerateam/queryCamerateams.action";  // 摄影组
+        break;
+        case "investment": actionUrl = path + "/ActorInterface/investment/queryInvestments.action"; // 投资
         break;
     }
 	var smallid = "";
@@ -107,16 +115,18 @@ function getList(keywords){
 
     $.post(actionUrl,{
         token: localStorage.token,
-        keywords: searchInput,
+        type:role,
+        keywords: keywords,
         smallid: smallid,
-		    bigid:bigid
+		    bigid:bigid,
+        provience:provience
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)
         if (data.success) {
             var imgInfos = "";
             $(".content").children("div").slideUp(500);
-            // pollScroll(data.infoList, data.imgList);
+            $("#thirdArea").show();
 
             data.infoList.forEach(function(i){
 
@@ -126,7 +136,7 @@ function getList(keywords){
                 var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 
                 imgInfos += "<div style='width:93%;margin-top:10px;float:left;'>";
-                imgInfos += "<img onclick=roleDetails('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;border:1px solid #E0E0E0;'/>";
+                imgInfos += "<img onclick=roleDetails('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;border:1px solid #E0E0E0;width:100%;'/>";
                 imgInfos += "<img src='../image/index/transparent.png' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;margin-top:-25%;width:100%;'>";
                 imgInfos += "<div style='position:relative;width:100%;margin-top:-27px;text-align:center;'>"
                 imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.7rem;'> " + createtime + "</span>";
@@ -168,6 +178,34 @@ function getList(keywords){
                         imgInfos += " <img src='../image/index/subject.png'/>";
                         nickname = i.subjectname;
                         break;
+                    case "screenwriter":
+                        imgInfos += " <img src='../image/index/screenwriter.png'/>";
+                        nickname = i.screenwritername;
+                        break;
+                    case "director":
+                        imgInfos += " <img src='../image/index/director.png'/>";
+                        nickname = i.directorname;
+                        break;
+                    case "producer":
+                        imgInfos += " <img src='../image/index/producer.png'/>";
+                        nickname = i.producername;
+                        break;
+                    case "clothing":
+                        imgInfos += " <img src='../image/index/clothing.png'/>";
+                        nickname = i.clothingname;
+                        break;
+                    case "equipment":
+                        imgInfos += " <img src='../image/index/equipment.png'/>";
+                        nickname = i.equipmentname;
+                        break;
+                    case "camerateam":
+                        imgInfos += " <img src='../image/index/camerateam.png'/>";
+                        nickname = i.camerateamname;
+                        break;
+                    case "investment":
+                        imgInfos += " <img src='../image/index/investment.png'/>";
+                        nickname = i.investmentname;
+                        break;
                 }
                 imgInfos += "</div>";
                 imgInfos += "<div style='float:left;width:40%;margin-top:2.7%;'>";
@@ -187,16 +225,18 @@ function getList(keywords){
                 imgInfos +=  "</div>";
             })
 
-              if(0 < data.infoList.length){
-                  $("#imgInfos").html(imgInfos);
+              $("#imgInfos").html(imgInfos);
+
+              if(0 === data.infoList.length){
+                  $("#imgInfos").html("<span style='width:100%;margin-top:10px;text-align:center;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
               }
         }else{
             dialog.alert({
-                  title:"获取演员信息失败！",
+                  title:"暂无符合该条件信息",
                   msg:'',
                   buttons:['确定']
               },function(ret){
-                  $("#content").html("");
+                  $("#imgInfos").html("");
               })
               return false;
         }
@@ -240,8 +280,6 @@ function getType(){
 var flag = 0;
 function smallType(id){
 
-
-
   if($("#big_"+id).prop("checked")){
 
 	   $.post(path + "/ActorInterface/index/findSmallType.action",{
@@ -255,7 +293,7 @@ function smallType(id){
               smallname += "<ul>";
 
               data.infoList.forEach(function(i){
-                  smallname += "<li class='small_"+i.id+"'>";
+                  smallname += "<li class='small_"+id+"'>";
                   smallname += "<div style='float:left;width:14%;'><input type='checkbox' class='aui-checkbox' style='margin-top:5px;margin-left:0px;vertical-align:middle;width:0.7rem;height:0.7rem;' name='smallCheck' value='"+i.id+"' id='small__"+i.id+"'/></div>";
                   smallname += "<div style='float:left;width:86%;'><label for='small__"+i.id+"'>" + "<span style='margin-top:4px;padding-left:5px;padding-right:5px;color:#9d9d9d;width:85px;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;'>" + i.typename + "</span></label></div>";
                   smallname += "</li>";
@@ -267,9 +305,9 @@ function smallType(id){
           }
       });
   }else {
-	 $("li.small_"+id).remove();
-
+	   $("li.small_"+id).remove();
   }
+
 }
 
 // 角色详情

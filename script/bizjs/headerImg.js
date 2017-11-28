@@ -53,7 +53,6 @@ $(function(){
 });
 
 // 完善个人信息开始
-
 function perfectPersonalInfo(){
     if(!$("#headerImg_").val()){
         dialog.alert({

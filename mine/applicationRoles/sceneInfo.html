@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>我的-信息维护-申请角色-场景信息</title>
+    <title>我的-申请角色-场景信息</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
@@ -25,6 +25,7 @@
        /* placeholder位置  */
              text-align: center;
     }
+    select option {font-size:12px; font-family:微软雅黑;}
     </style>
 </head>
 <body>
@@ -34,11 +35,11 @@
 
 
 <div style="height:100%; overflow:auto;">
-<input id="fmimg" type="hidden"/>
-<form id="postForm">
-<input id="lunboimg_" name="lunboimg" type="hidden"/>
-<input id="firstimg_" name="firstimg" type="hidden"/>
-<input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
+  <input id="fmimg" type="hidden"/>
+  <form id="postForm">
+  <input id="lunboimg_" name="lunboimg" type="hidden"/>
+  <input id="firstimg_" name="firstimg" type="hidden"/>
+  <input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
 	<input id="hi_id" name="id" type="hidden"/>
 	<input id="hi_evaSum" name="evaSum" type="hidden"/>
 	<input id="hi_goodSum" name="goodSum" type="hidden"/>
@@ -116,7 +117,7 @@
               <span style="width:70%;">
                   <span style="width:40%;">
                       <span style="width:70%;">
-                          <select style="font-size:0.7rem;color:#ADADAD;" id="bigtype" onchange='getSmallType(this.value)' name="bigid">
+                          <select style="font-family:苹方;font-size:0.7rem;color:#ADADAD;" id="bigtype" onchange='getSmallType(this.value)' name="bigid">
                                <option vlaue=''>选择大类</option>
                           </select>
                       </span>
@@ -188,7 +189,7 @@
 
   <div style="margin-top:3%;background-color:#ffffff;">
     <span style="width:70%;">
-        <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">场景图集</span>
+        <span style="margin-top:5%;margin-left:6%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">场景图集</span>
     </span>
     <span style="width:25%;">
       <span style="margin-top:40%;">
@@ -202,9 +203,9 @@
 
   </div>
 
-  <div id="imgUpload" align="center" style="padding-left:3%;padding-right:3%;background-color:#ffffff;"></div>
+  <div id="imgUpload" align="center" style="padding-left:3%;padding-right:3%;"></div>
 
-    <div style="margin-top:3%;background-color:#ffffff;">
+    <div style="margin-top:3%;">
       <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">封面照片</span>
     </div>
 

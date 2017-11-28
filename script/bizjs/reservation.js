@@ -25,6 +25,7 @@ function getRes(type){
         console.log(data)
         if (data.success) {
           var content = "";
+
           data.myList.forEach(function(i){
               content += "<li class='aui-list-item' >";
               content += "<div class='aui-media-list-item-inner'>";
@@ -38,15 +39,27 @@ function getRes(type){
 
 
               content += "<div class='aui-list-item-title'>" + i.infosname+ "</div>";
-              content += "<div class='aui-list-item-right'>￥" + i.infosprice + "元/"+i.infosunit+"</div>";
+              var infosprice = "";
+              var infosunit = "";
+              if(i.infosprice){
+                  infosprice = i.infosprice;
+                  if(i.infosunit){
+                      infosunit = i.infosunit;
+                  }else{
+                      if(i.infosrentunit){
+                          infosunit = i.infosrentunit;
+                      }
+                  }
+              }
+              content += "<div class='aui-list-item-right'>￥" + infosprice + "元/"+infosunit+"</div>";
               content += "</div>";
 
-             content += "<div class='aui-list-item-text'>";
+            //  content += "<div class='aui-list-item-text'>";
 
               // content +=  i.infosdetail.substring(0,10)+"....";
-              content +=  i.infosdetail;
+              // content +=  i.infosdetail;
 
-              content += "</div>";
+              // content += "</div>";
 
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
               content += "<div class='aui-info-item'>";
@@ -57,15 +70,31 @@ function getRes(type){
                   break;
                   case "subject": typeImg = "../../image/index/subject.png";
                   break;
+                  case "screenwriter": typeImg = "../../image/index/screenwriter.png";
+                  break;
+                  case "director": typeImg = "../../image/index/director.png";
+                  break;
+                  case "producer": typeImg = "../../image/index/producer.png";
+                  break;
+                  case "clothing": typeImg = "../../image/index/clothing.png";
+                  break;
+                  case "equipment": typeImg = "../../image/index/equipment.png";
+                  break;
+                  case "camerateam": typeImg = "../../image/index/camerateam.png";
+                  break;
+                  case "investment": typeImg = "../../image/index/investment.png";
+                  break;
               }
-              content += "<div><img src='" + typeImg + "' style='height:1rem'/></div>";
+              content += "<div style='margin-top:4px;'><img src='" + typeImg + "' style='height:0.85rem'/></div>";
               content += "<span class='aui-margin-l-5'></span>";
               content += "</div>";
+
               if("BP" === i.prestatus){
-                  content += "<span style='background-color:#ff9900;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;'> 取消预约中</span>"
+                  content += "<span style='margin-top:4px;background-color:#ff9900;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;'> 取消预约中</span>"
               }else{
-                  content += "<span style='background-color:#ff3300;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;' onclick='cancel(" + i.id + ")'> 取消预约</span>"
+                  content += "<span style='margin-top:4px;background-color:#ff3300;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;' onclick='cancel(" + i.id + ")'> 取消预约</span>"
               }
+
               // content += "<div class='aui-info-item'>" + i.createtime + "</div>";
               // content += "</div>";
               content += "</div>";
@@ -73,8 +102,11 @@ function getRes(type){
               content += "</li>";
           })
 
-
-          $("#preContent").html(content);
+          if(0 === data.myList.length){
+              $("#preContent").html("<span style='margin-top:10px;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
+          }else{
+              $("#preContent").html(content);
+          }
 
         }else{
           dialog.alert({
@@ -96,27 +128,12 @@ var tab = new auiTab({
     // 被预定列表
     var actionURL = path + "/ActorInterface/preorder/myPreList.action";
     var prestatus = "";
-    var comment = "";
+
     switch(ret.index){
         case 1:
             prestatus = "P";
         break;
         case 2: prestatus = "D";
-
-
-                if("已评论" === commentflag){
-                    comment += "<div class='aui-btn-success' style='width:60%; height:20px; line-height:20px;text-align:center;' >";
-                    comment += "<div onclick=comment(" + i.preid + "," + i.ownerid + ",'" + i.pretype +  "')>";
-                    comment += "<span style='font-size:14px;font-family:苹方；font-size:0.7rem;padding-left:2px;padding-right:2px;' id='p'>评论</span>";
-                    comment += "</div>"
-                }else{
-                    comment += "<div class='aui-btn-warning' style='height:20px; width:80%;line-height:20px;text-align:center;' >";
-                    comment += "<div>";
-                    comment += "<span style='font-size:14px;font-family:苹方；font-size:0.7rem;padding-left:2px;padding-right:2px;' id='p'>已评论</span>";
-                    comment += "</div>"
-                }
-                comment += "</div>";
-
         break;
         case 3: prestatus = "R";
         break;
@@ -131,39 +148,64 @@ var tab = new auiTab({
         console.log(data)
         if (data.success) {
             var content = "";
+            var comment = "";
             data.myList.forEach(function(i){
-                content += "<li class='aui-list-item'>";
+                if(prestatus === "D"){
+                    if(null == commentflag && "" == commentflag && commentflag){
+                        if("已评论" === commentflag){
+                            comment += "<div class='aui-btn-success' style='width:60%; height:20px; line-height:20px;text-align:center;' >";
+                            comment += "<div onclick=comment(" + i.infoid + "," + i.ownerid + ",'" + i.pretype +  "')>";
+                            comment += "<span style='font-size:14px;font-family:苹方；font-size:0.7rem;padding-left:2px;padding-right:2px;' id='p'>评论</span>";
+                            comment += "</div>"
+                        }else{
+                            comment += "<div class='aui-btn-warning' style='height:20px; width:80%;line-height:20px;text-align:center;' >";
+                            comment += "<div>";
+                            comment += "<span style='font-size:14px;font-family:苹方；font-size:0.7rem;padding-left:2px;padding-right:2px;' id='p'>已评论</span>";
+                            comment += "</div>"
+                        }
+                    }else{
+                        comment += "<div class='aui-btn-success' style='width:60%; height:20px; line-height:20px;text-align:center;' >";
+                        comment += "<div onclick=comment(" + i.infoid + "," + i.ownerid + ",'" + i.pretype +  "')>";
+                        comment += "<span style='font-size:14px;font-family:苹方；font-size:0.7rem;padding-left:2px;padding-right:2px;' id='p'>评论</span>";
+                        comment += "</div>"
+                    }
+
+                    comment += "</div>";
+                }
+
+                content += "<li class='aui-list-item' >";
                 content += "<div class='aui-media-list-item-inner'>";
                 content += "<div class='aui-list-item-media'>";
-                content += "<div style='width:100%;height:100%;'>";
-                content += "<div style='width:100%;height:50%;'>";
-                content += "<img style='width:100px;height:50px;' onclick=roleDetails('"+i.pretype+"','"+i.preid+"') src='"+i.infosimg+"'/>";
-                content += "</div>";
-                content += "<div align='center' style='width:100%;height:50%;margin-top:30%;'>";
+                content += "<img style='width:100px;height:50px' onclick=roleDetails('"+i.pretype+"','"+i.infoid+"') src='"+i.infosimg+"'>";
 
-
-                content += comment;
-
-
-
-                content += "</div>";
-                content += "</div>";
-
-                // content += comment;
                 content += "</div>";
                 content += "<div class='aui-list-item-inner'>";
-
                 content += "<div class='aui-list-item-text'>";
+
+
+
                 content += "<div class='aui-list-item-title'>" + i.infosname+ "</div>";
-		            content += "<div class='aui-list-item-right'>￥" + i.infosprice + "元/"+i.infosunit+"</div>";
+                var infosprice = "";
+                var infosunit = "";
+                if(i.infosprice){
+                    infosprice = i.infosprice;
+                    if(i.infosunit){
+                        infosunit = i.infosunit;
+                    }else{
+                        if(i.infosrentunit){
+                            infosunit = i.infosrentunit;
+                        }
+                    }
+                }
+                content += "<div class='aui-list-item-right'>￥" + infosprice + "元/"+infosunit+"</div>";
                 content += "</div>";
 
-               content += "<div class='aui-list-item-text'>";
+              //  content += "<div class='aui-list-item-text'>";
 
                 // content +=  i.infosdetail.substring(0,10)+"....";
-                content +=  i.infosdetail;
+                // content +=  i.infosdetail;
 
-                content += "</div>";
+                // content += "</div>";
 
                 content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
                 content += "<div class='aui-info-item'>";
@@ -174,23 +216,31 @@ var tab = new auiTab({
                     break;
                     case "subject": typeImg = "../../image/index/subject.png";
                     break;
+                    case "screenwriter": typeImg = "../../image/index/screenwriter.png";
+                    break;
+                    case "director": typeImg = "../../image/index/director.png";
+                    break;
+                    case "producer": typeImg = "../../image/index/producer.png";
+                    break;
+                    case "clothing": typeImg = "../../image/index/clothing.png";
+                    break;
+                    case "equipment": typeImg = "../../image/index/equipment.png";
+                    break;
+                    case "camerateam": typeImg = "../../image/index/camerateam.png";
+                    break;
+                    case "investment": typeImg = "../../image/index/investment.png";
+                    break;
                 }
-
-
-                content += "<div><img src='" + typeImg + "' style='height:1rem'/></div>";
+                content += "<div style='margin-top:4px;'><img src='" + typeImg + "' style='height:0.85rem'/></div>";
                 content += "<span class='aui-margin-l-5'></span>";
                 content += "</div>";
+
                 if("BP" === i.prestatus){
-                    content += "<span style='color:#ff0000'> 取消预约中</span>"
+                    content += "<span style='margin-top:4px;background-color:#ff9900;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;'> 取消预约中</span>"
                 }else{
-                    content += "<span style='color:#ff0000' onclick='cancel(" + i.id + ")'> 取消预约</span>"
+                    content += "<span style='margin-top:4px;background-color:#ff3300;border-radius:5px;padding-left:5px;padding-right:5px;color:#fff;font-size:12px;' onclick='cancel(" + i.id + ")'> 取消预约</span>"
                 }
 
-                // if("P" === i.prestatus){
-                //
-                // }else{
-                //     content += "<span onclick='cancel(" + i.id + ")'> 取消预约</span>"
-                // }
                 // content += "<div class='aui-info-item'>" + i.createtime + "</div>";
                 // content += "</div>";
                 content += "</div>";
@@ -199,7 +249,11 @@ var tab = new auiTab({
             })
 
 
-            $("#preContent").html(content);
+            if(0 === data.myList.length){
+                $("#preContent").html("<span style='margin-top:10px;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
+            }else{
+                $("#preContent").html(content);
+            }
 
         }else{
           dialog.alert({

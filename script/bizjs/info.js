@@ -3,6 +3,7 @@ $(function(){
 
         console.log(localStorage.token);
 
+
         if(!localStorage.token){
           dialog.alert({
               title:"请登录!",

@@ -3,19 +3,11 @@ $(function(){
     $('body').height($('body')[0].clientHeight);
     var actionURL = path + "/ActorInterface/actor/queryAllMyInfos.action?token=" + localStorage.token;
 
-    // var toast = new auiToast();
-  	// toast.loading({
-    //   title:"正在加载",
-    //   duration:2000
-  	// },function(ret){
-  	// 	setTimeout(function(){
     $.post(actionURL,{
     }, function(data) {
         var data = JSON.parse(data);
         console.log(data);
         if(data.success){
-          // toast.hide();
-
             $("#content").html("");
             var content= "";
             if(0 === data.infoList.length){
@@ -30,7 +22,7 @@ $(function(){
 
             var role = "actor";
 
-            $("#rolename").val("actor");
+            $("#rolename").val(role);
 
             data.infoList.forEach(function(i){
               flag ++;
@@ -52,12 +44,26 @@ $(function(){
               content += "<div class='aui-card-list-header aui-card-list-user aui-border-b'>";
               content += "<div class='aui-card-list-user-avatar'>";
               if(i.type == 'actor'){
-						 content += "<img src='../../image/mine/actor.jpg' class='aui-img-round'/>";
-			  }else if(i.type == 'scene'){
-						 content += "<img src='../../image/mine/scene.jpg' class='aui-img-round'/>";
-			  }else if(i.type == 'subject'){
-						 content += "<img src='../../image/mine/subject.jpg' class='aui-img-round'/>";
-			  }
+      						 content += "<img src='../../image/mine/actor.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'scene'){
+      						 content += "<img src='../../image/mine/scene.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'subject'){
+      						 content += "<img src='../../image/mine/subject.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'screenwriter'){
+      						 content += "<img src='../../image/mine/screenwriter.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'director'){
+      						 content += "<img src='../../image/mine/director.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'producer'){
+      						 content += "<img src='../../image/mine/producer.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'clothing'){
+      						 content += "<img src='../../image/mine/clothing.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'equipment'){
+      						 content += "<img src='../../image/mine/equipment.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'camerateam'){
+      						 content += "<img src='../../image/mine/camerateam.png' class='aui-img-round'/>";
+      			  }else if(i.type == 'investment'){
+      						 content += "<img src='../../image/mine/investment.png' class='aui-img-round'/>";
+      			  }
               content +=  "</div>";
               content +=  "<div class='aui-card-list-user-name'>";
 
@@ -67,7 +73,21 @@ $(function(){
 				    content +=  "<small>名称：" + i.scenename + "</small>";
 			  }else if(i.type == 'subject'){
 				    content +=  "<small>名称：" + i.subjectname + "</small>";
-			  }
+			  }else if(i.type == 'screenwriter'){
+          content +=  "<small>名称：" + i.screenwritername + "</small>";
+        }else if(i.type == 'director'){
+          content +=  "<small>名称：" + i.directorname + "</small>";
+        }else if(i.type == 'producer'){
+          content +=  "<small>名称：" + i.producername + "</small>";
+        }else if(i.type == 'clothing'){
+          content +=  "<small>名称：" + i.clothingname + "</small>";
+        }else if(i.type == 'equipment'){
+          content +=  "<small>名称：" + i.equipmentname + "</small>";
+        }else if(i.type == 'camerateam'){
+          content +=  "<small>名称：" + i.camerateamname + "</small>";
+        }else if(i.type == 'investment'){
+          content +=  "<small>名称：" + i.investmentname + "</small>";
+        }
 
 
 
@@ -79,7 +99,7 @@ $(function(){
 
 
               content +=  "<div style='width:100%;margin 0 auto'>";
-              content +=  "<img style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;' onclick=roleDetails('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
+              content +=  "<img style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;width:100%;' onclick=roleDetails('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
               content +=  "<div><i class='aui-iconfont aui-icon-note'></i><span>" +  i.evaSum + "</span></div>";
@@ -89,9 +109,10 @@ $(function(){
 
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
               content += "<div style='width:60%;margin-left:42%;' align='right'>"
-              content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
+
 
               if("W" != i.checkstatus ){
+                  content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
                   if("Y" === i.checkstatus){
                       content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
                   }
@@ -118,16 +139,8 @@ $(function(){
             });
               $("#content").html(content);
         }else{
-          // toast.hide();
-          //
-          // toast.fail({
-          //  title:"加载失败",
-          //  duration:2000
-          // });
         }
     });
-//   }, 3000)
-// });
 });
 
 // 根据角色获取信息列表
@@ -204,7 +217,21 @@ $("#roleChange").change(function(){
 																	 content += "<img src='../../image/mine/scene.jpg' class='aui-img-round'/>";
 														  }else if(i.type == 'subject'){
 																	 content += "<img src='../../image/mine/subject.jpg' class='aui-img-round'/>";
-														  }
+														  }else if(i.type == 'screenwriter'){
+                      						 content += "<img src='../../image/mine/screenwriter.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'director'){
+                      						 content += "<img src='../../image/mine/director.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'producer'){
+                      						 content += "<img src='../../image/mine/producer.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'clothing'){
+                      						 content += "<img src='../../image/mine/clothing.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'equipment'){
+                      						 content += "<img src='../../image/mine/equipment.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'camerateam'){
+                      						 content += "<img src='../../image/mine/camerateam.png' class='aui-img-round'/>";
+                      			  }else if(i.type == 'investment'){
+                      						 content += "<img src='../../image/mine/investment.png' class='aui-img-round'/>";
+                      			  }
 
 													  content +=  "</div>";
 													  content +=  "<div class='aui-card-list-user-name'>";
@@ -215,6 +242,20 @@ $("#roleChange").change(function(){
 															content +=  "<small>名称：" + i.scenename + "</small>";
 													  }else if(i.type == 'subject'){
 															content +=  "<small>名称：" + i.subjectname + "</small>";
+													  }else if(i.type == 'screenwriter'){
+															content +=  "<small>名称：" + i.screenwritername + "</small>";
+													  }else if(i.type == 'director'){
+															content +=  "<small>名称：" + i.directorname + "</small>";
+													  }else if(i.type == 'producer'){
+															content +=  "<small>名称：" + i.producername + "</small>";
+													  }else if(i.type == 'clothing'){
+															content +=  "<small>名称：" + i.clothingname + "</small>";
+													  }else if(i.type == 'equipment'){
+															content +=  "<small>名称：" + i.equipmentname + "</small>";
+													  }else if(i.type == 'camerateam'){
+															content +=  "<small>名称：" + i.camerateamname + "</small>";
+													  }else if(i.type == 'investment'){
+															content +=  "<small>名称：" + i.investmentname + "</small>";
 													  }
 
 
@@ -233,9 +274,10 @@ $("#roleChange").change(function(){
 
 													  content +=  "<div class='aui-card-list-footer aui-border-t'>";
                             content += "<div style='width:60%;margin-left:42%;' align='right'>"
-													  content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
+
 
 													  if("W" != i.checkstatus ){
+                              content +=  "<div style='background-color:#20e0b9' class='aui-btn aui-btn-success aui-margin-r-5' onclick=edit('"+i.type+"','" + i.id + "')>编辑</div>";
 														  if("Y" === i.checkstatus){
 															  content +=  "<span id=" + flag + "><div class='aui-btn aui-btn-warning aui-margin-r-5' onclick=publish('"+i.type+"','" + i.id + "')>发布</div></span>";
 														  }
@@ -279,6 +321,20 @@ function publish( role, id){
         break;
         case 'subject': actionURL = path + "/ActorInterface/subject/subjectPublic.action";
         break;
+        case 'screenwriter': actionURL = path + "/ActorInterface/screenwriter/screenwriterPublic.action";
+        break;
+        case 'director': actionURL = path + "/ActorInterface/director/directorPublic.action";
+        break;
+        case 'producer': actionURL = path + "/ActorInterface/producer/producerPublic.action";
+        break;
+        case 'clothing': actionURL = path + "/ActorInterface/clothing/clothingPublic.action";
+        break;
+        case 'equipment': actionURL = path + "/ActorInterface/equipment/equipmentPublic.action";
+        break;
+        case 'camerateam': actionURL = path + "/ActorInterface/camerateam/camerateamPublic.action";
+        break;
+        case 'investment': actionURL = path + "/ActorInterface/investment/investmentPublic.action";
+        break;
     }
 
     console.log(actionURL)
@@ -316,6 +372,20 @@ function down( role, id){
               case 'scene': actionURL = path + "/ActorInterface/scene/sceneCancel.action";
               break;
               case 'subject': actionURL = path + "/ActorInterface/subject/subjectCancel.action";
+              break;
+              case 'screenwriter': actionURL = path + "/ActorInterface/screenwriter/screenwriterCancel.action";
+              break;
+              case 'director': actionURL = path + "/ActorInterface/director/directorCancel.action";
+              break;
+              case 'producer': actionURL = path + "/ActorInterface/producer/producerCancel.action";
+              break;
+              case 'clothing': actionURL = path + "/ActorInterface/clothing/clothingCancel.action";
+              break;
+              case 'equipment': actionURL = path + "/ActorInterface/equipment/equipmentCancel.action";
+              break;
+              case 'camerateam': actionURL = path + "/ActorInterface/camerateam/camerateamCancel.action";
+              break;
+              case 'investment': actionURL = path + "/ActorInterface/investment/investmentCancel.action";
               break;
           }
 
@@ -364,6 +434,20 @@ function cancel(role, id){
              break;
              case 'subject': actionURL = path + "/ActorInterface/subject/subjectDelete.action";
              break;
+             case 'screenwriter': actionURL = path + "/ActorInterface/screenwriter/screenwriterDelete.action";
+             break;
+             case 'director': actionURL = path + "/ActorInterface/director/directorDelete.action";
+             break;
+             case 'producer': actionURL = path + "/ActorInterface/producer/producerDelete.action";
+             break;
+             case 'clothing': actionURL = path + "/ActorInterface/clothing/clothingDelete.action";
+             break;
+             case 'equipment': actionURL = path + "/ActorInterface/equipment/equipmentDelete.action";
+             break;
+             case 'camerateam': actionURL = path + "/ActorInterface/camerateam/camerateamDelete.action";
+             break;
+             case 'investment': actionURL = path + "/ActorInterface/investment/investmentDelete.action";
+             break;
            }
 
            $.post(actionURL,{
@@ -396,6 +480,20 @@ function edit(role,infoid){
          case "scene": url =  "../applicationRoles/sceneInfo.html?id=" + infoid + "&role=" + role;
          break;
          case "subject": url =  "../applicationRoles/subjectInfo.html?id=" + infoid + "&role=" + role;
+         break;
+         case "screenwriter": url =  "../applicationRoles/screenwriter.html?id=" + infoid + "&role=" + role;
+         break;
+         case "director": url =  "../applicationRoles/director.html?id=" + infoid + "&role=" + role;
+         break;
+         case "producer": url =  "../applicationRoles/producer.html?id=" + infoid + "&role=" + role;
+         break;
+         case "clothing": url =  "../applicationRoles/clothing.html?id=" + infoid + "&role=" + role;
+         break;
+         case "equipment": url =  "../applicationRoles/equipment.html?id=" + infoid + "&role=" + role;
+         break;
+         case "camerateam": url =  "../applicationRoles/camerateam.html?id=" + infoid + "&role=" + role;
+         break;
+         case "investment": url =  "../applicationRoles/investment.html?id=" + infoid + "&role=" + role;
          break;
      }
     window.location.href = url;

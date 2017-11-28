@@ -1,6 +1,7 @@
 $(function(){
     $('body').height($('body')[0].clientHeight);
     console.log(localStorage.token);
+    $("#content").html("<span style='margin-top:10px;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
     getList("");
 });
 
@@ -81,33 +82,108 @@ function getList(keywords){
               content += "<div class='aui-list-item-title'>" + i.infos.nickname + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.infos + "</div>";
               content += "</div>";
-              content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
-              content += "<div class='aui-info-item'>";
-              content += "<font color='green' style='font-family: STKaiti'><img src='../../image/roleDetails/actor.png' style='width:40px;height:20px;'></font>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='green' style='font-family: STKaiti'><img src='../../image/index/actor.png' style='width:40px;height:20px;'></font>";
             }
 
             if("scene" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.scenename + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.sceneinfos + "</div>";
               content += "</div>";
-              content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
-              content += "<div class='aui-info-item'>";
-              content += "<font color='blue' style='font-family: STKaiti'><img src='../../image/roleDetails/scene.png' style='width:40px;height:20px;'></font>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='blue' style='font-family: STKaiti'><img src='../../image/index/scene.png' style='width:40px;height:20px;'></font>";
             }
 
             if("subject" === i.type){
               content += "<div class='aui-list-item-title'>" + i.infos.subjectname + "</div>";
               content += "<div class='aui-list-item-right'>" + i.infos.bigtypeid  + "</div>";
               content += "</div>";
-               content += "<div class='aui-list-item-text'>&nbsp;</div>";
+               // content += "<div class='aui-list-item-text'>&nbsp;</div>";
               content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
-              content += "<div class='aui-info-item'>";
-              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/roleDetails/subject.png' style='width:40px;height:20px;'></font>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/subject.png' style='width:40px;height:20px;'></font>";
             }
+
+            if("screenwriter" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.screenwritername + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.screenwriterinfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/screenwriter.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("director" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.directorname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.directorinfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/director.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("producer" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.producername + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.producerinfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/producer.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("clothing" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.clothingname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.clothinginfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/clothing.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("equipment" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.equipmentname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.equipmentinfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/equipment.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("camerateam" === i.type || "cameraTeam" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.camerateamname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.camerateaminfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/camerateam.png' style='width:40px;height:20px;'></font>";
+            }
+
+            if("investment" === i.type){
+              content += "<div class='aui-list-item-title'>" + i.infos.investmentname + "</div>";
+              content += "<div class='aui-list-item-right'>" + i.infos.investmentinfos  + "</div>";
+              content += "</div>";
+              // content += "<div class='aui-list-item-text'>&nbsp;</div>";
+              content += "<div class='aui-info aui-margin-t-5' style='padding:0'>";
+              content += "<div class='aui-info-item' style='margin-top:4px;'>";
+              content += "<font color='yellow' style='font-family: STKaiti'><img src='../../image/index/investment.png' style='width:40px;height:20px;'></font>";
+            }
+
             content += "</div>";
-            content += "<div class='aui-info-item'>发布于：" + i.infos.createtime.substring(0,10) + "</div>";
+
+            if(i.infos.createtime){
+                content += "<div class='aui-info-item' style='margin-top:4px;'>发布于：" + i.infos.createtime.substring(0,10) + "</div>";
+            }
+
             content += "</div>";
             content += "</div>";
             content += "</div>";
@@ -118,7 +194,12 @@ function getList(keywords){
 			  content +=  "</div>";
           });
 
-          $("#content").html(content);
+          if(0 === data.resultList.length){
+              $("#content").html("");
+              $("#noinfos").html("<span style='margin-top:10px;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
+          }else{
+              $("#content").html(content);
+          }
         }
     });
 }

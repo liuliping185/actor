@@ -84,13 +84,13 @@ function getSubjectDetail(data){
         height = i.height;
 
         if(width > height){
-            imgsix += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3%; width:30%; height:45%;margin-top:3%;'><img style='width:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
-            imgfour += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3%; width:45%; height:45%;margin-top:3%;'><img style='width:100%;'  src='" + i.imgpath + "' onclick='album()'/></div>";
-            imgssecond += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3%; width:30%; height:80%;margin-top:3%;'><img style='width:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgsix += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:2.5%; width:30%; height:45%;margin-top:3%;'><img style='width:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgfour += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3.5%; width:45%; height:45%;margin-top:3%;'><img style='width:100%;'  src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgssecond += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:2.5%; width:30%; height:80%;margin-top:3%;'><img style='width:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
         }else{
-            imgsix += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3%; width:30%; height:45%;margin-top:3%;'><img style='height:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
-            imgfour += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center; width:45%; height:45%;margin-top:3%;'><img style='height:100%;left:50%;'  src='" + i.imgpath + "' onclick='album()'/></div>";
-            imgssecond += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center; width:30%; height:80%;margin-top:3%;'><img style='height:100%;left:50%;' src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgsix += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:2.5%; width:30%; height:45%;margin-top:3%;'><img style='height:100%;' src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgfour += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:3.5%; width:45%; height:45%;margin-top:3%;'><img style='height:100%;left:50%;'  src='" + i.imgpath + "' onclick='album()'/></div>";
+            imgssecond += "<div style='border:#E0E0E0 1px solid;float:left;display: flex;justify-content: center;align-items: center;margin-left:2.5%; width:30%; height:80%;margin-top:3%;'><img style='height:100%;left:50%;' src='" + i.imgpath + "' onclick='album()'/></div>";
         }
 
 

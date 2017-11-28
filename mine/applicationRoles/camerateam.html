@@ -1,0 +1,286 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>我的-申请角色-发布摄影组信息</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/firstSrc.css"/>
+
+    <link href="../../script/dev/css/mobiscroll.core-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.animation-2.5.2.css" rel="stylesheet" type="text/css" />
+    <link href="../../script/dev/css/mobiscroll.android-ics-2.5.2.css" rel="stylesheet" type="text/css" />
+
+    <style>
+    textarea::-webkit-input-placeholder {
+       /* placeholder颜色  */
+       color: #BEBEBE;
+       /* placeholder字体大小  */
+       font-size: 0.75rem;
+       height: 100px;
+       line-height:100px;
+       /* placeholder位置  */
+             text-align: center;
+    }
+    select option {font-size:12px; font-family:微软雅黑;}
+    </style>
+</head>
+<body>
+
+<div id="wrap" class="flex-wrap flex-vertical">
+    <header id="header"></header>
+
+
+<div style="height:100%; overflow:auto;">
+<input id="fmimg" type="hidden"/>
+<form id="postForm">
+<input id="lunboimg_" name="lunboimg" type="hidden"/>
+<input id="firstimg_" name="firstimg" type="hidden"/>
+<input id="multipleGraphsList" type="hidden" name="multipleGraphsList"/>
+	<input id="hi_id" name="id" type="hidden"/>
+	<input id="hi_evaSum" name="evaSum" type="hidden"/>
+	<input id="hi_goodSum" name="goodSum" type="hidden"/>
+	<input id="hi_professionalScore" name="professionalScore" type="hidden"/>
+	<input id="hi_serviceScore" name="serviceScore" type="hidden"/>
+	<input id="hi_attentionSum" name="attentionSum" type="hidden"/>
+	<input id="hi_scenestatus" name="scenestatus" type="hidden"/>
+	<input id="hi_memberid" name="memberid" type="hidden"/>
+	<input id="hi_createtime" name="createtime" type="hidden"/>
+
+  <div style="background-color:#ffffff;">
+    <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">基本信息</span>
+  </div>
+  <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+      <ul>
+          <li>
+              <span style="width:25%;margin-top:5%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">名称&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+  							  <input type="text" id="camerateamname" placeholder="请输入摄影组名称" name="camerateamname" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+              </span>
+          </li>
+          <li>
+            <span style="width:25%;">
+                <span style="font-size:0.75rem;color:#6c6c6c;">价格&nbsp&nbsp:</span>
+            </span>
+            <span style="width:70%;">
+                <span style="width:55%;">
+                    <input type="text" id="price" name="price" placeholder="请输入价格" style="font-size:0.75rem;height:2.2rem;color:#ADADAD;"/>
+                </span>
+                <span style="width:15%;">
+                    <select style="font-size:0.7rem;color:#ADADAD;" name="unit" style="width:20%;" id="unit" onclick="javascript:$('#rentunitsImg').hide()">
+                        <option vlaue="0">单位</option>
+                        <option value="分钟">分钟</option>
+                        <option value="小时">小时</option>
+                        <option value="天">天</option>
+                        <option value="月">月</option>
+                        <option value="年">年</option>
+                    </select>
+                </span>
+                <span style="width:15%;" id="rentunitsImg">
+                    <img src="../../image/sj.png" style="width:10px;height:10px;">
+                </span>
+            </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">代表作&nbsp&nbsp&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="representativework" name="representativework" placeholder="如果有多个代表作请以;相隔"></textarea>
+              </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">摄影信息&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="camerateaminfos" name="camerateaminfos" placeholder="  请输入摄影信息"></textarea>
+              </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">团队介绍&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="teampresentation" name="teampresentation" placeholder="  请输入团队介绍"></textarea>
+              </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">摄影经验&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="experience" name="experience" placeholder="  请输入摄影经验"></textarea>
+              </span>
+          </li>
+	        <li>
+              <div style="float:left;width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;line-height:100px">关键字&nbsp&nbsp&nbsp&nbsp :</span>
+              </div>
+              <span style="width:70%;">
+                  <textarea style="padding-left:2px;padding-right:2px;overflow:auto;height:100px;width:100%;font-size:0.75rem;color:#ADADAD;border:#E0E0E0 1px solid;border-radius:10px" rows="10" cols="20" id="keywords" name="keywords" placeholder="  请输入关键字"></textarea>
+              </span>
+          </li>
+      </ul>
+  </div>
+
+  <div style="margin-top:3%;background-color:#ffffff;">
+    <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">其他信息</span>
+  </div>
+  <div style="padding-left:20px;padding-right:20px;margin-top:2px;background-color:#ffffff;">
+      <ul>
+          <li>
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;margin-top:5%;">所属类别&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;">
+                  <span style="width:40%;">
+                      <span style="width:70%;">
+                          <select style="font-family:苹方;font-size:0.7rem;color:#ADADAD;" id="bigtype" onchange='getSmallType(this.value)' name="bigid">
+                               <option vlaue=''>选择大类</option>
+                          </select>
+                      </span>
+                      <span style="width:20%;">
+                          <img src="../../image/sj.png" style="width:10px;height:10px;">
+                      </span>
+                  </span>
+                  <span style="width:40%;">
+                      <span style="width:70%;">
+                          <select style="font-size:0.7rem;color:#ADADAD;" id="smalltype" name="smallid">
+                              <option vlaue=''>选择小类</option>
+                          </select>
+                      </span>
+                      <span style="width:20%;">
+                          <img src="../../image/sj.png" style="width:10px;height:10px;">
+                      </span>
+                   </span>
+               </span>
+          </li>
+          <li>
+              <div style="float:left;width:25%;margin-top:10px;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">所在地区&nbsp&nbsp:</span>
+              </div>
+              <div style="float:left;width:70%;">
+                  <div class="aui-list-item-input" id="disDiv" style="width:100%;">
+                  <div data-toggle="distpicker" id="distpicker3" style="width:100%;">
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-province="选择省" id="provience" name="provience">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
+                      </div>
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-city="选择市" id="city" name="city">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
+                      </div>
+                      <div>
+                          <span style="width:70%;">
+                              <select style="font-size:0.7rem;color:#ADADAD;" data-district="选择区" id="district" name="district">
+                              </select>
+                          </span>
+                          <span style="width:20%;">
+                              <img src="../../image/sj.png" style="width:10px;height:10px;">
+                          </span>
+                      </span>
+                   </div>
+                   </div>
+                   </div>
+               </div>
+          </li>
+          <li>
+            <span style="width:25%;margin-top:5%;">
+                <span style="font-size:0.75rem;color:#6c6c6c;">详细地址&nbsp&nbsp:</span>
+            </span>
+            <span style="width:70%;">
+                <input id="address" name="address" placeholder="请输入详细地址" name="scenename" style="font-size:0.75rem;width:100%;height:2.2rem;color:#ADADAD;">
+            </span>
+          </li>
+      </ul>
+  </div>
+
+  <div style="margin-top:3%;background-color:#ffffff;">
+    <span style="width:70%;">
+        <span style="margin-top:5%;margin-left:6%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">服装图集</span>
+    </span>
+    <span style="width:25%;">
+      <span style="margin-top:40%;">
+        <div style="background-color:#20e0b9" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm" onclick="showActionMore()">
+          <span style="font-size:0.8rem;" id="p">上传图集</span>
+        </div>
+        <!-- <img onclick="showActionMore()" style="width:70%;" src="../../image/addPicZ.png"/> -->
+      </span>
+    </span>
+    <div><div>
+
+  </div>
+
+  <div id="imgUpload" align="center" style="padding-left:3%;padding-right:3%;"></div>
+
+    <div style="margin-top:3%;">
+      <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">封面照片</span>
+    </div>
+
+    <div style="padding-left:20px;padding-right:20px;background-color:#ffffff;padding-bottom:30px">
+        <div style="margin-top:0px;" align="center">
+            <div class="imgBox" style="margin-top: 1%; overflow:auto; position:relative;" onclick="showAction('2')">
+                <span style="margin-top:10%;">
+                  <img id="firstimg" src="../../image/addPic.png"/>
+                  <!-- <img  style="width:100%;" src=""/> -->
+                  <p style="margin-top:15%;color:#20e0b9">点击上图可添加封面图片</p>
+                </span>
+            </div>
+        </div>
+    </div>
+
+  <div id="tjBtu" style="background-color:#ffffff;padding-bottom:10px;padding-left:20px;padding-right:20px;">
+      <div style="background-color:#20e0b9;" class="aui-btn aui-btn-success aui-btn-block aui-btn-sm">
+          <div onclick="personalRoleManage()">提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>
+      </div>
+  </div>
+
+  <div style="background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;">
+      <div style="background-color:#ff0000;" class="aui-btn aui-btn-danger aui-btn-block aui-btn-sm">
+          <div onclick="javascript:window.location.href='applicationRoles.html'">放&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;弃</div>
+      </div>
+  </div>
+</div>
+</form>
+
+  <div style="padding-top:50px;"></div>
+	<div id="footer" class="aui-bar aui-bar-tab">
+        <ul class="flex-wrap" >
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../index.html');" class="flex-con" >  <div class="aui-bar-tab-label">&nbsp</div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../find.html');" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../../serach.html' );" class="flex-con" ><div class="aui-bar-tab-label"></div></li>
+            <li tapmode="hover" onclick="randomSwitchBtn( this, '../info.html');" class="flex-con active" ><div class="aui-bar-tab-label"></div></li>
+        </ul>
+  </div>
+  <!-- 第五栏结束  -->
+
+</div>
+</body>
+</html>
+
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="../../script/aui-dialog.js" ></script>
+<script type="text/javascript" src="../../script/aui-toast.js" ></script>
+<script src="../../script/distpicker.js"></script>
+
+<script type="text/javascript" src="../../script/bizjs/apiready.js"></script>
+<script type="text/javascript" src="../../script/common/common.js"></script>
+<script type="text/javascript" src="../../script/bizjs/cameraTeam.js"></script>
+<script type="text/javascript" src="../../script/bizjs/header.js"></script>

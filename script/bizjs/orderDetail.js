@@ -3,6 +3,22 @@ var prestatus = GetQueryString("prestatus");
 
 console.log(orderid + "------" + prestatus)
 $(function(){
+  var btn = "";
+  if("P" === prestatus){
+    btn += "<div style='padding: 3px 20px 1px;padding-bottom:10px;'>";
+    btn += "<div style='background-color:#20e0b9;margin-top: 50px;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm' onclick='agree()'>";
+    btn += "<span id='p'>同&nbsp;&nbsp;意</span>";
+    btn += "</div>";
+    btn += "</div>";
+
+    btn += "<div style='background-color:#ffffff;padding-bottom:50px;padding-left:20px;padding-right:20px;'>";
+    btn += "<div id='tjBtu' style='background-color:#ff0000;' class='aui-btn aui-btn-danger aui-btn-block aui-btn-sm'>";
+    btn += "<div onclick='disagree()' id='tjBtu'>拒&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;绝</div>";
+    btn += "</div>";
+    btn += "</div>";
+  }
+
+  $("#btn").html(btn);
 
   $.post(path + "/ActorInterface/preorder/orderDetail.action",{
       orderid: orderid,
@@ -22,6 +38,27 @@ $(function(){
             case "subject":
                 name = "道具";
               break;
+              case "screenwriter":
+                  name = "编剧";
+                break;
+              case "director":
+                  name = "导演";
+                break;
+              case "producer":
+                  name = "制片";
+                break;
+              case "clothing":
+                  name = "服装";
+                break;
+              case "equipment":
+                  name = "设备";
+                break;
+              case "camerateam":
+                  name = "摄影组";
+                break;
+              case "investment":
+                  name = "投资";
+                break;
           }
           $("#rolename").val(name);
           $("#prephone").val(data.order.prephone);
@@ -79,7 +116,7 @@ function agree(){
               msg:'',
               buttons:['确定']
           },function(ret){
-              window.location.reload();
+              window.location.href = "../../mine/roleReservation/beBooked.html";
           })
 
       }else{
@@ -119,7 +156,7 @@ function disagree(){
               msg:'',
               buttons:['确定']
           },function(ret){
-              window.location.reload();
+              window.location.href = "../../mine/roleReservation/beBooked.html";
           })
 
       }else{

@@ -36,6 +36,8 @@ header ul li.active{ display: block; }
 #second ul li:nth-child(1){ background-image: url(../image/index/sceneimg.png); }
 #second ul li:nth-child(2){ background-image: url(../image/index/actorimg.png); }
 #second ul li:nth-child(3){ background-image: url(../image/index/subjectimg.png); }
+#second ul li:nth-child(4){ background-image: url(../image/index/screenwriterimg.png); }
+#second ul li:nth-child(5){ background-image: url(../image/index/directorimg.png); }
 
 #catalog{  background-color: #f2f2f2; }
 #catalog ul li{  padding-top: 36px; padding-bottom: 4px; background: url() no-repeat center 2px; background-size: auto 36px; text-align: center; }

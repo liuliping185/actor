@@ -22,6 +22,7 @@ $(function(){
     var rolename = "";
     var price = "";
     var infos = "";
+    var area = "";
 
     switch(pretype){
         case "actor":
@@ -33,22 +34,36 @@ $(function(){
         case "subject":
             actionUrl = path + "/ActorInterface/subject/getSubjectById.action?subjectId=" + preid;
         break;
+        case "screenwriter":
+            actionUrl = path + "/ActorInterface/screenwriter/getScreenwriterById.action?screenwriterId=" + preid;  // 编剧
+        break;
+        case "director":
+            actionUrl = path + "/ActorInterface/director/getDirectorById.action?directorId=" + preid;  // 导演
+        break;
+        case "producer":
+            actionUrl = path + "/ActorInterface/producer/getProducerById.action?producerId=" + preid;  // 制片
+        break;
+        case "clothing":
+            actionUrl = path + "/ActorInterface/clothing/getClothingById.action?clothingId=" + preid;  // 服装
+        break;
+        case "equipment":
+            actionUrl = path + "/ActorInterface/equipment/getEquipmentById.action?equipmentId=" + preid;  // 设备
+        break;
+        case "camerateam":
+            actionUrl = path + "/ActorInterface/camerateam/getCamerateamById.action?camerateamId=" + preid;  // 摄影组
+        break;
+        case "investment":
+            actionUrl = path + "/ActorInterface/investment/getInvestmentById.action?investmentId=" + preid;  // 投资
+        break;
     }
 
-    // console.log(actionUrl);
-    // var toast = new auiToast();
-  	// toast.loading({
-    //   title:"正在加载",
-    //   duration:2000
-  	// },function(ret){
-  	// 	setTimeout(function(){
     $.post(actionUrl,{
         token:localStorage.token
       }, function(data) {
         var data = JSON.parse(data);
+        console.log(data);
 
         if (data.success) {
-          // toast.hide();
 
           var loginname = "";
           var reserveTime = "";
@@ -74,6 +89,7 @@ $(function(){
                   price = data.actinfo.price + "/" + data.actinfo.unit;
                   infos = data.actinfo.infos;
                   $("#imgpath").attr("src", data.actinfo.firstimg);
+                  area = data.actinfo.provience + data.actinfo.city + data.actinfo.district;
 
               break;
               case "scene":
@@ -81,34 +97,98 @@ $(function(){
                   rolename = "场景";
                   price = data.sceneinfo.price + "/" + data.sceneinfo.unit;
                   infos = data.sceneinfo.sceneinfos;
-                  console.log(data);
                   $("#imgpath").attr("src", data.sceneinfo.firstimg);
+                  area = data.sceneinfo.provience + data.sceneinfo.city + data.sceneinfo.district;
               break;
               case "subject":
                   nickname = data.subjectinfo.subjectname;
                   rolename = "道具";
                   if(data.subjectinfo.saleprice){
-                      price = data.subjectinfo.saleprice + "/" + data.subjectinfo.saleunit;
+                      price = data.subjectinfo.saleprice + "/元";
                   }else{
                       price = data.subjectinfo.rentprice + "/" + data.subjectinfo.rentunit;
                   }
 
                   infos = data.subjectinfo.subjectinfos;
                   $("#imgpath").attr("src", data.subjectinfo.firstimg);
+                  area = data.subjectinfo.provience + data.subjectinfo.city + data.subjectinfo.district;
+              break;
+              case "screenwriter":
+                  nickname = data.screenwriterinfo.screenwritername;
+                  rolename = "编辑";
+                  price = data.screenwriterinfo.price + "/" + data.screenwriterinfo.unit;
+                  infos = data.screenwriterinfo.screenwriterinfos;
+                  $("#imgpath").attr("src", data.screenwriterinfo.firstimg);
+                  area = data.screenwriterinfo.provience + data.screenwriterinfo.city + data.screenwriterinfo.district;
+              break;
+              case "director":
+                  nickname = data.directorinfo.directorname;
+                  rolename = "导演";
+                  price = data.directorinfo.price + "/" + data.directorinfo.unit;
+                  infos = data.directorinfo.directorinfos;
+                  $("#imgpath").attr("src", data.directorinfo.firstimg);
+                  area = data.directorinfo.provience + data.directorinfo.city + data.directorinfo.district;
+              break;
+              case "producer":
+                  nickname = data.producerinfo.producername;
+                  rolename = "制片";
+                  price = data.producerinfo.price + "/" + data.producerinfo.unit;
+                  infos = data.producerinfo.producerinfos;
+                  $("#imgpath").attr("src", data.producerinfo.firstimg);
+                  area = data.producerinfo.provience + data.producerinfo.city + data.producerinfo.district;
+              break;
+              case "clothing":
+                  nickname = data.clothinginfo.clothingname;
+                  rolename = "服装";
+                  if(data.clothinginfo.saleprice){
+                      price = data.clothinginfo.saleprice + "/元";
+                  }else{
+                      price = data.clothinginfo.rentprice + "/" + data.clothinginfo.rentunit;
+                  }
+                  infos = data.clothinginfo.clothinginfos;
+                  $("#imgpath").attr("src", data.clothinginfo.firstimg);
+                  area = data.clothinginfo.provience + data.clothinginfo.city + data.clothinginfo.district;
+              break;
+              case "equipment":
+                  nickname = data.equipmentinfo.equipmentname;
+                  rolename = "设备";
+                  if(data.equipmentinfo.saleprice){
+                      price = data.equipmentinfo.saleprice + "/元";
+                  }else{
+                      price = data.equipmentinfo.rentprice + "/" + data.equipmentinfo.rentunit;
+                  }
+                  infos = data.equipmentinfo.equipmentinfos;
+                  $("#imgpath").attr("src", data.equipmentinfo.firstimg);
+                  area = data.equipmentinfo.provience + data.equipmentinfo.city + data.equipmentinfo.district;
+              break;
+              case "camerateam":
+                  nickname = data.camerateaminfo.camerateamname;
+                  rolename = "摄影组";
+                  price = data.camerateaminfo.price + "/" + data.camerateaminfo.unit;
+                  infos = data.camerateaminfo.camerateaminfos;
+                  $("#imgpath").attr("src", data.camerateaminfo.firstimg);
+                  area = data.camerateaminfo.provience + data.camerateaminfo.city + data.camerateaminfo.district;
+              break;
+              case "investment":
+                  nickname = data.investmentinfo.investmentname;
+                  rolename = "投资";
+                  if(data.investmentinfo.investmentprice){
+                      price = data.investmentinfo.investmentprice + "/元";
+                  }
+                  infos = data.investmentinfo.investmentinfos;
+                  $("#imgpath").attr("src", data.investmentinfo.firstimg);
+                  area = data.investmentinfo.provience + data.investmentinfo.city + data.investmentinfo.district;
               break;
           }
 
-
+          $("#area").val(area);
           $("#nickname").val(nickname);
           $("#rolename").val(rolename);
           $("#price").val(price);
           $("#infos").val(infos);
-          $("#area").val("天津市南开区");
+          // $("#area").val("天津市南开区");
         }
       });
-
-    // }, 3000)
-    // });
 
     var currYear = (new Date()).getFullYear();
     var opt={};

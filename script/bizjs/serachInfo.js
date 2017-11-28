@@ -88,6 +88,27 @@ function getinfos(index){
                   case "subject":
                       imgInfos += " <img src='image/index/subject.png'/>";
                       break;
+                  case "screenwriter":
+                      imgInfos += " <img src='image/index/screenwriter.png'/>";
+                      break;
+                  case "director":
+                      imgInfos += " <img src='image/index/director.png'/>";
+                      break;
+                  case "producer":
+                      imgInfos += " <img src='image/index/producer.png'/>";
+                      break;
+                  case "clothing":
+                      imgInfos += " <img src='image/index/clothing.png'/>";
+                      break;
+                  case "equipment":
+                      imgInfos += " <img src='image/index/equipment.png'/>";
+                      break;
+                  case "camerateam":
+                      imgInfos += " <img src='image/index/camerateam.png'/>";
+                      break;
+                  case "investment":
+                      imgInfos += " <img src='image/index/investment.png'/>";
+                      break;
               }
               imgInfos += "</div>";
               imgInfos += "<div style='float:left;width:40%;margin-top:2.7%;'>";
@@ -107,7 +128,12 @@ function getinfos(index){
               imgInfos +=  "</div>";
           })
 
-            $("#imgInfos").html(imgInfos);
+            if(0 === data.infoList.length){
+                $("#imgInfos").html("<span style='width:100%;margin-top:10px;text-align:center;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
+            }else{
+                $("#imgInfos").html(imgInfos);
+            }
+
         }else{
           dialog.alert({
               title:data.message,

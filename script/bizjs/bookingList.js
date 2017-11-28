@@ -1,17 +1,18 @@
 var UIListView = "";
+var path = "http://192.168.0.170:8082";
+// var path = "http://192.168.0.129:8080";
+// var path = "http://47.93.224.28:8089";
 $(function(){
     $('body').height($('body')[0].clientHeight);
 
     console.log(localStorage.token);
-
-	  getBeBookList('');
-
+    getBeBookList('');
 });
 
-// apiready = function () {
-//
-//   getBeBookList('');
-// }
+apiready = function () {
+    UIListView = api.require('UIListView');
+    $api.fixStatusBar( $api.dom('header') );
+}
 
 // 随意切换按钮
 function randomSwitchBt( tag, mineUrl ) {
@@ -63,23 +64,52 @@ function getBeBookList(type){
                 var rolename = ""
 
                 switch(i.pretype){
-                    case "actor": typeImg = "../../image/roleDetails/actor.png";
+                    case "actor": typeImg = "../../image/index/actor.png";
                     rolename = "演员";
                     break;
-                    case "scene": typeImg = "../../image/roleDetails/scene.png";
+                    case "scene": typeImg = "../../image/index/scene.png";
                     rolename = "场景";
                     break;
-                    case "subject": typeImg = "../../image/roleDetails/subject.png";
+                    case "subject": typeImg = "../../image/index/subject.png";
                     rolename = "道具";
+                    break;
+                    case "screenwriter": typeImg = "../../image/index/screenwriter.png";
+                    rolename = "编剧";
+                    break;
+                    case "director": typeImg = "../../image/index/director.png";
+                    rolename = "导演";
+                    break;
+                    case "producer": typeImg = "../../image/index/producer.png";
+                    rolename = "制片";
+                    break;
+                    case "clothing": typeImg = "../../image/index/clothing.png";
+                    rolename = "服装";
+                    break;
+                    case "equipment": typeImg = "../../image/index/equipment.png";
+                    rolename = "设备";
+                    break;
+                    case "camerateam": typeImg = "../../image/index/camerateam.png";
+                    rolename = "摄影组";
+                    break;
+                    case "investment": typeImg = "../../image/index/investment.png";
+                    rolename = "投资";
                     break;
                 }
 
                 var uid = generateMixed(6);
+                var title = "";
+                if(i.infosprice){
+                    if(i.infosunit){
+                        title = i.infosprice + "元/"+i.infosunit
+                    }else{
+                        title = i.infosprice + "元"
+                    }
+                }
                 obj = {
-                  uid: uid,
+                  uid: i.id,
                   imgPath: i.infosimg,
-                  title: i.infosname + "         " + i.infosprice + "元/"+i.infosunit,
-                  subTitle: i.infosdetail,
+                  title: i.infosname,
+                  subTitle: title,    // "发布人: " + i.membername,
                   remark: {
                     rolename: rolename,
                     preid: i.infoid,
@@ -95,7 +125,13 @@ function getBeBookList(type){
 
             });
 
-                uiListView(arr);
+            if(0 === data.myList.length){
+              UIListView.close();
+              $("#content").html("暂无待预定清单!");
+            }else{
+              uiListView(arr);
+            }
+
         }else{
           dialog.alert({
               title:data.message,
@@ -112,7 +148,7 @@ function getBeBookList(type){
 
 
 // 提交
-function submitReserve(pretype, preid, prestatus, ownerid){
+function submitReserve(pretype, preid, prestatus, ownerid, id){
         // alert(pretype + "-----" +  preid + "------" + prestatus + "------" + ownerid);
         UIListView.close();
 
@@ -124,10 +160,11 @@ function submitReserve(pretype, preid, prestatus, ownerid){
             },function(ret){
 
             });
+            flag = true;
     		return false;
         }
 
-        window.location.href="../../scenes/reserve.html?pretype=" + pretype + "&preid=" + preid + "&ownerid=" + ownerid;
+        window.location.href="../../scenes/reserve.html?pretype=" + pretype + "&preid=" + preid + "&ownerid=" + ownerid + "&id=" + id;
 }
 
 function confirm(id){
@@ -343,14 +380,14 @@ function uiListView(arr){
                bgColor: '#fff',
                activeBgColor: '#F5F5F5',
                height: 70.0,
-               imgWidth: 50,
-               imgHeight: 50,
-               imgCorner: 50,
+               imgWidth: 78,
+               imgHeight: 49,
+               imgCorner: 0,
                placeholderImg: '',
                titleSize: 14.0,
                titleColor: '#ff3333',
                subTitleSize: 13.0,
-               subTitleColor: '#9d9d9d',
+               subTitleColor: '#708090',
                remarkColor: '#000',
                remarkSize: 0,
                remarkIconWidth: 30
@@ -367,8 +404,8 @@ function uiListView(arr){
                   var pretype = ret.data.remark.pretype;
                   var prestatus = ret.data.remark.prestatus;
                   var ownerid = ret.data.remark.ownerid;
-                  // alert(preid + "-----" + pretype + "----" + prestatus)
-                  submitReserve(pretype, preid, prestatus, ownerid);
+                  var id = ret.data.remark.id;
+                  submitReserve(pretype, preid, prestatus, ownerid, id);
               } else {
                   alert(JSON.stringify(err));
               }
@@ -382,10 +419,19 @@ function uiListView(arr){
                 if (ret) {
                   deleteOrder(ret.data.remark.id, function(_flag){
                     if(true === _flag){
-                        UIListView.deleteItem({
-                           index: ret.index
-                        }, function(ret, err) {
-                        });
+                        // UIListView.deleteItem({
+                        //    index: ret.index
+                        // }, function(ret, err) {
+                        //   UIListView.reloadData({
+                        // }, function(ret) {
+                        //     if (ret) {
+                              window.location.reload();
+                                alert("删除成功！");
+                            // } else {
+                            //     alert("删除失败！");
+                            // }
+                        // });
+                        // });
                     }
                   });
                 } else {
@@ -407,10 +453,16 @@ function deleteOrder(orderid, callback){
      }, function(data) {
        var data = JSON.parse(data);
        if (data.success) {
-           alert("删除成功")
+
+        //  dialog.alert({
+        //      title:"删除成功!",
+        //      msg:'',
+        //      buttons:['确定']
+        //      },function(ret){
+        //  })
        }else{
            flag = false;
-           alert("删除失败")
+          //  alert("")
        }
    });
 

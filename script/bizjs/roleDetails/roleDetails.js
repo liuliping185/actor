@@ -7,13 +7,37 @@ $(function(){
 
   switch(role){
       case "actor":
-          actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + id;
+          actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + id;  // 演员
       break;
       case "scene":
-          actionUrl = path + "/ActorInterface/scene/getSceneById.action?sceneId=" + id;
+          actionUrl = path + "/ActorInterface/scene/getSceneById.action?sceneId=" + id;  // 场景
       break;
       case "subject":
-          actionUrl = path + "/ActorInterface/subject/getSubjectById.action?subjectId=" + id;
+          actionUrl = path + "/ActorInterface/subject/getSubjectById.action?subjectId=" + id;  // 道具
+      break;
+      case "screenwriter":
+          actionUrl = path + "/ActorInterface/screenwriter/getScreenwriterById.action?screenwriterId=" + id;  // 编剧
+      break;
+      case "director":
+          actionUrl = path + "/ActorInterface/director/getDirectorById.action?directorId=" + id;  // 导演
+      break;
+      case "producer":
+          actionUrl = path + "/ActorInterface/producer/getProducerById.action?producerId=" + id;  // 制片
+      break;
+      case "clothing":
+          actionUrl = path + "/ActorInterface/clothing/getClothingById.action?clothingId=" + id;  // 服装
+      break;
+      case "equipment":
+          actionUrl = path + "/ActorInterface/equipment/getEquipmentById.action?equipmentId=" + id;  // 设备
+      break;
+      case "camerateam":
+          actionUrl = path + "/ActorInterface/camerateam/getCamerateamById.action?camerateamId=" + id;  // 摄影组
+      break;
+      case "cameraTeam":
+          actionUrl = path + "/ActorInterface/camerateam/getCamerateamById.action?camerateamId=" + id;  // 摄影组
+      break;
+      case "investment":
+          actionUrl = path + "/ActorInterface/investment/getInvestmentById.action?investmentId=" + id;  // 投资
       break;
   }
 
@@ -32,13 +56,37 @@ $(function(){
 
           switch(role){
               case "actor":
-                  getActorDetail(data);
+                  getActorDetail(data);  // 演员
               break;
               case "scene":
-                  getSceneDetail(data);
+                  getSceneDetail(data);  // 场景
               break;
               case "subject":
-                  getSubjectDetail(data);
+                  getSubjectDetail(data);  // 道具
+              break;
+              case "screenwriter":
+                  getScreenwriter(data);  // 编剧
+              break;
+              case "director":
+                  getDirector(data);  // 导演
+              break;
+              case "producer":
+                  getProducer(data);  // 制片
+              break;
+              case "clothing":
+                  getClothing(data);  // 服装
+              break;
+              case "equipment":
+                  getEquipment(data);  //  设备
+              break;
+              case "camerateam":
+                  getCameraTeam(data);  // 摄影组
+              break;
+              case "cameraTeam":
+                  getCameraTeam(data);  // 摄影组
+              break;
+              case "investment":
+                  getInvestment(data);  // 投资
               break;
           }
       }else{
@@ -438,7 +486,7 @@ function album(){
 }
 
 // 默认显示5条预约时间段
-function reserveTime (){
+function reservations (){
     var display =$('#reserveTime').css('display');
     if(display == 'none'){
       $('#reserveTime').show();

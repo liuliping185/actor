@@ -90,6 +90,27 @@ function getinfos(index){
                   case "subject":
                       imgInfos += " <img src='image/index/subject.png'/>";
                       break;
+                  case "screenwriter":
+                      imgInfos += " <img src='image/index/screenwriter.png'/>";
+                      break;
+                  case "director":
+                      imgInfos += " <img src='image/index/director.png'/>";
+                      break;
+                  case "producer":
+                      imgInfos += " <img src='image/index/producer.png'/>";
+                      break;
+                  case "clothing":
+                      imgInfos += " <img src='image/index/clothing.png'/>";
+                      break;
+                  case "equipment":
+                      imgInfos += " <img src='image/index/equipment.png'/>";
+                      break;
+                  case "camerateam":
+                      imgInfos += " <img src='image/index/camerateam.png'/>";
+                      break;
+                  case "investment":
+                      imgInfos += " <img src='image/index/investment.png'/>";
+                      break;
               }
               imgInfos += "</div>";
               imgInfos += "<div style='float:left;width:40%;margin-top:2.7%;'>";

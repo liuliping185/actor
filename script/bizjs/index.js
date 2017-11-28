@@ -1,3 +1,4 @@
+var city = GetQueryString("city");
 var imgInfos = "";
 
 var scroll = new auiScroll({
@@ -5,10 +6,27 @@ var scroll = new auiScroll({
  distance:200 //判断到达底部的距离，isToBottom为true
 },function(ret){
 console.log(ret)
+var searchHeader = document.getElementById('searchHeader');
+var searchInput = document.getElementById('search-input');
+var city = document.getElementById('city');
+
+if(100 < ret.scrollTop){
+    searchHeader.style.background = 'rgba(255,255,255,1)';
+    searchInput.style.color = '#009ad6';
+    city.style.color = '#009ad6';
+}else{
+    searchHeader.style.backgroundColor ='rgba(255,255,255,0)';
+    searchInput.style.color ='rgba(255,255,255,1)';
+    city.style.color = 'rgba(255,255,255,1)';
+}
 });
 $(function(){
+  if(city){
+      $("#city").html(city);
+  }
+
   console.log(localStorage.token);
-  // $('body').height($('body')[0].clientHeight);
+  $('body').height($('body')[0].clientHeight);
   document.onkeydown=keyDownSearch;
 
         lunbo();
@@ -30,7 +48,7 @@ function keyDownSearch(e) {
     var theEvent = e || window.event;
     var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
     if (code == 13) {
-        window.location.href = "serachInfo.html?keywords=" + $("#search-input").val();
+        window.location.href = "serachInfo.html?keywords=" + $("#search-input").val() + "&city=" + city;
         return false;
     }
     return true;
@@ -83,6 +101,27 @@ function getInfoList(infoList){
             case "subject":
                 imgInfos += " <img src='image/index/subject.png'/>";
                 break;
+            case "screenwriter":
+                imgInfos += " <img src='image/index/screenwriter.png'/>";
+                break;
+            case "director":
+                imgInfos += " <img src='image/index/director.png'/>";
+                break;
+            case "producer":
+                imgInfos += " <img src='image/index/producer.png'/>";
+                break;
+            case "clothing":
+                imgInfos += " <img src='image/index/clothing.png'/>";
+                break;
+            case "equipment":
+                imgInfos += " <img src='image/index/equipment.png'/>";
+                break;
+            case "camerateam":
+                imgInfos += " <img src='image/index/camerateam.png'/>";
+                break;
+            case "investment":
+                imgInfos += " <img src='image/index/investment.png'/>";
+                break;
         }
         imgInfos += "</div>";
         imgInfos += "<div style='float:left;width:40%;margin-top:2.7%;'>";
@@ -102,7 +141,11 @@ function getInfoList(infoList){
         imgInfos +=  "</div>";
     })
 
-      $("#imgInfos").html(imgInfos);
+      if(0 === infoList.length){
+          $("#imgInfos").html("<span style='width:100%;margin-top:10px;text-align:center;padding-bottom:10px;text-align:center;font-size:18px;color:#009100'>暂无信息!</span>");
+      }else{
+          $("#imgInfos").html(imgInfos);
+      }
 }
 
 // 角色列表
@@ -158,7 +201,7 @@ if(searchBarBtn){
             console.log(keywords);
             $("#keywords").val(keywords);
 
-            window.location.href = "serachInfo.html?keywords=" + keywords;
+            window.location.href = "serachInfo.html?keywords=" + keywords + "&city=" + city;
         }else{
             this.style.marginRight = "-"+this.offsetWidth+"px";
             searchBarInput.value = '';

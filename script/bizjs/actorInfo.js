@@ -142,12 +142,12 @@ $(function(){
 							$("#height").val(data.actinfo.height);
 							$("#weight").val(data.actinfo.weight);
 							$("#birthday").val(data.actinfo.birthday);
-							$("#experience").val("    " +data.actinfo.experience);
-							$("#infos").val("    " +data.actinfo.infos);
+							$("#experience").val(data.actinfo.experience);
+							$("#infos").val(data.actinfo.infos);
 							$("#price").val(data.actinfo.price);
-							$("#keywords").val("    " + data.actinfo.keywords);
+							$("#keywords").val(data.actinfo.keywords);
 							if(data.actinfo.workarea){
-								$("#workarea").val("    " + data.actinfo.workarea);
+								$("#workarea").val(data.actinfo.workarea);
 							}
 							$("#firstimg").attr("src",data.actinfo.firstimg);
 	            $("#lunboimg").attr("src",data.actinfo.lunboimg);
@@ -383,140 +383,252 @@ function personalRoleManage(){
 				return false;
 		}
 
-		var img1=new Image();
-		img1.crossOrigin = '';
-		img1.src = $("#fmimg").val();
-		img1.style = "width: 100%; height: 100%;";
-
-		img1.onload = function() {
-			if(img1.complete){
-					var toast = new auiToast();
-					toast.loading({
-						 title:"正在提交",
-						 duration:2000
+		if("" === $("#fmimg").val()){
+			var toast = new auiToast();
+			toast.loading({
+				 title:"正在提交",
+				 duration:2000
+			},function(ret){
+				setTimeout(function(){
+			var firstimg = $("#firstimg_").val();
+			if(!firstimg){
+					dialog.alert({
+							title:"请选择封面图",
+							msg:'',
+							buttons:['确定']
 					},function(ret){
-						setTimeout(function(){
+					})
+					return false;
+			}
 
-						getBase64ImageOnce(img1,function(dataURL){
+$("#tjBtu").html("");
 
-							$.post(path + "/ActorInterface/index/uploadImgs.action",{
-								imgpath:dataURL
-							}, function(data) {
-								var data = JSON.parse(data);
+var actionURL = "";
 
-								if (data.success) {
-										$("#firstimg_").val(data.imgpath);
-										var firstimg = $("#firstimg_").val();
-										if(!firstimg){
-												dialog.alert({
-														title:"请选择封面图",
-														msg:'',
-														buttons:['确定']
-												},function(ret){
-												})
-												return false;
-										}
-
-		$("#tjBtu").html("");
-
-    var actionURL = "";
-
-    if(id!=null){
-        actionURL = path + "/ActorInterface/actor/actorUpdate.action?token=" + localStorage.token + "&role=" + role;
-				$("#hi_id").val(id);
+if(id!=null){
+actionURL = path + "/ActorInterface/actor/actorUpdate.action?token=" + localStorage.token + "&role=" + role;
+$("#hi_id").val(id);
 
 
-				//重新组装方法
-				var newmultipleGraphsList = [];
-				multipleGraphsList2.forEach(function(i){
+//重新组装方法
+var newmultipleGraphsList = [];
+multipleGraphsList2.forEach(function(i){
 
-					var newObj = {base64Data:i.base64Data}
-					newmultipleGraphsList.push(newObj);
-				});
-				if($("#multipleGraphsList").val() != ""){
-					var newList = JSON.parse($("#multipleGraphsList").val());
+var newObj = {base64Data:i.base64Data}
+newmultipleGraphsList.push(newObj);
+});
+if($("#multipleGraphsList").val() != ""){
+var newList = JSON.parse($("#multipleGraphsList").val());
 
-					newList.forEach(function(j){
-						var newObj2 = {base64Data:j.base64Data}
-						newmultipleGraphsList.push(newObj2);
+newList.forEach(function(j){
+var newObj2 = {base64Data:j.base64Data}
+newmultipleGraphsList.push(newObj2);
+});
+
+}
+
+var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
+$("#multipleGraphsList").val(hi_jsonStr);
+
+
+}else{
+actionURL = path + "/ActorInterface/actor/actorApply.action?token=" + localStorage.token + "&role=" + role;
+}
+
+$.ajax({
+cache : true,
+type  : "POST",
+url   : actionURL,
+data  :$('#postForm').serialize(),
+async : true,
+error : function(request) {
+ toast.hide();
+
+ toast.fail({
+	title:"提交失败",
+	duration:2000
+ });
+
+ var tjBtu = "";
+ tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+ tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+ tjBtu += "</div>";
+ $("#tjBtu").html(tjBtu);
+},
+success : function(data) {
+
+var data = JSON.parse(data);
+if(data.success){
+
+ toast.hide();
+
+ toast.success({
+	title:"提交成功",
+	duration:2000
+ });
+
+setTimeout(function(){window.location.href = "../personalRoleManage/personalRoleManage.html";}, 2000);
+
+
+}else{
+
+ toast.hide();
+
+ toast.fail({
+	title:"提交失败",
+	duration:2000
+ });
+
+ var tjBtu = "";
+ tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+ tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+ tjBtu += "</div>";
+ $("#tjBtu").html(tjBtu);
+}
+}
+});
+}, 3000)
+});
+
+		}else{
+			var img1=new Image();
+			img1.crossOrigin = '';
+			img1.src = $("#fmimg").val();
+			img1.style = "width: 100%; height: 100%;";
+
+			img1.onload = function() {
+				if(img1.complete){
+						var toast = new auiToast();
+						toast.loading({
+							 title:"正在提交",
+							 duration:2000
+						},function(ret){
+							setTimeout(function(){
+
+							getBase64ImageOnce(img1,function(dataURL){
+
+								$.post(path + "/ActorInterface/index/uploadImgs.action",{
+									imgpath:dataURL
+								}, function(data) {
+									var data = JSON.parse(data);
+
+									if (data.success) {
+											$("#firstimg_").val(data.imgpath);
+											var firstimg = $("#firstimg_").val();
+											if(!firstimg){
+													dialog.alert({
+															title:"请选择封面图",
+															msg:'',
+															buttons:['确定']
+													},function(ret){
+													})
+													return false;
+											}
+
+			$("#tjBtu").html("");
+
+			var actionURL = "";
+
+			if(id!=null){
+					actionURL = path + "/ActorInterface/actor/actorUpdate.action?token=" + localStorage.token + "&role=" + role;
+					$("#hi_id").val(id);
+
+
+					//重新组装方法
+					var newmultipleGraphsList = [];
+					multipleGraphsList2.forEach(function(i){
+
+						var newObj = {base64Data:i.base64Data}
+						newmultipleGraphsList.push(newObj);
 					});
+					if($("#multipleGraphsList").val() != ""){
+						var newList = JSON.parse($("#multipleGraphsList").val());
 
-				}
+						newList.forEach(function(j){
+							var newObj2 = {base64Data:j.base64Data}
+							newmultipleGraphsList.push(newObj2);
+						});
 
-				var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
-        $("#multipleGraphsList").val(hi_jsonStr);
+					}
 
-
-    }else{
-        actionURL = path + "/ActorInterface/actor/actorApply.action?token=" + localStorage.token + "&role=" + role;
-    }
-
-			  $.ajax({
-				cache : true,
-				type  : "POST",
-				url   : actionURL,
-				data  :$('#postForm').serialize(),
-				async : true,
-				error : function(request) {
-							 toast.hide();
-
-							 toast.fail({
-								title:"提交失败",
-								duration:2000
-							 });
-
-							 var tjBtu = "";
-               tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
-               tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
-               tjBtu += "</div>";
-               $("#tjBtu").html(tjBtu);
-				},
-				success : function(data) {
-
-						var data = JSON.parse(data);
-						if(data.success){
-
-							 toast.hide();
-
-							 toast.success({
-								title:"提交成功",
-								duration:2000
-							 });
-
-							setTimeout(function(){window.location.href = "../personalRoleManage/personalRoleManage.html";}, 2000);
+					var hi_jsonStr = JSON.stringify(newmultipleGraphsList);
+					$("#multipleGraphsList").val(hi_jsonStr);
 
 
-						}else{
+			}else{
+					actionURL = path + "/ActorInterface/actor/actorApply.action?token=" + localStorage.token + "&role=" + role;
+			}
 
-							 toast.hide();
+					$.ajax({
+					cache : true,
+					type  : "POST",
+					url   : actionURL,
+					data  :$('#postForm').serialize(),
+					async : true,
+					error : function(request) {
+								 toast.hide();
 
-							 toast.fail({
-								title:"提交失败",
-								duration:2000
-							 });
+								 toast.fail({
+									title:"提交失败",
+									duration:2000
+								 });
 
-							 var tjBtu = "";
-               tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
-               tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
-               tjBtu += "</div>";
-               $("#tjBtu").html(tjBtu);
-						 }
- 				}
- 			});
+								 var tjBtu = "";
+								 tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+								 tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+								 tjBtu += "</div>";
+								 $("#tjBtu").html(tjBtu);
+					},
+					success : function(data) {
 
- }else{
- 		alert("error")
- }
- });
+							var data = JSON.parse(data);
+							if(data.success){
 
- }, 3000)
- });
+								 toast.hide();
 
- });
+								 toast.success({
+									title:"提交成功",
+									duration:2000
+								 });
+
+								setTimeout(function(){window.location.href = "../personalRoleManage/personalRoleManage.html";}, 2000);
 
 
- }
- };
+							}else{
+
+								 toast.hide();
+
+								 toast.fail({
+									title:"提交失败",
+									duration:2000
+								 });
+
+								 var tjBtu = "";
+								 tjBtu += "<div style='background-color:#20e0b9;' class='aui-btn aui-btn-success aui-btn-block aui-btn-sm'>";
+								 tjBtu += "<div onclick='personalRoleManage()'>提&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;交</div>";
+								 tjBtu += "</div>";
+								 $("#tjBtu").html(tjBtu);
+							 }
+					}
+				});
+
+	 }else{
+			alert("error")
+	 }
+	 });
+
+	 }, 3000)
+	 });
+
+	 });
+
+
+	 }
+	 };
+
+		}
+
+
  }
 
 

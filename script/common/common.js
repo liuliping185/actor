@@ -1,5 +1,6 @@
+var path = "http://192.168.0.170:8082";
 // var path = "http://192.168.0.129:8080";
-var path = "http://47.93.224.28:8089";
+// var path = "http://47.93.224.28:8089";
 var dialog = new auiDialog();
 var UIListView = "";
 var UIMediaScanner = "";
@@ -37,14 +38,39 @@ apiready = function () {
               if("firstimg" === type){
                 $('#firstimg').attr('src', imgSrc);
                 $("#fmimg").val(imgSrc);
-              }else if("idcardFront" === type){
-                $('#idcardFront').attr('src', imgSrc);
-              }else if("idcardBack" === type){
-                $('#idcardBack').attr('src', imgSrc);
-              }else{
-                $('#headerImg').attr('src', imgSrc);
               }
 
+              var img1=new Image();
+              img1.crossOrigin = '';
+              img1.src = imgSrc;
+              img1.style = "width: 100%; height: 100%;";
+
+              img1.onload = function() {
+                  if(img1.complete){
+                      getBase64ImageOnce(img1,function(dataURL){
+                          $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                            imgpath:dataURL
+                          }, function(data) {
+                              var data = JSON.parse(data);
+
+                              if (data.success) {
+                                  if("idcardFront" === type){
+                                    $('#idcardFront').attr('src', imgSrc);
+                                    $("#idcardFront_").val(data.imgpath);
+                                  }else if("idcardBack" === type){
+                                    $('#idcardBack').attr('src', imgSrc);
+                                    $("#idcardBack_").val(data.imgpath);
+                                  }else{
+                                    $('#headerImg').attr('src', imgSrc);
+                                    $("#headerImg_").val(data.imgpath);
+                                  }
+                              }else{
+                                 alert("error")
+                              }
+                         });
+                      });
+                  }
+              }
         }else{
             alert( JSON.stringify( err ) );
         }
@@ -219,7 +245,6 @@ function showActionMore(){
 
     function(ret) {
         if (ret) {
-            $("#addPic").hide();
             var multipleGraphsList = [];
 
             ret.list.forEach(function(i){
@@ -239,85 +264,52 @@ function showActionMore(){
                     if(image.complete){
                         var base64 = getBase64Image(image);
 
-                        // var toast = new auiToast();
-                      	// toast.loading({
-                        //   title:"正在提交",
-                        //   duration:2000
-                      	// },function(ret){
-                              $.post(path + "/ActorInterface/index/uploadImgs.action",{
-                                  imgpath:base64
-                                }, function(data) {
-                                  var data = JSON.parse(data);
+                        $.post(path + "/ActorInterface/index/uploadImgs.action",{
+                            imgpath:base64
+                          }, function(data) {
+                            var data = JSON.parse(data);
+                              // alert(JSON.stringify(data));
 
-                                  if (data.success) {
+                            if (data.success) {
 
+                                jsonArray = {
+                                 base64Data: data.imgpath
+                                }
 
+                                multipleGraphsList.push(jsonArray);
 
-                                      jsonArray = {
-                                       base64Data: data.imgpath
-                                      }
+                                var imagesId = generateMixed(8);
 
-                                      multipleGraphsList.push(jsonArray);
+                                var imgs = "";
 
-                                      var imagesId = generateMixed(8);
+                                imgs += "<span name=" + imagesId +">";
+                                imgs += "<span style='width30%;padding-left:5px;padding-right:10px;'>";
+                                // imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
+                                imgs += "<div name=" + imagesId +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic('" + imagesId + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
+                                imgs += "<img id='" + imagesId + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.path + "'/>";
+                                imgs += "</span>";
+                                imgs += "</span>";
 
-                                      var imgs = "";
+                                $("#imgUpload").append(imgs);
+                                if(ret.list.length === sizeinfos){
 
-                                      imgs += "<span name=" + imagesId +">";
-                                      imgs += "<span style='width30%;padding-left:5px;padding-right:10px;'>";
-                                      // imgs += "<div style='background-color:#00ffff;width:100%;' align='right'>a</div>"
+                                    var hi_jsonStr = JSON.stringify(multipleGraphsList);
 
-                                      imgs += "<div name=" + imagesId +" style='' align='right'><div class='info'  style='margin-top:10px;' onclick=delpic('" + imagesId + "')><img src='../../image/delete.png' style='width:13px;'/></div></div>";
-                                      imgs += "<img id='" + imagesId + "'style='width:93px;height:93px;float:left;margin-top:-13px;' src='" + i.path + "'/>";
-                                      imgs += "</span>";
-                                      imgs += "</span>";
+                                    if($("#multipleGraphsList").val() != ""){
+                                        var newArr = JSON.parse($("#multipleGraphsList").val());
+                                        newArr.push(jsonArray);
+                                        $("#multipleGraphsList").val(JSON.stringify(newArr));
 
+                                        var newArr = JSON.parse($("#multipleGraphsList").val());
 
-
-                                      $("#imgUpload").append(imgs);
-                                      if(ret.list.length === sizeinfos){
-
-                                          var hi_jsonStr = JSON.stringify(multipleGraphsList);
-
-                                          if($("#multipleGraphsList").val() != ""){
-                                              var newArr = JSON.parse($("#multipleGraphsList").val());
-                                              newArr.push(jsonArray);
-                                              $("#multipleGraphsList").val(JSON.stringify(newArr));
-
-                                              var newArr = JSON.parse($("#multipleGraphsList").val());
-
-                                              // var butImg = "";
-                                              // alert(newArr.length + "---" + imgsize);
-                                              // if(newArr.length === imgsize){
-                                              //     butImg += "<span onclick='showActionMore()' id='addPicId' style='width:30%;margin-left:3%;'>";
-                                              //     butImg += "<img style='width:93px;height:93px' src='../../image/addPicZ.png'/>";
-                                              //     butImg += "</span>";
-                                              // }
-                                              //
-                                              //
-                                              //  $("#imgUpload").append(butImg);
-                                              //  $("#imgsize").val(imgsize);
-
-
-                                          }else{
-                                              $("#multipleGraphsList").val(hi_jsonStr);
-                                          }
-
-                                          // alert($("#multipleGraphsList").val());
-                                      }
-                                  }
-                              });
-
-                      	// });
-
-
+                                    }else{
+                                        $("#multipleGraphsList").val(hi_jsonStr);
+                                    }
+                                }
+                            }
+                        });
                      }
                  }
-
-
-
-                //  $("#imgUpload").append("<span name=" + imgId +"><div class='info' align='right'><button type='button' class='btn btn-danger' onclick=delpic('" + imgId + "')>删除</button></div></span>");
-
             });
 
           }
@@ -335,7 +327,7 @@ function delpic(imgId){
 }
 
 // 将图片转换为base64编码
-function getBase64Image(img, callback) {
+function getBase64Image(img) {
 			var quality =  50;
 			var canvas = document.createElement("canvas");
 			//naturalWidth真实图片的宽度
