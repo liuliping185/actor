@@ -82,7 +82,7 @@ function getProducer(data){
     $("#infoid").val(data.producerinfo.id);
     $("#type").val("producer");
     $("#ownerid").val(data.producerinfo.memberid);
-    $("#nickname").html(data.producerinfo.nickname);
+    $("#nickname").html(data.producerinfo.producername);
     if(0 < data.fiveOrder.length){
         $("#reserveTime").html(reserveTime);
     }
@@ -102,15 +102,17 @@ function getProducer(data){
     var height = data.imgs[0].height;
 
     if(1 ===  data.imgs.length){
-      imgArr.push(i.imgpath);
+        imgArr.push(data.imgs[0].imgpath);
 
-      if(Number(width) > Number(height)){
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }else{
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }
+        // if(Number(width) > Number(height)){
+        //     imgone += "<span style='float:left;display: flex;justify-content: center;align-items: center;width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }else{
+        //     imgone += "<span style='float:left;display: flex;justify-content: center;align-items: center;width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }
 
-      $("#imgBig").html(imgone);
+        imgone += "<span style='width:100%;height:100%;display: flex;justify-content: center;align-items: center;border:#E0E0E0 1px solid;'><img style='height:100%;' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+
+        $("#imgBig").html(imgone);
     }
 
     data.imgs.forEach(function(i){

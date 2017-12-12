@@ -6,8 +6,8 @@ var reserveTime = "";
 
 function getInvestment(data){
     $("#membername").html("发布人: " + data.membername);
-    if(data.investmentinfo.price && data.investmentinfo.unit){
-        $("#price").html("￥" +  data.investmentinfo.price + "/" + data.investmentinfo.unit);
+    if(data.investmentinfo.investmentprice){
+        $("#price").html(data.investmentinfo.investmentprice);
     }
 
     $("#role").html("找投资");
@@ -82,7 +82,7 @@ function getInvestment(data){
     $("#infoid").val(data.investmentinfo.id);
     $("#type").val("investment");
     $("#ownerid").val(data.investmentinfo.memberid);
-    $("#nickname").html(data.investmentinfo.nickname);
+    $("#nickname").html(data.investmentinfo.investmentname);
     if(0 < data.fiveOrder.length){
         $("#reserveTime").html(reserveTime);
     }
@@ -102,15 +102,17 @@ function getInvestment(data){
     var height = data.imgs[0].height;
 
     if(1 ===  data.imgs.length){
-      imgArr.push(i.imgpath);
+        imgArr.push(data.imgs[0].imgpath);
 
-      if(Number(width) > Number(height)){
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }else{
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }
+        // if(Number(width) > Number(height)){
+        //     imgone += "<span style='float:left;display: flex;justify-content: center;align-items: center;width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }else{
+        //     imgone += "<span style='float:left;display: flex;justify-content: center;align-items: center;width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }
 
-      $("#imgBig").html(imgone);
+        imgone += "<span style='width:100%;height:100%;display: flex;justify-content: center;align-items: center;border:#E0E0E0 1px solid;'><img style='height:100%;' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+
+        $("#imgBig").html(imgone);
     }
 
     data.imgs.forEach(function(i){

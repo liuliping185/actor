@@ -99,7 +99,7 @@ $(function(){
 
 
               content +=  "<div style='width:100%;margin 0 auto'>";
-              content +=  "<img style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;width:100%;' onclick=roleDetails('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
+              content +=  "<img style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;' onclick=roleDetails('"+i.type+"','"+i.id+"') src='" + i.firstimg + "'/>";
               content +=  "</div>";
               content +=  "<div class='aui-card-list-footer aui-border-t'>";
               content +=  "<div><i class='aui-iconfont aui-icon-note'></i><span>" +  i.evaSum + "</span></div>";
@@ -150,22 +150,28 @@ $("#roleChange").change(function(){
 
     var imgHeading = "";
     switch(roleChange){
-		 case "0": actionURL = path + "/ActorInterface/actor/queryAllMyInfos.action?token=" + localStorage.token;
-
-         break;
-
-        case "1": actionURL = path + "/ActorInterface/actor/myActorList.action?token=" + localStorage.token;
-
+		    case "": actionURL = path + "/ActorInterface/actor/queryAllMyInfos.action?token=" + localStorage.token;
           break;
-
-        case "2": actionURL = path + "/ActorInterface/scene/mySceneList.action?token=" + localStorage.token;
-
+        case "actor": actionURL = path + "/ActorInterface/actor/myActorList.action?token=" + localStorage.token;
           break;
-
-        case "3": actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
-
+        case "scene": actionURL = path + "/ActorInterface/scene/mySceneList.action?token=" + localStorage.token;
           break;
-
+        case "subject": actionURL = path + "/ActorInterface/subject/mySubjectList.action?token=" + localStorage.token;
+          break;
+        case "screenwriter": actionURL = path + "/ActorInterface/screenwriter/queryScreenwriters.action?token=" + localStorage.token;
+          break;
+        case "director": actionURL = path + "/ActorInterface/director/myDirectorList.action?token=" + localStorage.token;
+          break;
+        case "producer": actionURL = path + "/ActorInterface/producer/myProducerList.action?token=" + localStorage.token;
+          break;
+        case "clothing": actionURL = path + "/ActorInterface/clothing/myClothingList.action?token=" + localStorage.token;
+          break;
+        case "equipment": actionURL = path + "/ActorInterface/equipment/myEquipmentList.action?token=" + localStorage.token;
+          break;
+        case "camerateam": actionURL = path + "/ActorInterface/camerateam/myCamerateamList.action?token=" + localStorage.token;
+          break;
+        case "investment": actionURL = path + "/ActorInterface/investment/myInvestmentList.action?token=" + localStorage.token;
+          break;
         default: actionURL = path + "/ActorInterface/actor/queryAllMyInfos.action?token=" + localStorage.token;
           break;
     }
@@ -212,11 +218,11 @@ $("#roleChange").change(function(){
 													  content += "<div class='aui-card-list-user-avatar'>";
 
 													   if(i.type == 'actor'){
-																	 content += "<img src='../../image/mine/actor.jpg' class='aui-img-round'/>";
+																	 content += "<img src='../../image/mine/actor.png' class='aui-img-round'/>";
 														  }else if(i.type == 'scene'){
-																	 content += "<img src='../../image/mine/scene.jpg' class='aui-img-round'/>";
+																	 content += "<img src='../../image/mine/scene.png' class='aui-img-round'/>";
 														  }else if(i.type == 'subject'){
-																	 content += "<img src='../../image/mine/subject.jpg' class='aui-img-round'/>";
+																	 content += "<img src='../../image/mine/subject.png' class='aui-img-round'/>";
 														  }else if(i.type == 'screenwriter'){
                       						 content += "<img src='../../image/mine/screenwriter.png' class='aui-img-round'/>";
                       			  }else if(i.type == 'director'){

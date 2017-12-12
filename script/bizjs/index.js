@@ -25,6 +25,29 @@ $(function(){
       $("#city").html(city);
   }
 
+  var swiper = new Swiper('.swiper-container',{
+	autoplay:3000,
+	speed:1000,
+	autoplayDisableOnInteraction : false,
+	loop:true,
+	centeredSlides : true,
+	slidesPerView:2,
+	pagination : '.swiper-pagination',
+	paginationClickable:true,
+	prevButton:'.swiper-button-prev',
+	nextButton:'.swiper-button-next',
+	onInit:function(swiper){
+		// swiper.slides[2].className="swiper-slide swiper-slide-active";//第一次打开不要动画
+		},
+	breakpoints: {
+			688: {
+				slidesPerView: 1,
+			 }
+		}
+	});
+
+
+
   console.log(localStorage.token);
   $('body').height($('body')[0].clientHeight);
   document.onkeydown=keyDownSearch;
@@ -44,6 +67,67 @@ $(function(){
     });
 });
 
+var startx, starty;
+    //获得角度
+    function getAngle(angx, angy) {
+        return Math.atan2(angy, angx) * 180 / Math.PI;
+    };
+
+    //根据起点终点返回方向 1向上 2向下 3向左 4向右 0未滑动
+    function getDirection(startx, starty, endx, endy) {
+        var angx = endx - startx;
+        var angy = endy - starty;
+        var result = 0;
+
+        //如果滑动距离太短
+        if (Math.abs(angx) < 2 && Math.abs(angy) < 2) {
+            return result;
+        }
+
+        var angle = getAngle(angx, angy);
+        if (angle >= -135 && angle <= -45) {
+            result = 1;
+        } else if (angle > 45 && angle < 135) {
+            result = 2;
+        } else if ((angle >= 135 && angle <= 180) || (angle >= -180 && angle < -135)) {
+            result = 3;
+        } else if (angle >= -45 && angle <= 45) {
+            result = 4;
+        }
+
+        return result;
+    }
+    //手指接触屏幕
+    document.addEventListener("touchstart", function(e) {
+        startx = e.touches[0].pageX;
+        starty = e.touches[0].pageY;
+    }, false);
+    //手指离开屏幕
+    document.addEventListener("touchend", function(e) {
+        var endx, endy;
+        endx = e.changedTouches[0].pageX;
+        endy = e.changedTouches[0].pageY;
+        var direction = getDirection(startx, starty, endx, endy);
+        switch (direction) {
+            case 0:
+                // alert("未滑动！");
+                break;
+            case 1:
+                // alert("向上！")
+                break;
+            case 2:
+                // alert("向下！")
+                break;
+            case 3:
+                // alert("向左！")
+                break;
+            case 4:
+                // alert("向右！")
+                break;
+            default:
+        }
+    }, false);
+
 function keyDownSearch(e) {
     var theEvent = e || window.event;
     var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
@@ -58,7 +142,6 @@ function keyDownSearch(e) {
 function getInfoList(infoList){
     infoList.forEach(function(i){
         imgInfos += "<div style='background-size:100%;'>";
-
         var d = new Date(i.publictime);
         var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
         imgInfos += "<div style='width:93%;margin-top:10px;float:left;'>";
@@ -172,6 +255,7 @@ var searchBarClearBtn = document.querySelector(".aui-searchbar .aui-searchbar-cl
 if(searchBar){
     searchBarInput.onclick = function(){
         searchBarBtn.style.marginRight = 0;
+        $("#search-input").val("");
     }
     searchBarInput.oninput = function(){
         if(this.value.length){
@@ -248,17 +332,24 @@ function lunbo(){
         var lunboOl = "";
         var flag = 0;
         data.lunboList.forEach(function(i){
-          if(flag === 0){
-            lunboimg += "<div class='item active' >"
-            lunboOl += "<li data-target='#carousel-example-generic' data-slide-to='" + flag + "' class='active'></li>";
-          }else{
-            lunboimg += "<div class='item'>"
+          // else{
+            // lunboimg += "<div class='item'>"
+            lunboimg += "<div class='swiper-slide'>";
             lunboOl += "<li data-target='#carousel-example-generic' data-slide-to='" + flag + "'></li>";
-          }
+          // }
 // onclick=detail('" + i.infotype + "','" + i.infoid + "')
-          lunboimg += "<img src='" + i.imgpath + "' style='height:200px; width:100%;' alt='图片不存在'>";
-          lunboimg += "</div>";
-          flag ++;
+            lunboimg += "<img src='" + i.imgpath + "' style='height:200px; width:100%;' alt='图片不存在'>";
+            lunboimg += "</div>";
+
+            flag ++;
+
+            if(flag === 1 || flag === data.lunboList.length){
+              // lunboimg += "<div class='item active' >"
+              lunboimg += "<div class='swiper-slide swiper-slide-center none-effect'>";
+              lunboOl += "<li data-target='#carousel-example-generic' data-slide-to='" + flag + "' class='active'></li>";
+              lunboimg += "<img src='" + data.lunboList[0].imgpath + "' style='height:200px; width:100%;' alt='图片不存在'>";
+              lunboimg += "</div>";
+            }
         })
 
         if(0 < data.lunboList.length){

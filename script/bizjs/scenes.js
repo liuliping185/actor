@@ -115,7 +115,6 @@ function getList(keywords){
 
     $.post(actionUrl,{
         token: localStorage.token,
-        type:role,
         keywords: keywords,
         smallid: smallid,
 		    bigid:bigid,
@@ -136,7 +135,7 @@ function getList(keywords){
                 var createtime = d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();
 
                 imgInfos += "<div style='width:93%;margin-top:10px;float:left;'>";
-                imgInfos += "<img onclick=roleDetails('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;border:1px solid #E0E0E0;width:100%;'/>";
+                imgInfos += "<img onclick=roleDetails('" + i.type + "','" + i.id + "') src='" + i.firstimg + "' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;border:1px solid #E0E0E0;'/>";
                 imgInfos += "<img src='../image/index/transparent.png' style='left:50%;transform:translateX(-50%);-webkit-transform:translateX(-50%);-moz-transform:translateX(-50%);position:relative;text-align:center;border-radius:7px;margin-left:3.5%;margin-top:-25%;width:100%;'>";
                 imgInfos += "<div style='position:relative;width:100%;margin-top:-27px;text-align:center;'>"
                 imgInfos += "<span style='width:38%;color:#ffffff;font-size:0.7rem;'> " + createtime + "</span>";

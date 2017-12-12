@@ -1,7 +1,7 @@
 var UIListView = "";
-var path = "http://192.168.0.170:8082";
+// var path = "http://192.168.1.116:8082";
 // var path = "http://192.168.0.129:8080";
-// var path = "http://47.93.224.28:8089";
+var path = "http://47.93.224.28:8089";
 $(function(){
     $('body').height($('body')[0].clientHeight);
 
@@ -35,9 +35,7 @@ function generateMixed(n) {
 }
 
 function getType(type){
-
-	getBeBookList(type);
-
+	 getBeBookList(type);
 }
 
 function getBeBookList(type){
@@ -98,9 +96,10 @@ function getBeBookList(type){
 
                 var uid = generateMixed(6);
                 var title = "";
+                var unit = i.infosunit.trim();
                 if(i.infosprice){
-                    if(i.infosunit){
-                        title = i.infosprice + "元/"+i.infosunit
+                    if(unit && "" != unit){
+                        title = i.infosprice + "元/"+unit
                     }else{
                         title = i.infosprice + "元"
                     }

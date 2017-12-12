@@ -101,10 +101,18 @@ $(function(){
 
             $("#imgUpload").html(imgs);
 
-
+            var investmentprice = data.investmentinfo.investmentprice;
+            var strs = new Array();
+            strs = investmentprice.split("-");
+            var minimumamount = strs[0];
+            minimumamount = minimumamount.replace('万元', '');
+            var maximumamount = strs[1];
+            maximumamount = maximumamount.replace('万元', '');
+            $("#minimumamount").val(minimumamount);
+            $("#maximumamount").val(maximumamount);
 					  $("#investmentname").val(data.investmentinfo.investmentname);
             $("#investmentinfos").val(data.investmentinfo.investmentinfos);
-					  $("#investmentprice").val(data.investmentinfo.investmentprice);
+            $("input[name='investmentprice']").val(data.investmentinfo.investmentprice);
 					  $("#keywords").val(data.investmentinfo.keywords);
             $("#representativework").val(data.investmentinfo.representativework);
             $("#experience").val(data.investmentinfo.experience);
@@ -169,9 +177,10 @@ function personalRoleManage(){
   var provience = $("#provience").val();
   var city = $("#city").val();
   var area = $("#area").val();
+  var minimumamount = $("#minimumamount").val();
+  var maximumamount = $("#maximumamount").val();
 
-
-
+  $("input[name='investmentprice']").val(minimumamount + "万元 - " + maximumamount + "万元");
   if(!investmentname){
       dialog.alert({
           title:"请输入投资名称！",
@@ -185,6 +194,36 @@ function personalRoleManage(){
   if(!price && "" === price){
       dialog.alert({
           title:"请输入可投金额！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!/\d$/.test(minimumamount)){
+      dialog.alert({
+          title:"投资区间最小金额，请输入数字！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(!/\d$/.test(maximumamount)){
+      dialog.alert({
+          title:"投资区间最大金额，请输入数字！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if(maximumamount < minimumamount){
+      dialog.alert({
+          title:"投资区间最小金额大于最大金额，请重新输入！",
           msg:'',
           buttons:['确定']
       },function(ret){

@@ -86,7 +86,16 @@ toast.loading({
 						 duration:2000
 						});
 
-					 setTimeout(function(){window.location.href = "index.html";}, 2000);
+					 setTimeout(function(){
+						 api.openWin({
+						    name: 'index',
+						    url: 'index.html',
+						    pageParam: {
+						        name: 'login'
+						    }
+						});
+						//  window.location.href = "index.html";
+					 }, 2000);
 
 						// //自定义alert
 						// dialog.alert({

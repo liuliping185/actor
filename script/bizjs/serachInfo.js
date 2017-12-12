@@ -1,8 +1,10 @@
 var keywords = GetQueryString("keywords");
 var role = GetQueryString("role");
+var sortorder = ""; // 排序方式
 
 $(function(){
     console.log(localStorage.token);
+    sortorder = "desc";
     getinfos("new");
 });
 
@@ -26,6 +28,23 @@ var tab = new auiTab({
 
 function getinfos(index){
     var sortwords = "";
+
+    "desc" === sortorder ? sortorder = "asc" :
+      sortorder === "asc" ? sortorder = "desc" : sortorder = "desc"
+
+    var x = document.getElementById("up");
+    var y = document.getElementById("down");
+
+    if(2 === index){
+        if(sortorder === "asc"){
+            x.style.color="#008B45";
+            y.style.color="#9d9d9d";
+        }else{
+            x.style.color="#9d9d9d";
+            y.style.color="#008B45";
+        }
+    }
+
     switch(index){
       case 1: sortwords = "new"; break;
       case 2: sortwords = "price"; break;
@@ -37,6 +56,7 @@ function getinfos(index){
         token: localStorage.token,
         sortwords: sortwords,
         keywords: keywords,
+        sortorder: sortorder,
         type: role
       }, function(data) {
         var data = JSON.parse(data);

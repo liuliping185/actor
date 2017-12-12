@@ -210,7 +210,7 @@ function personalRoleManage(){
       return false;
   }
 
-  if(!unit && "" === unit){
+  if("0" === unit){
       dialog.alert({
           title:"请选择使用单位！",
           msg:'',

@@ -6,8 +6,12 @@ var reserveTime = "";
 
 function getClothing(data){
     $("#membername").html("发布人: " + data.membername);
-    if(data.clothinginfo.price && data.clothinginfo.unit){
-        $("#price").html("￥" +  data.clothinginfo.price + "/" + data.clothinginfo.unit);
+    if(data.clothinginfo.saleprice){
+        $("#price").html("￥" +  data.clothinginfo.saleprice );
+    }else{
+        if(data.clothinginfo.rentprice && data.clothinginfo.rentunit){
+            $("#price").html("￥" +  data.clothinginfo.saleprice + "/" + data.clothinginfo.rentunit);
+        }
     }
 
     $("#role").html("找服装");
@@ -82,7 +86,7 @@ function getClothing(data){
     $("#infoid").val(data.clothinginfo.id);
     $("#type").val("clothing");
     $("#ownerid").val(data.clothinginfo.memberid);
-    $("#nickname").html(data.clothinginfo.nickname);
+    $("#nickname").html(data.clothinginfo.clothingname);
     if(0 < data.fiveOrder.length){
         $("#reserveTime").html(reserveTime);
     }
@@ -102,13 +106,13 @@ function getClothing(data){
     var height = data.imgs[0].height;
 
     if(1 ===  data.imgs.length){
-      imgArr.push(i.imgpath);
+      imgArr.push(data.imgs[0].imgpath);
 
-      if(Number(width) > Number(height)){
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }else{
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }
+      // if(Number(width) > Number(height)){
+          // imgone += "<span style='float:left;display: flex;justify-content: center;align-items: center;width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+      // }else{
+          imgone += "<span style='width:100%;height:100%;display: flex;justify-content: center;align-items: center;border:#E0E0E0 1px solid;'><img style='height:100%;' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+      // }
 
       $("#imgBig").html(imgone);
     }

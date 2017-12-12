@@ -1,7 +1,36 @@
+var sortorder = ""; // 排序方式
 $(function(){
     $('body').height($('body')[0].clientHeight);
-    getinfos("new");
+    sortorder = "desc";
+    // getinfos("new");
 });
+
+apiready = function () {
+    api.openFrameGroup({
+        name: 'group1',
+        scrollEnabled: true,
+        index: 0,
+        preload: 1,
+        rect: {
+            x: 0,
+            y: 100,
+            w: 'auto',
+            h: 'auto'
+        },
+        frames: [{
+            name: 'findnew',
+            url: 'findnew.html'
+        }, {
+            name: 'findprice',
+            url: 'findprice.html'
+        }, {
+            name: 'findattention',
+            url: 'findattention.html'
+        }]
+    }, function(ret, err) {
+        var index = ret.index;
+    });
+}
 
 // 找场景
 function scenes( thisHtml, role){
@@ -27,8 +56,25 @@ var tab = new auiTab({
 });
 
 function getinfos(index){
-    var sortwords = "";
+    var sortwords = "";  // 关键文字
     imgInfos = "";
+
+    "desc" === sortorder ? sortorder = "asc" :
+      sortorder === "asc" ? sortorder = "desc" : sortorder = "desc"
+
+    var x = document.getElementById("up");
+    var y = document.getElementById("down");
+
+    if(2 === index){
+        if(sortorder === "asc"){
+            x.style.color="#008B45";
+            y.style.color="#9d9d9d";
+        }else{
+            x.style.color="#9d9d9d";
+            y.style.color="#008B45";
+        }
+    }
+
     switch(index){
       case 1: sortwords = "new"; break;
       case 2: sortwords = "price"; break;
@@ -37,7 +83,8 @@ function getinfos(index){
     console.log(sortwords)
     $.post(path + "/ActorInterface/index/queryAll.action",{
         token:localStorage.token,
-        sortwords: sortwords
+        sortwords: sortwords,
+        sortorder: sortorder
       }, function(data) {
         var data = JSON.parse(data);
         console.log(data)

@@ -49,6 +49,7 @@
 	<input id="hi_scenestatus" name="scenestatus" type="hidden"/>
 	<input id="hi_memberid" name="memberid" type="hidden"/>
 	<input id="hi_createtime" name="createtime" type="hidden"/>
+  <input id="investmentprice" name="investmentprice" type="hidden"/>
 
   <div style="background-color:#ffffff;">
     <span style="margin-top:5%;margin-left:4%;padding-bottom:5px;color:#6c6c6c;font-size:0.8rem">基本信息</span>
@@ -64,13 +65,27 @@
               </span>
           </li>
           <li>
-              <span style="width:25%;">
+              <!-- <span style="width:25%;">
                   <span style="font-size:0.75rem;color:#6c6c6c;">投资范围&nbsp&nbsp:</span>
               </span>
               <span style="width:70%;">
                   <span style="width:80%;">
-                      <input type="text" id="investmentprice" name="investmentprice" placeholder="  请输入投资范围(1元-2元)" style="font-size:0.75rem;height:2.2rem;color:#ADADAD;"/>
+                      <input type="text" id="investmentprice" name="investmentprice" style="font-size:0.75rem;height:1.3rem;color:#ADADAD;border:#E0E0E0 1px solid;"/>
                   </span>
+              </span> -->
+              <span style="width:25%;">
+                  <span style="font-size:0.75rem;color:#6c6c6c;">投资范围&nbsp&nbsp:</span>
+              </span>
+              <span style="width:70%;padding-bottom:5px;" id="investmentpriceHtml">
+                  <span style="width:30%;">
+                      <input type="text" id="minimumamount" style="font-size:0.75rem;height:1.3rem;color:#ADADAD;border:#E0E0E0 1px solid;"/>
+                  </span>
+                  <span style="font-size:0.7rem;height:1.3rem;color:#6c6c6c;">万元 ~ </span>
+
+                  <span style="width:30%;">
+                      <input type="text" id="maximumamount" style="font-size:0.75rem;height:1.3rem;color:#ADADAD;border:#E0E0E0 1px solid;"/>
+                  </span>
+                  <span style="font-size:0.7rem;height:1.3rem;color:#6c6c6c;">万元</span>
               </span>
           </li>
           <li>

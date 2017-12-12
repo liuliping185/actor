@@ -5,7 +5,7 @@ $(function(){
 // 申请角色
 function applicationRoles(role){
     console.log(role)
-    if("actor" === role){
+    if("actor" === role){ 
         window.location.href = "actorInfo.html?role=" + role;  // 演员
     }else if("scene" === role){
         window.location.href = "sceneInfo.html?role=" + role;  // 场景
@@ -13,7 +13,7 @@ function applicationRoles(role){
         window.location.href = "subjectInfo.html?role=" + role;  // 道具
     }else if("screenwriter" === role){
         window.location.href = "screenwriter.html?role=" + role;  // 编剧
-    }else if("director" === role){ 
+    }else if("director" === role){
         window.location.href = "director.html?role=" + role;  // 导演
     }else if("producer" === role){
         window.location.href = "producer.html?role=" + role;  // 制片

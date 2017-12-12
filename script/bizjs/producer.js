@@ -164,6 +164,7 @@ function deleteData_edit(fileId) {
 function personalRoleManage(){
   var keywords = $("#keywords").val();
   var price = $("#price").val();
+  var unit = $("#unit").val();
   var bigtype = $("#bigtype").val();
   var smalltype = $("#smalltype").val();
   var producername = $("#producername").val();
@@ -175,6 +176,16 @@ function personalRoleManage(){
   if(!/\d$/.test(price)){
       dialog.alert({
           title:"价格必须是数字！",
+          msg:'',
+          buttons:['确定']
+      },function(ret){
+      })
+      return false;
+  }
+
+  if("0" === unit){
+      dialog.alert({
+          title:"请输入单位！",
           msg:'',
           buttons:['确定']
       },function(ret){

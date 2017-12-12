@@ -6,8 +6,13 @@ var reserveTime = "";
 
 function getScreenwriter(data){
     $("#membername").html("发布人: " + data.membername);
-    if(data.screenwriterinfo.price && data.screenwriterinfo.unit){
-        $("#price").html("￥" +  data.screenwriterinfo.price + "/" + data.screenwriterinfo.unit);
+    var priceunit = "";
+    if(data.screenwriterinfo.price){
+        priceunit += "￥" +  data.screenwriterinfo.price;
+        if(data.screenwriterinfo.unit){
+            priceunit += "/" + data.screenwriterinfo.unit;
+        }
+        $("#price").html(priceunit);
     }
 
     $("#role").html("找编剧");
@@ -82,7 +87,7 @@ function getScreenwriter(data){
     $("#infoid").val(data.screenwriterinfo.id);
     $("#type").val("screenwriter");
     $("#ownerid").val(data.screenwriterinfo.memberid);
-    $("#nickname").html(data.screenwriterinfo.nickname);
+    $("#nickname").html(data.screenwriterinfo.screenwritername);
     if(0 < data.fiveOrder.length){
         $("#reserveTime").html(reserveTime);
     }
@@ -102,15 +107,15 @@ function getScreenwriter(data){
     var height = data.imgs[0].height;
 
     if(1 ===  data.imgs.length){
-      imgArr.push(i.imgpath);
+        imgArr.push(data.imgs[0].imgpath);
 
-      if(Number(width) > Number(height)){
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; width:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }else{
-          imgone += "<span style='margin-left:3%; width:100%; height:100%;border:#E0E0E0 1px solid;'><img style='float:left; height:100%;' id='imgBig' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
-      }
+        // if(Number(width) > Number(height)){
+            // imgone += "<span style='width:90%;margin-left:5%;display: flex;justify-content: center;align-items: center;border:#E0E0E0 1px solid;'><img style='width:100%;' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }else{
+            imgone += "<span style='width:100%;height:100%;display: flex;justify-content: center;align-items: center;border:#E0E0E0 1px solid;'><img style='height:100%;' src='" + data.imgs[0].imgpath + "' onclick='album()'/><span>";
+        // }
 
-      $("#imgBig").html(imgone);
+        $("#imgBig").html(imgone);
     }
 
     data.imgs.forEach(function(i){

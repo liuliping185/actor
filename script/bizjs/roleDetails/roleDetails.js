@@ -4,7 +4,9 @@ var imgArr;
 
 $(function(){
   var actionUrl = ""
-
+  if("cameraTeam" === role){
+    role = "camerateam";
+  }
   switch(role){
       case "actor":
           actionUrl = path + "/ActorInterface/actor/getAcotrById.action?actId=" + id;  // 演员
@@ -31,9 +33,6 @@ $(function(){
           actionUrl = path + "/ActorInterface/equipment/getEquipmentById.action?equipmentId=" + id;  // 设备
       break;
       case "camerateam":
-          actionUrl = path + "/ActorInterface/camerateam/getCamerateamById.action?camerateamId=" + id;  // 摄影组
-      break;
-      case "cameraTeam":
           actionUrl = path + "/ActorInterface/camerateam/getCamerateamById.action?camerateamId=" + id;  // 摄影组
       break;
       case "investment":
@@ -80,9 +79,6 @@ $(function(){
                   getEquipment(data);  //  设备
               break;
               case "camerateam":
-                  getCameraTeam(data);  // 摄影组
-              break;
-              case "cameraTeam":
                   getCameraTeam(data);  // 摄影组
               break;
               case "investment":

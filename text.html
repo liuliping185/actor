@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/text.css"/>
+        <script type="text/javascript" src="js/prototype.js" ></script>
+        <script type="text/javascript" src="js/test.js"></script>
+
+        <style>
+        /*
+        *图片中的一条椭圆半透明背景
+        *
+        * */
+        #imgyuan{
+        width: 182px;
+        height: 20px;
+        border-radius: 12px;
+        background-color: red;
+        padding-left: 13px;
+        margin: 0 auto;
+        position: relative;
+        top: -40px;
+        background-color: rgba(1, 150, 0, 0.3);
+        }
+        /*
+        *每一个小圆点
+        * */
+        #imgyuan font{
+        border:1px solid white;
+        width:11px;
+        height:11px;
+        border-radius:50%;
+        margin-right: 9px;
+        margin-top: 4px;
+        display: block;
+        float: left;
+        background-color: white;
+        }
+        </style>
+        <title>图片轮播</title>
+
+    </head>
+    <body>
+        <div id="imgchangediv" align="center">
+            <img src="img/59670ce9N177a082d.jpg" style="display: block;"/>
+            <img src="img/5966d4bdN6a8ec0c3.jpg" style="display: none;"/>
+            <img src="img/59670880N97321a68.jpg" style="display: none;"/>
+            <img src="img/59672bd4N65eac785.jpg" style="display: none;"/>
+            <img src="img/59674450Nf337c487.jpg" style="display: none;"/>
+            <img src="img/596818beN633101f5.jpg" style="display: none;"/>
+            <img src="img/59681aefN6cae4f5b.jpg" style="display: none;"/>
+            <img src="img/596878daN6ae9b27a.jpg" style="display: none;"/>
+            <div id="imgyuan">
+                <font></font>
+                <font></font>
+                <font></font>
+                <font></font>
+                <font></font>
+                <font></font>
+                <font></font>
+                <font></font>
+            </div>
+        </div>
+    </body>
+</html>
+<script type="text/javascript">
+var index=0;//每张图片的下标，
+
+window.onload=function(){
+    var start=setInterval(autoPlay,1000);//开始轮播，每秒换一张图
+
+    $('imgchangediv').onmouseover=function(){//当鼠标光标停在图片上，则停止轮播
+        clearInterval(start);
+    }
+    $('imgchangediv').onmouseout=function(){//当鼠标光标停在图片上，则开始轮播
+        start=setInterval(autoPlay,1000);
+    }
+
+    var lis=$('imgyuan').getElementsByTagName('font');//得到所有圆圈
+    //当移动到圆圈，则停滞对应的图片
+    var funny = function(i){
+        lis[i].onmouseover = function(){
+            changeImg(i)
+        }
+    }
+    for(var i=0;i<lis.length;i++){
+        funny(i);
+    }
+}
+//一轮过后，还是第二轮
+function autoPlay(){
+    if(index>7){
+        index=0;
+    }
+    changeImg(index++);
+}
+//对应圆圈和图片同步
+function changeImg(index){
+    var list=$('imgchangediv').getElementsByTagName('img');
+    var list1=$('imgyuan').getElementsByTagName('font');
+    for(i=0;i<list.length;i++){
+        list[i].style.display='none';
+        list1[i].style.backgroundColor='white';
+    }
+    list[index].style.display='block';
+    list1[index].style.backgroundColor='red';
+}
+</script>

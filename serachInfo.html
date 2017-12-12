@@ -10,6 +10,17 @@
     <link rel="stylesheet" type="text/css" href="./css/aui.css"/>
     <link rel="stylesheet" type="text/css" href="./css/style.css"/>
     <link rel="stylesheet" type="text/css" href="./css/firstSrc.css"/>
+
+    <style>
+        .tabword{
+            color:#9d9d9d;
+        }
+        .tabword:hover {
+            color:#008B45;
+            border-bottom: 2px solid #008B45;
+        }
+    </style>
+
 </head>
 <body>
 <div id="wrap" class="flex-wrap flex-vertical">
@@ -24,19 +35,29 @@
             <li class="border-b" >我的</li>
         </ul>
     </header>
-    <div style="height:40px; margin 0 auto;">
-        <div class="aui-tab" id="tab">
-            <div class="aui-tab-item aui-active">最新
-            </div>
-            <div class="aui-tab-item">价格
-            </div>
-            <div class="aui-tab-item">关注
-            </div>
-        </div>
+    <div style="padding-top:10px;padding-bottom:10px;">
+      <!-- class="aui-tab"  -->
+      <!-- <div id="tab"> -->
+           <!-- class="aui-tab-item aui-active" -->
+          <div class="tabword" style="width:33.3%;float:left;text-align:center;" onclick="getinfos(1)">最新
+          </div>
+          <!-- class="aui-tab-item" -->
+          <div class="tabword" style="width:33.3%;float:left;text-align:center;" onclick="getinfos(2)">
+              <div style="float:left;margin-left:32%;">价格</div>
+              <span style="margin-left:-26%;">
+                  <div id="up" style="font-size:5px;margin-top:2px;transform:scale(1.5,0.9);" >▲</div>
+                  <div id="down" style="font-size:1px;margin-top:-5px;transform:scale(1.5,0.9);" >▼</div>
+              </span>
+          </div>
+          <!-- class="aui-tab-item" -->
+          <div class="tabword" style="width:33.3%;float:left;text-align:center;" onclick="getinfos(3)">关注
+            <hr>
+          </div>
+      <!-- </div> -->
     </div>
-    <div style="overflow:auto;margin-top:10px;">
+    <div style="overflow:auto;">
         <div style="width:100%; height:100%;background-color:#ffffff;" id="imgInfos">
-            <span style="margin-top:10px;text-align:center;font-size:18px;color:#009100">暂无待预定清单!</span>
+            <!-- <span style="margin-top:10px;text-align:center;font-size:18px;color:#009100">暂无待预定清单!</span> -->
         </div>
     </div>
   </div>

@@ -307,7 +307,7 @@ function personalRoleManage(){
 				return false;
 		}
 
-		if("单位" === unit){
+		if("0" === unit){
 				dialog.alert({
 						title:"请选择计费单位！",
 						msg:'',
