@@ -2,7 +2,7 @@ var sortorder = ""; // 排序方式
 $(function(){
     $('body').height($('body')[0].clientHeight);
     sortorder = "desc";
-    // getinfos("new");
+    getinfos("new");
 });
 
 apiready = function () {
